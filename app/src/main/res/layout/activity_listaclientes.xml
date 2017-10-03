@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#e5e6e6">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_weight="50"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="nombre"
+                android:textColor="@android:color/black"
+                android:textSize="55px"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/telefono"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:text="telefono"
+                android:textColor="@android:color/black"
+                android:textSize="50px"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="id"
+                android:textColor="@android:color/black"
+                android:textSize="50px"
+                android:textStyle="normal"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="fill_vertical"
+            android:orientation="vertical"
+            android:layout_weight="50">
+
+            <TextView
+                android:id="@+id/direccion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:text="direccion"
+                android:textColor="@android:color/black"
+                android:textSize="55px"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/ID_DISP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="id"
+                android:textColor="@android:color/black"
+                android:textSize="50px"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

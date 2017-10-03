@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:checkable="false"
+        android:title="@string/cliente">
+        <menu>
+            <item
+                android:id="@+id/NuevoCliente"
+                android:title="@string/nuevo_cliente" />
+            <item
+                android:id="@+id/EditarCliente"
+                android:title="@string/editar_cliente" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/NuevoProyecto"
+        android:title="@string/proyecto" />
+</menu>
