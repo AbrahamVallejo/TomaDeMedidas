@@ -94,8 +94,9 @@ public class Fragment_listaClientes extends Fragment {
                     @Override
                     public void onClick(View view) {
                         customDialog.dismiss();
+
                         String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
-                        Intent rIntent = new Intent(getActivity().getApplicationContext(), listaClientes.class);
+                        Intent rIntent = new Intent(vista.getContext(), listaClientes.class);
                         rIntent.putExtra("idCliente", aDat[0]);
                         rIntent.putExtra("idDisp", aDat[1]);
                         rIntent.putExtra("nombre", aDat[2]);
