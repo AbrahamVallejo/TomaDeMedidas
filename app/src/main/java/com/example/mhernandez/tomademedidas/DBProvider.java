@@ -45,7 +45,7 @@ public class DBProvider {
     }
 
     public void insertCliente(int idCliente,int idDisp,String nombre, String telefono, String direccion) {
-        Log.v("[obtener]", String.valueOf(idCliente));
+        //Log.v("[obtener]", String.valueOf(idCliente));
         if (idCliente == 0){
             Object[] aData = {idDisp, nombre, telefono, direccion};
             executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_CLIENTE + " ("+ DBhelper.ID_DISP + ", " + DBhelper.COLUMN_NAME_NOMBRE + ", "
@@ -61,7 +61,7 @@ public class DBProvider {
     }
 
     public void updateCliente(String idCliente, String nombre, String telefono, String direccion) {
-        Object[] aData = {idCliente, nombre, telefono, direccion};
+        Object[] aData = {nombre, telefono, direccion, Integer.parseInt(idCliente) };
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_CLIENTE + " SET " + DBhelper.COLUMN_NAME_NOMBRE + " = ?, "
                 + DBhelper.COLUMN_NAME_TELEFONO + " = ?, " + DBhelper.COLUMN_NAME_DIRECCION + " = ?, "
                 + " WHERE " + DBhelper.ID_CLIENTE + " = ?", aData);
@@ -778,6 +778,8 @@ public class DBProvider {
                     + "PRIMARY KEY (" + DBhelper.ID_CLIENTE + "," + DBhelper.ID_DISP + ")"
                     + ");");
 
+            Log.v("[obtener]","DB Creada?");
+            /*
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_CONTROL + " ("
                     + DBhelper.ID_CONTROL + " INTEGER,"
                     + DBhelper.COLUMN_NAME_ESTADO + " TEXT"
@@ -868,8 +870,6 @@ public class DBProvider {
                     + "PRIMARY KEY (" + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_DISP + ")"
                     + ");");
 
-            Log.v("[obtener]","DB Creada?");
-/*
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " ("
                     + DBhelper.ID_CAMA + " INTEGER PRIMARY KEY,"
                     + DBhelper.ID_DISP + " INTEGER PRIMARY KEY,"
