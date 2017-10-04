@@ -8,9 +8,9 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.mhernandez.tomademedidas.MainActivity"
     tools:showIn="@layout/app_bar_main">
-
+<!--
     <ListView
-        android:id="@+id/lista2"
+        android:id="@+id/lista"
         android:layout_width="395dp"
         android:layout_height="587dp"
         android:drawSelectorOnTop="false"
@@ -18,8 +18,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
-    </ListView>
+        tools:layout_editor_absoluteX="8dp" />-->
 
 
 </android.support.constraint.ConstraintLayout>
