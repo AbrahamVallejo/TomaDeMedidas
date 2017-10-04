@@ -6,9 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/**
- * Created by mhernandez on 11/09/2017.
- */
 
 public class DBProvider {
 
@@ -44,6 +41,7 @@ public class DBProvider {
         return (oRet);
     }
 
+
     public void insertCliente(int idCliente,int idDisp,String nombre, String telefono, String direccion) {
         //Log.v("[obtener]", String.valueOf(idCliente));
         if (idCliente == 0){
@@ -59,19 +57,13 @@ public class DBProvider {
         }
 
     }
-    /*UPDATE `registromedidas`.`cliente` SET  `id_cliente` = <{id_cliente: }>,
-`id_disp` = <{id_disp: }>,  `nombre` = <{nombre: }>,  `telefono` = <{telefono: }>,
-`direccion` = <{direccion: }>, `fecha_alta` = <{fecha_alta: CURRENT_TIMESTAMP}>
-WHERE `id_cliente` = <{expr}> AND `id_disp` = <{expr}>;*/
-    public void updateCliente(String idCliente,String idDisp, String nombre, String telefono, String direccion) {
-        int idC=Integer.parseInt(idCliente);
-        int idD= Integer.parseInt(idDisp);
 
+    public void updateCliente(String idCliente,String idDisp, String nombre, String telefono, String direccion) {
+        int idC=Integer.parseInt(idCliente);    int idD= Integer.parseInt(idDisp);
         Object[] aData = {nombre,telefono, direccion, idC, idD};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_CLIENTE + " SET " + DBhelper.COLUMN_NAME_NOMBRE + " = ?, "
                 + DBhelper.COLUMN_NAME_TELEFONO + " = ?, " + DBhelper.COLUMN_NAME_DIRECCION + " = ?"
                 + " WHERE " + DBhelper.ID_CLIENTE + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
-
         Log.v("[obtener]", "Modificado");
     }
 
@@ -81,17 +73,22 @@ WHERE `id_cliente` = <{expr}> AND `id_disp` = <{expr}>;*/
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " = ?", aData);
     }
 
-    public void insertProyecto(String idCliente, String idFormato,
-                               String idUser, String nombreProyecto,
-                               String accesoriosMuro, String accesoriosTecho,
-                               String accesoriosEspeciales, String PedidoSap) {
-        Object[] aData = {idCliente, idFormato, idUser, nombreProyecto,
-                accesoriosMuro, accesoriosTecho, accesoriosEspeciales, PedidoSap};
-        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO + " (" + DBhelper.ID_CLIENTE + ", "
+    public void insertProyecto(int idProyecto, int idDisp, int idCliente, int idClienteDisp, int idFormato, int idUser,
+                               String nombreProyecto, String PedidoSap, String fecha, int autorizado, String accesoriosTecho,
+                               String accesoriosMuro, int idEstatus, int idUsuarioVenta) {
+        Object[] aData = {idProyecto, idDisp, idCliente, idClienteDisp, idFormato, idUser, nombreProyecto, PedidoSap,
+                fecha, autorizado, accesoriosTecho, accesoriosMuro, idEstatus, idUsuarioVenta};
+        Log.v("[obtener]", "Voy a insertar Proyecto");
+
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO + " (" + DBhelper.ID_PROYECTO + ", "
+                + DBhelper.ID_DISP + ", " + DBhelper.ID_CLIENTE + ", " + DBhelper.ID_CLIENTE_DISP + ", "
                 + DBhelper.ID_FORMATO + ", " + DBhelper.ID_USER + ", " + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", "
-                + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + ", " + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + ", "
-                + DBhelper.COLUMN_NAME_ACCESORIOS_ESPECIALES + ", " + DBhelper.COLUMN_NAME_PEDIDO_SAP
-                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?)", aData);
+                + DBhelper.COLUMN_NAME_PEDIDO_SAP + ", " + DBhelper.COLUMN_NAME_FECHA + ", "
+                + DBhelper.COLUMN_NAME_AUTORIZADO + ", " + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + ", "
+                + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + ", " + DBhelper.ID_ESTATUS + ", "+ DBhelper.ID_USUARIO_VENTA
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+
+        Log.v("[obtener]", nombreProyecto);
     }
 
     public void updateProyecto(String idProyecto, String nombreProyecto, String accesoriosMuro, String accesoriosTecho,
@@ -775,7 +772,8 @@ WHERE `id_cliente` = <{expr}> AND `id_disp` = <{expr}>;*/
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            Log.v("CHECK", "DBHelper.onCreate..."); Log.v("[obtener]","CREAR DB");
+            Log.v("CHECK", "DBHelper.onCreate..."); Log.v("[obtener]","Voy a CREAR DB");
+
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_CLIENTE + " ("
                     + DBhelper.ID_CLIENTE + " INTEGER,"
                     + DBhelper.ID_DISP + " INTEGER,"
@@ -786,7 +784,35 @@ WHERE `id_cliente` = <{expr}> AND `id_disp` = <{expr}>;*/
                     + "PRIMARY KEY (" + DBhelper.ID_CLIENTE + "," + DBhelper.ID_DISP + ")"
                     + ");");
 
-            Log.v("[obtener]","DB Creada?");
+            Log.v("[obtener]","DB Cliente lista");
+            db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO + "("
+                    + DBhelper.ID_PROYECTO + " INTEGER,"
+                    + DBhelper.ID_DISP + " INTEGER,"
+                    + DBhelper.ID_CLIENTE + " INTEGER,"
+                    + DBhelper.ID_CLIENTE_DISP + " INTEGER,"
+                    + DBhelper.ID_FORMATO + " INTEGER,"
+                    + DBhelper.ID_USER + " INTEGER,"
+                    + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + " TEXT,"
+                    + DBhelper.COLUMN_NAME_FECHA + " TEXT,"
+                    + DBhelper.COLUMN_NAME_PEDIDO_SAP + " TEXT,"
+                    + DBhelper.COLUMN_NAME_AGENTE_VENTA + " TEXT,"
+                    + DBhelper.ID_ESTATUS + " INTEGER KEY,"
+                    + DBhelper.ID_USUARIO_VENTA + " INTEGER KEY,"
+                    + DBhelper.COLUMN_NAME_AUTORIZADO + " TINYINT,"
+                    + DBhelper.ID_USUARIOAUTORIZA + " INTEGER,"
+                    + DBhelper.ID_USER_MOD + " INTEGER,"
+                    + DBhelper.COLUMN_NAME_FECHAAUTORIZA + " TEXT,"
+                    + DBhelper.COLUMN_NAME_FECHA_MODIFICA + " TEXT,"
+                    + DBhelper.ID_USUARIO_CIERRA + " INTEGER,"
+                    + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + " TEXT,"
+                    + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + " TEXT,"
+                    + DBhelper.COLUMN_NAME_ACCESORIOS_ESPECIALES + " TEXT," //
+                    + DBhelper.COLUMN_NAME_FECHA_CIERRA + " TEXT,"
+                    + DBhelper.COLUMN_NAME_IDS_CLIENTE + " TEXT,"
+                    + "PRIMARY KEY (" + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_DISP + ")"
+                    + ");");
+
+            Log.v("[obtener]","DB Proyecto Lista");
             /*
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_CONTROL + " ("
                     + DBhelper.ID_CONTROL + " INTEGER,"
@@ -849,33 +875,6 @@ WHERE `id_cliente` = <{expr}> AND `id_disp` = <{expr}>;*/
                     + DBhelper.ID_PROYECCION + " INTEGER,"
                     + DBhelper.COLUMN_NAME_ESTADO + " TEXT"
                     + "PRIMARY KEY (" + DBhelper.ID_PROYECCION + ")"
-                    + ");");
-
-            db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO + "("
-                    + DBhelper.ID_PROYECTO + " INTEGER,"
-                    + DBhelper.ID_DISP + " INTEGER,"
-                    + DBhelper.ID_CLIENTE + " INTEGER,"
-                    + DBhelper.ID_CLIENTE_DISP + " INTEGER,"
-                    + DBhelper.ID_FORMATO + " INTEGER,"
-                    + DBhelper.ID_USER + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + " TEXT,"
-                    + DBhelper.COLUMN_NAME_FECHA + " TEXT,"
-                    + DBhelper.COLUMN_NAME_PEDIDO_SAP + " TEXT,"
-                    + DBhelper.COLUMN_NAME_AGENTE_VENTA + " TEXT,"
-                    + DBhelper.ID_ESTATUS + " INTEGER KEY,"
-                    + DBhelper.ID_USUARIO_VENTA + " INTEGER KEY,"
-                    + DBhelper.COLUMN_NAME_AUTORIZADO + " TINYINT,"
-                    + DBhelper.ID_USUARIOAUTORIZA + " INTEGER,"
-                    + DBhelper.ID_USER_MOD + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_FECHAAUTORIZA + " TEXT,"
-                    + DBhelper.COLUMN_NAME_FECHA_MODIFICA + " TEXT,"
-                    + DBhelper.ID_USUARIO_CIERRA + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_FECHA_CIERRA + " TEXT,"
-                    + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + " TEXT,"
-                    + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + " TEXT,"
-                    + DBhelper.COLUMN_NAME_ACCESORIOS_ESPECIALES + " TEXT,"
-                    + DBhelper.COLUMN_NAME_IDS_CLIENTE + " TEXT"
-                    + "PRIMARY KEY (" + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_DISP + ")"
                     + ");");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " ("
@@ -1104,6 +1103,8 @@ WHERE `id_cliente` = <{expr}> AND `id_disp` = <{expr}>;*/
             Log.v("[BASE DE DATOS]", "Actualizacion de Base de Datos"); Log.v("[obtener]","Act DB");
 
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_CLIENTE);
+            db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_PROYECTO);
+
             /*db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_CONTROL);
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_COPETE);
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_DISPOSITIVOS);
@@ -1113,7 +1114,6 @@ WHERE `id_cliente` = <{expr}> AND `id_disp` = <{expr}>;*/
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_FORMATO);
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_HOJAS);
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_PROYECCION);
-            db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_PROYECTO);
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_PROYECTO_CAMA);
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL);
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_PROYECTO_GALERIA);

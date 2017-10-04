@@ -224,7 +224,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 String[] aFujs = null;
                 JSONArray jaData = new JSONArray((sResp));
                 aFujs = new String[jaData.length()];
-                String var = "María Nuñez";
+                String var = "María Nuñez"; Log.v("[obtener]","Estoy en GetClienteLista");
                 for (int i = 0; i<jaData.length(); i++){
                     JSONObject joFuj = jaData.getJSONObject(i);
                     aFujs[i] = joFuj.getString("id_cliente");
@@ -235,7 +235,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     Log.v("PRUEBA", joFuj.getString("id_cliente"));
                     Log.v("PRUEBA", joFuj.getString("nombre")); Log.v("PRUEBA","...");
                     MainActivity.oDB.insertCliente(Integer.parseInt(joFuj.getString("id_cliente")), Integer.parseInt(joFuj.getString("id_disp")),
-                            joFuj.getString("nombre"), joFuj.getString("telefono"), joFuj.getString("direccion"));
+                           joFuj.getString("nombre"), joFuj.getString("telefono"), joFuj.getString("direccion"));
                 }
             }catch (Exception e){
                 exception = e;
@@ -374,7 +374,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 String[] aFujs = null;
                 JSONArray jaData = new JSONArray((sResp));
                 aFujs = new String[jaData.length()];
-                Log.v("PRUEBA", sResp);
+                Log.v("PRUEBA", sResp); Log.v("[obtener]", "Estoy en GetProyectoLista");
                 for (int i = 0; i<jaData.length(); i++){
                     Log.v("PRUEBA", "Hola");
                     JSONObject joFuj = jaData.getJSONObject(i);
@@ -396,6 +396,13 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("id_usuario_venta");
                     Log.v("PRUEBA", joFuj.getString("id_proyecto"));
                     Log.v("PRUEBA", joFuj.getString("nombre_proyecto")); Log.v("PRUEBA","...");
+                MainActivity.oDB.insertProyecto(Integer.parseInt(joFuj.getString("id_proyecto")),
+                        Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_cliente")),
+                        Integer.parseInt(joFuj.getString("id_cliente_disp")), Integer.parseInt(joFuj.getString("id_formato")),
+                        Integer.parseInt(joFuj.getString("id_user")), joFuj.getString("nombre_proyecto"), joFuj.getString("pedido_sap"),
+                        joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("autorizado")), joFuj.getString("accesorios_techo"),
+                        joFuj.getString("accesorios_muro"), Integer.parseInt(joFuj.getString("id_estatus")),
+                        Integer.parseInt(joFuj.getString("id_usuario_venta")) );
                 }
             }catch (Exception e){
                 exception = e;
