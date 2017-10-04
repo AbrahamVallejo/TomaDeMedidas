@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by mhernandez on 27/09/2017.
@@ -15,7 +16,6 @@ import android.widget.EditText;
 public class listaClientes extends AppCompatActivity {
 
     public static DBProvider oDB;
-
     public listaClientes() { oDB = new DBProvider(this);}
 
     @Override
@@ -40,6 +40,8 @@ public class listaClientes extends AppCompatActivity {
                 new View.OnClickListener(){
                     public void onClick(View view){
                         oDB.updateCliente(idCliente,idDisp,nombre.getText().toString(),telefono.getText().toString(),direccion.getText().toString());
+                        Toast.makeText(getApplicationContext(), "SE HAN GUARDADO LOS CAMBIOS", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 });
     }
