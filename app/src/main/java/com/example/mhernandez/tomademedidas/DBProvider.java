@@ -61,10 +61,12 @@ public class DBProvider {
     }
 
     public void updateCliente(String idCliente, String nombre, String telefono, String direccion) {
+        Log.v("[obtener]", "Modificando");
         Object[] aData = {nombre, telefono, direccion, Integer.parseInt(idCliente) };
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_CLIENTE + " SET " + DBhelper.COLUMN_NAME_NOMBRE + " = ?, "
                 + DBhelper.COLUMN_NAME_TELEFONO + " = ?, " + DBhelper.COLUMN_NAME_DIRECCION + " = ?, "
                 + " WHERE " + DBhelper.ID_CLIENTE + " = ?", aData);
+        Log.v("[obtener]", "Modificado?");
     }
 
     public void deleteCliente(String idCliente) {
