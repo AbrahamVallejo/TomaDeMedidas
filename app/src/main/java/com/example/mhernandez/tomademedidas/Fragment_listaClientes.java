@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,12 +79,13 @@ public class Fragment_listaClientes extends Fragment {
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.list_activity, container, false);
 
-        ListView tlList = ((ListView) getActivity().findViewById(R.id.lista2));
+        lista();
+
+        ListView tlList = ((ListView) vista.findViewById(R.id.lista));
 
         tlList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(final AdapterView<?> aList, View vItem, final int iPosition, long l) {
-
                 customDialog = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
                 customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 customDialog.setContentView(R.layout.menu_tabla);
@@ -94,7 +96,8 @@ public class Fragment_listaClientes extends Fragment {
                         customDialog.dismiss();
                         String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
                         Intent rIntent = new Intent(getActivity().getApplicationContext(), listaClientes.class);
-                        rIntent.putExtra("id", aDat[0]);
+                        rIntent.putExtra("idCliente", aDat[0]);
+                        rIntent.putExtra("idDisp", aDat[1]);
                         rIntent.putExtra("nombre", aDat[2]);
                         rIntent.putExtra("telefono", aDat[3]);
                         rIntent.putExtra("direccion", aDat[4]);
@@ -114,7 +117,6 @@ public class Fragment_listaClientes extends Fragment {
             }
         });
 
-        lista();
         return vista;
     }
 
