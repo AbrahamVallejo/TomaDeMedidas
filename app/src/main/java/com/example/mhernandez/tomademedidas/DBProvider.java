@@ -59,14 +59,20 @@ public class DBProvider {
         }
 
     }
+    /*UPDATE `registromedidas`.`cliente` SET  `id_cliente` = <{id_cliente: }>,
+`id_disp` = <{id_disp: }>,  `nombre` = <{nombre: }>,  `telefono` = <{telefono: }>,
+`direccion` = <{direccion: }>, `fecha_alta` = <{fecha_alta: CURRENT_TIMESTAMP}>
+WHERE `id_cliente` = <{expr}> AND `id_disp` = <{expr}>;*/
+    public void updateCliente(String idCliente,String idDisp, String nombre, String telefono, String direccion) {
+        int idC=Integer.parseInt(idCliente);
+        int idD= Integer.parseInt(idDisp);
 
-    public void updateCliente(String idCliente, String nombre, String telefono, String direccion) {
-        Log.v("[obtener]", "Modificando");
-        Object[] aData = {nombre, telefono, direccion, Integer.parseInt(idCliente) };
+        Object[] aData = {nombre,telefono, direccion, idC, idD};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_CLIENTE + " SET " + DBhelper.COLUMN_NAME_NOMBRE + " = ?, "
-                + DBhelper.COLUMN_NAME_TELEFONO + " = ?, " + DBhelper.COLUMN_NAME_DIRECCION + " = ?, "
-                + " WHERE " + DBhelper.ID_CLIENTE + " = ?", aData);
-        Log.v("[obtener]", "Modificado?");
+                + DBhelper.COLUMN_NAME_TELEFONO + " = ?, " + DBhelper.COLUMN_NAME_DIRECCION + " = ?"
+                + " WHERE " + DBhelper.ID_CLIENTE + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
+
+        Log.v("[obtener]", "Modificado");
     }
 
     public void deleteCliente(String idCliente) {
@@ -253,7 +259,7 @@ public class DBProvider {
                 aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_TELEFONO));
                 aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_DIRECCION));
                 aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_ALTA));
-                Log.v("[obtener]", aData[iCnt][0] + "  Disp:"+ aData[iCnt][1] + "  Nombre:"+ aData[iCnt][2]+ "  Telefono:"+ aData[iCnt][3]);
+                //Log.v("[obtener]", aData[iCnt][0] + "  Disp:"+ aData[iCnt][1] + "  Nombre:"+ aData[iCnt][2]+ "  Telefono:"+ aData[iCnt][3]);
                 iCnt++;
             }
         } else {
