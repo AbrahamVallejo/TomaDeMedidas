@@ -16,6 +16,13 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Nombre: "
+                android:textColor="@android:color/black"
+                android:textSize="55px"
+                android:textStyle="normal" />
+            <TextView
                 android:id="@+id/nombre"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -25,10 +32,19 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:gravity="bottom"
+                android:layout_weight="1"
+                android:text="Teléfono: "
+                android:textColor="@android:color/black"
+                android:textSize="55px"
+                android:textStyle="italic" />
+            <TextView
                 android:id="@+id/telefono"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:gravity="center"
+                android:gravity="end"
                 android:text="telefono"
                 android:textColor="@android:color/black"
                 android:textSize="50px"
@@ -36,8 +52,8 @@
 
             <TextView
                 android:id="@+id/id"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
                 android:text="id"
                 android:textColor="@android:color/black"
                 android:textSize="50px"
@@ -54,19 +70,29 @@
             android:layout_weight="50">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:text="Dirección:"
+                android:layout_gravity="bottom"
+                android:textColor="@android:color/black"
+                android:textSize="58px"
+                android:textStyle="normal" />
+            <TextView
                 android:id="@+id/direccion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="right"
                 android:text="direccion"
+                android:layout_gravity="end"
                 android:textColor="@android:color/black"
                 android:textSize="55px"
                 android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/ID_DISP"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:text="id"
                 android:textColor="@android:color/black"
                 android:textSize="50px"

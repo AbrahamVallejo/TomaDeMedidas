@@ -27,6 +27,7 @@ import android.widget.Toast;
  * Use the {@link Fragment_listaClientes#newInstance} factory method to
  * create an instance of this fragment.
  */
+
 public class Fragment_listaClientes extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,7 +77,8 @@ public class Fragment_listaClientes extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         vista = inflater.inflate(R.layout.list_activity, container, false);
 
         lista();
@@ -84,6 +86,7 @@ public class Fragment_listaClientes extends Fragment {
         ListView tlList = ((ListView) vista.findViewById(R.id.lista));
 
         tlList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
             @Override
             public boolean onItemLongClick(final AdapterView<?> aList, View vItem, final int iPosition, long l) {
                 customDialog = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
@@ -178,10 +181,10 @@ public class Fragment_listaClientes extends Fragment {
             TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
             TextView txtTelefono = (TextView) rowView.findViewById(R.id.telefono);
             TextView txtDireccion = (TextView) rowView.findViewById(R.id.direccion);
-            txtId.setText("No. " + _text[position][0]);
+            txtId.setText(_text[position][0]);
             txtNombre.setText(_text[position][2]);
-            txtTelefono.setText("Telefono: " + _text[position][3]);
-            txtDireccion.setText("Direccion: " + _text[position][4]);
+            txtTelefono.setText(_text[position][3]);
+            txtDireccion.setText(_text[position][4]);
             return rowView;
         }
     }
