@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity
         //oDB.insertCliente(150, 1, "Aaron", "12340183", "Direccion");
         //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");
         //oDB.insertCliente(0, 3, "Jose", "13245768", "UPSIN");
-        getclienteLista();
+        //getclienteLista();
     }
 
     @Override
