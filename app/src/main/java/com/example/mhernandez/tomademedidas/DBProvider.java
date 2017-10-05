@@ -281,9 +281,9 @@ public class DBProvider {
         String[] aFils = {(id)};
         Cursor aRS;
         if (tipo == 1) {
-            aRS = querySQL("SELECT FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " <> ?", aFils);
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " <> ?", aFils);
         } else {
-            aRS = querySQL("SELECT FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aFils);
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aFils);
         }
 
         if (aRS.getCount() > 0) {
@@ -321,6 +321,7 @@ public class DBProvider {
 
         aRS.close();
         CloseDB();
+        Log.v("[obtener]","Llevo todos los proyectos!!!");
         return (aData);
     }
 

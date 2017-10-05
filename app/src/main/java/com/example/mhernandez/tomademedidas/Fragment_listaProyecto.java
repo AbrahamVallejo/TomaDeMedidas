@@ -6,6 +6,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,7 @@ public class Fragment_listaProyecto extends Fragment {
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.activity_listaproyectos, container, false);
 
-        lista();
+        lista(); Log.v("[obtener]","Regrese de Lista");
         ListView tlList = ((ListView) vista.findViewById(R.id.lista));
 
         return vista;
@@ -104,45 +105,54 @@ public class Fragment_listaProyecto extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
     public void lista(){
-        String[][] aRef = MainActivity.oDB.ObtenerClientes("0", 1);
+        Log.v("[obtener]","Voy por datos");
+        String[][] aRef = MainActivity.oDB.ObtenerProyectos("0", 1);
         String[][] aDataFolio = null;
-
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
+            Log.v("[obtener]","Estoy dentro");
             for (int iCnt = 0; iCnt < aRef.length; iCnt++){
-                aDataFolio[iCnt] = new String[6];
+                aDataFolio[iCnt] = new String[23];
                 aDataFolio[iCnt][0] = aRef[iCnt][0];
                 aDataFolio[iCnt][1] = aRef[iCnt][1];
                 aDataFolio[iCnt][2] = aRef[iCnt][2];
                 aDataFolio[iCnt][3] = aRef[iCnt][3];
                 aDataFolio[iCnt][4] = aRef[iCnt][4];
                 aDataFolio[iCnt][5] = aRef[iCnt][5];
+                aDataFolio[iCnt][6] = aRef[iCnt][6];
+                aDataFolio[iCnt][7] = aRef[iCnt][7];
+                aDataFolio[iCnt][8] = aRef[iCnt][8];
+                aDataFolio[iCnt][9] = aRef[iCnt][9];
+                aDataFolio[iCnt][10] = aRef[iCnt][10];
+                aDataFolio[iCnt][11] = aRef[iCnt][11];
+                aDataFolio[iCnt][12] = aRef[iCnt][12];
+                aDataFolio[iCnt][13] = aRef[iCnt][13];
+                aDataFolio[iCnt][14] = aRef[iCnt][14];
+                aDataFolio[iCnt][15] = aRef[iCnt][15];
+                aDataFolio[iCnt][16] = aRef[iCnt][16];
+                aDataFolio[iCnt][17] = aRef[iCnt][17];
+                aDataFolio[iCnt][18] = aRef[iCnt][18];
+                aDataFolio[iCnt][19] = aRef[iCnt][19];
+                aDataFolio[iCnt][20] = aRef[iCnt][20];
+                aDataFolio[iCnt][21] = aRef[iCnt][21];
+                aDataFolio[iCnt][22] = aRef[iCnt][22];
             }
-
             ListView list;
             list = (ListView) vista.findViewById(R.id.lista);
-            CustomAdapter adapter = new CustomAdapter(getActivity(), aDataFolio);
+            Fragment_listaProyecto.CustomAdapter adapter = new Fragment_listaProyecto.CustomAdapter(getActivity(), aDataFolio);
+            Log.v("[obtener]","Sigue el error");
             list.setTag(aRef);
+            Log.v("[obtener]","sobrevivi al error");
             list.setAdapter(adapter);
         }
-    }
 
+    }
 
     public class CustomAdapter extends ArrayAdapter<String[]> {
         private final Activity _context;
@@ -158,10 +168,10 @@ public class Fragment_listaProyecto extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = _context.getLayoutInflater();
             View rowView = inflater.inflate(R.layout.activity_listaproyectos, null, true);
-            TextView txtId = (TextView) rowView.findViewById(R.id.id);
-            TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
-            TextView txtTelefono = (TextView) rowView.findViewById(R.id.telefono);
-            TextView txtDireccion = (TextView) rowView.findViewById(R.id.direccion);
+            TextView txtId = (TextView) rowView.findViewById(R.id.nombre);
+            TextView txtNombre = (TextView) rowView.findViewById(R.id.autorizado);
+            TextView txtTelefono = (TextView) rowView.findViewById(R.id.accesorios_techo);
+            TextView txtDireccion = (TextView) rowView.findViewById(R.id.pedidoSap);
             txtId.setText(_text[position][0]);
             txtNombre.setText(_text[position][2]);
             txtTelefono.setText(_text[position][3]);
@@ -169,5 +179,4 @@ public class Fragment_listaProyecto extends Fragment {
             return rowView;
         }
     }
-
 }
