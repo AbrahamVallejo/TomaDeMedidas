@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         EditText telefono = (EditText) this.findViewById(R.id.txt_cliente_telefono);
         EditText direccion = (EditText) this.findViewById(R.id.txt_cliente_direccion);
         if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
-            MainActivity.oDB.insertCliente(0, 1, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString());
+            MainActivity.oDB.insertCliente(1, 1, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString());
             Toast.makeText(this, "CLIENTE AGREGADO", Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(this, "VERIFIQUE SU CAPTURA", Toast.LENGTH_SHORT).show();
