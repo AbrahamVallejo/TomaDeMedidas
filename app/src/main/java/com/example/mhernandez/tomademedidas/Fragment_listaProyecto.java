@@ -1,5 +1,6 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.net.Uri;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -135,10 +137,37 @@ public class Fragment_listaProyecto extends Fragment {
 
             ListView list;
             list = (ListView) vista.findViewById(R.id.lista);
-            Fragment_listaClientes.CustomAdapter adapter = new Fragment_listaClientes.CustomAdapter(getActivity(), aDataFolio);
+            CustomAdapter adapter = new CustomAdapter(getActivity(), aDataFolio);
             list.setTag(aRef);
             list.setAdapter(adapter);
         }
     }
-    
+
+
+    public class CustomAdapter extends ArrayAdapter<String[]> {
+        private final Activity _context;
+        private final String[][] _text;
+
+        public CustomAdapter(Activity context, String[][] text){
+            super(context, R.layout.activity_listaproyectos, text);
+            this._context = context;
+            this._text = text;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent){
+            LayoutInflater inflater = _context.getLayoutInflater();
+            View rowView = inflater.inflate(R.layout.activity_listaproyectos, null, true);
+            TextView txtId = (TextView) rowView.findViewById(R.id.id);
+            TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
+            TextView txtTelefono = (TextView) rowView.findViewById(R.id.telefono);
+            TextView txtDireccion = (TextView) rowView.findViewById(R.id.direccion);
+            txtId.setText(_text[position][0]);
+            txtNombre.setText(_text[position][2]);
+            txtTelefono.setText(_text[position][3]);
+            txtDireccion.setText(_text[position][4]);
+            return rowView;
+        }
+    }
+
 }

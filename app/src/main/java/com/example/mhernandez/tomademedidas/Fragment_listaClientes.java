@@ -182,11 +182,13 @@ public class Fragment_listaClientes extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = _context.getLayoutInflater();
             View rowView = inflater.inflate(R.layout.activity_listaclientes, null, true);
-            TextView txtId = (TextView) rowView.findViewById(R.id.id);
+            TextView txtIdCliente = (TextView) rowView.findViewById(R.id.id);
+            TextView txtIdDisp = (TextView) rowView.findViewById(R.id.ID_DISP);
             TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
             TextView txtTelefono = (TextView) rowView.findViewById(R.id.telefono);
             TextView txtDireccion = (TextView) rowView.findViewById(R.id.direccion);
-            txtId.setText(_text[position][0]);
+            txtIdCliente.setText(_text[position][0]);
+            txtIdDisp.setText(_text[position][1]);
             txtNombre.setText(_text[position][2]);
             txtTelefono.setText(_text[position][3]);
             txtDireccion.setText(_text[position][4]);
