@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,11 +70,11 @@ public class Fragment_clientes extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final EditText nombre = (EditText) getActivity().findViewById(R.id.txt_cliente_nombre);
+    /*    final EditText nombre = (EditText) getActivity().findViewById(R.id.txt_cliente_nombre);
         final EditText telefono = (EditText) getActivity().findViewById(R.id.txt_cliente_telefono);
         final EditText direccion = (EditText) getActivity().findViewById(R.id.txt_cliente_direccion);
         Button guardar = (Button) getActivity().findViewById(R.id.Guardar);
-        /*guardar.setOnClickListener(
+        guardar.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View view){
                         MainActivity.oDB.insertCliente(0, 1, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString());
@@ -84,6 +85,18 @@ public class Fragment_clientes extends Fragment {
         vista = inflater.inflate(R.layout.agregar_cliente, container, false);
         return vista;
     }
+
+/*    public void onSaveClick(View view){
+        EditText nombre = (EditText) getActivity().findViewById(R.id.txt_cliente_nombre);
+        EditText telefono = (EditText) getActivity().findViewById(R.id.txt_cliente_telefono);
+        EditText direccion = (EditText) getActivity().findViewById(R.id.txt_cliente_direccion);
+        if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
+            MainActivity.oDB.insertCliente(0, 1, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString());
+            Toast.makeText(getActivity(), "CLIENTE AGREGADO", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(getActivity(), "VERIFIQUE SU CAPTURA", Toast.LENGTH_SHORT).show();
+        }
+    }*/
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
