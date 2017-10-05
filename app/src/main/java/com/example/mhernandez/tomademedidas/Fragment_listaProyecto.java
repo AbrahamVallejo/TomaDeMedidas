@@ -73,9 +73,10 @@ public class Fragment_listaProyecto extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        vista = inflater.inflate(R.layout.activity_listaproyectos, container, false);
+        vista = inflater.inflate(R.layout.list_activity, container, false);
 
-        lista(); Log.v("[obtener]","Regrese de Lista");
+        lista();
+        Log.v("[obtener]","Regrese de Lista");
         ListView tlList = ((ListView) vista.findViewById(R.id.lista));
 
         return vista;
@@ -146,7 +147,6 @@ public class Fragment_listaProyecto extends Fragment {
             ListView list;
             list = (ListView) vista.findViewById(R.id.lista);
             CustomAdapter adapter = new CustomAdapter(getActivity(), aDataFolio);
-            Log.v("[obtener]","Sigue el error");
             list.setTag(aRef);
             Log.v("[obtener]","sobrevivi al error");
             list.setAdapter(adapter);
@@ -168,14 +168,18 @@ public class Fragment_listaProyecto extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = _context.getLayoutInflater();
             View rowView = inflater.inflate(R.layout.activity_listaproyectos, null, true);
-            TextView txtId = (TextView) rowView.findViewById(R.id.nombre);
-            TextView txtNombre = (TextView) rowView.findViewById(R.id.autorizado);
-            TextView txtTelefono = (TextView) rowView.findViewById(R.id.accesorios_techo);
-            TextView txtDireccion = (TextView) rowView.findViewById(R.id.pedidoSap);
-            txtId.setText(_text[position][0]);
-            txtNombre.setText(_text[position][2]);
-            txtTelefono.setText(_text[position][3]);
-            txtDireccion.setText(_text[position][4]);
+            TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
+            TextView txtAutorizado = (TextView) rowView.findViewById(R.id.autorizado);
+            TextView txtATecho = (TextView) rowView.findViewById(R.id.accesorios_techo);
+            TextView txtPedidoSap = (TextView) rowView.findViewById(R.id.pedidoSap);
+            TextView txtFecha = (TextView) rowView.findViewById(R.id.fecha);
+            TextView txtAMuro = (TextView) rowView.findViewById(R.id.accesorios_muro);
+            txtNombre.setText(_text[position][6]);
+            txtFecha.setText(_text[position][7]);
+            txtPedidoSap.setText(_text[position][8]);
+            txtAutorizado.setText(_text[position][12]);
+            txtATecho.setText(_text[position][19]);
+            txtAMuro.setText(_text[position][20]);
             return rowView;
         }
     }
