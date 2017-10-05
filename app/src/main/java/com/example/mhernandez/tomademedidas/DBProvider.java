@@ -44,13 +44,14 @@ public class DBProvider {
 
 
     public void insertCliente(int idCliente,int idDisp,String nombre, String telefono, String direccion) {
-        Log.v("[obtener]", String.valueOf(idCliente));
-        Log.v("[obtener]", String.valueOf(idDisp));
-        Log.v("[obtener]", String.valueOf(nombre));
+
         if (idCliente == 0){
             Object[] aData = {idDisp, nombre, telefono, direccion};
             executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_CLIENTE + " ("+ DBhelper.ID_DISP + ", " + DBhelper.COLUMN_NAME_NOMBRE + ", "
                     + DBhelper.COLUMN_NAME_TELEFONO + ", " + DBhelper.COLUMN_NAME_DIRECCION + ") VALUES(?, ?, ?, ?)", aData);
+            Log.v("[obtener]", String.valueOf(idCliente));
+            Log.v("[obtener]", String.valueOf(idDisp));
+            Log.v("[obtener]", String.valueOf(nombre));
         }
         else{
             Object[] aData = {idCliente, idDisp, nombre, telefono, direccion};
