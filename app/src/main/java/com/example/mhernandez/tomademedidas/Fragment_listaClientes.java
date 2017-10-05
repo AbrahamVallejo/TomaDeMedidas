@@ -113,7 +113,12 @@ public class Fragment_listaClientes extends Fragment {
                     @Override
                     public void onClick(View view) {
                         customDialog.dismiss();
+                        String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
+                        String idCliente = aDat[0];
+                        String idDisp = aDat[1];
+                        MainActivity.oDB.deleteCliente(idCliente, idDisp);
                         Toast.makeText(getActivity(), "PRESIONO BOTON ELIMINAR", Toast.LENGTH_SHORT).show();
+                        lista();
                     }
                 });
                 customDialog.show();
