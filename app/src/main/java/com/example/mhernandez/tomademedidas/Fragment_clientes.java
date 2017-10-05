@@ -7,7 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,6 +68,18 @@ public class Fragment_clientes extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        final EditText nombre = (EditText) getActivity().findViewById(R.id.txt_cliente_nombre);
+        final EditText telefono = (EditText) getActivity().findViewById(R.id.txt_cliente_telefono);
+        final EditText direccion = (EditText) getActivity().findViewById(R.id.txt_cliente_direccion);
+        Button guardar = (Button) getActivity().findViewById(R.id.Guardar);
+        /*guardar.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View view){
+                        MainActivity.oDB.insertCliente(0, 1, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString());
+                        Toast.makeText(getActivity(), "CLIENTE AGREGADO", Toast.LENGTH_SHORT).show();
+                    }
+                });*/
 
         vista = inflater.inflate(R.layout.agregar_cliente, container, false);
         return vista;

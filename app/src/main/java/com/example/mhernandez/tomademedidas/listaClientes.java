@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 public class listaClientes extends AppCompatActivity {
 
+    public static Fragment_listaClientes lC;
     public static DBProvider oDB;
     public listaClientes() { oDB = new DBProvider(this);}
 
