@@ -13,6 +13,16 @@
         </menu>
     </item>
     <item
-        android:id="@+id/NuevoProyecto"
-        android:title="@string/proyecto" />
+        android:checkable="false"
+        android:title="Proyecto">
+        <menu>
+            <item
+                android:id="@+id/NuevoProyecto"
+                android:title="@string/proyecto" />
+            <item
+                android:id="@+id/EditarProyecto"
+                android:title="Editar Proyecto" />
+        </menu>
+    </item>
+
 </menu>

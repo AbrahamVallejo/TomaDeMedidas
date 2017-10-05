@@ -17,36 +17,58 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Nombre: "
+                android:text="Nombre Proyecto: "
                 android:textColor="@android:color/black"
-                android:textSize="45px"
+                android:textSize="40px"
                 android:textStyle="normal"/>
-
             <TextView
                 android:id="@+id/nombre"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="nombre"
                 android:textColor="@android:color/black"
-                android:textSize="45px"
+                android:textSize="40px"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="NombreProyecto: "
+                android:layout_height="35dp"
+                android:gravity="bottom"
+                android:layout_weight="1"
+                android:text="Autorizado: "
                 android:textColor="@android:color/black"
-                android:textSize="45px"
-                android:textStyle="normal"/>
+                android:textSize="40px"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/autorizado"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:gravity="end"
+                android:text="autorizado"
+                android:textColor="@android:color/black"
+                android:textSize="40px"
+                android:textStyle="normal"
+                android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/nombre_proyecto"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="nombre proyecto"
+                android:layout_height="35dp"
+                android:gravity="bottom"
+                android:layout_weight="1"
+                android:text="Acc. Techo: "
                 android:textColor="@android:color/black"
-                android:textSize="45px"
-                android:textStyle="bold"/>
+                android:textSize="40px"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/accesorios_techo"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:gravity="end"
+                android:text="Acc. Techo"
+                android:textColor="@android:color/black"
+                android:textSize="40px"
+                android:textStyle="normal"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -54,7 +76,64 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="fill_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_weight="50">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Pedido Sap: "
+                android:textColor="@android:color/black"
+                android:textSize="40px"
+                android:textStyle="normal"/>
+            <TextView
+                android:id="@+id/pedidoSap"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="pedido"
+                android:textColor="@android:color/black"
+                android:textSize="40px"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:gravity="bottom"
+                android:layout_weight="1"
+                android:text="Fecha: "
+                android:textColor="@android:color/black"
+                android:textSize="40px"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:gravity="end"
+                android:text="Fecha"
+                android:textColor="@android:color/black"
+                android:textSize="40px"
+                android:textStyle="normal"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:gravity="bottom"
+                android:layout_weight="1"
+                android:text="Acc. Muro: "
+                android:textColor="@android:color/black"
+                android:textSize="40px"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/accesorios_muro"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:gravity="end"
+                android:text="Acc. Muro"
+                android:textColor="@android:color/black"
+                android:textSize="40px"
+                android:textStyle="normal"
+                android:layout_weight="1" />
 
         </LinearLayout>
 

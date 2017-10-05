@@ -29,7 +29,8 @@
                 android:text="nombre"
                 android:textColor="@android:color/black"
                 android:textSize="55px"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_weight="1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -48,7 +49,8 @@
                 android:text="telefono"
                 android:textColor="@android:color/black"
                 android:textSize="50px"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/id"

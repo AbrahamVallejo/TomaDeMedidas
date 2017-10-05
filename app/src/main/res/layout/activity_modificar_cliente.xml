@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:id="@+id/activity_modificar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -9,13 +11,14 @@
         android:text="Nombre:"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:textStyle="normal"/>
+        android:textStyle="normal" />
 
     <EditText
         android:id="@+id/txtNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"/>
+        android:inputType="text"
+        android:textSize="15sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,13 +26,14 @@
         android:text="Telefono:"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:textStyle="normal"/>
+        android:textStyle="normal" />
 
     <EditText
         android:id="@+id/txtTelefono"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"/>
+        android:inputType="phone"
+        android:textSize="15sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,13 +41,14 @@
         android:text="Direccion"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:textStyle="normal"/>
+        android:textStyle="normal" />
 
     <EditText
         android:id="@+id/txtDireccion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"/>
+        android:inputType="text"
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/Guardar"
