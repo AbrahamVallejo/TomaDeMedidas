@@ -24,6 +24,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,13 +61,25 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        MainActivity.oDB.ObtenerClientes("0",1);
+        //MainActivity.oDB.ObtenerClientes("0",1);
         //oDB.insertCliente(150, 1, "Aaron", "12340183", "Direccion");
         //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");
         //oDB.insertCliente(0, 3, "Jose", "13245768", "UPSIN");
         //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
         getclienteLista();
         getproyectoLista();
+    }
+
+    public void onSaveClick(View view){
+        EditText nombre = (EditText) this.findViewById(R.id.txt_cliente_nombre);
+        EditText telefono = (EditText) this.findViewById(R.id.txt_cliente_telefono);
+        EditText direccion = (EditText) this.findViewById(R.id.txt_cliente_direccion);
+        if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
+            MainActivity.oDB.insertCliente(0, 1, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString());
+            Toast.makeText(this, "CLIENTE AGREGADO", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "VERIFIQUE SU CAPTURA", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
