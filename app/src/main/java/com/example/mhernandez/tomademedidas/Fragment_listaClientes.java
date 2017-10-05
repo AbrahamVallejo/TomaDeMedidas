@@ -189,6 +189,12 @@ public class Fragment_listaClientes extends Fragment {
         }
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        lista();
+    }
+
     public void lista(){
         String[][] aRef = MainActivity.oDB.ObtenerClientes("0", 1);
         String[][] aDataFolio = null;
