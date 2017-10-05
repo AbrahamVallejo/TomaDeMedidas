@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity
         //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");
         //oDB.insertCliente(0, 3, "Jose", "13245768", "UPSIN");
         //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
-        getclienteLista();
-        getproyectoLista();
+        //getclienteLista();
+        //getproyectoLista();
     }
 
     public void onSaveClick(View view){
