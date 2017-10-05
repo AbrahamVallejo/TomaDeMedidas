@@ -145,7 +145,7 @@ public class Fragment_listaProyecto extends Fragment {
             }
             ListView list;
             list = (ListView) vista.findViewById(R.id.lista);
-            Fragment_listaProyecto.CustomAdapter adapter = new Fragment_listaProyecto.CustomAdapter(getActivity(), aDataFolio);
+            CustomAdapter adapter = new CustomAdapter(getActivity(), aDataFolio);
             Log.v("[obtener]","Sigue el error");
             list.setTag(aRef);
             Log.v("[obtener]","sobrevivi al error");
