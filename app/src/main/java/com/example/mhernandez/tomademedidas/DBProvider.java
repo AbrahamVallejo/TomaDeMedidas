@@ -1,6 +1,7 @@
 package com.example.mhernandez.tomademedidas;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -67,10 +68,13 @@ public class DBProvider {
         Log.v("[obtener]", "Modificado");
     }
 
-    public void deleteCliente(String idCliente) {
+    public void deleteCliente(String idCliente, String idDisp) {
+        int idC = Integer.parseInt(idCliente);
+        int idD = Integer.parseInt(idDisp);
 
-        Object[] aData = {idCliente};
-        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " = ?", aData);
+        Object[] aData = {idC, idD};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
+        Log.v("[obtener]", "Delete");
     }
 
     public void insertProyecto(int idProyecto, int idDisp, int idCliente, int idClienteDisp, int idFormato, int idUser,
