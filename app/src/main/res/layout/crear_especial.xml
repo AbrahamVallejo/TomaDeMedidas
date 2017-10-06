@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ancho: "
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtAncho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alto: "
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtAlto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Grosor: "
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtGrosor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observaciones: "
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtObservaciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="12sp"/>
+
+    <Button
+        android:id="@+id/Guardar"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guardar"/>
+
+</LinearLayout>
