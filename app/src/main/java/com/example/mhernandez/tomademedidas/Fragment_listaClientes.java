@@ -41,7 +41,6 @@ public class Fragment_listaClientes extends Fragment {
     View vista;
     Dialog customDialog = null;
 
-
     private OnFragmentInteractionListener mListener;
 
     public Fragment_listaClientes() {
@@ -117,7 +116,7 @@ public class Fragment_listaClientes extends Fragment {
                         String idCliente = aDat[0];
                         String idDisp = aDat[1];
                         MainActivity.oDB.deleteCliente(idCliente, idDisp);
-                        Toast.makeText(getActivity(), "PRESIONO BOTON ELIMINAR", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "REGISTRO ELIMINADO", Toast.LENGTH_SHORT).show();
                         lista();
                     }
                 });
@@ -182,8 +181,8 @@ public class Fragment_listaClientes extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = _context.getLayoutInflater();
             View rowView = inflater.inflate(R.layout.activity_listaclientes, null, true);
-            TextView txtIdCliente = (TextView) rowView.findViewById(R.id.id);
-            TextView txtIdDisp = (TextView) rowView.findViewById(R.id.ID_DISP);
+            TextView txtIdCliente = (TextView) rowView.findViewById(R.id.idCliente);
+            TextView txtIdDisp = (TextView) rowView.findViewById(R.id.idDisp);
             TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
             TextView txtTelefono = (TextView) rowView.findViewById(R.id.telefono);
             TextView txtDireccion = (TextView) rowView.findViewById(R.id.direccion);

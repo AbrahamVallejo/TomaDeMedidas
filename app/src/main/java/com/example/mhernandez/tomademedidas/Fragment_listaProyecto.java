@@ -1,8 +1,10 @@
 package com.example.mhernandez.tomademedidas;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,9 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,10 +38,8 @@ public class Fragment_listaProyecto extends Fragment {
     private String mParam1;
     private String mParam2;
 
-
     View vista;
     Dialog customDialog = null;
-
 
     private OnFragmentInteractionListener mListener;
 
@@ -71,13 +75,58 @@ public class Fragment_listaProyecto extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.list_activity, container, false);
 
         lista();
-        Log.v("[obtener]","Regrese de Lista");
+
         ListView tlList = ((ListView) vista.findViewById(R.id.lista));
+
+        tlList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+
+            @Override
+            public boolean onItemLongClick(final AdapterView<?> aList, View vItem, final int iPosition, long l){
+                customDialog = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
+                customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                customDialog.setContentView(R.layout.menu_tabla);
+
+                ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        customDialog.dismiss();
+
+                        String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
+                        Intent rIntent = new Intent(vista.getContext(), listaProyectos.class);
+                        rIntent.putExtra("IdProyecto", aDat[1]);
+                        rIntent.putExtra("IdDisp", aDat[2]);
+                        rIntent.putExtra("nombre", aDat[6]);
+                        rIntent.putExtra("fecha", aDat[7]);
+                        rIntent.putExtra("pedidoSap", aDat[8]);
+                        rIntent.putExtra("autorizado", aDat[12]);
+                        rIntent.putExtra("ATecho", aDat[19]);
+                        rIntent.putExtra("AMuro", aDat[20]);
+                        startActivity(rIntent);
+                    }
+                });
+
+                ((Button) customDialog.findViewById(R.id.btnEliminar)).setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        customDialog.dismiss();
+                        String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
+                        String idProyecto = aDat[0];
+                        String idDisp = aDat[1];
+                        MainActivity.oDB.deleteProyecto(idProyecto, idDisp);
+                        Toast.makeText(getActivity(), "REGISTRO ELIMINADO", Toast.LENGTH_SHORT).show();
+                        lista();
+                    }
+                });
+                customDialog.show();
+                return false;
+            }
+
+        });
 
         return vista;
     }
@@ -109,6 +158,47 @@ public class Fragment_listaProyecto extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+
+    public class CustomAdapter extends ArrayAdapter<String[]> {
+        private final Activity _context;
+        private final String[][] _text;
+
+        public CustomAdapter(Activity context, String[][] text){
+            super(context, R.layout.activity_listaproyectos, text);
+            this._context = context;
+            this._text = text;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent){
+            LayoutInflater inflater = _context.getLayoutInflater();
+            View rowView = inflater.inflate(R.layout.activity_listaproyectos, null, true);
+            TextView txtIdProyecto = (TextView) rowView.findViewById(R.id.idProyecto);
+            TextView txtIdDisp = (TextView) rowView.findViewById(R.id.idDisp);
+            TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
+            TextView txtAutorizado = (TextView) rowView.findViewById(R.id.autorizado);
+            TextView txtATecho = (TextView) rowView.findViewById(R.id.ATecho);
+            TextView txtPedidoSap = (TextView) rowView.findViewById(R.id.pedidoSap);
+            TextView txtFecha = (TextView) rowView.findViewById(R.id.fecha);
+            TextView txtAMuro = (TextView) rowView.findViewById(R.id.AMuro);
+            txtIdProyecto.setText(_text[position][1]);
+            txtIdDisp.setText(_text[position][2]);
+            txtNombre.setText(_text[position][6]);
+            txtFecha.setText(_text[position][7]);
+            txtPedidoSap.setText(_text[position][8]);
+            txtAutorizado.setText(_text[position][12]);
+            txtATecho.setText(_text[position][19]);
+            txtAMuro.setText(_text[position][20]);
+            return rowView;
+        }
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        lista();
     }
 
     public void lista(){
@@ -150,37 +240,6 @@ public class Fragment_listaProyecto extends Fragment {
             list.setTag(aRef);
             Log.v("[obtener]","sobrevivi al error");
             list.setAdapter(adapter);
-        }
-
-    }
-
-    public class CustomAdapter extends ArrayAdapter<String[]> {
-        private final Activity _context;
-        private final String[][] _text;
-
-        public CustomAdapter(Activity context, String[][] text){
-            super(context, R.layout.activity_listaproyectos, text);
-            this._context = context;
-            this._text = text;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent){
-            LayoutInflater inflater = _context.getLayoutInflater();
-            View rowView = inflater.inflate(R.layout.activity_listaproyectos, null, true);
-            TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
-            TextView txtAutorizado = (TextView) rowView.findViewById(R.id.autorizado);
-            TextView txtATecho = (TextView) rowView.findViewById(R.id.accesorios_techo);
-            TextView txtPedidoSap = (TextView) rowView.findViewById(R.id.pedidoSap);
-            TextView txtFecha = (TextView) rowView.findViewById(R.id.fecha);
-            TextView txtAMuro = (TextView) rowView.findViewById(R.id.accesorios_muro);
-            txtNombre.setText(_text[position][6]);
-            txtFecha.setText(_text[position][7]);
-            txtPedidoSap.setText(_text[position][8]);
-            txtAutorizado.setText(_text[position][12]);
-            txtATecho.setText(_text[position][19]);
-            txtAMuro.setText(_text[position][20]);
-            return rowView;
         }
     }
 }
