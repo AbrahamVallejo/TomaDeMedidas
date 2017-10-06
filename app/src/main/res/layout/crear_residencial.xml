@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ubicacion: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtUbicacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="A: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="B: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="C: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="D: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="E: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="F: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="G: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtG"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="H: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtH"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prof Marco: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtProfMarco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prof Jaladera: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtProfJaladera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Control: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtControl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Medida Sugerida: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtMedidaSugerida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observaciones: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtObservaciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fijacion: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtFijacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Piso: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtPiso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Corredera: "
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <EditText
+        android:id="@+id/txtCorredera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="10sp"/>
+
+    <Button
+        android:id="@+id/Guardar"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guardar"/>
+
+</LinearLayout>
