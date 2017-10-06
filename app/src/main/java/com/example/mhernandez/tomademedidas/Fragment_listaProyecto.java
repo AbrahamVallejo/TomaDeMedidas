@@ -175,17 +175,15 @@ public class Fragment_listaProyecto extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = _context.getLayoutInflater();
             View rowView = inflater.inflate(R.layout.activity_listaproyectos, null, true);
-            TextView txtIdProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
-            TextView txtIdDisp = (TextView) rowView.findViewById(R.id.idDisp);
             TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
             TextView txtAutorizado = (TextView) rowView.findViewById(R.id.autorizado);
             TextView txtATecho = (TextView) rowView.findViewById(R.id.ATecho);
             TextView txtPedidoSap = (TextView) rowView.findViewById(R.id.pedidoSap);
             TextView txtFecha = (TextView) rowView.findViewById(R.id.fecha);
             TextView txtAMuro = (TextView) rowView.findViewById(R.id.AMuro);
-            TextView txtIDDisp = (TextView) rowView.findViewById(R.id.IDDisp);
-            TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
-            TextView txtIDCliente = (TextView) rowView.findViewById(R.id.IDCliente);
+            TextView txtIDDisp = (TextView) rowView.findViewById(R.id.idDisp);
+            TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.idProyecto);
+            TextView txtIDCliente = (TextView) rowView.findViewById(R.id.idCliente);
             TextView txtIDUser = (TextView) rowView.findViewById(R.id.IDUser);
             TextView txtIDClienteDisp = (TextView) rowView.findViewById(R.id.IDClienteDisp);
             TextView txtIDFormato = (TextView) rowView.findViewById(R.id.IDFormato);
