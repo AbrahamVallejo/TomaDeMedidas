@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity
         //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
         //getclienteLista();
         //getproyectoLista();
+        //getproyectoCamaLista();
     }
 
     public void onSaveClick(View view){

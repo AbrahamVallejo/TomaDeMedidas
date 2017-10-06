@@ -118,14 +118,22 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
-    public void insertProyectoCama(String nHabitaciones, String A, String B, String C,
-                                   String D, String E, String F, String G, String AIMG, String Observaciones) {
-        Object[] aData = {nHabitaciones, A, B, C, D, E, F, G, AIMG, Observaciones};
-        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " (" + DBhelper.COLUMN_NAME_N_HABITACION + ", "
-                + DBhelper.COLUMN_NAME_A + ", " + DBhelper.COLUMN_NAME_B + ", " + DBhelper.COLUMN_NAME_C + ", "
-                + DBhelper.COLUMN_NAME_D + ", " + DBhelper.COLUMN_NAME_E + ", " + DBhelper.COLUMN_NAME_F + ", "
-                + DBhelper.COLUMN_NAME_G + ", " + DBhelper.COLUMN_NAME_AIMG + ", " + DBhelper.COLUMN_NAME_OBSERVACIONES
-                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+
+    public void insertProyectoCama(int idCama,int idDisp,int idProyecto, int idProyectoDisp, String nHabitaciones, double A,
+                                   double B, double C, double D, double E, double F, double G, String fecha, String nombreP, int formato,
+                                   String Observaciones, int idUsuarioA, int autorizado, int idEstatud, int pagado) {
+        Object[] aData = {idCama, idDisp, idProyecto, idProyectoDisp, nHabitaciones, A, B, C, D, E, F, G, fecha,
+                         nombreP, formato, Observaciones, idUsuarioA, autorizado, idEstatud, pagado};
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " (" + DBhelper.ID_CAMA + ", "
+                + DBhelper.ID_DISP + ", " + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_PROYECTO_DISP + ", "
+                + DBhelper.COLUMN_NAME_N_HABITACION + ", " + DBhelper.COLUMN_NAME_A + ", " + DBhelper.COLUMN_NAME_B + ", "
+                + DBhelper.COLUMN_NAME_C + ", " + DBhelper.COLUMN_NAME_D + ", " + DBhelper.COLUMN_NAME_E + ", "
+                + DBhelper.COLUMN_NAME_F + ", " + DBhelper.COLUMN_NAME_G + ", " + DBhelper.COLUMN_NAME_FECHA + ", "
+                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", " + DBhelper.COLUMN_NAME_FORMATO + ", " + DBhelper.COLUMN_NAME_OBSERVACIONES + ", "
+                + DBhelper.ID_USUARIOAUTORIZA + ", " + DBhelper.COLUMN_NAME_AUTORIZADO + ", " + DBhelper.ID_ESTATUS + ", "
+                + DBhelper.COLUMN_NAME_PAGADO
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+        Log.v("[obtener]", nombreP);
 
     }
 
@@ -246,6 +254,7 @@ public class DBProvider {
     }
 
 
+    //Ya obtiene los Clientes
     public String[][] ObtenerClientes(String id, int tipo) {
         int iCnt = 0;
         String[][] aData = null;
@@ -257,7 +266,6 @@ public class DBProvider {
         } else {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " = ?", aFils);
         }
-        //Log.v("[obtener]", String.valueOf(aRS.getCount()));
         if (aRS.getCount() > 0) {
             aData = new String[aRS.getCount()][];
             while (aRS.moveToNext()) {
@@ -267,8 +275,7 @@ public class DBProvider {
                 aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE));
                 aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_TELEFONO));
                 aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_DIRECCION));
-                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_ALTA));
-                //Log.v("[obtener]", aData[iCnt][0] + "  Disp:"+ aData[iCnt][1] + "  Nombre:"+ aData[iCnt][2]+ "  Telefono:"+ aData[iCnt][3]);
+                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_ALTA));    //Log.v("[obtener]", aData[iCnt][0] + "  Disp:"+ aData[iCnt][1] + "  Nombre:"+ aData[iCnt][2]+ "  Telefono:"+ aData[iCnt][3]);
                 iCnt++;
             }
         } else {
@@ -280,6 +287,7 @@ public class DBProvider {
         return (aData);
     }
 
+    //Ya obtiene los proyectos
     public String[][] ObtenerProyectos(String id, int tipo) {
         int iCnt = 0;
         String[][] aData = null;
@@ -325,8 +333,7 @@ public class DBProvider {
         }
 
         aRS.close();
-        CloseDB();
-        Log.v("[obtener]","Llevo todos los proyectos!!!");
+        CloseDB();              Log.v("[obtener]","Llevo todos los proyectos!!!");
         return (aData);
     }
 
@@ -640,6 +647,7 @@ public class DBProvider {
         return (aData);
     }
 
+    //Creación Tablas Base De Datos ++
     public class DBhelper extends SQLiteOpenHelper {
         private static final String TAG = "DBManager";
         private static final String DATABASE_NAME = "registromedidas.db";
@@ -1121,7 +1129,7 @@ public class DBProvider {
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_CLIENTE);
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_PROYECTO);
 
-            /*db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_CONTROL);
+            db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_CONTROL);
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_COPETE);
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_DISPOSITIVOS);
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_ENVIARDATOS);
@@ -1141,9 +1149,10 @@ public class DBProvider {
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_TIPOUSUARIO);
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_UBICACION);
             db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_USER);
-            db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_USUARIO);*/
+            db.execSQL(" DROP TABLE IF EXISTS " + DBhelper.TABLE_NAME_USUARIO);
             onCreate(db);
 
         }
     }
+
 }
