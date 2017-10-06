@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        //Layout Izquierda
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="bottom"
-                    android:text="Autorizado: "
+                    android:text="Autorizado:  "
                     android:textColor="@android:color/black"
                     android:textSize="43px"
                     android:textStyle="normal"
@@ -40,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="end"
-                    android:hint="autor"
+                    android:text="autor"
                     android:textColor="@android:color/black"
                     android:textSize="40px"
                     android:textStyle="bold"
@@ -67,7 +68,6 @@
                 android:textSize="40px"
                 android:textStyle="bold"
                 android:layout_weight="1" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -118,6 +118,7 @@
 
         </LinearLayout>
 
+        //Layout Derecha
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -154,9 +155,9 @@
                     android:layout_height="match_parent"
                     android:gravity="bottom"
                     android:layout_weight="1"
-                    android:text="Fecha: "
+                    android:text="Fecha:  "
                     android:textColor="@android:color/black"
-                    android:textSize="43px"
+                    android:textSize="45px"
                     android:textStyle="normal" />
                 <TextView
                     android:id="@+id/fecha"
@@ -165,7 +166,7 @@
                     android:gravity="end"
                     android:text="Fecha"
                     android:textColor="@android:color/black"
-                    android:textSize="40px"
+                    android:textSize="42px"
                     android:textStyle="normal"
                     android:layout_weight="1" />
             </LinearLayout>
