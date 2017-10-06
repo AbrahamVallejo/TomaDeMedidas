@@ -62,7 +62,8 @@ public class DBProvider {
     }
 
     public void updateCliente(String idCliente,String idDisp, String nombre, String telefono, String direccion) {
-        int idC=Integer.parseInt(idCliente);    int idD= Integer.parseInt(idDisp);
+        int idC=Integer.parseInt(idCliente);
+        int idD= Integer.parseInt(idDisp);
         Object[] aData = {nombre,telefono, direccion, idC, idD};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_CLIENTE + " SET " + DBhelper.COLUMN_NAME_NOMBRE + " = ?, "
                 + DBhelper.COLUMN_NAME_TELEFONO + " = ?, " + DBhelper.COLUMN_NAME_DIRECCION + " = ?"
@@ -97,14 +98,16 @@ public class DBProvider {
         Log.v("[obtener]", nombreProyecto);
     }
 
-    public void updateProyecto(String idProyecto, String nombreProyecto, String accesoriosMuro, String accesoriosTecho,
+    public void updateProyecto(String idProyecto, String idDisp, String nombreProyecto, String accesoriosMuro, String accesoriosTecho,
                                String accesoriosEspeciales, String PedidoSap) {
+        int idP = Integer.parseInt(idProyecto);
+        int idD = Integer.parseInt(idDisp);
 
-        Object[] aData = {idProyecto, nombreProyecto, accesoriosMuro, accesoriosTecho, accesoriosEspeciales, PedidoSap};
+        Object[] aData = {nombreProyecto, accesoriosMuro, accesoriosTecho, accesoriosEspeciales, PedidoSap, idP, idD};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO + " SET " + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + " = ?, "
                 + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + " = ?, " + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + " = ?, "
                 + DBhelper.COLUMN_NAME_ACCESORIOS_ESPECIALES + " = ?, " + DBhelper.COLUMN_NAME_PEDIDO_SAP + " = ?, "
-                + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aData);
+                + " WHERE " + DBhelper.ID_PROYECTO + " = ?" + "AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public void deleteProyecto(String idProyecto, String idDisp) {
