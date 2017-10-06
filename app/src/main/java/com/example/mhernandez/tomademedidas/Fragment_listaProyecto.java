@@ -175,7 +175,7 @@ public class Fragment_listaProyecto extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = _context.getLayoutInflater();
             View rowView = inflater.inflate(R.layout.activity_listaproyectos, null, true);
-            TextView txtIdProyecto = (TextView) rowView.findViewById(R.id.idProyecto);
+            TextView txtIdProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
             TextView txtIdDisp = (TextView) rowView.findViewById(R.id.idDisp);
             TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
             TextView txtAutorizado = (TextView) rowView.findViewById(R.id.autorizado);
@@ -183,14 +183,26 @@ public class Fragment_listaProyecto extends Fragment {
             TextView txtPedidoSap = (TextView) rowView.findViewById(R.id.pedidoSap);
             TextView txtFecha = (TextView) rowView.findViewById(R.id.fecha);
             TextView txtAMuro = (TextView) rowView.findViewById(R.id.AMuro);
-            txtIdProyecto.setText(_text[position][1]);
-            txtIdDisp.setText(_text[position][2]);
+            TextView txtIDDisp = (TextView) rowView.findViewById(R.id.IDDisp);
+            TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
+            TextView txtIDCliente = (TextView) rowView.findViewById(R.id.IDCliente);
+            TextView txtIDUser = (TextView) rowView.findViewById(R.id.IDUser);
+            TextView txtIDClienteDisp = (TextView) rowView.findViewById(R.id.IDClienteDisp);
+            TextView txtIDFormato = (TextView) rowView.findViewById(R.id.IDFormato);
+            String[] parts = _text[position][7].split("T");
             txtNombre.setText(_text[position][6]);
             txtFecha.setText(_text[position][7]);
+            txtFecha.setText(parts[0]);
             txtPedidoSap.setText(_text[position][8]);
             txtAutorizado.setText(_text[position][12]);
             txtATecho.setText(_text[position][19]);
             txtAMuro.setText(_text[position][20]);
+            txtIDDisp.setText(_text[position][1]);
+            txtIDProyecto.setText(_text[position][0]);
+            txtIDCliente.setText(_text[position][2]);
+            txtIDUser.setText(_text[position][5]);
+            txtIDClienteDisp.setText(_text[position][3]);
+            txtIDFormato.setText(_text[position][4]);
             return rowView;
         }
     }
@@ -207,7 +219,6 @@ public class Fragment_listaProyecto extends Fragment {
         String[][] aDataFolio = null;
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
-            Log.v("[obtener]","Estoy dentro");
             for (int iCnt = 0; iCnt < aRef.length; iCnt++){
                 aDataFolio[iCnt] = new String[23];
                 aDataFolio[iCnt][0] = aRef[iCnt][0];
@@ -238,7 +249,6 @@ public class Fragment_listaProyecto extends Fragment {
             list = (ListView) vista.findViewById(R.id.lista);
             CustomAdapter adapter = new CustomAdapter(getActivity(), aDataFolio);
             list.setTag(aRef);
-            Log.v("[obtener]","sobrevivi al error");
             list.setAdapter(adapter);
         }
 
