@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre: "
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="normal"/>
+
+    <EditText
+        android:id="@+id/txtNombreProyecto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha: "
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="normal"/>
+
+    <EditText
+        android:id="@+id/txtFecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pedido Sap: "
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="normal"/>
+
+    <EditText
+        android:id="@+id/txtPedidoSap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Autorizado: "
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="normal"/>
+
+    <EditText
+        android:id="@+id/txtAutorizado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accesorios Techo: "
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="normal"/>
+
+    <EditText
+        android:id="@+id/txtAccTecho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accesorios Muro: "
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="normal"/>
+
+    <EditText
+        android:id="@+id/txtAccMuro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textSize="10sp"/>
+
+    <Button
+        android:id="@+id/Guardar"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guardar" />
+
+</LinearLayout>
