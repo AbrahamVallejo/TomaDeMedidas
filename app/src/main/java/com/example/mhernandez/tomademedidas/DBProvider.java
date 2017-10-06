@@ -107,9 +107,12 @@ public class DBProvider {
                 + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aData);
     }
 
-    public void deleteProyecto(String idProyecto) {
-        Object[] aData = {idProyecto};
-        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aData);
+    public void deleteProyecto(String idProyecto, String idDisp) {
+        int idP = Integer.parseInt(idProyecto);
+        int idD = Integer.parseInt(idDisp);
+
+        Object[] aData = {idP, idD};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public void insertProyectoCama(String nHabitaciones, String A, String B, String C,
