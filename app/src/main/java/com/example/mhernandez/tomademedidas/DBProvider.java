@@ -785,7 +785,7 @@ public class DBProvider {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            Log.v("CHECK", "DBHelper.onCreate..."); Log.v("[obtener]","Voy a CREAR DB");
+            Log.v("CHECK", "DBHelper.onCreate...");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_CLIENTE + " ("
                     + DBhelper.ID_CLIENTE + " INTEGER,"
@@ -795,9 +795,8 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_DIRECCION + " TEXT,"
                     + DBhelper.COLUMN_NAME_FECHA_ALTA + " TEXT,"
                     + "PRIMARY KEY (" + DBhelper.ID_CLIENTE + "," + DBhelper.ID_DISP + ")"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB Cliente [lista]");
 
-            Log.v("[obtener]","DB Cliente lista");
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO + "("
                     + DBhelper.ID_PROYECTO + " INTEGER,"
                     + DBhelper.ID_DISP + " INTEGER,"
@@ -823,30 +822,28 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_FECHA_CIERRA + " TEXT,"
                     + DBhelper.COLUMN_NAME_IDS_CLIENTE + " TEXT,"
                     + "PRIMARY KEY (" + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_DISP + ")"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB Proyecto  [lista]");
 
-            Log.v("[obtener]","DB Proyecto Lista");
-            /*
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_CONTROL + " ("
                     + DBhelper.ID_CONTROL + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_ESTADO + " TEXT"
+                    + DBhelper.COLUMN_NAME_ESTADO + " TEXT,"
                     + "PRIMARY KEY (" + DBhelper.ID_CONTROL + ")"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB Control Lista");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_COPETE + " ("
                     + DBhelper.ID_COPETE + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_ESTADO + " INTEGER"
+                    + DBhelper.COLUMN_NAME_ESTADO + " INTEGER,"
                     + "PRIMARY KEY (" + DBhelper.ID_COPETE + ")"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB Copete  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_DISPOSITIVOS + " ("
                     + DBhelper.ID_DISP + " INTEGER,"
                     + DBhelper.COLUMN_NAME_NOMBRE + " TEXT,"
                     + DBhelper.COLUMN_NAME_ACTIVO + " TINYINT,"
                     + DBhelper.COLUMN_NAME_USUARIO + " TEXT,"
-                    + DBhelper.COLUMN_NAME_FUERA + " TINYINT"
+                    + DBhelper.COLUMN_NAME_FUERA + " TINYINT,"
                     + "PRIMARY KEY (" + DBhelper.ID_DISP + ")"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB Dispositivos  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_ENVIARDATOS + " ("
                     + DBhelper.ID_ENVIARDATOS + " INTEGER,"
@@ -856,43 +853,43 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_FECHA + " TEXT,"
                     + DBhelper.COLUMN_NAME_FECHA_ENVIO + " TEXT,"
                     + DBhelper.COLUMN_NAME_RUTA_IMAGEN + " TEXT,"
-                    + DBhelper.ID_DISP_ENVIO + " INTEGER"
+                    + DBhelper.ID_DISP_ENVIO + " INTEGER,"
                     + "PRIMARY KEY (" + DBhelper.ID_ENVIARDATOS + ")"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB EnviarDatos  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_ESTATUS + " ("
                     + DBhelper.ID_ESTATUS + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_ESTADO + " TEXT"
+                    + DBhelper.COLUMN_NAME_ESTADO + " TEXT,"
                     + "PRIMARY KEY (" + DBhelper.ID_ESTATUS + ")"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB Estatus  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_FIJACION + " ("
                     + DBhelper.ID_FIJACION + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_ESTADO + " TEXT"
+                    + DBhelper.COLUMN_NAME_ESTADO + " TEXT,"
                     + "PRIMARY KEY (" + DBhelper.ID_FIJACION + ")"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB Fijacion  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_FORMATO + " ("
                     + DBhelper.ID_FORMATO + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_FORMATO + " TEXT"
+                    + DBhelper.COLUMN_NAME_FORMATO + " TEXT,"
                     + "PRIMARY KEY (" + DBhelper.ID_FORMATO + ")"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB Formato  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_HOJAS + " ("
                     + DBhelper.ID_HOJAS + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_CANTIDAD + " TEXT"
+                    + DBhelper.COLUMN_NAME_CANTIDAD + " TEXT,"
                     + "PRIMARY KEY (" + DBhelper.ID_HOJAS + ")"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB Hojas  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECCION + "("
                     + DBhelper.ID_PROYECCION + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_ESTADO + " TEXT"
+                    + DBhelper.COLUMN_NAME_ESTADO + " TEXT,"
                     + "PRIMARY KEY (" + DBhelper.ID_PROYECCION + ")"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB Proyeccion  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " ("
-                    + DBhelper.ID_CAMA + " INTEGER PRIMARY KEY,"
-                    + DBhelper.ID_DISP + " INTEGER PRIMARY KEY,"
+                    + DBhelper.ID_CAMA + " INTEGER,"
+                    + DBhelper.ID_DISP + " INTEGER,"
                     + DBhelper.ID_PROYECTO + " INTEGER KEY,"
                     + DBhelper.ID_PROYECTO_DISP + " INTEGER KEY,"
                     + DBhelper.COLUMN_NAME_N_HABITACION + " TEXT,"
@@ -917,12 +914,13 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_FECHAAUTORIZA + " TEXT,"
                     + DBhelper.COLUMN_NAME_PAGADO + " TINYINT,"
                     + DBhelper.COLUMN_NAME_FECHA_PAGO + " TEXT,"
-                    + DBhelper.ID_USUARIO_PAGO + " INTEGER"
-                    + ");");
+                    + DBhelper.ID_USUARIO_PAGO + " INTEGER,"
+                    + "PRIMARY KEY (" + DBhelper.ID_CAMA + "," + DBhelper.ID_DISP + ")"
+                    + ");");                                                                        Log.v("[obtener]","DB Proyecto Cama  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " ("
-                    + DBhelper.ID_ESPECIALES + " INTEGER PRIMARY KEY,"
-                    + DBhelper.ID_DISP + " INTEGER PRIMARY KEY,"
+                    + DBhelper.ID_ESPECIALES + " INTEGER,"
+                    + DBhelper.ID_DISP + " INTEGER,"
                     + DBhelper.ID_PROYECTO + " INTEGER KEY,"
                     + DBhelper.ID_PROYECTO_DISP + " INTEGER KEY,"
                     + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + " TEXT,"
@@ -942,12 +940,13 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_FECHAAUTORIZA + " TEXT,"
                     + DBhelper.COLUMN_NAME_PAGADO + " TINYINT,"
                     + DBhelper.COLUMN_NAME_FECHA_PAGO + " TEXT,"
-                    + DBhelper.ID_USUARIO_PAGO + " INTEGER"
-                    + ");");
+                    + DBhelper.ID_USUARIO_PAGO + " INTEGER,"
+                    + "PRIMARY KEY (" + DBhelper.ID_ESPECIALES + "," + DBhelper.ID_DISP + ")"
+                    + ");");                                                                        Log.v("[obtener]","DB Proyecto Especial  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " ("
-                    + DBhelper.ID_GALERIA + " INTEGER PRIMARY KEY,"
-                    + DBhelper.ID_DISP + " INTEGER PRIMARY KEY,"
+                    + DBhelper.ID_GALERIA + " INTEGER,"
+                    + DBhelper.ID_DISP + " INTEGER,"
                     + DBhelper.ID_PROYECTO + " INTEGER KEY,"
                     + DBhelper.ID_PROYECTO_DISP + " INTEGER KEY,"
                     + DBhelper.COLUMN_NAME_FECHA + " TEXT,"
@@ -971,12 +970,13 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_FECHAAUTORIZA + " TEXT,"
                     + DBhelper.COLUMN_NAME_PAGADO + " TINYINT,"
                     + DBhelper.COLUMN_NAME_FECHA_PAGO + " TEXT,"
-                    + DBhelper.ID_USUARIO_PAGO + " INTEGER"
-                    + ");");
+                    + DBhelper.ID_USUARIO_PAGO + " INTEGER,"
+                    + "PRIMARY KEY (" + DBhelper.ID_GALERIA + "," + DBhelper.ID_DISP + ")"
+                    + ");");                                                                        Log.v("[obtener]","DB Proyecto Galeria  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " ("
-                    + DBhelper.ID_HOTELERIA + " INTEGER PRIMARY KEY,"
-                    + DBhelper.ID_DISP + " INTEGER PRIMARY KEY ,"
+                    + DBhelper.ID_HOTELERIA + " INTEGER,"
+                    + DBhelper.ID_DISP + " INTEGER,"
                     + DBhelper.ID_PROYECTO + " INTEGER KEY,"
                     + DBhelper.ID_PROYECTO_DISP + " INTEGER KEY,"
                     + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + " TEXT,"
@@ -1005,24 +1005,26 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_FECHAAUTORIZA + " TEXT,"
                     + DBhelper.COLUMN_NAME_PAGADO + " TINYINT,"
                     + DBhelper.ID_USUARIO_PAGO + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_CORREDERA + " TEXT"
-                    + ");");
+                    + DBhelper.COLUMN_NAME_CORREDERA + " TEXT,"
+                    + "PRIMARY KEY (" + DBhelper.ID_HOTELERIA + "," + DBhelper.ID_DISP + ")"
+                    + ");");                                                                        Log.v("[obtener]","DB Proyecto Hoteleria  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO_IMAGEN + " ("
-                    + DBhelper.ID_IMAGEN + " INTEGER PRIMARY KEY,"
-                    + DBhelper.ID_DISP + " INTEGER PRIMARY KEY,"
+                    + DBhelper.ID_IMAGEN + " INTEGER,"
+                    + DBhelper.ID_DISP + " INTEGER,"
                     + DBhelper.ID_PROYECTO + " INTEGER KEY,"
                     + DBhelper.ID_PROYECTO_DISP + " INTEGER KEY,"
                     + DBhelper.COLUMN_NAME_TIPO_FOTO + " TINYINT,"
                     + DBhelper.COLUMN_NAME_DESCRIPCION + " TEXT,"
                     + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + " TEXT,"
                     + DBhelper.COLUMN_NAME_RUTA + " TEXT,"
-                    + DBhelper.COLUMN_NAME_FORMATO + " INTEGER"
-                    + ");");
+                    + DBhelper.COLUMN_NAME_FORMATO + " INTEGER,"
+                    + "PRIMARY KEY (" + DBhelper.ID_IMAGEN + "," + DBhelper.ID_DISP + ")"
+                    + ");");                                                                        Log.v("[obtener]","DB Proyecto Imagen  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " ("
-                    + DBhelper.ID_RESIDENCIAL + " INTEGER PRIMARY KEY,"
-                    + DBhelper.ID_DISP + " INTEGER PRIMARY KEY,"
+                    + DBhelper.ID_RESIDENCIAL + " INTEGER,"
+                    + DBhelper.ID_DISP + " INTEGER,"
                     + DBhelper.ID_PROYECTO + " INTEGER KEY,"
                     + DBhelper.ID_PROYECTO_DISP + " INTEGER KEY,"
                     + DBhelper.COLUMN_NAME_UBICACION + " TEXT,"
@@ -1057,26 +1059,27 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_PAGADO + " TINYINT,"
                     + DBhelper.COLUMN_NAME_FECHA_PAGO + " TEXT,"
                     + DBhelper.ID_USUARIO_PAGO + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_CORREDERA + " TEXT"
-                    + ");");
+                    + DBhelper.COLUMN_NAME_CORREDERA + " TEXT,"
+                    + "PRIMARY KEY (" + DBhelper.ID_RESIDENCIAL + "," + DBhelper.ID_DISP + ")"
+                    + ");");                                                                        Log.v("[obtener]","DB Proyecto RESIDENCIAL  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_TIPO_IMAGEN + " ("
                     + DBhelper.ID_TIPO + " INTEGER PRIMARY KEY,"
                     + DBhelper.COLUMN_NAME_TIPO + " TEXT"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB Tipo Imagen  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_TIPOUSUARIO + " ("
                     + DBhelper.ID_TIPOUSUARIO  + " INTEGER PRIMARY KEY,"
                     + DBhelper.COLUMN_NAME_TIPO + " TEXT,"
                     + DBhelper.COLUMN_NAME_FECHA + " TEXT,"
                     + DBhelper.COLUMN_NAME_ESTATUS + " TINYINT"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB Tipo Usuario  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_UBICACION + " ("
                     + DBhelper.ID_AREA + " INTEGER PRIMARY KEY,"
                     + DBhelper.COLUMN_NAME_AREA_UBICACION + " TEXT,"
                     + DBhelper.ID_DISP + " INTEGER"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB Ubicación  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_USER + " ("
                     + DBhelper._ID + " INTEGER PRIMARY KEY,"
@@ -1094,7 +1097,7 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_FECHAMODIFICA + " TEXT,"
                     + DBhelper.COLUMN_NAME_VERIFICACION + " INTEGER,"
                     + DBhelper.COLUMN_NAME_FECHA_VERIFICACION + " TEXT"
-                    + ");");
+                    + ");");                                                                        Log.v("[obtener]","DB User  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_USUARIO + " ("
                     + DBhelper.ID_USUARIO + " INTEGER PRIMARY KEY,"
@@ -1106,7 +1109,7 @@ public class DBProvider {
                     + DBhelper.ID_TIPOUSUARIO + " INTEGER,"
                     + DBhelper.COLUMN_NAME_FECHA + " TEXT,"
                     + DBhelper.COLUMN_NAME_FECHAALTA + " TEXT"
-                    + ");");*/
+                    + ");");                                                                        Log.v("[obtener]","DB Usuario  [lista]");
         }
 
 

@@ -195,8 +195,8 @@ public class Fragment_listaProyecto extends Fragment {
             txtFecha.setText(parts[0]);
             txtPedidoSap.setText(_text[position][8]);
             txtAutorizado.setText(_text[position][12]);
-            txtATecho.setText(_text[position][19]);
-            txtAMuro.setText(_text[position][20]);
+            txtATecho.setText(_text[position][19].toLowerCase());
+            txtAMuro.setText(_text[position][20].toLowerCase());
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][0]);
             txtIDCliente.setText(_text[position][2]);
