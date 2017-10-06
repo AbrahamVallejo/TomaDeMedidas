@@ -241,5 +241,6 @@ public class Fragment_listaProyecto extends Fragment {
             Log.v("[obtener]","sobrevivi al error");
             list.setAdapter(adapter);
         }
+
     }
 }
