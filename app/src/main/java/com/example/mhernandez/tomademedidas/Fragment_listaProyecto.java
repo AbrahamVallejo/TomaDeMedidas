@@ -174,12 +174,25 @@ public class Fragment_listaProyecto extends Fragment {
             TextView txtPedidoSap = (TextView) rowView.findViewById(R.id.pedidoSap);
             TextView txtFecha = (TextView) rowView.findViewById(R.id.fecha);
             TextView txtAMuro = (TextView) rowView.findViewById(R.id.accesorios_muro);
+            TextView txtIDDisp = (TextView) rowView.findViewById(R.id.IDDisp);
+            TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
+            TextView txtIDCliente = (TextView) rowView.findViewById(R.id.IDCliente);
+            TextView txtIDUser = (TextView) rowView.findViewById(R.id.IDUser);
+            TextView txtIDClienteDisp = (TextView) rowView.findViewById(R.id.IDClienteDisp);
+            TextView txtIDFormato = (TextView) rowView.findViewById(R.id.IDFormato);
+            String[] parts = _text[position][7].split("-");
             txtNombre.setText(_text[position][6]);
-            txtFecha.setText(_text[position][7]);
+            txtFecha.setText(parts[0]);
             txtPedidoSap.setText(_text[position][8]);
             txtAutorizado.setText(_text[position][12]);
             txtATecho.setText(_text[position][19]);
             txtAMuro.setText(_text[position][20]);
+            txtIDDisp.setText(_text[position][1]);
+            txtIDProyecto.setText(_text[position][0]);
+            txtIDCliente.setText(_text[position][2]);
+            txtIDUser.setText(_text[position][5]);
+            txtIDClienteDisp.setText(_text[position][3]);
+            txtIDFormato.setText(_text[position][4]);
             return rowView;
         }
     }
