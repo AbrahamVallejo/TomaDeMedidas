@@ -182,7 +182,7 @@ public class Fragment_listaProyecto extends Fragment {
             TextView txtFecha = (TextView) rowView.findViewById(R.id.fecha);
             TextView txtAMuro = (TextView) rowView.findViewById(R.id.AMuro);
             TextView txtIDDisp = (TextView) rowView.findViewById(R.id.idDisp);
-            TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.idProyecto);
+            TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
             TextView txtIDCliente = (TextView) rowView.findViewById(R.id.idCliente);
             TextView txtIDUser = (TextView) rowView.findViewById(R.id.IDUser);
             TextView txtIDClienteDisp = (TextView) rowView.findViewById(R.id.IDClienteDisp);
