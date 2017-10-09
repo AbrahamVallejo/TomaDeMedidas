@@ -36,12 +36,6 @@ public class Fragment_proyecto extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-    private static final int MEDIA_TYPE_IMAGE = 1;
-    private static final String APP_PATH = "droidBH";
-    private Uri fileUri;
-    String sID;
-
     View vista = null;
 
     private OnFragmentInteractionListener mListener;
@@ -124,7 +118,7 @@ public class Fragment_proyecto extends Fragment {
     }
 
 
-    public void onFotoClick(View v){
+/*    public void onFotoClick(View v){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, this.sID);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
@@ -166,5 +160,5 @@ public class Fragment_proyecto extends Fragment {
                 //Image capture failed, advise user
             }
         }
-    }
+    }*/
 }

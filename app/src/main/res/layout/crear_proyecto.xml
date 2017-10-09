@@ -7,11 +7,9 @@
         android:id="@+id/textView9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:text="@string/cliente"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp"
-        android:textStyle="italic" />
+        android:textSize="14sp"/>
 
     <Spinner
         android:id="@+id/spinner_cliente"
@@ -136,6 +134,14 @@
         android:minHeight="200dp"
         android:minWidth="200dp"
         android:src="@android:drawable/ic_menu_camera"/>
+
+    <Button
+        android:id="@+id/TomarFoto"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tomar_foto"
+        android:onClick="onFotoClick"/>
 
     <Button
         android:id="@+id/Guardar"

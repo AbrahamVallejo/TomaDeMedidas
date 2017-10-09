@@ -52,6 +52,7 @@
     <string name="log_in">Log In</string>
     <string name="description">Description</string>
     <string name="modificar_cliente">Modificar Cliente</string>
+    <string name="tomar_foto">Tomar Foto</string>
 
     <string-array name="spinnerItems">
         <item>Cama</item>
