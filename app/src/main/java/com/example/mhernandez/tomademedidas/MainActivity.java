@@ -1,7 +1,11 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -16,12 +20,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Fragment_clientes.OnFragmentInteractionListener, Fragment_proyecto.OnFragmentInteractionListener, Fragment_listaProyecto.OnFragmentInteractionListener, Fragment_listaClientes.OnFragmentInteractionListener{
 
-        public static DBProvider oDB;
+    public static DBProvider oDB;
 
-        public MainActivity() { oDB = new DBProvider(this);}
+    public MainActivity() { oDB = new DBProvider(this);}
+
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    private static final int MEDIA_TYPE_IMAGE = 1;
+    private static final String APP_PATH = "droidBH";
+    private Uri fileUri;
+    String sID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -579,5 +591,47 @@ public class MainActivity extends AppCompatActivity
         oNS.execute("getproyecto_camaLista");
     }
 
+    public void onFotoClick(View v){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, this.sID);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+    }
 
+    private static Uri getOutputMediaFileUri(int type, String pID){
+        return Uri.fromFile(getOutputMediaFile(type,pID));
+    }
+
+    private static File getOutputMediaFile(int type, String pID){
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),APP_PATH);
+        if (!mediaStorageDir.exists()){
+            if (!mediaStorageDir.mkdirs()){
+                return null;
+            }
+        }
+
+        File mediaFile;
+        if (type == MEDIA_TYPE_IMAGE){
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
+        }else {
+            return null;
+        }
+        return mediaFile;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
+            if (resultCode == RESULT_OK){
+                //ImageView oImg = (ImageView)getActivity().findViewById(R.id.imgFoto);
+                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
+                //oImg.setImageBitmap(bit_map);
+            }else if(resultCode == RESULT_CANCELED){
+                // User cancelled the image capture
+            }else {
+                //Image capture failed, advise user
+            }
+        }
+    }
 }
