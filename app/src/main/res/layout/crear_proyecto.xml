@@ -149,13 +149,25 @@
                 android:minWidth="200dp"
                 android:src="@android:drawable/ic_menu_camera"/>
 
-            <Button
-                android:id="@+id/TomarFoto"
-                style="@style/ButtonStyle"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="65dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tomar_foto"
-                android:onClick="onFotoClick"/>
+                android:layout_gravity="center"
+                android:baselineAligned="true">
+
+                <Button
+                    android:id="@+id/TomarFoto"
+                    style="@style/ButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="onFotoClick"
+                    android:text="@string/tomar_foto" />
+            </LinearLayout>
 
         </LinearLayout>
 
