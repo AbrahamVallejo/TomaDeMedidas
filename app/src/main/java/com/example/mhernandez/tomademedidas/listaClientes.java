@@ -1,6 +1,5 @@
 package com.example.mhernandez.tomademedidas;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -40,23 +39,22 @@ public class listaClientes extends AppCompatActivity {
         Guardar.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View view){
-        String part1[] = nombre.getText().toString().split(" ");
-        String part2[] = telefono.getText().toString().split(" ");
-        String part3[] = direccion.getText().toString().split(" ");
-        Log.v("[obtener]",part1[0]); Log.v("[obtener]",part2[0]);Log.v("[obtener]",part3[0]);
-
+        String part1 =nombre.getText().toString().replace(" ",""); //String part1[] =
+        String part2 = telefono.getText().toString().replace(" ",""); //String part2[] =
+        String part3 =direccion.getText().toString().replace(" ",""); //String part3[] =
+        Log.v("[obtener]",part1); Log.v("[obtener]",part2);Log.v("[obtener]",part3);
                         int aux=0;
-                        if(part1[0].length()==0){ //nombre.getText().length()==0
+                        if(part1.length()==0){ //nombre.getText().length()==0
                             aux=1; nombre.setText("");
-                            nombre.setHint("Campo Vacío");Log.v("[obtener]",part1[0]);
+                            nombre.setHint("Campo Vacío");Log.v("[obtener]",part1);
                         }
-                        if(part2[0].length()==0){
+                        if(part2.length()==0){
                             aux=1; telefono.setText("");
-                            telefono.setHint("Campo Vacío");Log.v("[obtener]",part2[0]);
+                            telefono.setHint("Campo Vacío");Log.v("[obtener]",part2);
                         }
-                        if(part3[0].length()==0){
+                        if(part3.length()==0){
                             aux=1; direccion.setText("");
-                            direccion.setHint("Campo Vacío");Log.v("[obtener]",part3[0]);
+                            direccion.setHint("Campo Vacío");Log.v("[obtener]",part3);
                         }
                         if(aux==0){
                         oDB.updateCliente(idCliente,idDisp,nombre.getText().toString(),telefono.getText().toString(),direccion.getText().toString());
