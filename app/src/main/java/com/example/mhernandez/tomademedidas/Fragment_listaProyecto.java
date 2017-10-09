@@ -1,15 +1,11 @@
 package com.example.mhernandez.tomademedidas;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,15 +15,9 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.File;
-
-import static android.app.Activity.RESULT_CANCELED;
-import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,12 +39,6 @@ public class Fragment_listaProyecto extends Fragment {
 
     View vista;
     Dialog customDialog = null;
-
-    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-    private static final int MEDIA_TYPE_IMAGE = 1;
-    private static final String APP_PATH = "droidBH";
-    private Uri fileUri;
-    String sID;
 
     private OnFragmentInteractionListener mListener;
 
@@ -263,50 +247,6 @@ public class Fragment_listaProyecto extends Fragment {
             CustomAdapter adapter = new CustomAdapter(getActivity(), aDataFolio);
             list.setTag(aRef);
             list.setAdapter(adapter);
-        }
-    }
-
-    public void onFotoClick(View v){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, this.sID);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-    }
-
-    private static Uri getOutputMediaFileUri(int type, String pID){
-        return Uri.fromFile(getOutputMediaFile(type,pID));
-    }
-
-    private static File getOutputMediaFile(int type, String pID){
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),APP_PATH);
-        if (!mediaStorageDir.exists()){
-            if (!mediaStorageDir.mkdirs()){
-                return null;
-            }
-        }
-
-        File mediaFile;
-        if (type == MEDIA_TYPE_IMAGE){
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
-        }else {
-            return null;
-        }
-        return mediaFile;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
-            if (resultCode == RESULT_OK){
-                //ImageView oImg = (ImageView)getActivity().findViewById(R.id.imgFoto);
-                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
-                //oImg.setImageBitmap(bit_map);
-            }else if(resultCode == RESULT_CANCELED){
-                // User cancelled the image capture
-            }else {
-                //Image capture failed, advise user
-            }
         }
     }
 }
