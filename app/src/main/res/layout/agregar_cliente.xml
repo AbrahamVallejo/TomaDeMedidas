@@ -17,8 +17,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ-.,()
+        1234567890"
+        android:maxLength="50"
         android:inputType="textPersonName" />
-
+    <!-- ABCDEFGHIJKLMNÑOPQRSTUVWXYZ -->
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
@@ -33,6 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:digits="1234567890-"
+        android:maxLength="20"
         android:inputType="phone" />
 
     <TextView
@@ -49,6 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:maxLength="100"
         android:inputType="text" />
 
     <Button

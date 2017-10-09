@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -61,7 +62,25 @@ public class MainActivity extends AppCompatActivity
         EditText nombre = (EditText) this.findViewById(R.id.txt_cliente_nombre);
         EditText telefono = (EditText) this.findViewById(R.id.txt_cliente_telefono);
         EditText direccion = (EditText) this.findViewById(R.id.txt_cliente_direccion);
-        if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
+
+        String part1 =nombre.getText().toString().replace(" ","");
+        String part2 = telefono.getText().toString().replace(" ","");
+        String part3 =direccion.getText().toString().replace(" ","");
+        Log.v("[obtener]",part1); Log.v("[obtener]",part2);Log.v("[obtener]",part3);
+        int aux=0;
+        if(part1.length()==0){
+            aux=1; nombre.setText("");
+            nombre.setHint("Campo Vacío");Log.v("[obtener]",part1);
+        }
+        if(part2.length()==0){
+            aux=1; telefono.setText("");
+            telefono.setHint("Campo Vacío");Log.v("[obtener]",part2);
+        }
+        if(part3.length()==0){
+            aux=1; direccion.setText("");
+            direccion.setHint("Campo Vacío");Log.v("[obtener]",part3);
+        }
+        if(aux==0){ //if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
             MainActivity.oDB.insertCliente(1, 1, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString());
             Toast.makeText(this, "CLIENTE AGREGADO", Toast.LENGTH_SHORT).show();
         }else {

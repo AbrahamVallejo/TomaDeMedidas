@@ -18,6 +18,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ-.,()
+        1234567890"
+        android:maxLength="50"
         android:textSize="15sp" />
 
     <TextView
@@ -33,7 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="phone"
-        android:digits="1234567890 -"
+        android:digits="1234567890-"
+        android:maxLength="20"
         android:textSize="15sp" />
 
     <TextView
@@ -49,6 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:maxLength="100"
         android:textSize="15sp" />
 
     <Button
