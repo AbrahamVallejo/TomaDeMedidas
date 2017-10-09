@@ -3,151 +3,170 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView9"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cliente"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp"/>
+        android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/spinner_cliente"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/formato"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cliente"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp"/>
 
-    <Spinner
-        android:id="@+id/spinner_formato"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/spinnerItems" />
+        <Spinner
+            android:id="@+id/spinner_cliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/agente"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/formato"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp" />
 
-    <Spinner
-        android:id="@+id/spinner_agente"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <Spinner
+            android:id="@+id/spinner_formato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/spinnerItems" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/nombre_proyecto"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/agente"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp" />
 
-    <EditText
-        android:id="@+id/proyecto_nombre_proyecto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/texto_ej_remodelacion"
-        android:inputType="textPersonName" />
+        <Spinner
+            android:id="@+id/spinner_agente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/accesorios_muro"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre_proyecto"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp" />
 
-    <EditText
-        android:id="@+id/proyecto_accesorios_muro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/texto_ej_pijas"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/proyecto_nombre_proyecto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/texto_ej_remodelacion"
+            android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/accesorios_techo"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/accesorios_muro"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp" />
 
-    <EditText
-        android:id="@+id/proyecto_accesorios_techo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/texto_ej_tornillos"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/proyecto_accesorios_muro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/texto_ej_pijas"
+            android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/accesorios_especiales"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/accesorios_techo"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp" />
 
-    <EditText
-        android:id="@+id/proyecto_accesorios_especiales"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/texto_ej_tornillos_esp"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/proyecto_accesorios_techo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/texto_ej_tornillos"
+            android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/pedido_sap"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/accesorios_especiales"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp" />
 
-    <EditText
-        android:id="@+id/proyecto_pedido_sap"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/solicitar_al_area_de_ventas"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/proyecto_accesorios_especiales"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/texto_ej_tornillos_esp"
+            android:inputType="textPersonName" />
 
-    <ImageView
-        android:id="@+id/imgFoto"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="10dp"
-        android:contentDescription="Foto"
-        android:maxHeight="200dp"
-        android:maxWidth="200dp"
-        android:minHeight="200dp"
-        android:minWidth="200dp"
-        android:src="@android:drawable/ic_menu_camera"/>
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pedido_sap"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp" />
 
-    <Button
-        android:id="@+id/TomarFoto"
-        style="@style/ButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tomar_foto"
-        android:onClick="onFotoClick"/>
+        <EditText
+            android:id="@+id/proyecto_pedido_sap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/solicitar_al_area_de_ventas"
+            android:inputType="textPersonName" />
 
-    <Button
-        android:id="@+id/Guardar"
-        style="@style/ButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/guardar" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgFoto"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="Foto"
+                android:maxHeight="200dp"
+                android:maxWidth="200dp"
+                android:minHeight="200dp"
+                android:minWidth="200dp"
+                android:src="@android:drawable/ic_menu_camera"/>
+
+            <Button
+                android:id="@+id/TomarFoto"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tomar_foto"
+                android:onClick="onFotoClick"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/Guardar"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guardar" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
