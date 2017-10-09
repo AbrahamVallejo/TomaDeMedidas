@@ -26,6 +26,9 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -291,19 +294,19 @@ public class Fragment_listaProyecto extends Fragment {
         return mediaFile;
     }
 
-/*    @Override
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_OK){
-                ImageView oImg = (ImageView)getActivity().findViewById(R.id.imgFoto);
+                //ImageView oImg = (ImageView)getActivity().findViewById(R.id.imgFoto);
                 Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
-                oImg.setImageBitmap(bit_map);
+                //oImg.setImageBitmap(bit_map);
             }else if(resultCode == RESULT_CANCELED){
                 // User cancelled the image capture
             }else {
                 //Image capture failed, advise user
             }
         }
-    }*/
+    }
 }
