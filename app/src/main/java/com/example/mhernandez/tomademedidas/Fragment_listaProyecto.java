@@ -1,6 +1,7 @@
 package com.example.mhernandez.tomademedidas;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -174,15 +175,17 @@ public class Fragment_listaProyecto extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = _context.getLayoutInflater();
             View rowView = inflater.inflate(R.layout.activity_listaproyectos, null, true);
+            TextView txtIdProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
+            TextView txtIdDisp = (TextView) rowView.findViewById(R.id.idDisp);
             TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
             TextView txtAutorizado = (TextView) rowView.findViewById(R.id.autorizado);
             TextView txtATecho = (TextView) rowView.findViewById(R.id.ATecho);
             TextView txtPedidoSap = (TextView) rowView.findViewById(R.id.pedidoSap);
             TextView txtFecha = (TextView) rowView.findViewById(R.id.fecha);
             TextView txtAMuro = (TextView) rowView.findViewById(R.id.AMuro);
-            TextView txtIDDisp = (TextView) rowView.findViewById(R.id.idDisp);
+            TextView txtIDDisp = (TextView) rowView.findViewById(R.id.IDDisp);
             TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
-            TextView txtIDCliente = (TextView) rowView.findViewById(R.id.idCliente);
+            TextView txtIDCliente = (TextView) rowView.findViewById(R.id.IDCliente);
             TextView txtIDUser = (TextView) rowView.findViewById(R.id.IDUser);
             TextView txtIDClienteDisp = (TextView) rowView.findViewById(R.id.IDClienteDisp);
             TextView txtIDFormato = (TextView) rowView.findViewById(R.id.IDFormato);
@@ -192,8 +195,8 @@ public class Fragment_listaProyecto extends Fragment {
             txtFecha.setText(parts[0]);
             txtPedidoSap.setText(_text[position][8]);
             txtAutorizado.setText(_text[position][12]);
-            txtATecho.setText(_text[position][19].toLowerCase());
-            txtAMuro.setText(_text[position][20].toLowerCase());
+            txtATecho.setText(_text[position][19]);
+            txtAMuro.setText(_text[position][20]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][0]);
             txtIDCliente.setText(_text[position][2]);
@@ -248,5 +251,6 @@ public class Fragment_listaProyecto extends Fragment {
             list.setTag(aRef);
             list.setAdapter(adapter);
         }
+
     }
 }
