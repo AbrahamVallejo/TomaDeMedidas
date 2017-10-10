@@ -83,15 +83,15 @@ public class MainActivity extends AppCompatActivity
         Log.v("[obtener]",part1); Log.v("[obtener]",part2);Log.v("[obtener]",part3);
         int aux=0;
         if(part1.length()==0){
-            aux=1; nombre.setText("");
+            aux++; nombre.setText("");
             nombre.setHint("Campo Vacío");Log.v("[obtener]",part1);
         }
         if(part2.length()==0){
-            aux=1; telefono.setText("");
+            aux++; telefono.setText("");
             telefono.setHint("Campo Vacío");Log.v("[obtener]",part2);
         }
         if(part3.length()==0){
-            aux=1; direccion.setText("");
+            aux++; direccion.setText("");
             direccion.setHint("Campo Vacío");Log.v("[obtener]",part3);
         }
         if(aux==0){ //if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
