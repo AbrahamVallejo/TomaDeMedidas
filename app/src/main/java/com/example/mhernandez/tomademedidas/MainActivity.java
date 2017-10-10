@@ -95,8 +95,10 @@ public class MainActivity extends AppCompatActivity
             direccion.setHint("Campo Vacío");Log.v("[obtener]",part3);
         }
         if(aux==0){ //if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
-            MainActivity.oDB.insertCliente(1, 1, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString());
+            MainActivity.oDB.insertCliente(0, 1, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString());
             Toast.makeText(this, "CLIENTE AGREGADO", Toast.LENGTH_SHORT).show();
+            //MainActivity.oDB.buscarCliente( nombre.getText().toString(), telefono.getText().toString() );
+            nombre.setText(""); telefono.setText(""); direccion.setText("");
         }else {
             Toast.makeText(this, "VERIFIQUE SU CAPTURA", Toast.LENGTH_SHORT).show();
         }
