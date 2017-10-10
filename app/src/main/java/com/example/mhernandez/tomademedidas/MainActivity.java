@@ -29,11 +29,13 @@ public class MainActivity extends AppCompatActivity
 
     public MainActivity() { oDB = new DBProvider(this);}
 
+    /*
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final String APP_PATH = "droidBH";
     private Uri fileUri;
     String sID;
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -591,9 +593,10 @@ public class MainActivity extends AppCompatActivity
         oNS.execute("getproyecto_camaLista");
     }
 
+/*
     public void onFotoClick(View v){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, this.sID);
+        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
@@ -633,5 +636,5 @@ public class MainActivity extends AppCompatActivity
                 //Image capture failed, advise user
             }
         }
-    }
+    }*/
 }
