@@ -27,7 +27,7 @@
             android:maxLength="20"
             android:digits="AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
             -.,()1234567890"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textSize="12sp" />
 
         <TextView
