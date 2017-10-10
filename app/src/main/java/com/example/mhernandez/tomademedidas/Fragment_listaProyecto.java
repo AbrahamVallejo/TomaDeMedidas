@@ -205,6 +205,7 @@ public class Fragment_listaProyecto extends Fragment {
             txtIDFormato.setText(_text[position][4]);
             return rowView;
         }
+
     }
 
     @Override
