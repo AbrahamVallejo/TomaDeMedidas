@@ -8,10 +8,14 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -31,6 +35,11 @@ public class Fragment_proyecto extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    private static final int MEDIA_TYPE_IMAGE = 1;
+    private static final String APP_PATH = "droidBH";
+    private Uri fileUri;
+    String sID;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -75,6 +84,29 @@ public class Fragment_proyecto extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.crear_proyecto, container, false);
+        Button botonCamara = ((Button) vista.findViewById(R.id.TomarFoto));
+        if(savedInstanceState != null){
+            fileUri = savedInstanceState.getParcelable("uri");
+            if(fileUri != null){
+                ImageView oImg = vista.findViewById(R.id.imgFoto);
+                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(savedInstanceState.getString("foto"),200,200);
+                oImg.setImageBitmap(bit_map);
+            }
+        }
+
+        ((Button) botonCamara.findViewById(R.id.TomarFoto)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+        //ImageView oImg = (ImageView) vista.findViewById(R.id.imgFoto);
+        //if()
+
         return vista;
     }
 
@@ -83,6 +115,15 @@ public class Fragment_proyecto extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        if (fileUri != null) {
+            savedInstanceState.putParcelable("uri", fileUri);
+            savedInstanceState.getString("foto", fileUri.getPath());
+        }
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     @Override
@@ -117,13 +158,17 @@ public class Fragment_proyecto extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-
-/*    public void onFotoClick(View v){
+    /*
+    public void onFotoClick(View view){
+        Toast.makeText(getActivity(),
+                "si",
+                Toast.LENGTH_LONG).show();
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, this.sID);
+        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, view.sID);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
+    */
 
     private static Uri getOutputMediaFileUri(int type, String pID){
         return Uri.fromFile(getOutputMediaFile(type,pID));
@@ -136,10 +181,10 @@ public class Fragment_proyecto extends Fragment {
                 return null;
             }
         }
-
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE){
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
+            //mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "TOMAMEDIDAS_1.jpg");
         }else {
             return null;
         }
@@ -151,14 +196,14 @@ public class Fragment_proyecto extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_OK){
-                //ImageView oImg = (ImageView)getActivity().findViewById(R.id.imgFoto);
+                ImageView oImg = vista.findViewById(R.id.imgFoto);
                 Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
-                //oImg.setImageBitmap(bit_map);
+                oImg.setImageBitmap(bit_map);
             }else if(resultCode == RESULT_CANCELED){
                 // User cancelled the image capture
             }else {
                 //Image capture failed, advise user
             }
         }
-    }*/
+    }
 }
