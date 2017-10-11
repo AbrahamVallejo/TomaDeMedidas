@@ -45,23 +45,37 @@ public class DBProvider {
     public void insertCliente(int idCliente,int idDisp,String nombre, String telefono, String direccion) {
         if (idCliente == 0){
             Object[] aData = {idDisp, nombre, telefono, direccion};
-            executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_CLIENTE + " ("+ DBhelper.ID_DISP + ", " + DBhelper.COLUMN_NAME_NOMBRE + ", "
+            executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_CLIENTE + " (" + DBhelper.ID_DISP + ", " + DBhelper.COLUMN_NAME_NOMBRE + ", "
                     + DBhelper.COLUMN_NAME_TELEFONO + ", " + DBhelper.COLUMN_NAME_DIRECCION + ") VALUES(?, ?, ?, ?)", aData);
         }
         else{
             Object[] aData = {idCliente, idDisp, nombre, telefono, direccion};
             executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_CLIENTE + " (" + DBhelper.ID_CLIENTE + ", " + DBhelper.ID_DISP + ", "
-                    + DBhelper.COLUMN_NAME_NOMBRE + ", "
-                    + DBhelper.COLUMN_NAME_TELEFONO + ", " + DBhelper.COLUMN_NAME_DIRECCION + ") VALUES(?, ?, ?, ?, ?)", aData);
+                    + DBhelper.COLUMN_NAME_NOMBRE + ", " + DBhelper.COLUMN_NAME_TELEFONO + ", "
+                    + DBhelper.COLUMN_NAME_DIRECCION + ") VALUES(?, ?, ?, ?, ?)", aData);
         }
     }
 
-    public void buscarCliente(String nombre, String telefono) {
-        Log.v("[obtener", "Voy a buscar tu cliente");
-        Object[] aData = {nombre, telefono};
-        executeSQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.COLUMN_NAME_NOMBRE + "=?" +
-                    " AND " + DBhelper.COLUMN_NAME_TELEFONO + "=?", aData);
-        Log.v("[obtener", "Encontre al cliente"); //Log.v("[obtener", var.toString());
+    public String[][] lastCliente() {
+        /*Log.v("[obtener", "Voy a buscar tu cliente");     Object[] aData = {nombre};
+        executeSQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.COLUMN_NAME_NOMBRE + " = ?", aData);
+        Log.v("[obtener", "Encontre al cliente");*/ //Log.v("[obtener", var.toString()); " AND " + DBhelper.COLUMN_NAME_TELEFONO + "=?"
+        //SELECT MAX(id) FROM
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {("1")};
+        Cursor Ars; Log.v("[obtener", "Voy a buscar tu ID");
+        Ars = querySQL("SELECT MAX(" +DBhelper.ID_CLIENTE +") FROM " + DBhelper.TABLE_NAME_CLIENTE, aFils);
+        Log.v("[obtener", "Encontre algo");
+        aData = new String[Ars.getCount()][];
+        while (Ars.moveToNext()) {
+            aData[iCnt] = new String[1];
+            aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_CLIENTE));
+        }
+        Ars.close();
+        CloseDB();
+        return (aData);
+
     }
 
     public void updateCliente(String idCliente,String idDisp, String nombre, String telefono, String direccion) {
