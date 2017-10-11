@@ -85,10 +85,11 @@ public class Fragment_proyecto extends Fragment {
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.crear_proyecto, container, false);
         Button botonCamara = ((Button) vista.findViewById(R.id.TomarFoto));
+
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");
             if(fileUri != null){
-                ImageView oImg = vista.findViewById(R.id.imgFoto);
+                ImageView oImg = (ImageView) vista.findViewById(R.id.imgFoto);
                 Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(savedInstanceState.getString("foto"),200,200);
                 oImg.setImageBitmap(bit_map);
             }
@@ -103,9 +104,6 @@ public class Fragment_proyecto extends Fragment {
                 startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
             }
         });
-
-        //ImageView oImg = (ImageView) vista.findViewById(R.id.imgFoto);
-        //if()
 
         return vista;
     }
@@ -183,8 +181,7 @@ public class Fragment_proyecto extends Fragment {
         }
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE){
-            //mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "TOMAMEDIDAS_1.jpg");
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
         }else {
             return null;
         }
@@ -196,9 +193,9 @@ public class Fragment_proyecto extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
             if (resultCode == RESULT_OK){
-                ImageView oImg = vista.findViewById(R.id.imgFoto);
+                //ImageView oImg = (ImageView)getActivity().findViewById(R.id.imgFoto);
                 Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
-                oImg.setImageBitmap(bit_map);
+                //oImg.setImageBitmap(bit_map);
             }else if(resultCode == RESULT_CANCELED){
                 // User cancelled the image capture
             }else {

@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity
         //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");
         //oDB.insertCliente(0, 3, "Jose", "13245768", "UPSIN");
         //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
-        //getclienteLista();
-        //getproyectoLista();
+        getclienteLista();
+        getproyectoLista();
         //getproyectoCamaLista();
     }
 
@@ -83,20 +83,22 @@ public class MainActivity extends AppCompatActivity
         Log.v("[obtener]",part1); Log.v("[obtener]",part2);Log.v("[obtener]",part3);
         int aux=0;
         if(part1.length()==0){
-            aux=1; nombre.setText("");
+            aux++; nombre.setText("");
             nombre.setHint("Campo Vacío");Log.v("[obtener]",part1);
         }
         if(part2.length()==0){
-            aux=1; telefono.setText("");
+            aux++; telefono.setText("");
             telefono.setHint("Campo Vacío");Log.v("[obtener]",part2);
         }
         if(part3.length()==0){
-            aux=1; direccion.setText("");
+            aux++; direccion.setText("");
             direccion.setHint("Campo Vacío");Log.v("[obtener]",part3);
         }
         if(aux==0){ //if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
-            MainActivity.oDB.insertCliente(1, 1, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString());
+            MainActivity.oDB.insertCliente(0, 1, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString());
             Toast.makeText(this, "CLIENTE AGREGADO", Toast.LENGTH_SHORT).show();
+            //MainActivity.oDB.buscarCliente( nombre.getText().toString(), telefono.getText().toString() );
+            nombre.setText(""); telefono.setText(""); direccion.setText("");
         }else {
             Toast.makeText(this, "VERIFIQUE SU CAPTURA", Toast.LENGTH_SHORT).show();
         }
