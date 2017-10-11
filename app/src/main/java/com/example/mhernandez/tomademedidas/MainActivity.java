@@ -62,13 +62,13 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        MainActivity.oDB.ObtenerClientes("0",1);
+        //MainActivity.oDB.ObtenerClientes("0",1);
+        //MainActivity.oDB.ObtenerProyectos("0",1);
         //oDB.insertCliente(150, 1, "Aaron", "12340183", "Direccion");
         //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");
-        //oDB.insertCliente(0, 3, "Jose", "13245768", "UPSIN");
         //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
         getclienteLista();
-        getproyectoLista();
+        //getproyectoLista();
         //getproyectoCamaLista();
     }
 
@@ -94,11 +94,12 @@ public class MainActivity extends AppCompatActivity
             aux++; direccion.setText("");
             direccion.setHint("Campo Vacío");Log.v("[obtener]",part3);
         }
-        if(aux==0){ //if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
-            MainActivity.oDB.insertCliente(0, 1, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString());
-            Toast.makeText(this, "CLIENTE AGREGADO", Toast.LENGTH_SHORT).show();
-            //MainActivity.oDB.buscarCliente( nombre.getText().toString(), telefono.getText().toString() );
+        if(aux==0){                                                                                 //if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
+            String[][] aRef = MainActivity.oDB.ObtenerClientes("0",1);
+            int ID = Integer.parseInt(aRef[(aRef.length-1)][0].toString()) +1;                      //Log.v("[obtener]", aRef[(aRef.length-1)][0].toString());
+            MainActivity.oDB.insertCliente(ID, 2, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString() );
             nombre.setText(""); telefono.setText(""); direccion.setText("");
+            Toast.makeText(this, "CLIENTE AGREGADO", Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(this, "VERIFIQUE SU CAPTURA", Toast.LENGTH_SHORT).show();
         }
