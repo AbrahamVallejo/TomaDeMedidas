@@ -79,7 +79,6 @@ public class Fragment_listaClientes extends Fragment {
                              Bundle savedInstanceState)
     {
         vista = inflater.inflate(R.layout.list_activity, container, false);
-
         lista();
 
         ListView tlList = ((ListView) vista.findViewById(R.id.lista));
