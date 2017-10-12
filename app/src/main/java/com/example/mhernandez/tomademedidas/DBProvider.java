@@ -63,17 +63,22 @@ public class DBProvider {
         //SELECT MAX(id) FROM
         int iCnt = 0;
         String[][] aData = null;
-        String[] aFils = {("1")};
+        String[] aFils = null;
         Cursor Ars; Log.v("[obtener", "Voy a buscar tu ID");
-        Ars = querySQL("SELECT MAX(" +DBhelper.ID_CLIENTE +") FROM " + DBhelper.TABLE_NAME_CLIENTE, aFils);
-        Log.v("[obtener", "Encontre algo");
-        aData = new String[Ars.getCount()][];
-        while (Ars.moveToNext()) {
-            aData[iCnt] = new String[1];
-            aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_CLIENTE));
+        Ars = querySQL("SELECT MAX(" +DBhelper.ID_CLIENTE +") AS "+DBhelper.ID_CLIENTE+ " FROM " + DBhelper.TABLE_NAME_CLIENTE, aFils);
+        //Log.v("[obtener", "Datos:" +String.valueOf(Ars.getCount()) );
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][1];
+            while (Ars.moveToNext()){                                               //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_CLIENTE)) );
+                if(Ars.getString(Ars.getColumnIndex(DBhelper.ID_CLIENTE))==null){   //Log.v("[obtener", "Entre al IF");
+                    aData[iCnt][0] = "0";
+                }else{                                                              //Log.v("[obtener", "Entre al Else");
+                aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_CLIENTE) );}
+                iCnt++;
+            }
         }
         Ars.close();
-        CloseDB();
+        CloseDB();  Log.v("[obtener", "Voy de regreso");
         return (aData);
 
     }
@@ -279,7 +284,7 @@ public class DBProvider {
         Cursor aRS;
         if (tipo == 1) {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ?", aFils);
-            Log.v("obtener", "SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ?");
+            //Log.v("[obtener]", "SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ?");
         } else {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " = ?", aFils);
         }
