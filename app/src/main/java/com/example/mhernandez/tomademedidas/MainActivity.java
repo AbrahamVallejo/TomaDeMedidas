@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity
         //getclienteLista();
         //getproyectoLista();
         //getproyectoCamaLista();
+
     }
 
     public void onSaveClick(View view){
