@@ -16,7 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="text"
+        android:maxLength="20"
+        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
+        -.,()1234567890"
         android:textSize="14sp" />
 
     <TextView
@@ -31,7 +34,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="numberDecimal"
+        android:inputType="text"
+        android:maxLength="20"
+        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
+        -.,()1234567890"
         android:id="@+id/txt_area"
         android:textSize="14sp" />
 
@@ -48,6 +54,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:maxLength="20"
+        android:digits=".1234567890"
         android:id="@+id/txt_ancho"
         android:textSize="14sp" />
 
@@ -64,6 +72,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:maxLength="20"
+        android:digits=".1234567890"
         android:id="@+id/txt_alto"
         android:textSize="14sp" />
 
@@ -80,6 +90,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
+        android:maxLength="20"
+        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
         android:id="@+id/txt_copete"
         android:textSize="14sp" />
 
@@ -96,6 +108,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
+        android:maxLength="20"
+        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
         android:id="@+id/txt_proyecciones"
         android:textSize="14sp" />
 
@@ -112,6 +126,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
+        android:maxLength="50"
+        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
         android:id="@+id/txt_fijacion"
         android:textSize="14sp" />
 
@@ -128,6 +144,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
+        android:maxLength="200"
         android:id="@+id/txt_comentarios"
         android:textSize="14sp" />
 
