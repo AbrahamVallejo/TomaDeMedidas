@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity
         //oDB.insertCliente(150, 1, "Aaron", "12340183", "Direccion");
         //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");
         //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
-        getclienteLista();
+        //getclienteLista();
         //getproyectoLista();
         //getproyectoCamaLista();
     }
@@ -79,30 +79,29 @@ public class MainActivity extends AppCompatActivity
 
         String part1 =nombre.getText().toString().replace(" ","");
         String part2 = telefono.getText().toString().replace(" ","");
-        String part3 =direccion.getText().toString().replace(" ","");
-        Log.v("[obtener]",part1); Log.v("[obtener]",part2);Log.v("[obtener]",part3);
+        String part3 =direccion.getText().toString().replace(" ","");   //Log.v("[obtener]",part1); Log.v("[obtener]",part2);Log.v("[obtener]",part3);
         int aux=0;
         if(part1.length()==0){
-            aux++; nombre.setText("");
-            nombre.setHint("Campo Vacío");Log.v("[obtener]",part1);
+            aux++; nombre.setText(""); nombre.setHint("Campo Vacío");
         }
         if(part2.length()==0){
-            aux++; telefono.setText("");
-            telefono.setHint("Campo Vacío");Log.v("[obtener]",part2);
+            aux++; telefono.setText(""); telefono.setHint("Campo Vacío");
         }
         if(part3.length()==0){
-            aux++; direccion.setText("");
-            direccion.setHint("Campo Vacío");Log.v("[obtener]",part3);
+            aux++; direccion.setText(""); direccion.setHint("Campo Vacío");
         }
         if(aux==0){                                                                                 //if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
-            String[][] aRef = MainActivity.oDB.ObtenerClientes("0",1);
-            int ID = Integer.parseInt(aRef[(aRef.length-1)][0].toString()) +1;                      //Log.v("[obtener]", aRef[(aRef.length-1)][0].toString());
-            MainActivity.oDB.insertCliente(ID, 2, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString() );
+            String[][] aRef = MainActivity.oDB.lastCliente();
+            int ID; Log.v("[obtener]", "Traigo un: "+ aRef[0][0].toString());
+                if(aRef[0][0].toString() == "0"){
+                    ID = 1;
+                }else {
+                    ID = Integer.parseInt(aRef[(0)][0]) +1; }
+            MainActivity.oDB.insertCliente(ID, 4, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString() );
             nombre.setText(""); telefono.setText(""); direccion.setText("");
             Toast.makeText(this, "CLIENTE AGREGADO", Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(this, "VERIFIQUE SU CAPTURA", Toast.LENGTH_SHORT).show();
-        }
+            Toast.makeText(this, "VERIFIQUE SU CAPTURA", Toast.LENGTH_SHORT).show(); }
     }
 
     @Override
