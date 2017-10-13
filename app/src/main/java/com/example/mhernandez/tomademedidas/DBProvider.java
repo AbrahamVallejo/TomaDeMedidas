@@ -185,6 +185,27 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
+    public String[][] lastProyecto() {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = null;
+        Cursor Ars; Log.v("[obtener", "Proyecto ID: ");
+        Ars = querySQL("SELECT MAX(" +DBhelper.ID_PROYECTO  +") AS "+DBhelper.ID_PROYECTO + " FROM " + DBhelper.TABLE_NAME_PROYECTO, aFils); //Log.v("[obtener", "Datos:" +String.valueOf(Ars.getCount()) );
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][1];
+            while (Ars.moveToNext()){                                               //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_CLIENTE)) );
+                if(Ars.getString(Ars.getColumnIndex(DBhelper.ID_PROYECTO))==null){   //Log.v("[obtener", "Entre al IF");
+                    aData[iCnt][0] = "0";
+                }else{                                                              //Log.v("[obtener", "Entre al Else");
+                    aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_PROYECTO) );}
+                iCnt++;
+            }
+        }
+        Ars.close();
+        CloseDB();  Log.v("[obtener", "Voy de regreso");
+        return (aData);
+    }
+
 
     public void insertProyectoCama(int idCama,int idDisp,int idProyecto, int idProyectoDisp, String nHabitaciones, double A,
                                    double B, double C, double D, double E, double F, double G, String fecha, String nombreP, int formato,
