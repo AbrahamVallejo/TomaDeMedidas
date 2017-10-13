@@ -63,12 +63,17 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         MainActivity.oDB.ObtenerClientes("0",1);
+        boolean aux = isOnlineNet();
+        if (aux != false){
+            getclienteLista();
+            getdispositivosLista();
+        }
+        else {
+            Toast.makeText(this, "Sin Acceso a la Red", Toast.LENGTH_SHORT).show();
+        }
         //oDB.insertCliente(150, 1, "Aaron", "12340183", "Direccion"); //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");  //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
-        getclienteLista();
             //getproyectoLista();
             //getproyectoCamaLista();
-        getdispositivosLista();
-
     }
 
     public void onSaveClick(View view){
@@ -594,6 +599,19 @@ public class MainActivity extends AppCompatActivity
         oNS.execute("getproyecto_camaLista");
     }
 
+
+    public Boolean isOnlineNet() {
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
+            int val = p.waitFor();
+            boolean reachable = (val == 0); Log.v("[obtener]",String.valueOf(reachable) );
+            return reachable;
+        } catch (Exception e) {
+            /* TODO Auto-generated catch block* */
+            e.printStackTrace();
+        }
+        return false;
+    }
 /*
     public void onFotoClick(View v){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
