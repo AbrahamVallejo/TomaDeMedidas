@@ -126,7 +126,7 @@ public class DBProvider {
                                String accesoriosMuro, int idEstatus, int idUsuarioVenta) {
         Object[] aData = {idProyecto, idDisp, idCliente, idClienteDisp, idFormato, idUser, nombreProyecto, PedidoSap,
                 fecha, autorizado, accesoriosTecho, accesoriosMuro, idEstatus, idUsuarioVenta};
-        Log.v("[obtener]", "Voy a insertar Proyecto");
+     //Log.v("[obtener]", "Voy a insertar Proyecto");
 
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO + " (" + DBhelper.ID_PROYECTO + ", "
                 + DBhelper.ID_DISP + ", " + DBhelper.ID_CLIENTE + ", " + DBhelper.ID_CLIENTE_DISP + ", "
@@ -135,8 +135,34 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_AUTORIZADO + ", " + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + ", "
                 + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + ", " + DBhelper.ID_ESTATUS + ", "+ DBhelper.ID_USUARIO_VENTA
                 + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+    //Log.v("[obtener]", nombreProyecto);
+    }
 
-        Log.v("[obtener]", nombreProyecto);
+    public String[][] buscarProyecto(int idProyecto, int idDisp) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils= {(String.valueOf(idProyecto)), (String.valueOf(idDisp)) };
+        Cursor Ars; Log.v("[obtener", "Voy a buscar tu Proyecto");                               //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
+        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " = ? AND "
+                +DBhelper.ID_DISP +" = ?" , aFils);
+        Log.v("[obtener", "Encontre tu Proyecto "+ Ars.getCount() );
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][5];
+            while (Ars.moveToNext()) {                                                              //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP)) );
+                aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_PROYECTO));               //Log.v("[obtener", aData[0][0] );
+                aData[iCnt][1] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP));
+                aData[iCnt][2] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_CLIENTE));
+                aData[iCnt][3] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_FORMATO));
+                aData[iCnt][4] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_USER));
+                iCnt++; }
+        }
+        else{
+            aData = new String[1][1];
+            aData[0][0]= "0";
+        }
+        Ars.close();
+        CloseDB();  Log.v("[obtener", "Voy de regreso");
+        return (aData);
     }
 
     public void updateProyecto(String idProyecto, String idDisp, String nombreProyecto, String accesoriosMuro, String accesoriosTecho,

@@ -406,13 +406,18 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("id_usuario_venta");
                     Log.v("PRUEBA", joFuj.getString("id_proyecto"));
                     Log.v("PRUEBA", joFuj.getString("nombre_proyecto")); Log.v("PRUEBA","...");
-                MainActivity.oDB.insertProyecto(Integer.parseInt(joFuj.getString("id_proyecto")),
-                        Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_cliente")),
-                        Integer.parseInt(joFuj.getString("id_cliente_disp")), Integer.parseInt(joFuj.getString("id_formato")),
-                        Integer.parseInt(joFuj.getString("id_user")), joFuj.getString("nombre_proyecto"), joFuj.getString("pedido_sap"),
-                        joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("autorizado")), joFuj.getString("accesorios_techo"),
-                        joFuj.getString("accesorios_muro"), Integer.parseInt(joFuj.getString("id_estatus")),
-                        Integer.parseInt(joFuj.getString("id_usuario_venta")) );
+
+                    String[][] aRef = MainActivity.oDB.buscarProyecto(Integer.parseInt(joFuj.getString("id_proyecto")) ,Integer.parseInt(joFuj.getString("id_disp")));
+                    Log.v("[obtener]",aRef[0][0]);
+                    if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_proyecto"))) {
+                                MainActivity.oDB.insertProyecto(Integer.parseInt(joFuj.getString("id_proyecto")),
+                                Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_cliente")),
+                                Integer.parseInt(joFuj.getString("id_cliente_disp")), Integer.parseInt(joFuj.getString("id_formato")),
+                                Integer.parseInt(joFuj.getString("id_user")), joFuj.getString("nombre_proyecto"), joFuj.getString("pedido_sap"),
+                                joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("autorizado")), joFuj.getString("accesorios_techo"),
+                                joFuj.getString("accesorios_muro"), Integer.parseInt(joFuj.getString("id_estatus")),
+                                Integer.parseInt(joFuj.getString("id_usuario_venta")) );
+                    }
                 }
             }catch (Exception e){
                 exception = e;
