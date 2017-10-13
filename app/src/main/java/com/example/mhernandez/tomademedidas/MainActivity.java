@@ -1,11 +1,7 @@
 package com.example.mhernandez.tomademedidas;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -18,9 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
-
-import java.io.File;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Fragment_clientes.OnFragmentInteractionListener, Fragment_proyecto.OnFragmentInteractionListener, Fragment_listaProyecto.OnFragmentInteractionListener, Fragment_listaClientes.OnFragmentInteractionListener{
@@ -76,14 +71,14 @@ public class MainActivity extends AppCompatActivity
             //getproyectoCamaLista();
     }
 
-    public void onSaveClick(View view){
+    public void onSaveClickClientes(View view){
         EditText nombre = (EditText) this.findViewById(R.id.txt_cliente_nombre);
         EditText telefono = (EditText) this.findViewById(R.id.txt_cliente_telefono);
         EditText direccion = (EditText) this.findViewById(R.id.txt_cliente_direccion);
 
-        String part1 =nombre.getText().toString().replace(" ","");
+        String part1 = nombre.getText().toString().replace(" ","");
         String part2 = telefono.getText().toString().replace(" ","");
-        String part3 =direccion.getText().toString().replace(" ","");   //Log.v("[obtener]",part1); Log.v("[obtener]",part2);Log.v("[obtener]",part3);
+        String part3 = direccion.getText().toString().replace(" ","");   //Log.v("[obtener]",part1); Log.v("[obtener]",part2);Log.v("[obtener]",part3);
         int aux=0;
         if(part1.length()==0){
             aux++; nombre.setText(""); nombre.setHint("Campo Vacío");
@@ -96,7 +91,8 @@ public class MainActivity extends AppCompatActivity
         }
         if(aux==0){                                                                                 //if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
             String[][] aRef = MainActivity.oDB.lastCliente();
-            int ID; Log.v("[obtener]", "Traigo un: "+ aRef[0][0].toString());
+            int ID;
+            Log.v("[obtener]", "Traigo un: "+ aRef[0][0].toString());
                 if(aRef[0][0].toString() == "0"){
                     ID = 1;
                 }else {
@@ -106,6 +102,34 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, "CLIENTE AGREGADO", Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(this, "VERIFIQUE SU CAPTURA", Toast.LENGTH_SHORT).show(); }
+    }
+
+    public void onSaveClickProyectos(View view){
+        Spinner cliente = (Spinner) this.findViewById(R.id.spinner_cliente);
+        Spinner formato = (Spinner) this.findViewById(R.id.spinner_formato);
+        Spinner agente = (Spinner) this.findViewById(R.id.spinner_agente);
+        EditText proyecto = (EditText) this.findViewById(R.id.proyecto_nombre_proyecto);
+        EditText AccMuro = (EditText) this.findViewById(R.id.proyecto_accesorios_muro);
+        EditText AccTecho = (EditText) this.findViewById(R.id.proyecto_accesorios_techo);
+        EditText AccEspecial = (EditText) this.findViewById(R.id.proyecto_accesorios_especiales);
+        EditText PedidoSap = (EditText) this.findViewById(R.id.proyecto_pedido_sap);
+
+        String selected = formato.getSelectedItem().toString();
+        int formatoSelected = 0;
+
+        if (selected.equals("Hoteleria")){
+            formatoSelected = 1;
+        }else if (selected.equals("Cama")){
+            formatoSelected = 2;
+        }else if (selected.equals("Residencial")){
+            formatoSelected = 3;
+        }else if (selected.equals("Galeria")){
+            formatoSelected = 4;
+        }else if(selected.equals("Especial")){
+            formatoSelected = 5;
+        }
+
+        //MainActivity.oDB.insertProyecto(formatoSelected);
     }
 
     @Override
