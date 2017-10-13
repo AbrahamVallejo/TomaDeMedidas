@@ -1,6 +1,5 @@
 package com.example.mhernandez.tomademedidas;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -14,16 +13,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, Fragment_clientes.OnFragmentInteractionListener,
-        Fragment_proyecto.OnFragmentInteractionListener, Fragment_listaProyecto.OnFragmentInteractionListener,
-        Fragment_listaClientes.OnFragmentInteractionListener{
-
+        implements NavigationView.OnNavigationItemSelectedListener, Fragment_clientes.OnFragmentInteractionListener, Fragment_proyecto.OnFragmentInteractionListener, Fragment_listaProyecto.OnFragmentInteractionListener, Fragment_listaClientes.OnFragmentInteractionListener{
 
     public static DBProvider oDB;
 
@@ -41,8 +36,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //setContentView(R.layout.crear_dispositivo);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -64,19 +57,19 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        MainActivity.oDB.ObtenerClientes("0",1);  //oDB.insertCliente(150, 1, "Aaron", "12340183", "Direccion"); //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");  //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
+        MainActivity.oDB.ObtenerClientes("0",1);
         boolean aux = isOnlineNet();
         if (aux != false){
             getclienteLista();
             getdispositivosLista();
-            getproyectoLista();
-            //getproyectoCamaLista();
         }
         else {
             Toast.makeText(this, "Sin Acceso a la Red", Toast.LENGTH_SHORT).show();
         }
+        //oDB.insertCliente(150, 1, "Aaron", "12340183", "Direccion"); //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");  //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
+            //getproyectoLista();
+            //getproyectoCamaLista();
     }
-
 
     public void onSaveClickClientes(View view){
         EditText nombre = (EditText) this.findViewById(R.id.txt_cliente_nombre);
@@ -293,14 +286,14 @@ public class MainActivity extends AppCompatActivity
             public void OnTaskCompleted(Object freed) {
                 Toast.makeText(getApplicationContext(),
                         "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(),
                         "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_LONG).show();
             }
         });
         oNS.execute("getclienteLista");
@@ -350,14 +343,14 @@ public class MainActivity extends AppCompatActivity
             public void OnTaskCompleted(Object freed) {
                 Toast.makeText(getApplicationContext(),
                         "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(),
                         "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_LONG).show();
             }
         });
         oNS.execute("getdispositivosLista");
@@ -636,14 +629,13 @@ public class MainActivity extends AppCompatActivity
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
             int val = p.waitFor();
             boolean reachable = (val == 0); Log.v("[obtener]",String.valueOf(reachable) );
-            return true;
+            return reachable;
         } catch (Exception e) {
             /* TODO Auto-generated catch block* */
             e.printStackTrace();
         }
         return false;
     }
-
 /*
     public void onFotoClick(View v){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -663,6 +655,7 @@ public class MainActivity extends AppCompatActivity
                 return null;
             }
         }
+
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE){
             mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
