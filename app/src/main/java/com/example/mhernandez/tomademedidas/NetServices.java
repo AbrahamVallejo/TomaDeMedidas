@@ -299,6 +299,12 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("fuera");
                     Log.v("PRUEBA", joFuj.getString("id_disp"));
                     Log.v("PRUEBA", joFuj.getString("nombre")); Log.v("PRUEBA","...");
+                        String[][] aRef = MainActivity.oDB.buscarDispositivo(Integer.parseInt(joFuj.getString("id_disp")));
+                        Log.v("[obtener]",aRef[0][0]);
+                        if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_disp"))) {
+                            MainActivity.oDB.insertDispositivo(Integer.parseInt(joFuj.getString("id_disp")), joFuj.getString("nombre"),
+                            Integer.parseInt(joFuj.getString("activo")), joFuj.getString("USUARIO"), Integer.parseInt(joFuj.getString("fuera")));
+                        }
                 }
             }catch (Exception e){
                 exception = e;
