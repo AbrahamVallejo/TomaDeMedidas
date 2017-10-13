@@ -48,6 +48,32 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_NOMBRE + ", " + DBhelper.COLUMN_NAME_TELEFONO + ", "
                     + DBhelper.COLUMN_NAME_DIRECCION + ") VALUES(?, ?, ?, ?, ?)", aData);
     }
+    public String[][] buscarCliente(int client, int Disp) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils= {(String.valueOf(client)), (String.valueOf(Disp)) };
+        Cursor Ars; Log.v("[obtener", "Voy a buscar tu Cliente");                               //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
+        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " = ? AND "
+                +DBhelper.ID_DISP +" = ?" , aFils);
+        Log.v("[obtener", "Encontre tu Cliente "+ Ars.getCount() );
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][5];
+            while (Ars.moveToNext()) {                                                              //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP)) );
+                aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_CLIENTE));               //Log.v("[obtener", aData[0][0] );
+                aData[iCnt][1] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP));
+                aData[iCnt][2] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE));
+                aData[iCnt][3] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_TELEFONO));
+                aData[iCnt][4] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_DIRECCION));
+                iCnt++; }
+        }
+        else{
+            aData = new String[1][1];
+            aData[0][0]= "0";
+        }
+        Ars.close();
+        CloseDB();  Log.v("[obtener", "Voy de regreso");
+        return (aData);
+    }
 
     public String[][] lastCliente() {
         /*Log.v("[obtener", "Voy a buscar tu cliente");     Object[] aData = {nombre};
