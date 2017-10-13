@@ -43,17 +43,10 @@ public class DBProvider {
 
 
     public void insertCliente(int idCliente,int idDisp,String nombre, String telefono, String direccion) {
-        if (idCliente == 0){
-            Object[] aData = {idDisp, nombre, telefono, direccion};
-            executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_CLIENTE + " (" + DBhelper.ID_DISP + ", " + DBhelper.COLUMN_NAME_NOMBRE + ", "
-                    + DBhelper.COLUMN_NAME_TELEFONO + ", " + DBhelper.COLUMN_NAME_DIRECCION + ") VALUES(?, ?, ?, ?)", aData);
-        }
-        else{
             Object[] aData = {idCliente, idDisp, nombre, telefono, direccion};
             executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_CLIENTE + " (" + DBhelper.ID_CLIENTE + ", " + DBhelper.ID_DISP + ", "
                     + DBhelper.COLUMN_NAME_NOMBRE + ", " + DBhelper.COLUMN_NAME_TELEFONO + ", "
                     + DBhelper.COLUMN_NAME_DIRECCION + ") VALUES(?, ?, ?, ?, ?)", aData);
-        }
     }
 
     public String[][] lastCliente() {
@@ -275,6 +268,34 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " WHERE " + DBhelper.ID_RESIDENCIAL + " = ?", aData);
     }
 
+    public void insertDispositivo(int idDisp,String nombre, int activo, String usuario, int fuera) {
+        Object[] aData = {idDisp, nombre, activo, usuario, fuera};
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_DISPOSITIVOS + " (" + DBhelper.ID_DISP + ", " + DBhelper.COLUMN_NAME_NOMBRE + ", "
+                + DBhelper.COLUMN_NAME_ACTIVO + ", " + DBhelper.COLUMN_NAME_USUARIO + ", "
+                + DBhelper.COLUMN_NAME_FUERA + ") VALUES(?, ?, ?, ?, ?)", aData);
+    }
+
+    public String[][] lastDispositivo() {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = null;
+        Cursor Ars; Log.v("[obtener", "Voy a buscar tu ID");
+        Ars = querySQL("SELECT MAX(" +DBhelper.ID_DISP  +") AS "+DBhelper.ID_DISP + " FROM " + DBhelper.TABLE_NAME_DISPOSITIVOS, aFils); //Log.v("[obtener", "Datos:" +String.valueOf(Ars.getCount()) );
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][1];
+            while (Ars.moveToNext()){                                               //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_CLIENTE)) );
+                if(Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP))==null){   //Log.v("[obtener", "Entre al IF");
+                    aData[iCnt][0] = "0";
+                }else{                                                              //Log.v("[obtener", "Entre al Else");
+                    aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP) );}
+                iCnt++;
+            }
+        }
+        Ars.close();
+        CloseDB();  Log.v("[obtener", "Voy de regreso");
+        return (aData);
+
+    }
 
     //Ya obtiene los Clientes
     public String[][] ObtenerClientes(String id, int tipo) {
@@ -854,6 +875,15 @@ public class DBProvider {
                     + "PRIMARY KEY (" + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_DISP + ")"
                     + ");");                                                                        Log.v("[obtener]","DB Proyecto  [lista]");
 
+            db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_DISPOSITIVOS + " ("
+                    + DBhelper.ID_DISP + " INTEGER,"
+                    + DBhelper.COLUMN_NAME_NOMBRE + " TEXT,"
+                    + DBhelper.COLUMN_NAME_ACTIVO + " TINYINT,"
+                    + DBhelper.COLUMN_NAME_USUARIO + " TEXT,"
+                    + DBhelper.COLUMN_NAME_FUERA + " TINYINT,"
+                    + "PRIMARY KEY (" + DBhelper.ID_DISP + ")"
+                    + ");");                                                                        Log.v("[obtener]","DB Dispositivos  [lista]");
+
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_CONTROL + " ("
                     + DBhelper.ID_CONTROL + " INTEGER,"
                     + DBhelper.COLUMN_NAME_ESTADO + " TEXT,"
@@ -865,15 +895,6 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_ESTADO + " INTEGER,"
                     + "PRIMARY KEY (" + DBhelper.ID_COPETE + ")"
                     + ");");                                                                        Log.v("[obtener]","DB Copete  [lista]");
-
-            db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_DISPOSITIVOS + " ("
-                    + DBhelper.ID_DISP + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_NOMBRE + " TEXT,"
-                    + DBhelper.COLUMN_NAME_ACTIVO + " TINYINT,"
-                    + DBhelper.COLUMN_NAME_USUARIO + " TEXT,"
-                    + DBhelper.COLUMN_NAME_FUERA + " TINYINT,"
-                    + "PRIMARY KEY (" + DBhelper.ID_DISP + ")"
-                    + ");");                                                                        Log.v("[obtener]","DB Dispositivos  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_ENVIARDATOS + " ("
                     + DBhelper.ID_ENVIARDATOS + " INTEGER,"
