@@ -62,14 +62,12 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //MainActivity.oDB.ObtenerClientes("0",1);
-        //MainActivity.oDB.ObtenerProyectos("0",1);
-        //oDB.insertCliente(150, 1, "Aaron", "12340183", "Direccion");
-        //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");
-        //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
-        //getclienteLista();
-        //getproyectoLista();
-        //getproyectoCamaLista();
+        MainActivity.oDB.ObtenerClientes("0",1);
+        //oDB.insertCliente(150, 1, "Aaron", "12340183", "Direccion"); //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");  //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
+        getclienteLista();
+            //getproyectoLista();
+            //getproyectoCamaLista();
+        getdispositivosLista();
 
     }
 
