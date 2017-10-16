@@ -24,7 +24,8 @@ public class residencial extends AppCompatActivity {
         final String accesoriosMuro = oExt.getString("accesoriosMuro");
         final String accesoriosTecho = oExt.getString("accesoriosTecho");
         final String accesoriosEspecial = oExt.getString("accesoriosEspecial");
-        final String PedidoSap = oExt.getString("PedidoSap");    }
+        final String PedidoSap = oExt.getString("PedidoSap");
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
