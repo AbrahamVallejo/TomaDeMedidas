@@ -1,5 +1,6 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -119,6 +120,8 @@ public class MainActivity extends AppCompatActivity
 
         if (selected.equals("Hoteleria")){
             formatoSelected = 1;
+            Intent rIntent = new Intent(this, hoteleria.class);
+            startActivity(rIntent);
         }else if (selected.equals("Cama")){
             formatoSelected = 2;
         }else if (selected.equals("Residencial")){
