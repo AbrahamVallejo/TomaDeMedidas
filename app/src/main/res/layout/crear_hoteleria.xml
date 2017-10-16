@@ -3,229 +3,238 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Habitacion: "
-        android:textColor="@android:color/black"
-        android:textSize="10sp"
-        android:textAppearance="@style/TextAppearance.AppCompat"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/txtHabitacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="20"
-        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
-        -.,()1234567890"
-        android:textSize="10sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Habitacion: "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Area: "
-        android:textColor="@android:color/black"
-        android:textSize="10sp"
-        android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <EditText
+                android:id="@+id/txtHabitacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="20"
+                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
+                -.,()1234567890"
+                android:textSize="12sp"/>
 
-    <EditText
-        android:id="@+id/txtArea"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:maxLength="100"
-        android:inputType="text"
-        android:digits="abcdefghijklmnñopqrstuüvwxyz ABCDEFGHIJKLMNÑOPQRSTUÜVWXYZ
-        -.,:()1234567890"
-        android:textSize="10sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Area: "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ancho: "
-        android:textColor="@android:color/black"
-        android:textSize="10sp"
-        android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <EditText
+                android:id="@+id/txtArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:maxLength="100"
+                android:inputType="text"
+                android:digits="abcdefghijklmnñopqrstuüvwxyz ABCDEFGHIJKLMNÑOPQRSTUÜVWXYZ
+                -.,:()1234567890"
+                android:textSize="12sp"/>
 
-    <EditText
-        android:id="@+id/txtAncho"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:maxLength="20"
-        android:digits=".1234567890"
-        android:textSize="10sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ancho: "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Alto: "
-        android:textColor="@android:color/black"
-        android:textSize="10sp"
-        android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <EditText
+                android:id="@+id/txtAncho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:maxLength="20"
+                android:digits=".1234567890"
+                android:textSize="12sp"/>
 
-    <EditText
-        android:id="@+id/txtAlto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:maxLength="20"
-        android:digits=".1234567890"
-        android:textSize="10sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alto: "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hojas: "
-        android:textColor="@android:color/black"
-        android:textSize="10sp"
-        android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <EditText
+                android:id="@+id/txtAlto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:maxLength="20"
+                android:digits=".1234567890"
+                android:textSize="12sp"/>
 
-    <EditText
-        android:id="@+id/txtHojas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:maxLength="20"
-        android:digits=".1234567890"
-        android:textSize="10sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hojas: "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Observaciones: "
-        android:textColor="@android:color/black"
-        android:textSize="10sp"
-        android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <EditText
+                android:id="@+id/txtHojas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:maxLength="20"
+                android:digits=".1234567890"
+                android:textSize="12sp"/>
 
-    <EditText
-        android:id="@+id/txtObservaciones"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="500"
-        android:textSize="10sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Observaciones: "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Piso: "
-        android:textColor="@android:color/black"
-        android:textSize="10sp"
-        android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <EditText
+                android:id="@+id/txtObservaciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="500"
+                android:textSize="12sp"/>
 
-    <EditText
-        android:id="@+id/txtPiso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:maxLength="20"
-        android:digits=".1234567890"
-        android:textSize="10sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Piso: "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Edificio: "
-        android:textColor="@android:color/black"
-        android:textSize="10sp"
-        android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <EditText
+                android:id="@+id/txtPiso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="20"
+                android:digits=".1234567890"
+                android:textSize="12sp"/>
 
-    <EditText
-        android:id="@+id/txtEdificio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="45"
-        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
-        android:textSize="10sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edificio: "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Control: "
-        android:textColor="@android:color/black"
-        android:textSize="10sp"
-        android:textAppearance="@style/TextAppearance.AppCompat"/>
-
-    <EditText
-        android:id="@+id/txtControl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="45"
-        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
-        android:textSize="10sp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Fijacion: "
-        android:textColor="@android:color/black"
-        android:textSize="10sp"
-        android:textAppearance="@style/TextAppearance.AppCompat"/>
-
-    <EditText
-        android:id="@+id/txtFijacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="45"
-        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
-        android:textSize="10sp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Medida Sugerida: "
-        android:textColor="@android:color/black"
-        android:textSize="10sp"
-        android:textAppearance="@style/TextAppearance.AppCompat"/>
-
-    <EditText
-        android:id="@+id/txtMedidaSugerida"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="45"
-        android:digits="mtsx MTSX-.,()1234567890"
-        android:textSize="10sp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Corredera: "
-        android:textColor="@android:color/black"
-        android:textSize="10sp"
-        android:textAppearance="@style/TextAppearance.AppCompat"/>
-
-    <EditText
-        android:id="@+id/txtCorredera"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="100"
-        android:textSize="10sp"/>
-
-    <Button
-        android:id="@+id/Guardar"
-        style="@style/ButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/guardar"/>
+            <EditText
+                android:id="@+id/txtEdificio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="45"
+                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
+                android:textSize="12sp"/>
 
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Control: "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/txtControl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="45"
+                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fijacion: "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/txtFijacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="45"
+                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Medida Sugerida: "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/txtMedidaSugerida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="45"
+                android:digits="mtsx MTSX-.,()1234567890"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Corredera: "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/txtCorredera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="100"
+                android:textSize="12sp"/>
+
+            <Button
+                android:id="@+id/Guardar"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/guardar"/>
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

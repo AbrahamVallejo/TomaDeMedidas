@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:text="Ubicacion: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -28,14 +28,14 @@
             android:maxLength="100"
             android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
                 -.,()/#1234567890"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="A: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -46,14 +46,14 @@
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="B: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -64,13 +64,13 @@
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="C: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -81,14 +81,14 @@
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="D: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -99,14 +99,14 @@
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="E: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -117,14 +117,14 @@
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="F: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -135,14 +135,14 @@
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="G: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -153,14 +153,14 @@
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="H: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -171,14 +171,14 @@
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Prof Marco: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -189,14 +189,14 @@
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Prof Jaladera: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -207,14 +207,14 @@
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Control: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -223,14 +223,14 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Medida Sugerida: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -242,14 +242,14 @@
             android:maxLength="20"
             android:digits="abcdefghijklmnñopqrstuüvwxyz ABCDEFGHIJKLMNÑOPQRSTUÜVWXYZ
             -.,()1234567890"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Observaciones: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -259,14 +259,14 @@
             android:ems="10"
             android:inputType="text"
             android:maxLength="400"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Fijacion: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -278,14 +278,14 @@
             android:maxLength="45"
             android:digits="abcdefghijklmnñopqrstuüvwxyz ABCDEFGHIJKLMNÑOPQRSTUÜVWXYZ
             -.,()1234567890"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Piso: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -297,14 +297,14 @@
             android:maxLength="45"
             android:digits="abcdefghijklmnñopqrstuüvwxyz ABCDEFGHIJKLMNÑOPQRSTUÜVWXYZ
             -.,()1234567890"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Corredera: "
             android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -316,7 +316,7 @@
             android:maxLength="100"
             android:digits="abcdefghijklmnñopqrstuüvwxyz ABCDEFGHIJKLMNÑOPQRSTUÜVWXYZ
             -.,()1234567890"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <Button
             android:id="@+id/Guardar"
