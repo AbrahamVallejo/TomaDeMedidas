@@ -36,7 +36,9 @@
             <Spinner
                 android:id="@+id/spinner_formato"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:entries="@array/spinnerItems" />
+
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="match_parent"
@@ -183,7 +185,8 @@
                 style="@style/ButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/guardar" />
+                android:text="@string/guardar"
+                android:onClick="onSaveClickProyectos"/>
 
         </LinearLayout>
     </ScrollView>
