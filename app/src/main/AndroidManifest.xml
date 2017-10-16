@@ -44,6 +44,26 @@
             android:label="@string/modificar_cliente" >
         </activity>
 
+        <activity android:name=".hoteleria"
+            android:label="@string/proyecto_hoteleria">
+        </activity>
+
+        <activity android:name=".cama"
+            android:label="@string/proyecto_cama">
+        </activity>
+        
+        <activity android:name=".residencial"
+            android:label="@string/proyecto_residencial">
+        </activity>
+
+        <activity android:name=".galeria"
+            android:label="@string/proyecto_galeria">
+        </activity>
+
+        <activity android:name=".especial"
+            android:label="@string/proyecto_especial">
+        </activity>
+        
     </application>
 
 </manifest>

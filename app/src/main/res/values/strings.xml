@@ -53,6 +53,11 @@
     <string name="description">Description</string>
     <string name="modificar_cliente">Modificar Cliente</string>
     <string name="tomar_foto">Tomar Foto</string>
+    <string name="proyecto_hoteleria">Proyecto Hoteleria</string>
+    <string name="proyecto_cama">Proyecto Cama</string>
+    <string name="proyecto_residencial">Proyecto Residencial</string>
+    <string name="proyecto_galeria">Proyecto Galeria</string>
+    <string name="proyecto_especial">Proyecto Especial</string>
 
     <string-array name="spinnerItems">
         <item>Cama</item>
