@@ -21,7 +21,11 @@ public class especial extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle oExt = this.getIntent().getExtras();
         final String idFormato = oExt.getString("idFormato");
-    }
+        final String nombreProyecto = oExt.getString("nombreProyecto");
+        final String accesoriosMuro = oExt.getString("accesoriosMuro");
+        final String accesoriosTecho = oExt.getString("accesoriosTecho");
+        final String accesoriosEspecial = oExt.getString("accesoriosEspecial");
+        final String PedidoSap = oExt.getString("PedidoSap");    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
