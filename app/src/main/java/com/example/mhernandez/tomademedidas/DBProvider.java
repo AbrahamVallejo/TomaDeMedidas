@@ -434,7 +434,7 @@ public class DBProvider {
             aData[0][0]= "0";
         }
         Ars.close();
-        CloseDB();  Log.v("[obtener", "Vuelvo de BuscarDispositivo");
+        CloseDB();  Log.v("[obtener", "Vuelvo de Buscar User");
         return (aData);
     }
 
