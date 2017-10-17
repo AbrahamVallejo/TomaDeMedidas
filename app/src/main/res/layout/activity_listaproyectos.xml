@@ -21,7 +21,7 @@
                 android:layout_weight="50"
                 android:hint="nombre"
                 android:textColor="@android:color/black"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -45,8 +45,8 @@
                     android:text="autor"
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:layout_weight="1" />
+                    android:textStyle="normal"
+                    android:typeface="sans"/>
             </LinearLayout>
 
             <TextView
@@ -63,11 +63,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="50"
-                android:paddingTop="2dp"
                 android:typeface="sans"
                 android:text="Acc. Techo"
                 android:textColor="@android:color/black"
-                android:textSize="15dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -145,7 +144,8 @@
                     android:text="pedido"
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
-                    android:textStyle="bold" />
+                    android:typeface="sans"
+                    android:textStyle="normal" />
             </LinearLayout>
 
             <LinearLayout
@@ -187,10 +187,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="50"
-                android:paddingTop="2dp"
                 android:text="Acc. Muro"
                 android:textColor="@android:color/black"
-                android:textSize="15dp"
+                android:textSize="16dp"
+                android:typeface="sans"
                 android:textStyle="bold" />
         </LinearLayout>
 
