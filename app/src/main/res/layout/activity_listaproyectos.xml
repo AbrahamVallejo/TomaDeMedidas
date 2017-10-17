@@ -31,8 +31,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="bottom"
-                    android:text="Autorizado:  "
+                    android:paddingTop="2dp"
+                    android:text="Autorizado: "
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
                     android:textStyle="normal"
@@ -41,10 +41,10 @@
                     android:id="@+id/autorizado"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="end"
+                    android:paddingTop="2dp"
                     android:text="autor"
                     android:textColor="@android:color/black"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:textStyle="bold"
                     android:layout_weight="1" />
             </LinearLayout>
@@ -52,7 +52,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="bottom"
+                android:paddingTop="2dp"
                 android:layout_weight="1"
                 android:text="Acc. Techo: "
                 android:textColor="@android:color/black"
@@ -63,11 +63,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="50"
-                android:gravity="fill_vertical"
+                android:paddingTop="2dp"
                 android:typeface="sans"
                 android:text="Acc. Techo"
                 android:textColor="@android:color/black"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -136,7 +136,7 @@
                     android:layout_height="match_parent"
                     android:text="Pedido Sap: "
                     android:textColor="@android:color/black"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:textStyle="normal"/>
                 <TextView
                     android:id="@+id/pedidoSap"
@@ -144,7 +144,7 @@
                     android:layout_height="match_parent"
                     android:text="pedido"
                     android:textColor="@android:color/black"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -154,7 +154,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="bottom"
+                    android:paddingTop="2dp"
                     android:layout_weight="1"
                     android:text="Fecha:  "
                     android:textColor="@android:color/black"
@@ -165,10 +165,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="50"
-                    android:gravity="end"
+                    android:paddingTop="2dp"
                     android:text="Fecha"
                     android:textColor="@android:color/black"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:textStyle="normal"/>
             </LinearLayout>
 
@@ -176,7 +176,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="bottom"
+                android:paddingTop="2dp"
                 android:layout_weight="1"
                 android:text="Acc. Muro: "
                 android:textColor="@android:color/black"
@@ -187,10 +187,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="50"
-                android:gravity="end"
+                android:paddingTop="2dp"
                 android:text="Acc. Muro"
                 android:textColor="@android:color/black"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textStyle="bold" />
         </LinearLayout>
 

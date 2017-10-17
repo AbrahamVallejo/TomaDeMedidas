@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">TomaDeMedidas</string>
 
+    <string name="app_name">TomaDeMedidas</string>
     <string name="content_name">Content Name</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
