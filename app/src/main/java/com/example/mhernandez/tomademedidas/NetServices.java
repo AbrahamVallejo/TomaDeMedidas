@@ -303,10 +303,10 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("fuera");
                     Log.v("PRUEBA", joFuj.getString("id_disp"));
                     Log.v("PRUEBA", joFuj.getString("nombre")); Log.v("PRUEBA","...");
-                        String[][] aRef = MainActivity.oDB.buscarDispositivo(Integer.parseInt(joFuj.getString("id_disp")));
-                        Log.v("[obtener]",aRef[0][0]);
+                        String[][] aRef = entrada_inicio.oDB.buscarDispositivo(Integer.parseInt(joFuj.getString("id_disp")));
+                        //Log.v("[obtener]",aRef[0][0]);
                         if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_disp"))) {
-                            MainActivity.oDB.insertDispositivo(Integer.parseInt(joFuj.getString("id_disp")), joFuj.getString("nombre"),
+                            entrada_inicio.oDB.insertDispositivo(Integer.parseInt(joFuj.getString("id_disp")), joFuj.getString("nombre"),
                             Integer.parseInt(joFuj.getString("activo")), joFuj.getString("USUARIO"), Integer.parseInt(joFuj.getString("fuera")));
                         }
                 }
@@ -349,8 +349,14 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("nombre");
                     aFujs[i] = joFuj.getString("apellido");
                     aFujs[i] = joFuj.getString("verificacion");
-                    Log.v("PRUEBA", joFuj.getString("id"));
-                    Log.v("PRUEBA", joFuj.getString("username")); Log.v("PRUEBA","...");
+                    Log.v("PRUEBA", joFuj.getString("id"));Log.v("PRUEBA","...");
+                    String[][] aRef = entrada_inicio.oDB.buscarUser(Integer.parseInt(joFuj.getString("id")) );
+                    //Log.v("[obtener]",aRef[0][0]);
+                    if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id")) ) {
+                        entrada_inicio.oDB.insertUser(Integer.parseInt(joFuj.getString("id")),joFuj.getString("username"),
+                          joFuj.getString("password_hash"), joFuj.getString("email"), Integer.parseInt(joFuj.getString("status")),
+                          joFuj.getString("nombre"), joFuj.getString("apellido"), Integer.parseInt(joFuj.getString("verificacion")) );
+                    }
                 }
             }catch (Exception e){
                 exception = e;

@@ -1,5 +1,6 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -61,14 +62,15 @@ public class MainActivity extends AppCompatActivity
         boolean aux = isOnlineNet();
         if (aux != false){
             getclienteLista();
-            getdispositivosLista();
+            getproyectoLista();
         }
         else {
             Toast.makeText(this, "Sin Acceso a la Red", Toast.LENGTH_SHORT).show();
         }
         //oDB.insertCliente(150, 1, "Aaron", "12340183", "Direccion"); //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");  //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
-            //getproyectoLista();
             //getproyectoCamaLista();
+        //Intent rIntent = new Intent(this, registrar_Dispositivo.class);
+        //startActivity(rIntent);
     }
 
     public void onSaveClickClientes(View view){
@@ -337,25 +339,6 @@ public class MainActivity extends AppCompatActivity
         oNS.execute("getusuarioLista");
     }
 
-    public void getdispositivosLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("getdispositivosLista");
-    }
-
     public void getestatusLista(){
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
@@ -373,25 +356,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
         oNS.execute("getestatusLista");
-    }
-
-    public void getuserLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("getuserLista");
     }
 
 
@@ -629,7 +593,7 @@ public class MainActivity extends AppCompatActivity
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
             int val = p.waitFor();
             boolean reachable = (val == 0); Log.v("[obtener]",String.valueOf(reachable) );
-            return reachable;
+            return true;
         } catch (Exception e) {
             /* TODO Auto-generated catch block* */
             e.printStackTrace();
@@ -637,47 +601,47 @@ public class MainActivity extends AppCompatActivity
         return false;
     }
 /*
-    public void onFotoClick(View v){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-    }
+        public void onFotoClick(View v){
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        }
 
-    private static Uri getOutputMediaFileUri(int type, String pID){
-        return Uri.fromFile(getOutputMediaFile(type,pID));
-    }
+        private static Uri getOutputMediaFileUri(int type, String pID){
+            return Uri.fromFile(getOutputMediaFile(type,pID));
+        }
 
-    private static File getOutputMediaFile(int type, String pID){
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),APP_PATH);
-        if (!mediaStorageDir.exists()){
-            if (!mediaStorageDir.mkdirs()){
+        private static File getOutputMediaFile(int type, String pID){
+            File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),APP_PATH);
+            if (!mediaStorageDir.exists()){
+                if (!mediaStorageDir.mkdirs()){
+                    return null;
+                }
+            }
+
+            File mediaFile;
+            if (type == MEDIA_TYPE_IMAGE){
+                mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
+            }else {
                 return null;
             }
+            return mediaFile;
         }
 
-        File mediaFile;
-        if (type == MEDIA_TYPE_IMAGE){
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
-        }else {
-            return null;
-        }
-        return mediaFile;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
-            if (resultCode == RESULT_OK){
-                //ImageView oImg = (ImageView)getActivity().findViewById(R.id.imgFoto);
-                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
-                //oImg.setImageBitmap(bit_map);
-            }else if(resultCode == RESULT_CANCELED){
-                // User cancelled the image capture
-            }else {
-                //Image capture failed, advise user
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, Intent data){
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
+                if (resultCode == RESULT_OK){
+                    //ImageView oImg = (ImageView)getActivity().findViewById(R.id.imgFoto);
+                    Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
+                    //oImg.setImageBitmap(bit_map);
+                }else if(resultCode == RESULT_CANCELED){
+                    // User cancelled the image capture
+                }else {
+                    //Image capture failed, advise user
+                }
             }
-        }
-    }*/
+        }*/
 }
