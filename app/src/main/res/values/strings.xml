@@ -53,6 +53,7 @@
     <string name="description">Description</string>
     <string name="modificar_cliente">Modificar Cliente</string>
     <string name="tomar_foto">Tomar Foto</string>
+    <string name="registrar_dispositivo">Registrar Dispositivo</string>
     <string name="proyecto_hoteleria">Proyecto Hoteleria</string>
     <string name="proyecto_cama">Proyecto Cama</string>
     <string name="proyecto_residencial">Proyecto Residencial</string>

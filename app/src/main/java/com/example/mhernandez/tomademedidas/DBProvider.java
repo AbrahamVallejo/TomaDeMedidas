@@ -349,6 +349,11 @@ public class DBProvider {
         Log.v("[obtener]", "Insert Disp: "+String.valueOf(idDisp));
     }
 
+    public void deleteAllDispositivos(String ID_DISP) {
+        Object[] aData = {ID_DISP};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_DISPOSITIVOS + " WHERE " + DBhelper.ID_DISP + " <> ?", aData);
+    }
+
     public String[][] lastDispositivo() {
         int iCnt = 0;
         String[][] aData = null;
@@ -374,7 +379,7 @@ public class DBProvider {
         int iCnt = 0;
         String[][] aData = null;
         String[] aFils= {( String.valueOf(Disp) )};
-        Cursor Ars; Log.v("[obtener", "Voy a buscar tu Dispositivo");                               //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
+        Cursor Ars;                //Log.v("[obtener", "Voy a buscar tu Dispositivo");              //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
         Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_DISPOSITIVOS + " WHERE " + DBhelper.ID_DISP + " = ?", aFils);  //Log.v("[obtener", "Encontre tu Dispositivo");
         if (Ars.getCount() > 0) {
             aData = new String[Ars.getCount()][5];
@@ -391,7 +396,141 @@ public class DBProvider {
             aData[0][0]= "0";
         }
         Ars.close();
-        CloseDB();  Log.v("[obtener", "Voy de regreso");
+        CloseDB();  Log.v("[obtener", "Vuelvo de Buscar Dispositivo");
+        return (aData);
+    }
+
+    //Tabla User
+    public void insertUser(int id,String usuario, String pass, String email, int status, String nombre, String apellido, int verificacion) {
+        Object[] aData = {id, usuario, pass, email, status, nombre, apellido, verificacion};
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_USER + " (" + DBhelper._ID + ", " + DBhelper.COLUMN_NAME_USERNAME + ", "
+                + DBhelper.COLUMN_NAME_PASSWORD_HASH + ", " + DBhelper.COLUMN_NAME_EMAIL + ", "
+                + DBhelper.COLUMN_NAME_STATUS + ", " + DBhelper.COLUMN_NAME_NOMBRE + ", "
+                + DBhelper.COLUMN_NAME_APELLIDO + ", " + DBhelper.COLUMN_NAME_VERIFICACION + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?)", aData);
+        Log.v("[obtener]", "Insert User: "+String.valueOf(id));
+    }
+
+    public String[][] buscarUser(int Disp) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils= {( String.valueOf(Disp) )};
+        Cursor Ars;                //Log.v("[obtener", "Voy a buscar tu Dispositivo");              //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
+        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USER + " WHERE " + DBhelper._ID + " = ?", aFils);  //Log.v("[obtener", "Encontre tu Dispositivo");
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][8];
+            while (Ars.moveToNext()) {                                                              //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP)) );
+                aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper._ID));               //Log.v("[obtener", aData[0][0] );
+                aData[iCnt][1] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_USERNAME ));
+                aData[iCnt][2] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_PASSWORD_HASH ));
+                aData[iCnt][3] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_EMAIL ));
+                aData[iCnt][4] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_STATUS ));
+                aData[iCnt][5] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE  ));
+                aData[iCnt][6] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_APELLIDO  ));
+                aData[iCnt][7] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_VERIFICACION  ));
+                iCnt++; }
+        }
+        else{
+            aData = new String[1][1];
+            aData[0][0]= "0";
+        }
+        Ars.close();
+        CloseDB();  Log.v("[obtener", "Vuelvo de BuscarDispositivo");
+        return (aData);
+    }
+
+    public String[][] iniciarUser(String user, String pass) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils= {( String.valueOf(user) ),( String.valueOf(pass) )};
+        Cursor Ars;                //Log.v("[obtener", "Voy a buscar tu Dispositivo");              //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
+        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USER + " WHERE " + DBhelper.COLUMN_NAME_USERNAME + " = ?"
+                + " AND "+ DBhelper.COLUMN_NAME_PASSWORD_HASH + " = ?", aFils);  //Log.v("[obtener", "Encontre tu Dispositivo");
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][8];
+            while (Ars.moveToNext()) {                                                              //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP)) );
+                aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper._ID));               //Log.v("[obtener", aData[0][0] );
+                aData[iCnt][1] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_USERNAME ));
+                aData[iCnt][2] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_PASSWORD_HASH ));
+                aData[iCnt][3] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_EMAIL ));
+                aData[iCnt][4] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_STATUS ));
+                aData[iCnt][5] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE  ));
+                aData[iCnt][6] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_APELLIDO  ));
+                aData[iCnt][7] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_VERIFICACION  ));
+                iCnt++; }
+        }
+        else{
+            aData = new String[1][1];
+            aData[0][0]= "0";
+        }
+        Ars.close();
+        CloseDB();  Log.v("[obtener", "Vuelvo de BuscarDispositivo");
+        return (aData);
+    }
+
+    public String[][] ObtenerUser(String id, int tipo) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)};
+        Cursor aRS;             Log.v("[obtener]", "Estoy en Obtener User");
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USER + " WHERE " + DBhelper._ID + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USER + " WHERE " + DBhelper.COLUMN_NAME_USERNAME + " = ?", aFils);
+        }
+
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[5];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper._ID));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_USERNAME ));
+                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PASSWORD_HASH ));
+                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_EMAIL ));
+                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_STATUS ));
+                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE  ));
+                aData[iCnt][6] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_APELLIDO  ));
+                aData[iCnt][7] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_VERIFICACION  ));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][]; Log.v("[obtener]", "No encontre nada");
+        }
+
+        aRS.close();
+        CloseDB();              Log.v("[obtener]","Llevo todos los User!!!");
+        return (aData);
+    }
+
+
+    //Ya obtiene los Dispositivos
+    public String[][] ObtenerDispositivos(String id, int tipo) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)};
+        Cursor aRS;             Log.v("[obtener]", "Estoy en Obtener Dispositivos");
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_DISPOSITIVOS + " WHERE " + DBhelper.ID_DISP + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_DISPOSITIVOS + " WHERE " + DBhelper.COLUMN_NAME_ACTIVO + " = ?", aFils);
+        }
+
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[5];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE));
+                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ACTIVO));
+                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_USUARIO));
+                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FUERA));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][]; Log.v("[obtener]", "No encontre nada");
+        }
+
+        aRS.close();
+        CloseDB();              Log.v("[obtener]","Llevo todos los Dispositivos!!!");
         return (aData);
     }
 

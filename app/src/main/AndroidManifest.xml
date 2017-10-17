@@ -14,20 +14,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="com.example.mhernandez.tomademedidas" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
+        
+      <activity
             android:name=".entrada_inicio"
+            android:screenOrientation="portrait"
             android:label="" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,14 +29,21 @@
         </activity>
 
         <activity android:name=".log_in"
+            android:screenOrientation="portrait"
             android:label="@string/log_in" >
         </activity>
 
         <activity android:name=".listaClientes"
+            android:screenOrientation="portrait"
             android:label="@string/modificar_cliente" >
         </activity>
-
-        <activity android:name=".hoteleria"
+      
+      <activity android:name=".registrar_Dispositivo"
+            android:screenOrientation="portrait"
+            android:label="@string/registrar_dispositivo" >
+        </activity>
+      
+      <activity android:name=".hoteleria"
             android:label="@string/proyecto_hoteleria">
         </activity>
 
@@ -63,7 +62,7 @@
         <activity android:name=".especial"
             android:label="@string/proyecto_especial">
         </activity>
-        
+
     </application>
 
 </manifest>

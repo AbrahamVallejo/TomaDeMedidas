@@ -4,58 +4,54 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
         android:paddingTop="50dp"
-        android:text="@string/usuario"
+        android:text="Nombre Dispositivo"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/txt_usuario"
+        android:id="@+id/nDispositivo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
+        android:maxLength="100"
         android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ
-        -1234567890"
-        android:maxLength="255"
+        -1234567890()"
         android:paddingBottom="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
         android:paddingTop="50dp"
-        android:text="@string/contrase_a"
+        android:text="Usuario Dispositivo"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/txt_password"
+        android:id="@+id/nUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword"
-        android:maxLength="20"
+        android:inputType="textPersonName"
+        android:maxLength="100"
+        android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/recordarme" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:id="@+id/bRegistro"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onSaveClickIniciar"
-        android:text="@string/iniciar" />
+        android:layout_gravity="center"
+        style="@style/ButtonStyle"
+        android:onClick="onSaveClickDispositivo"
+        android:text="Registrar Dispositivo" />
 
 
 </LinearLayout>
