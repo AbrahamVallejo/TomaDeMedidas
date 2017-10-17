@@ -18,6 +18,6 @@
         android:layout_height="match_parent"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:contentDescription="@string/description"
-        app:srcCompat="@mipmap/ic_dues" />
+        app:srcCompat="@mipmap/ic_duesdiseno" />
 
 </LinearLayout>
