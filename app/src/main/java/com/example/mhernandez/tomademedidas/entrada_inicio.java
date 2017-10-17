@@ -22,7 +22,6 @@ public class entrada_inicio extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.entrada_inicio);
 
-
             Thread timerThread = new Thread(){
                 public void run(){
                     String[][] aux1 = entrada_inicio.oDB.ObtenerDispositivos("0",1);
@@ -30,11 +29,13 @@ public class entrada_inicio extends AppCompatActivity {
                             //String[][] aRef = entrada_inicio.oDB.lastDispositivo();
                             Log.v("[obtener]", "Traigo un: "+ aux1.length);
                             boolean aux = isOnlineNet();
+                            Log.v("[obtener]", "Conexion: "+ aux);
                             if (aux != false){
                                 getuserLista();
-                                sleep(3000);
+                                sleep(3000); Log.v("[obtener]", "Aqui voy ");
                                 if (aux1.length == 0){
                                     Intent intent = new Intent(entrada_inicio.this, registrar_Dispositivo.class);
+                                    intent.putExtra("internet", 0);
                                     startActivity(intent);
                                 }else {
                                     Intent intent = new Intent(entrada_inicio.this, log_in.class);
@@ -43,8 +44,8 @@ public class entrada_inicio extends AppCompatActivity {
                             }else{
                                 if (aux1.length ==0 ){
                                     Log.v("[obtener", "Sin inter");
-                                    sleep(1000);
-                                    Intent intent = new Intent(entrada_inicio.this, entrada_inicio.class);
+                                    Intent intent = new Intent(entrada_inicio.this, registrar_Dispositivo.class);
+                                    intent.putExtra("internet", 1);
                                     startActivity(intent);
                                 }else {
                                     Intent intent = new Intent(entrada_inicio.this, log_in.class);
@@ -56,6 +57,7 @@ public class entrada_inicio extends AppCompatActivity {
                 }
             };
             timerThread.start();
+            //Toast.makeText(getApplicationContext(), "No hay internet!",Toast.LENGTH_LONG).show();
         }
 
     @Override
@@ -87,8 +89,7 @@ public class entrada_inicio extends AppCompatActivity {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
             int val = p.waitFor();
             boolean reachable = (val == 0); //Log.v("[obtener]",String.valueOf(reachable) );
-            //return reachable;
-            return true;
+            return reachable;
         } catch (Exception e) {
             /* TODO Auto-generated catch block* */
             e.printStackTrace();
