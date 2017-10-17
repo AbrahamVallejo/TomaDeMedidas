@@ -68,9 +68,8 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, "Sin Acceso a la Red", Toast.LENGTH_SHORT).show();
         }
         //oDB.insertCliente(150, 1, "Aaron", "12340183", "Direccion"); //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");  //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
-            //getproyectoCamaLista();
-        //Intent rIntent = new Intent(this, registrar_Dispositivo.class);
-        //startActivity(rIntent);
+        //getproyectoLista();
+        //getproyectoCamaLista();
     }
 
     public void onSaveClickClientes(View view){
@@ -117,18 +116,63 @@ public class MainActivity extends AppCompatActivity
         EditText PedidoSap = (EditText) this.findViewById(R.id.proyecto_pedido_sap);
 
         String selected = formato.getSelectedItem().toString();
-        int formatoSelected = 0;
+        String nombreProyecto = proyecto.getText().toString();
+        String accesorioMuro = AccMuro.getText().toString();
+        String accesorioTecho = AccTecho.getText().toString();
+        String accesorioEspecial = AccEspecial.getText().toString();
+        String PS = PedidoSap.getText().toString();
+        int formatoSelected;
 
         if (selected.equals("Hoteleria")){
             formatoSelected = 1;
+            Intent rIntent = new Intent(MainActivity.this, hoteleria.class);
+            rIntent.putExtra("idFormato", formatoSelected);
+            rIntent.putExtra("nombreProyecto", nombreProyecto);
+            rIntent.putExtra("accesoriosMuro", accesorioMuro);
+            rIntent.putExtra("accesoriosTecho", accesorioTecho);
+            rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
+            rIntent.putExtra("PedidoSap", PS);
+            startActivity(rIntent);
         }else if (selected.equals("Cama")){
             formatoSelected = 2;
+            Intent rIntent = new Intent(MainActivity.this, cama.class);
+            rIntent.putExtra("idFormato", formatoSelected);
+            rIntent.putExtra("nombreProyecto", nombreProyecto);
+            rIntent.putExtra("accesoriosMuro", accesorioMuro);
+            rIntent.putExtra("accesoriosTecho", accesorioTecho);
+            rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
+            rIntent.putExtra("PedidoSap", PS);
+            startActivity(rIntent);
         }else if (selected.equals("Residencial")){
             formatoSelected = 3;
+            Intent rIntent = new Intent(MainActivity.this, residencial.class);
+            rIntent.putExtra("idFormato", formatoSelected);
+            rIntent.putExtra("nombreProyecto", nombreProyecto);
+            rIntent.putExtra("accesoriosMuro", accesorioMuro);
+            rIntent.putExtra("accesoriosTecho", accesorioTecho);
+            rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
+            rIntent.putExtra("PedidoSap", PS);
+            startActivity(rIntent);
         }else if (selected.equals("Galeria")){
             formatoSelected = 4;
+            Intent rIntent = new Intent(MainActivity.this, galeria.class);
+            rIntent.putExtra("idFormato", formatoSelected);
+            rIntent.putExtra("nombreProyecto", nombreProyecto);
+            rIntent.putExtra("accesoriosMuro", accesorioMuro);
+            rIntent.putExtra("accesoriosTecho", accesorioTecho);
+            rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
+            rIntent.putExtra("PedidoSap", PS);
+            startActivity(rIntent);
         }else if(selected.equals("Especial")){
             formatoSelected = 5;
+            Intent rIntent = new Intent(MainActivity.this, especial.class);
+            rIntent.putExtra("idFormato", formatoSelected);
+            rIntent.putExtra("nombreProyecto", nombreProyecto);
+            rIntent.putExtra("accesoriosMuro", accesorioMuro);
+            rIntent.putExtra("accesoriosTecho", accesorioTecho);
+            rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
+            rIntent.putExtra("PedidoSap", PS);
+            startActivity(rIntent);
         }
 
         //MainActivity.oDB.insertProyecto(formatoSelected);
@@ -619,6 +663,16 @@ public class MainActivity extends AppCompatActivity
                     return null;
                 }
             }
+            }
+
+        File mediaFile;
+        if (type == MEDIA_TYPE_IMAGE){
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
+        }else {
+            return null;
+        }
+        return mediaFile;
+    }
 
             File mediaFile;
             if (type == MEDIA_TYPE_IMAGE){

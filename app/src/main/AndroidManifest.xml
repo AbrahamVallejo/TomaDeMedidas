@@ -16,18 +16,8 @@
         android:supportsRtl="true"
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="com.example.mhernandez.tomademedidas" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
+        
+      <activity
             android:name=".entrada_inicio"
             android:screenOrientation="portrait"
             android:label="" >
@@ -47,10 +37,30 @@
             android:screenOrientation="portrait"
             android:label="@string/modificar_cliente" >
         </activity>
-
-        <activity android:name=".registrar_Dispositivo"
+      
+      <activity android:name=".registrar_Dispositivo"
             android:screenOrientation="portrait"
             android:label="@string/registrar_dispositivo" >
+        </activity>
+      
+      <activity android:name=".hoteleria"
+            android:label="@string/proyecto_hoteleria">
+        </activity>
+
+        <activity android:name=".cama"
+            android:label="@string/proyecto_cama">
+        </activity>
+        
+        <activity android:name=".residencial"
+            android:label="@string/proyecto_residencial">
+        </activity>
+
+        <activity android:name=".galeria"
+            android:label="@string/proyecto_galeria">
+        </activity>
+
+        <activity android:name=".especial"
+            android:label="@string/proyecto_especial">
         </activity>
 
     </application>
