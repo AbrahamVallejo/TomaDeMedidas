@@ -18,9 +18,10 @@
                 android:id="@+id/nombre"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="50"
                 android:hint="nombre"
                 android:textColor="@android:color/black"
-                android:textSize="50px"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -33,7 +34,7 @@
                     android:gravity="bottom"
                     android:text="Autorizado:  "
                     android:textColor="@android:color/black"
-                    android:textSize="43px"
+                    android:textSize="15dp"
                     android:textStyle="normal"
                     android:layout_weight="1" />
                 <TextView
@@ -43,7 +44,7 @@
                     android:gravity="end"
                     android:text="autor"
                     android:textColor="@android:color/black"
-                    android:textSize="40px"
+                    android:textSize="20dp"
                     android:textStyle="bold"
                     android:layout_weight="1" />
             </LinearLayout>
@@ -55,19 +56,19 @@
                 android:layout_weight="1"
                 android:text="Acc. Techo: "
                 android:textColor="@android:color/black"
-                android:textSize="43px"
+                android:textSize="15dp"
                 android:textStyle="normal" />
             <TextView
                 android:id="@+id/ATecho"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="50"
                 android:gravity="fill_vertical"
                 android:typeface="sans"
                 android:text="Acc. Techo"
                 android:textColor="@android:color/black"
-                android:textSize="40px"
-                android:textStyle="bold"
-                android:layout_weight="1" />
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -135,7 +136,7 @@
                     android:layout_height="match_parent"
                     android:text="Pedido Sap: "
                     android:textColor="@android:color/black"
-                    android:textSize="43px"
+                    android:textSize="20dp"
                     android:textStyle="normal"/>
                 <TextView
                     android:id="@+id/pedidoSap"
@@ -143,7 +144,7 @@
                     android:layout_height="match_parent"
                     android:text="pedido"
                     android:textColor="@android:color/black"
-                    android:textSize="40px"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -157,18 +158,18 @@
                     android:layout_weight="1"
                     android:text="Fecha:  "
                     android:textColor="@android:color/black"
-                    android:textSize="45px"
+                    android:textSize="15dp"
                     android:textStyle="normal" />
                 <TextView
                     android:id="@+id/fecha"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_weight="50"
                     android:gravity="end"
                     android:text="Fecha"
                     android:textColor="@android:color/black"
-                    android:textSize="42px"
-                    android:textStyle="normal"
-                    android:layout_weight="1" />
+                    android:textSize="20dp"
+                    android:textStyle="normal"/>
             </LinearLayout>
 
 
@@ -179,18 +180,18 @@
                 android:layout_weight="1"
                 android:text="Acc. Muro: "
                 android:textColor="@android:color/black"
-                android:textSize="43px"
+                android:textSize="15dp"
                 android:textStyle="normal" />
             <TextView
                 android:id="@+id/AMuro"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="50"
                 android:gravity="end"
                 android:text="Acc. Muro"
                 android:textColor="@android:color/black"
-                android:textSize="40px"
-                android:textStyle="bold"
-                android:layout_weight="1" />
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
