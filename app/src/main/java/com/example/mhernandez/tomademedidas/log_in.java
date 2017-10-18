@@ -24,7 +24,7 @@ public class log_in extends AppCompatActivity {
 
         String[][] aRef = entrada_inicio.oDB.buscarUser(10 );
         if (Integer.parseInt(aRef[0][0]) != 10 ) {
-        log_in.oDB.insertUser(10, "user", "contra", "email", 1, "nombre", "apellido", 1 );
+        log_in.oDB.insertUser(10, "admin", "admin", "email", 1, "nombre", "apellido", 1 );
         }
 
     }
