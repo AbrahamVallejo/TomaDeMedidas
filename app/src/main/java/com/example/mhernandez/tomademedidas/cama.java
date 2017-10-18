@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 
 /**
  * Created by mhernandez on 16/10/2017.
@@ -38,21 +39,22 @@ public class cama extends AppCompatActivity{
         final EditText F = (EditText) this.findViewById(R.id.txt_F);
         final EditText G = (EditText) this.findViewById(R.id.txt_G);
         final EditText Observaciones = (EditText) this.findViewById(R.id.txt_observaciones);
+        final int Formato = Integer.parseInt(idFormato);
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View view){
                         String numeroHabitaciones = NHabitaciones.getText().toString();
-                        String txtA = A.getText().toString();
-                        String txtB = B.getText().toString();
-                        String txtC = C.getText().toString();
-                        String txtD = D.getText().toString();
-                        String txtE = E.getText().toString();
-                        String txtF = F.getText().toString();
-                        String txtG = G.getText().toString();
+                        Double txtA = Double.parseDouble(A.getText().toString());
+                        Double txtB = Double.parseDouble(B.getText().toString());
+                        Double txtC = Double.parseDouble(C.getText().toString());
+                        Double txtD = Double.parseDouble(D.getText().toString());
+                        Double txtE = Double.parseDouble(E.getText().toString());
+                        Double txtF = Double.parseDouble(F.getText().toString());
+                        Double txtG = Double.parseDouble(G.getText().toString());
                         String OBS = Observaciones.getText().toString();
-/*                        oDB.insertProyecto();
-                        oDB.insertProyectoCama();*/
+                        oDB.insertProyecto(1, 2, 3, 4, Formato, 5, nombreProyecto, PedidoSap, FechaAlta, 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
+                        oDB.insertProyectoCama(1 , 2, 3, 4, numeroHabitaciones, txtA, txtB, txtC, txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, Formato, OBS, 0, 1, 1, 1);
                         finish();
                     }
                 }

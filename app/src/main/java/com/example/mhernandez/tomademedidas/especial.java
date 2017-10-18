@@ -34,6 +34,7 @@ public class especial extends AppCompatActivity {
         final EditText Alto = (EditText) this.findViewById(R.id.txtAlto);
         final EditText Grosor = (EditText) this.findViewById(R.id.txtGrosor);
         final EditText Observaciones = (EditText) this.findViewById(R.id.txtObservaciones);
+        final int Formato = Integer.parseInt(idFormato);
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(
                 new View.OnClickListener(){
@@ -42,8 +43,8 @@ public class especial extends AppCompatActivity {
                         String txtAlto = Alto.getText().toString();
                         String txtGrosor = Grosor.getText().toString();
                         String OBS = Observaciones.getText().toString();
-/*                        oDB.insertProyecto();
-                        oDB.insertProyectoEspecial();*/
+                        oDB.insertProyecto(1, 2, 3, 4, Formato, 5, nombreProyecto, PedidoSap, FechaAlta, 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
+//                        oDB.insertProyectoEspecial();
                         finish();
                     }
                 }
