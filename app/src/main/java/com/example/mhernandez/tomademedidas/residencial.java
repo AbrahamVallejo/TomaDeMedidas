@@ -29,6 +29,7 @@ public class residencial extends AppCompatActivity {
         final String accesoriosTecho = oExt.getString("accesoriosTecho");
         final String accesoriosEspecial = oExt.getString("accesoriosEspecial");
         final String PedidoSap = oExt.getString("PedidoSap");
+        final String FechaAlta = oExt.getString("FechaAlta");
         final EditText Ubicacion = (EditText) this.findViewById(R.id.txtUbicacion);
         final EditText A = (EditText) this.findViewById(R.id.txtA);
         final EditText B = (EditText) this.findViewById(R.id.txtB);

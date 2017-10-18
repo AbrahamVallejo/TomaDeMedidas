@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Fragment_clientes.OnFragmentInteractionListener, Fragment_proyecto.OnFragmentInteractionListener, Fragment_listaProyecto.OnFragmentInteractionListener, Fragment_listaClientes.OnFragmentInteractionListener{
@@ -121,6 +123,9 @@ public class MainActivity extends AppCompatActivity
         String accesorioTecho = AccTecho.getText().toString();
         String accesorioEspecial = AccEspecial.getText().toString();
         String PS = PedidoSap.getText().toString();
+        Date currentTime = Calendar.getInstance().getTime();
+        String FechaAlta = currentTime.toString();
+
         int formatoSelected;
 
         if (selected.equals("Hoteleria")){
@@ -132,6 +137,7 @@ public class MainActivity extends AppCompatActivity
             rIntent.putExtra("accesoriosTecho", accesorioTecho);
             rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
             rIntent.putExtra("PedidoSap", PS);
+            rIntent.putExtra("FechaAlta", FechaAlta);
             startActivity(rIntent);
         }else if (selected.equals("Cama")){
             formatoSelected = 2;
@@ -141,6 +147,7 @@ public class MainActivity extends AppCompatActivity
             rIntent.putExtra("accesoriosMuro", accesorioMuro);
             rIntent.putExtra("accesoriosTecho", accesorioTecho);
             rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
+            rIntent.putExtra("FechaAlta", FechaAlta);
             rIntent.putExtra("PedidoSap", PS);
             startActivity(rIntent);
         }else if (selected.equals("Residencial")){
@@ -151,6 +158,7 @@ public class MainActivity extends AppCompatActivity
             rIntent.putExtra("accesoriosMuro", accesorioMuro);
             rIntent.putExtra("accesoriosTecho", accesorioTecho);
             rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
+            rIntent.putExtra("FechaAlta", FechaAlta);
             rIntent.putExtra("PedidoSap", PS);
             startActivity(rIntent);
         }else if (selected.equals("Galeria")){
@@ -161,6 +169,7 @@ public class MainActivity extends AppCompatActivity
             rIntent.putExtra("accesoriosMuro", accesorioMuro);
             rIntent.putExtra("accesoriosTecho", accesorioTecho);
             rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
+            rIntent.putExtra("FechaAlta", FechaAlta);
             rIntent.putExtra("PedidoSap", PS);
             startActivity(rIntent);
         }else if(selected.equals("Especial")){
@@ -172,6 +181,7 @@ public class MainActivity extends AppCompatActivity
             rIntent.putExtra("accesoriosTecho", accesorioTecho);
             rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
             rIntent.putExtra("PedidoSap", PS);
+            rIntent.putExtra("FechaAlta", FechaAlta);
             startActivity(rIntent);
         }
 

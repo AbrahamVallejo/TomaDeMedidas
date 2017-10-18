@@ -28,6 +28,7 @@ public class hoteleria extends AppCompatActivity {
         final String accesoriosTecho = oExt.getString("accesoriosTecho");
         final String accesoriosEspecial = oExt.getString("accesoriosEspecial");
         final String PedidoSap = oExt.getString("PedidoSap");
+        final String FechaAlta = oExt.getString("FechaAlta");
         final EditText Habitacion = (EditText) this.findViewById(R.id.txtHabitacion);
         final EditText Area = (EditText) this.findViewById(R.id.txtArea);
         final EditText Ancho = (EditText) this.findViewById(R.id.txtAncho);

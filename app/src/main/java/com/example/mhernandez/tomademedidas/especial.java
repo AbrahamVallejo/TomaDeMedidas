@@ -29,6 +29,7 @@ public class especial extends AppCompatActivity {
         final String accesoriosTecho = oExt.getString("accesoriosTecho");
         final String accesoriosEspecial = oExt.getString("accesoriosEspecial");
         final String PedidoSap = oExt.getString("PedidoSap");
+        final String FechaAlta = oExt.getString("FechaAlta");
         final EditText Ancho = (EditText) this.findViewById(R.id.txtAncho);
         final EditText Alto = (EditText) this.findViewById(R.id.txtAlto);
         final EditText Grosor = (EditText) this.findViewById(R.id.txtGrosor);

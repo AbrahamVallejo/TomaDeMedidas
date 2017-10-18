@@ -28,6 +28,7 @@ public class galeria extends AppCompatActivity {
         final String accesoriosTecho = oExt.getString("accesoriosTecho");
         final String accesoriosEspecial = oExt.getString("accesoriosEspecial");
         final String PedidoSap = oExt.getString("PedidoSap");
+        final String FechaAlta = oExt.getString("FechaAlta");
         final EditText NHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
         final EditText Area = (EditText) this.findViewById(R.id.txt_area);
         final EditText Ancho = (EditText) this.findViewById(R.id.txt_ancho);
