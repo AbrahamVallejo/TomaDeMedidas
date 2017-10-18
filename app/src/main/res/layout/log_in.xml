@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
-            android:paddingTop="30dp"
+            android:paddingTop="25dp"
             android:text="@string/usuario"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textAutoComplete"
             android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ
             -1234567890"
             android:maxLength="255"
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
-            android:paddingTop="30dp"
+            android:paddingTop="25dp"
             android:text="@string/contrase_a"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
