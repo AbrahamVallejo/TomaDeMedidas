@@ -123,9 +123,9 @@ public class DBProvider {
 
     public void insertProyecto(int idProyecto, int idDisp, int idCliente, int idClienteDisp, int idFormato, int idUser,
                                String nombreProyecto, String PedidoSap, String fecha, int autorizado, String accesoriosTecho,
-                               String accesoriosMuro, int idEstatus, int idUsuarioVenta) {
+                               String accesoriosMuro, String accesoriosEspeciales, int idEstatus, int idUsuarioVenta) {
         Object[] aData = {idProyecto, idDisp, idCliente, idClienteDisp, idFormato, idUser, nombreProyecto, PedidoSap,
-                fecha, autorizado, accesoriosTecho, accesoriosMuro, idEstatus, idUsuarioVenta};
+                fecha, autorizado, accesoriosTecho, accesoriosMuro, accesoriosEspeciales, idEstatus, idUsuarioVenta};
      //Log.v("[obtener]", "Voy a insertar Proyecto");
 
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO + " (" + DBhelper.ID_PROYECTO + ", "
@@ -133,8 +133,8 @@ public class DBProvider {
                 + DBhelper.ID_FORMATO + ", " + DBhelper.ID_USER + ", " + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", "
                 + DBhelper.COLUMN_NAME_PEDIDO_SAP + ", " + DBhelper.COLUMN_NAME_FECHA + ", "
                 + DBhelper.COLUMN_NAME_AUTORIZADO + ", " + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + ", "
-                + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + ", " + DBhelper.ID_ESTATUS + ", "+ DBhelper.ID_USUARIO_VENTA
-                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+                + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + ", " + DBhelper.COLUMN_NAME_ACCESORIOS_ESPECIALES + ", " + DBhelper.ID_ESTATUS + ", "+ DBhelper.ID_USUARIO_VENTA
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
     //Log.v("[obtener]", nombreProyecto);
     }
 
