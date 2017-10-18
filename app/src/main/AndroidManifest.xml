@@ -41,7 +41,7 @@
 
         <activity android:name=".log_in"
             android:screenOrientation="portrait"
-            android:label="@string/log_in" >
+            android:label="Iniciar Sesión" >
         </activity>
 
         <activity android:name=".listaClientes"

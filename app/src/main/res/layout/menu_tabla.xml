@@ -16,20 +16,27 @@
         android:id="@+id/btnModificar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/white"
+        style="@style/ButtonStyle"
         android:text="MODIFICAR"
         android:layout_weight="0"/>
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"
+        android:backgroundTint="@color/colorPrimary"-->
+        <!--android:textColor="@android:color/white"-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        />
 
     <Button
         android:id="@+id/btnEliminar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/white"
+        style="@style/ButtonStyle"
         android:text="ELIMINAR"
         android:layout_weight="0"/>
+        <!--android:backgroundTint="@color/colorPrimary"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white" -->
 
 </LinearLayout>

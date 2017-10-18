@@ -57,8 +57,10 @@
 
         <Button
         android:id="@+id/button"
+        android:paddingTop="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/ButtonStyle"
         android:onClick="onSaveClickIniciar"
         android:text="@string/iniciar" />
 
