@@ -106,6 +106,7 @@ public class Fragment_listaProyecto extends Fragment {
                         rIntent.putExtra("autorizado", aDat[12]);
                         rIntent.putExtra("ATecho", aDat[19]);
                         rIntent.putExtra("AMuro", aDat[20]);
+                        rIntent.putExtra("AEspeciales", aDat[21]);
                         startActivity(rIntent);
                     }
                 });
@@ -183,6 +184,7 @@ public class Fragment_listaProyecto extends Fragment {
             TextView txtPedidoSap = (TextView) rowView.findViewById(R.id.pedidoSap);
             TextView txtFecha = (TextView) rowView.findViewById(R.id.fecha);
             TextView txtAMuro = (TextView) rowView.findViewById(R.id.AMuro);
+            TextView txtAEspeciales = (TextView) rowView.findViewById(R.id.AEspeciales);
             TextView txtIDDisp = (TextView) rowView.findViewById(R.id.IDDisp);
             TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
             TextView txtIDCliente = (TextView) rowView.findViewById(R.id.IDCliente);
@@ -195,8 +197,9 @@ public class Fragment_listaProyecto extends Fragment {
             txtFecha.setText(parts[0]);
             txtPedidoSap.setText(_text[position][8]);
             txtAutorizado.setText(_text[position][12]);
-            txtATecho.setText(_text[position][19].toLowerCase() );
-            txtAMuro.setText(_text[position][20].toLowerCase() );
+            txtATecho.setText(_text[position][19].toLowerCase());
+            txtAMuro.setText(_text[position][20].toLowerCase());
+            txtAEspeciales.setText(_text[position][21].toLowerCase());
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][0]);
             txtIDCliente.setText(_text[position][2]);

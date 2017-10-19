@@ -31,12 +31,14 @@ public class listaProyectos extends AppCompatActivity {
         String aut = oExt.getString("autorizado");
         String tec = oExt.getString("ATecho");
         String mur = oExt.getString("AMuro");
+        String esp = oExt.getString("AEspeciales");
         final EditText nombre = (EditText) this.findViewById(R.id.txtNombreProyecto);
         final EditText fecha = (EditText) this.findViewById(R.id.txtFecha);
         final EditText pedidoSap = (EditText) this.findViewById(R.id.txtPedidoSap);
         final EditText autorizado = (EditText) this.findViewById(R.id.txtAutorizado);
         final EditText ATecho = (EditText) this.findViewById(R.id.txtAccTecho);
         final EditText AMuro = (EditText) this.findViewById(R.id.txtAccMuro);
+        final EditText AEspeciales = (EditText) this.findViewById(R.id.txtAccEspeciales);
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         nombre.setText(nom);
         fecha.setText(fec);
@@ -44,6 +46,7 @@ public class listaProyectos extends AppCompatActivity {
         autorizado.setText(aut);
         ATecho.setText(tec);
         AMuro.setText(mur);
+        AEspeciales.setText(esp);
         Guardar.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View view){

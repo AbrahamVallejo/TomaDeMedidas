@@ -64,12 +64,13 @@ public class residencial extends AppCompatActivity {
                         String txtProfJaladera = ProfJaladera.getText().toString();
                         String txtControl = Control.getText().toString();
                         String txtMedidaSugeria = MedidaSugerida.getText().toString();
-                        String txtObservacion = Observaciones.getText().toString();
+                        String txtObservaciones = Observaciones.getText().toString();
                         String txtFijacion = Fijacion.getText().toString();
                         String txtPiso = Piso.getText().toString();
                         String txtCorredera = Corredera.getText().toString();
-/*                        oDB.insertProyecto();
-                        oDB.insertProyectoResidencial();*/
+                        oDB.insertProyecto(1, 2, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
+                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
+                        oDB.insertProyectoResidencial(txtUbicacion, txtA, txtB, txtC, txtD, txtE, txtF, txtG, txtH, txtProfMarco, txtProfJaladera, txtControl, txtMedidaSugeria, "IMAGEN", txtObservaciones, txtFijacion, txtPiso, txtCorredera);
                         finish();
                     }
                 }

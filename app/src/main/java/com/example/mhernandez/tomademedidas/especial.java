@@ -41,8 +41,9 @@ public class especial extends AppCompatActivity {
                         String txtAlto = Alto.getText().toString();
                         String txtGrosor = Grosor.getText().toString();
                         String OBS = Observaciones.getText().toString();
-                        oDB.insertProyecto(1, 2, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta, 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
-//                        oDB.insertProyectoEspecial();
+                        oDB.insertProyecto(1, 2, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
+                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
+                        oDB.insertProyectoEspecial(txtAncho, txtAlto, txtGrosor, "IMAGEN", OBS);
                         finish();
                     }
                 }
