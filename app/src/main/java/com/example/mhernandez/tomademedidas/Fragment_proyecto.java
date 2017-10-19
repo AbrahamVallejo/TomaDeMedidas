@@ -12,8 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 import android.widget.Toast;
 
 import java.io.File;
@@ -39,6 +44,7 @@ public class Fragment_proyecto extends Fragment {
     private static final String APP_PATH = "droidBH";
     private Uri fileUri;
     String sID;
+    private Spinner spClientes;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -78,7 +84,6 @@ public class Fragment_proyecto extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
@@ -86,6 +91,23 @@ public class Fragment_proyecto extends Fragment {
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.crear_proyecto, container, false);
         Button botonCamara = ((Button) vista.findViewById(R.id.TomarFoto));
+
+        String[][] aRes= MainActivity.oDB.ObtenerClientes("0",1);
+
+        spClientes= ((Spinner) vista.findViewById(R.id.spinner_cliente));
+        List<String> listaClientesSql;
+        ArrayAdapter<String> comboAdapterSql;
+
+        listaClientesSql = new ArrayList<>();
+        for(int i = 0; i < aRes.length; i++){
+            listaClientesSql.add(aRes[i][0]+". "+aRes[i][2]);
+        }
+        Log.v("[obtener]",listaClientesSql.toString());
+        //comboAdapterSql = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaClientesSql);
+
+
+        spClientes.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, listaClientesSql));
+
 
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");

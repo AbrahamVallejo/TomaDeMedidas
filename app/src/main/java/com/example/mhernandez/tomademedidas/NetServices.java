@@ -477,7 +477,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                                 Integer.parseInt(joFuj.getString("id_cliente_disp")), Integer.parseInt(joFuj.getString("id_formato")),
                                 Integer.parseInt(joFuj.getString("id_user")), joFuj.getString("nombre_proyecto"), joFuj.getString("pedido_sap"),
                                 joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("autorizado")), joFuj.getString("accesorios_techo"),
-                                joFuj.getString("accesorios_muro"), Integer.parseInt(joFuj.getString("id_estatus")),
+                                joFuj.getString("accesorios_muro")," ", Integer.parseInt(joFuj.getString("id_estatus")),
                                 Integer.parseInt(joFuj.getString("id_usuario_venta")) );
                     }
                 }
