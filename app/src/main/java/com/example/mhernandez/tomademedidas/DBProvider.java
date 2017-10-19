@@ -567,6 +567,12 @@ public class DBProvider {
         return (aData);
     }
 
+    public Cursor getAllClientes(){
+        //Seleccionamos todas las filas de la tabla Genres
+        Cursor aRS;
+        aRS = querySQL("Select * From " + DBhelper.TABLE_NAME_CLIENTE, null);
+        return aRS;
+    }
     //Ya obtiene los proyectos
     public String[][] ObtenerProyectos(String id, int tipo) {
         int iCnt = 0;

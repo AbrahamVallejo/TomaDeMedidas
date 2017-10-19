@@ -20,7 +20,6 @@ public class entrada_inicio extends AppCompatActivity {
     @Override
         protected void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
-            //requestWindowFeature(Window.FEATURE_NO_TITLE);
             setContentView(R.layout.entrada_inicio);
 
             Thread timerThread = new Thread(){
@@ -71,7 +70,7 @@ public class entrada_inicio extends AppCompatActivity {
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
-                Log.v("WS","TODO PERFECTO EN EL WEB SERVICES!");
+                Log.v("WS","TODO PERFECTO EN EL WEB SERVICES UserLista!");
                 // Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!",Toast.LENGTH_LONG).show();
             }
 
