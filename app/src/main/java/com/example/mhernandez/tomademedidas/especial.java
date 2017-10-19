@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -23,7 +22,7 @@ public class especial extends AppCompatActivity {
         setContentView(R.layout.crear_especial);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
-        final String idFormato = oExt.getString("idFormato");
+        final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
         final String accesoriosMuro = oExt.getString("accesoriosMuro");
         final String accesoriosTecho = oExt.getString("accesoriosTecho");
@@ -42,8 +41,8 @@ public class especial extends AppCompatActivity {
                         String txtAlto = Alto.getText().toString();
                         String txtGrosor = Grosor.getText().toString();
                         String OBS = Observaciones.getText().toString();
-/*                        oDB.insertProyecto();
-                        oDB.insertProyectoEspecial();*/
+                        oDB.insertProyecto(1, 2, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta, 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
+//                        oDB.insertProyectoEspecial();
                         finish();
                     }
                 }

@@ -22,7 +22,7 @@ public class cama extends AppCompatActivity{
         setContentView(R.layout.crear_cama);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
-        final String idFormato = oExt.getString("idFormato");
+        final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
         final String accesoriosMuro = oExt.getString("accesoriosMuro");
         final String accesoriosTecho = oExt.getString("accesoriosTecho");
@@ -43,16 +43,18 @@ public class cama extends AppCompatActivity{
                 new View.OnClickListener(){
                     public void onClick(View view){
                         String numeroHabitaciones = NHabitaciones.getText().toString();
-                        String txtA = A.getText().toString();
-                        String txtB = B.getText().toString();
-                        String txtC = C.getText().toString();
-                        String txtD = D.getText().toString();
-                        String txtE = E.getText().toString();
-                        String txtF = F.getText().toString();
-                        String txtG = G.getText().toString();
+                        Double txtA = Double.parseDouble(A.getText().toString());
+                        Double txtB = Double.parseDouble(B.getText().toString());
+                        Double txtC = Double.parseDouble(C.getText().toString());
+                        Double txtD = Double.parseDouble(D.getText().toString());
+                        Double txtE = Double.parseDouble(E.getText().toString());
+                        Double txtF = Double.parseDouble(F.getText().toString());
+                        Double txtG = Double.parseDouble(G.getText().toString());
                         String OBS = Observaciones.getText().toString();
-/*                        oDB.insertProyecto();
-                        oDB.insertProyectoCama();*/
+                        oDB.insertProyecto(1, 2, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
+                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
+                        oDB.insertProyectoCama(1 , 2, 3, 4, numeroHabitaciones, txtA, txtB, txtC,
+                                txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, idFormato, OBS, 0, 1, 1, 1);
                         finish();
                     }
                 }

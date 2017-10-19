@@ -136,8 +136,8 @@ public class MainActivity extends AppCompatActivity
             rIntent.putExtra("accesoriosMuro", accesorioMuro);
             rIntent.putExtra("accesoriosTecho", accesorioTecho);
             rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
-            rIntent.putExtra("PedidoSap", PS);
             rIntent.putExtra("FechaAlta", FechaAlta);
+            rIntent.putExtra("PedidoSap", PS);
             startActivity(rIntent);
         }else if (selected.equals("Cama")){
             formatoSelected = 2;
@@ -180,8 +180,8 @@ public class MainActivity extends AppCompatActivity
             rIntent.putExtra("accesoriosMuro", accesorioMuro);
             rIntent.putExtra("accesoriosTecho", accesorioTecho);
             rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
-            rIntent.putExtra("PedidoSap", PS);
             rIntent.putExtra("FechaAlta", FechaAlta);
+            rIntent.putExtra("PedidoSap", PS);
             startActivity(rIntent);
         }
 
