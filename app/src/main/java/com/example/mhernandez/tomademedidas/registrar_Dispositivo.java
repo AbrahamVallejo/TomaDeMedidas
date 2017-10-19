@@ -35,12 +35,12 @@ public class registrar_Dispositivo extends AppCompatActivity {
     public void onSaveClickDispositivo(View view){
         Log.v("[obtener]", "Internet: " +internet +" Conexion="+aux1);
         if (aux1==true){
-            getdispositivosLista();
+            //getdispositivosLista();
             EditText nDisp = (EditText) this.findViewById(R.id.nDispositivo);
             EditText nUser = (EditText) this.findViewById(R.id.nUsuario);
 
             String part1 = nDisp.getText().toString().replace(" ","");
-            String part2 = nUser.getText().toString().replace(" ","");   //Log.v("[obtener]",part1); Log.v("[obtener]",part2);Log.v("[obtener]",part3);
+            String part2 = nUser.getText().toString().replace(" ","");
             int aux=0;
             if(part1.length()==0){
                 aux++; nDisp.setText(""); nDisp.setHint("Campo Vacío");
@@ -48,24 +48,37 @@ public class registrar_Dispositivo extends AppCompatActivity {
             if(part2.length()==0){
                 aux++; nUser.setText(""); nUser.setHint("Campo Vacío");
             }
-            if(aux==0){//if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
-                String[][] aRef = entrada_inicio.oDB.lastDispositivo();
-                int ID;
-                Log.v("[obtener]", "Traigo un: "+ aRef[0][0].toString());
-                if(aRef[0][0].toString() != "0"){
-                    ID = Integer.parseInt(aRef[(0)][0]) +1;;
-                }else {ID=0;}
-                registrar_Dispositivo.oDB.insertDispositivo(ID, nDisp.getText().toString(),1, nUser.getText().toString(),1 );
-                registrar_Dispositivo.oDB.deleteAllDispositivos(String.valueOf(ID));
-                finish();
-                Intent intent = new Intent(registrar_Dispositivo.this, log_in.class);
-                startActivity(intent);
+            if(aux==0){
+                    adddispositivos(nDisp.getText().toString(),nUser.getText().toString());
+                    finish();
+                    Intent intent = new Intent(registrar_Dispositivo.this, log_in.class);
+                    startActivity(intent);
+
             }else {
                 Toast.makeText(this, "VERIFIQUE SU CAPTURA", Toast.LENGTH_SHORT).show(); }
         }else {
             Toast.makeText(getApplicationContext(), "Requiere Internet!", Toast.LENGTH_LONG).show();
             aux1= isOnlineNet();
         }
+    }
+
+    public void adddispositivos(String dispositivo, String usuario){
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                /*Toast.makeText(getApplicationContext(),
+                        "TODO PERFECTO EN EL WEB SERVICES!",
+                        Toast.LENGTH_LONG).show();*/
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(),
+                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("adddispositivos", dispositivo, usuario);
     }
 
     public void getdispositivosLista(){
@@ -101,3 +114,22 @@ public class registrar_Dispositivo extends AppCompatActivity {
     }
 
 }
+
+
+//Log.v("[obtener]",part1); Log.v("[obtener]",part2);Log.v("[obtener]",part3);
+//if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
+/*String[][] aRef = entrada_inicio.oDB.lastDispositivo();
+                int ID;
+                Log.v("[obtener]", "Traigo un: "+ aRef[0][0].toString());
+                if(aRef[0][0].toString() != "0"){
+                    ID = Integer.parseInt(aRef[(0)][0]) +1;;
+                }else {ID=0;}
+
+String[] partNom = part[1].split(":");
+                partNom[1] = partNom[1].replace('"',' '); partNom[1] = partNom[1].replace(" ","");
+                String[] partAct = part[2].split(":");
+                String[] partUs = part[3].split(":");
+                partUs[1] = partUs[1].replace('"',' '); partUs[1] = partUs[1].replace(" ","");
+                String[] partFue = part[4].split(":");
+                partFue[1] = partFue[1].replace("}","");
++" "+partNom[1]+" "+partAct[1]+" "+partUs[1]+" "+partFue[1]*/

@@ -1,9 +1,12 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -141,6 +144,33 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         return sRes;
     }
 
+    public static String connectPost3(String pUrl, String dispositivo) throws IOException{
+        URL url = new URL(pUrl);
+
+        URLConnection urlConnection = url.openConnection();
+        String sRes = "";
+        try {
+            HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setRequestProperty("Content-Type", "application/json");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.connect();
+            OutputStreamWriter writer = new OutputStreamWriter(httpURLConnection.getOutputStream());
+            writer.write(dispositivo);
+            writer.flush();
+
+            if (httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK){
+                InputStream instream = httpURLConnection.getInputStream();
+                String result = convertStreamtoString(instream);
+                sRes = result;
+                instream.close();
+            }
+        } catch (Exception e){
+            Log.v("[ERROR]", e.toString());
+        }
+
+        return sRes;
+    }
 
     @Override
     protected Object doInBackground(String... urls) {
@@ -310,6 +340,32 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                             Integer.parseInt(joFuj.getString("activo")), joFuj.getString("USUARIO"), Integer.parseInt(joFuj.getString("fuera")));
                         }
                 }
+            }catch (Exception e){
+                exception = e;
+            }
+        }
+        else if(urls[0] == "adddispositivos"){
+            try{
+                JSONObject json = new JSONObject();
+                JSONObject dipositivo = new JSONObject();
+                try {
+                    dipositivo.put("id_disp", "0");
+                    dipositivo.put("nombre", urls[1]);
+                    dipositivo.put("USUARIO", urls[2]);
+                    dipositivo.put("activo", "0");
+                    dipositivo.put("fuera", "0");
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                json.put("dispositivo",dipositivo);
+
+                sResp = NetServices.connectPost3(URL_WS1 + "wsdispositivos.svc/"+ urls[0],json.toString());
+                String[] part = sResp.split(",");
+                String[] partId = part[0].split(":");
+                Log.v("[disp2]",partId[1]); //registrar_Dispositivo.oDB.insertDispositivo(ID, nDisp.getText().toString(),1, nUser.getText().toString(),1 );
+                    registrar_Dispositivo.oDB.insertDispositivo(Integer.parseInt(partId[1]) , urls[1], 1, urls[2], 1);
+                //registrar_Dispositivo.oDB.deleteAllDispositivos(String.valueOf(ID));
             }catch (Exception e){
                 exception = e;
             }
