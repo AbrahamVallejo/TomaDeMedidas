@@ -20,13 +20,13 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Date;
 
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Fragment_clientes.OnFragmentInteractionListener, Fragment_proyecto.OnFragmentInteractionListener, Fragment_listaProyecto.OnFragmentInteractionListener, Fragment_listaClientes.OnFragmentInteractionListener{
 
     public static DBProvider oDB;
 
     public MainActivity() { oDB = new DBProvider(this);}
-
     /*
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity
         //oDB.insertCliente(150, 1, "Aaron", "12340183", "Direccion"); //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");  //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
         //getproyectoLista();
         //getproyectoCamaLista();
+
     }
 
     public void onSaveClickClientes(View view){
@@ -647,7 +648,7 @@ public class MainActivity extends AppCompatActivity
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
             int val = p.waitFor();
             boolean reachable = (val == 0); Log.v("[obtener]",String.valueOf(reachable) );
-            return true;
+            return reachable;
         } catch (Exception e) {
             /* TODO Auto-generated catch block* */
             e.printStackTrace();
