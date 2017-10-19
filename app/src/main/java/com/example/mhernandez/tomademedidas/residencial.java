@@ -2,7 +2,6 @@ package com.example.mhernandez.tomademedidas;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.style.EasyEditSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +22,7 @@ public class residencial extends AppCompatActivity {
         setContentView(R.layout.crear_residencial);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle oExt = this.getIntent().getExtras();
-        final String idFormato = oExt.getString("idFormato");
+        final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
         final String accesoriosMuro = oExt.getString("accesoriosMuro");
         final String accesoriosTecho = oExt.getString("accesoriosTecho");

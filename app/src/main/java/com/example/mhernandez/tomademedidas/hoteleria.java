@@ -22,7 +22,7 @@ public class hoteleria extends AppCompatActivity {
         setContentView(R.layout.crear_hoteleria);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle oExt = this.getIntent().getExtras();
-        final String idFormato = oExt.getString("idFormato");
+        final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
         final String accesoriosMuro = oExt.getString("accesoriosMuro");
         final String accesoriosTecho = oExt.getString("accesoriosTecho");
