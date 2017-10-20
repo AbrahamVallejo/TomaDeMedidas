@@ -655,18 +655,17 @@ public class MainActivity extends AppCompatActivity
         }
         return false;
     }
-/*
+
+    /*
         public void onFotoClick(View v){
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
-
         private static Uri getOutputMediaFileUri(int type, String pID){
             return Uri.fromFile(getOutputMediaFile(type,pID));
         }
-
         private static File getOutputMediaFile(int type, String pID){
             File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),APP_PATH);
             if (!mediaStorageDir.exists()){
@@ -684,7 +683,6 @@ public class MainActivity extends AppCompatActivity
         }
         return mediaFile;
     }
-
             File mediaFile;
             if (type == MEDIA_TYPE_IMAGE){
                 mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
@@ -693,7 +691,6 @@ public class MainActivity extends AppCompatActivity
             }
             return mediaFile;
         }
-
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data){
             super.onActivityResult(requestCode, resultCode, data);

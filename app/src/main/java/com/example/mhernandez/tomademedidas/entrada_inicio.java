@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
+import java.util.Date;
+
 /**
  * Created by mhernandez on 11/09/2017.
  */
@@ -21,18 +23,20 @@ public class entrada_inicio extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             setContentView(R.layout.entrada_inicio);
+            addproyecto();
 
             Thread timerThread = new Thread(){
                 public void run(){
                     String[][] aux1 = entrada_inicio.oDB.ObtenerDispositivos("0",1);
+
                     try{
-                            //String[][] aRef = entrada_inicio.oDB.lastDispositivo();
+                            //String[][] aRef = entrada_inicio.oDB.lastDispositivo(); //Log.v("[obtener]", "Aqui voy ");
                             Log.v("[obtener]", "Traigo un: "+ aux1.length);
                             boolean aux = isOnlineNet();
                             Log.v("[obtener]", "Conexion: "+ aux);
                             if (aux != false){
                                 getuserLista();
-                                sleep(3000); Log.v("[obtener]", "Aqui voy ");
+                                sleep(1000);
                                 if (aux1.length == 0){
                                     Intent intent = new Intent(entrada_inicio.this, registrar_Dispositivo.class);
                                     intent.putExtra("internet", 0);
@@ -84,12 +88,32 @@ public class entrada_inicio extends AppCompatActivity {
         oNS.execute("getuserLista");
     }
 
+
+    public void addproyecto(){
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                /*Toast.makeText(getApplicationContext(),
+                        "TODO PERFECTO EN EL WEB SERVICES!",
+                        Toast.LENGTH_LONG).show();*/
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(),
+                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("addproyecto");
+    }
+
     public Boolean isOnlineNet() {
         try {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
             int val = p.waitFor();
             boolean reachable = (val == 0); //Log.v("[obtener]",String.valueOf(reachable) );
-            return reachable;
+            return true;
         } catch (Exception e) {
             /* TODO Auto-generated catch block* */
             e.printStackTrace();
@@ -102,5 +126,23 @@ public class entrada_inicio extends AppCompatActivity {
 
 
 /*
+public void addcliente(String nombre, String dire, String tel){
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                Toast.makeText(getApplicationContext(),
+                        "TODO PERFECTO EN EL WEB SERVICES!",
+                        Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                    Toast.makeText(getApplicationContext(),
+                    "OCURRIO UN ERROR EN EL WEB SERVICES!",
+                    Toast.LENGTH_LONG).show();
+                    }
+                    });
+        oNS.execute("addcliente", nombre, dire,tel);
+}
 
 */
