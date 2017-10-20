@@ -42,7 +42,7 @@ public class galeria extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String numeroHabitacione = NHabitaciones.getText().toString();
+                        String numeroHabitaciones = NHabitaciones.getText().toString();
                         String txtArea = Area.getText().toString();
                         String txtAncho = Ancho.getText().toString();
                         String txtAlto = Alto.getText().toString();
@@ -50,8 +50,10 @@ public class galeria extends AppCompatActivity {
                         String txtProyecciones = Proyecciones.getText().toString();
                         String txtFijacion = Fijacion.getText().toString();
                         String txtComentarios = Comentarios.getText().toString();
-/*                        oDB.insertProyecto();
-                        oDB.insertProyectoGaleria();*/
+                        oDB.insertProyecto(1, 2, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
+                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
+                        oDB.insertProyectoGaleria(numeroHabitaciones, txtArea, txtAncho, txtAlto, txtCopete,
+                                txtProyecciones, txtFijacion, "IMAGEN", txtComentarios);
                         finish();
                     }
                 }

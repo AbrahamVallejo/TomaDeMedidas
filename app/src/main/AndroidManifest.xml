@@ -47,6 +47,11 @@
             android:screenOrientation="portrait"
             android:label="@string/modificar_cliente" >
         </activity>
+
+        <activity android:name=".listaProyectos"
+            android:screenOrientation="portrait"
+            android:label="@string/modificar_proyecto" >
+        </activity>
       
         <activity android:name=".registrar_Dispositivo"
             android:screenOrientation="portrait"
