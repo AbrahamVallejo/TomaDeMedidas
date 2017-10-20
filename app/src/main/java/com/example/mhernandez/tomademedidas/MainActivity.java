@@ -261,6 +261,44 @@ public class MainActivity extends AppCompatActivity
     }
 
     /*  Funciones Net Services */
+    public void getproyectoLista(){
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                Toast.makeText(getApplicationContext(),
+                        "TODO PERFECTO EN EL WEB SERVICES!",
+                        Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(),
+                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getproyectoLista");
+    }
+
+    public void getclienteLista(){
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                Toast.makeText(getApplicationContext(),
+                        "TODO PERFECTO EN EL WEB SERVICES!",
+                        Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(),
+                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getclienteLista");
+    }
+
     public void PostHojasList(){
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
@@ -335,25 +373,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
         oNS.execute("getcontrolLista");
-    }
-
-    public void getclienteLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("getclienteLista");
     }
 
     public void getformatoLista(){
@@ -431,25 +450,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
         oNS.execute("getenviardatosLista");
-    }
-
-    public void getproyectoLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("getproyectoLista");
     }
 
     public void getTipoImagenLista(){
@@ -648,7 +648,7 @@ public class MainActivity extends AppCompatActivity
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
             int val = p.waitFor();
             boolean reachable = (val == 0); Log.v("[obtener]",String.valueOf(reachable) );
-            return reachable;
+            return true;
         } catch (Exception e) {
             /* TODO Auto-generated catch block* */
             e.printStackTrace();

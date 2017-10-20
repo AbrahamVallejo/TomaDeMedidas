@@ -381,11 +381,12 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         }
         else if(urls[0] == "getproyectoLista"){
             try{
+                Log.v("[Pro]", "Estoy en GetProyectoLista");
                 sResp = NetServices.connectPost2(URL_WS1 + "wsproyecto.svc/"+ urls[0]);
+                Log.v("[Pro]", sResp);
                 String[] aFujs = null;
                 JSONArray jaData = new JSONArray((sResp));
-                aFujs = new String[jaData.length()];
-                Log.v("PRUEBA", sResp); Log.v("[obtener]", "Estoy en GetProyectoLista");
+                aFujs = new String[jaData.length()];    //Log.v("PRUEBA", sResp);
                 for (int i = 0; i<jaData.length(); i++){
                     Log.v("PRUEBA", "Hola");
                     JSONObject joFuj = jaData.getJSONObject(i);
@@ -401,20 +402,20 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("autorizado");
                     //aFujs[i] = joFuj.getString("fechaautoriza"); //aFujs[i] = joFuj.getString("fecha_modifica"); //aFujs[i] = joFuj.getString("accesorios_especiales");
                     //aFujs[i] = joFuj.getString("id_usuarioautoriza"); //aFujs[i] = joFuj.getString("id_user_mod"); //aFujs[i] = joFuj.getString("id_usuario_cierra");
-                    aFujs[i] = joFuj.getString("accesorios_techo");
+                    //aFujs[i] = joFuj.getString("accesorios_techo");
                     aFujs[i] = joFuj.getString("accesorios_muro");
                     aFujs[i] = joFuj.getString("id_estatus");
                     aFujs[i] = joFuj.getString("id_usuario_venta");
                     //Log.v("PRUEBA", joFuj.getString("id_proyecto"));  Log.v("PRUEBA", joFuj.getString("nombre_proyecto")); Log.v("PRUEBA","...");
                     String[][] aRef = MainActivity.oDB.buscarProyecto(Integer.parseInt(joFuj.getString("id_proyecto")) ,Integer.parseInt(joFuj.getString("id_disp")));
-                    Log.v("[obtener]",aRef[0][0]);
+                    Log.v("[Pro]",aRef[0][0]);
                     if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_proyecto"))) {
                         MainActivity.oDB.insertProyecto(Integer.parseInt(joFuj.getString("id_proyecto")),
                                 Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_cliente")),
                                 Integer.parseInt(joFuj.getString("id_cliente_disp")), Integer.parseInt(joFuj.getString("id_formato")),
                                 Integer.parseInt(joFuj.getString("id_user")), joFuj.getString("nombre_proyecto"), joFuj.getString("pedido_sap"),
                                 joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("autorizado")), joFuj.getString("accesorios_techo"),
-                                joFuj.getString("accesorios_muro")," ", Integer.parseInt(joFuj.getString("id_estatus")),
+                                joFuj.getString("accesorios_muro"),"0", Integer.parseInt(joFuj.getString("id_estatus")),
                                 Integer.parseInt(joFuj.getString("id_usuario_venta")) );
                     }
                 }
