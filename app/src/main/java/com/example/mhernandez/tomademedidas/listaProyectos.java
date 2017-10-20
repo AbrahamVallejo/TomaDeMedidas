@@ -20,7 +20,7 @@ public class listaProyectos extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modificar_cliente);
+        setContentView(R.layout.activity_modificar_proyecto);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle oExt = this.getIntent().getExtras();
         final String idProyecto = oExt.getString("IdProyecto");

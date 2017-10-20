@@ -2,6 +2,7 @@ package com.example.mhernandez.tomademedidas;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -51,9 +52,9 @@ public class cama extends AppCompatActivity{
                         Double txtF = Double.parseDouble(F.getText().toString());
                         Double txtG = Double.parseDouble(G.getText().toString());
                         String OBS = Observaciones.getText().toString();
-                        oDB.insertProyecto(1, 2, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
+                        oDB.insertProyecto(2, 3, 4, 5, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
-                        oDB.insertProyectoCama(1 , 2, 3, 4, numeroHabitaciones, txtA, txtB, txtC,
+                        oDB.insertProyectoCama(2 , 3, 4, 5, numeroHabitaciones, txtA, txtB, txtC,
                                 txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, idFormato, OBS, 0, 1, 1, 1);
                         finish();
                     }
