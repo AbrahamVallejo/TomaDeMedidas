@@ -23,7 +23,6 @@ public class entrada_inicio extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             setContentView(R.layout.entrada_inicio);
-            addproyecto();
 
             Thread timerThread = new Thread(){
                 public void run(){
