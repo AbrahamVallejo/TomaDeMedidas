@@ -402,7 +402,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("autorizado");
                     //aFujs[i] = joFuj.getString("fechaautoriza"); //aFujs[i] = joFuj.getString("fecha_modifica"); //aFujs[i] = joFuj.getString("accesorios_especiales");
                     //aFujs[i] = joFuj.getString("id_usuarioautoriza"); //aFujs[i] = joFuj.getString("id_user_mod"); //aFujs[i] = joFuj.getString("id_usuario_cierra");
-                    //aFujs[i] = joFuj.getString("accesorios_techo");
+                    aFujs[i] = joFuj.getString("accesorios_techo");
                     aFujs[i] = joFuj.getString("accesorios_muro");
                     aFujs[i] = joFuj.getString("id_estatus");
                     aFujs[i] = joFuj.getString("id_usuario_venta");
