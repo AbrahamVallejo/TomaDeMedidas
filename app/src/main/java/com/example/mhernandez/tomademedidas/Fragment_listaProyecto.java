@@ -89,9 +89,9 @@ public class Fragment_listaProyecto extends Fragment {
             public boolean onItemLongClick(final AdapterView<?> aList, View vItem, final int iPosition, long l){
                 customDialog = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
                 customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                customDialog.setContentView(R.layout.menu_tabla);
+                customDialog.setContentView(R.layout.menu_tabla_proyecto);
 
-                ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener(){
+                ((Button) customDialog.findViewById(R.id.btnVer)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
                         customDialog.dismiss();
@@ -111,7 +111,7 @@ public class Fragment_listaProyecto extends Fragment {
                     }
                 });
 
-                ((Button) customDialog.findViewById(R.id.btnEliminar)).setOnClickListener(new View.OnClickListener(){
+                ((Button) customDialog.findViewById(R.id.btnBorrar)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
                         customDialog.dismiss();

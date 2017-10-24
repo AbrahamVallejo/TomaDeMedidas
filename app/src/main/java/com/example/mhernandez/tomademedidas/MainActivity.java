@@ -10,6 +10,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,6 +60,15 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu menu = navigationView.getMenu();
+        MenuItem Cliente = menu.findItem(R.id.Cliente);
+        MenuItem Proyecto = menu.findItem(R.id.Proyecto);
+        SpannableString C = new SpannableString(Cliente.getTitle());
+        SpannableString P = new SpannableString(Proyecto.getTitle());
+        C.setSpan(new TextAppearanceSpan(this, R.style.MenuStyle), 0, C.length(), 0);
+        P.setSpan(new TextAppearanceSpan(this, R.style.MenuStyle), 0, P.length(), 0);
+        Cliente.setTitle(C);
+        Proyecto.setTitle(P);
         navigationView.setNavigationItemSelectedListener(this);
 
         MainActivity.oDB.ObtenerClientes("0",1);
