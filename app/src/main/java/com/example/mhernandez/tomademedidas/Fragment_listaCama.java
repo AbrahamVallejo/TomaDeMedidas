@@ -3,31 +3,25 @@ package com.example.mhernandez.tomademedidas;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Fragment_listaProyecto.OnFragmentInteractionListener} interface
+ * {@link Fragment_listaCama.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Fragment_listaProyecto#newInstance} factory method to
+ * Use the {@link Fragment_listaCama#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment_listaProyecto extends Fragment {
+public class Fragment_listaCama extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -42,7 +36,7 @@ public class Fragment_listaProyecto extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Fragment_listaProyecto() {
+    public Fragment_listaCama() {
         // Required empty public constructor
     }
 
@@ -52,11 +46,11 @@ public class Fragment_listaProyecto extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment_listaProyecto.
+     * @return A new instance of fragment Fragment_listaCama.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fragment_listaProyecto newInstance(String param1, String param2) {
-        Fragment_listaProyecto fragment = new Fragment_listaProyecto();
+    public static Fragment_listaCama newInstance(String param1, String param2) {
+        Fragment_listaCama fragment = new Fragment_listaCama();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -74,67 +68,13 @@ public class Fragment_listaProyecto extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.list_activity, container, false);
 
         lista();
 
         ListView tlList = ((ListView) vista.findViewById(R.id.lista));
-
-        tlList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
-
-            @Override
-            public boolean onItemLongClick(final AdapterView<?> aList, View vItem, final int iPosition, long l){
-                customDialog = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
-                customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                customDialog.setContentView(R.layout.menu_tabla_proyecto);
-
-                ((Button) customDialog.findViewById(R.id.btnCerrar)).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        customDialog.dismiss();
-                    }
-                });
-
-                ((Button) customDialog.findViewById(R.id.btnVer)).setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view){
-                        customDialog.dismiss();
-
-                        String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
-                        Intent rIntent = new Intent(vista.getContext(), listaProyectos.class);
-                        rIntent.putExtra("IdProyecto", aDat[1]);
-                        rIntent.putExtra("IdDisp", aDat[2]);
-                        rIntent.putExtra("IdFormato", aDat[5]);
-                        rIntent.putExtra("nombre", aDat[6]);
-                        rIntent.putExtra("fecha", aDat[7]);
-                        rIntent.putExtra("pedidoSap", aDat[8]);
-                        rIntent.putExtra("autorizado", aDat[12]);
-                        rIntent.putExtra("ATecho", aDat[19]);
-                        rIntent.putExtra("AMuro", aDat[20]);
-                        rIntent.putExtra("AEspeciales", aDat[21]);
-                        startActivity(rIntent);
-                    }
-                });
-
-                ((Button) customDialog.findViewById(R.id.btnBorrar)).setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view){
-                        customDialog.dismiss();
-                        String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
-                        String idProyecto = aDat[0];
-                        String idDisp = aDat[1];
-                        MainActivity.oDB.deleteProyecto(idProyecto, idDisp);
-                        Toast.makeText(getActivity(), "REGISTRO ELIMINADO", Toast.LENGTH_SHORT).show();
-                        lista();
-                    }
-                });
-                customDialog.show();
-                return false;
-            }
-
-        });
 
         return vista;
     }
@@ -163,11 +103,20 @@ public class Fragment_listaProyecto extends Fragment {
         mListener = null;
     }
 
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
 
     public class CustomAdapter extends ArrayAdapter<String[]> {
         private final Activity _context;
@@ -182,38 +131,35 @@ public class Fragment_listaProyecto extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = _context.getLayoutInflater();
-            View rowView = inflater.inflate(R.layout.activity_listaproyectos, null, true);
-            TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
+            View rowView = inflater.inflate(R.layout.activity_listacamas, null, true);
+            TextView txtIDCama = (TextView) rowView.findViewById(R.id.IDCama);
             TextView txtIDDisp = (TextView) rowView.findViewById(R.id.IDDisp);
+            TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
+            TextView txtIDProyectoDisp = (TextView) rowView.findViewById(R.id.IDProyectoDisp);
+            TextView txtIDEstatus = (TextView) rowView.findViewById(R.id.IDEstatus);
             TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
-            TextView txtAutorizado = (TextView) rowView.findViewById(R.id.autorizado);
-            TextView txtATecho = (TextView) rowView.findViewById(R.id.ATecho);
-            TextView txtPedidoSap = (TextView) rowView.findViewById(R.id.pedidoSap);
-            TextView txtFecha = (TextView) rowView.findViewById(R.id.fecha);
-            TextView txtAMuro = (TextView) rowView.findViewById(R.id.AMuro);
-            TextView txtAEspeciales = (TextView) rowView.findViewById(R.id.AEspeciales);
-            TextView txtIDCliente = (TextView) rowView.findViewById(R.id.IDCliente);
-            TextView txtIDUser = (TextView) rowView.findViewById(R.id.IDUser);
-            TextView txtIDClienteDisp = (TextView) rowView.findViewById(R.id.IDClienteDisp);
-            TextView txtIDFormato = (TextView) rowView.findViewById(R.id.IDFormato);
-            String[] parts = _text[position][7].split("T");
-            txtNombre.setText(_text[position][6]);
-            txtFecha.setText(_text[position][7]);
-            txtFecha.setText(parts[0]);
-            txtPedidoSap.setText(_text[position][8]);
-            txtAutorizado.setText(_text[position][12]);
-            txtATecho.setText(_text[position][19].toLowerCase());
-            txtAMuro.setText(_text[position][20].toLowerCase());
-            txtAEspeciales.setText(_text[position][21].toLowerCase());
+            TextView txtNHabitacion = (TextView) rowView.findViewById(R.id.NHabitacion);
+            TextView txtObservaciones = (TextView) rowView.findViewById(R.id.Observaciones);
+            TextView txtA = (TextView) rowView.findViewById(R.id.A);
+            TextView txtB = (TextView) rowView.findViewById(R.id.B);
+            TextView txtC = (TextView) rowView.findViewById(R.id.C);
+            TextView txtD = (TextView) rowView.findViewById(R.id.D);
+            TextView txtF = (TextView) rowView.findViewById(R.id.F);
+            txtIDCama.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
-            txtIDProyecto.setText(_text[position][0]);
-            txtIDCliente.setText(_text[position][2]);
-            txtIDUser.setText(_text[position][5]);
-            txtIDClienteDisp.setText(_text[position][3]);
-            txtIDFormato.setText(_text[position][4]);
+            txtIDProyecto.setText(_text[position][2]);
+            txtIDProyectoDisp.setText(_text[position][3]);
+            txtIDEstatus.setText(_text[position][20]);
+            txtNombre.setText(_text[position][11]);
+            txtNHabitacion.setText(_text[position][4]);
+            txtObservaciones.setText(_text[position][16]);
+            txtA.setText(_text[position][5]);
+            txtB.setText(_text[position][6]);
+            txtC.setText(_text[position][7]);
+            txtD.setText(_text[position][8]);
+            txtF.setText(_text[position][9]);
             return rowView;
         }
-
     }
 
     @Override
@@ -223,13 +169,12 @@ public class Fragment_listaProyecto extends Fragment {
     }
 
     public void lista(){
-        Log.v("[obtener]","Voy por datos");
-        String[][] aRef = MainActivity.oDB.ObtenerProyectos("0", 1);
+        String[][] aRef = MainActivity.oDB.ObtenerProyectosCama("0", 1);
         String[][] aDataFolio = null;
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
             for (int iCnt = 0; iCnt < aRef.length; iCnt++){
-                aDataFolio[iCnt] = new String[23];
+                aDataFolio[iCnt] = new String[27];
                 aDataFolio[iCnt][0] = aRef[iCnt][0];
                 aDataFolio[iCnt][1] = aRef[iCnt][1];
                 aDataFolio[iCnt][2] = aRef[iCnt][2];
@@ -253,6 +198,10 @@ public class Fragment_listaProyecto extends Fragment {
                 aDataFolio[iCnt][20] = aRef[iCnt][20];
                 aDataFolio[iCnt][21] = aRef[iCnt][21];
                 aDataFolio[iCnt][22] = aRef[iCnt][22];
+                aDataFolio[iCnt][23] = aRef[iCnt][23];
+                aDataFolio[iCnt][24] = aRef[iCnt][24];
+                aDataFolio[iCnt][25] = aRef[iCnt][25];
+                aDataFolio[iCnt][26] = aRef[iCnt][26];
             }
             ListView list;
             list = (ListView) vista.findViewById(R.id.lista);
