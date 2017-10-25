@@ -23,18 +23,35 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:text="Fecha: "
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:typeface="sans"
+                android:textStyle="normal"/>
+            <TextView
+                android:id="@+id/Fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Fecha"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:typeface="sans"
+                android:textStyle="normal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:paddingTop="2dp"
-                android:text="Observaciones"
+                android:text="Comentarios: "
                 android:textColor="@android:color/black"
                 android:textSize="15dp"
                 android:textStyle="normal"/>
             <TextView
-                android:id="@+id/Observaciones"
+                android:id="@+id/Comentarios"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="50"
                 android:typeface="sans"
-                android:text="Observaciones"
+                android:text="Comentarios"
                 android:textColor="@android:color/black"
                 android:textSize="16dp"
                 android:textStyle="bold" />
@@ -47,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/IDEspeciales"
+                    android:id="@+id/IDGaleria"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:text="id"
@@ -90,16 +107,37 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Alto: "
+                    android:text="N Habitacion: "
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
                     android:typeface="sans"
                     android:textStyle="normal"/>
                 <TextView
-                    android:id="@+id/Alto"
+                    android:id="@+id/NHabitacion"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Alto"
+                    android:text="N Habitacion"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:typeface="sans"
+                    android:textStyle="normal"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Area: "
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:typeface="sans"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/Area"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Area"
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
                     android:typeface="sans"
@@ -132,16 +170,79 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Grosor: "
+                    android:text="Alto: "
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
                     android:typeface="sans"
                     android:textStyle="normal"/>
                 <TextView
-                    android:id="@+id/Grosor"
+                    android:id="@+id/Alto"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Grosor"
+                    android:text="Alto"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:typeface="sans"
+                    android:textStyle="normal"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Copete: "
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:typeface="sans"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/Copete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Copete"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:typeface="sans"
+                    android:textStyle="normal"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Proyecciones: "
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:typeface="sans"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/Proyecciones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Proyecciones"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:typeface="sans"
+                    android:textStyle="normal"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Fijacion: "
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:typeface="sans"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/Fijacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Fijacion"
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
                     android:typeface="sans"
