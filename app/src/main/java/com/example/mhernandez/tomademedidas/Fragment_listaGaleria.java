@@ -15,12 +15,12 @@ import android.widget.TextView;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Fragment_listaEspecial.OnFragmentInteractionListener} interface
+ * {@link Fragment_listaGaleria.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Fragment_listaEspecial#newInstance} factory method to
+ * Use the {@link Fragment_listaGaleria#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment_listaEspecial extends Fragment {
+public class Fragment_listaGaleria extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,7 +34,7 @@ public class Fragment_listaEspecial extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Fragment_listaEspecial() {
+    public Fragment_listaGaleria() {
         // Required empty public constructor
     }
 
@@ -44,11 +44,11 @@ public class Fragment_listaEspecial extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment_listaEspecial.
+     * @return A new instance of fragment Fragment_listaGaleria.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fragment_listaEspecial newInstance(String param1, String param2) {
-        Fragment_listaEspecial fragment = new Fragment_listaEspecial();
+    public static Fragment_listaGaleria newInstance(String param1, String param2) {
+        Fragment_listaGaleria fragment = new Fragment_listaGaleria();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -121,7 +121,7 @@ public class Fragment_listaEspecial extends Fragment {
         private final String[][] _text;
 
         public CustomAdapter(Activity context, String[][] text){
-            super(context, R.layout.activity_listaespeciales, text);
+            super(context, R.layout.activity_listagalerias, text);
             this._context = context;
             this._text = text;
         }
@@ -129,27 +129,37 @@ public class Fragment_listaEspecial extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = _context.getLayoutInflater();
-            View rowView = inflater.inflate(R.layout.activity_listaespeciales, null, true);
-            TextView txtIDEspeciales = (TextView) rowView.findViewById(R.id.IDEspeciales);
+            View rowView = inflater.inflate(R.layout.activity_listagalerias, null, true);
+            TextView txtIDGaleria = (TextView) rowView.findViewById(R.id.IDGaleria);
             TextView txtIDDisp = (TextView) rowView.findViewById(R.id.IDDisp);
             TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
             TextView txtIDProyectoDisp = (TextView) rowView.findViewById(R.id.IDProyectoDisp);
             TextView txtIDEstatus = (TextView) rowView.findViewById(R.id.IDEstatus);
             TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
-            TextView txtAlto = (TextView) rowView.findViewById(R.id.Alto);
+            TextView txtFecha = (TextView) rowView.findViewById(R.id.Fecha);
+            TextView txtComentarios = (TextView) rowView.findViewById(R.id.Comentarios);
+            TextView txtNHabitacion = (TextView) rowView.findViewById(R.id.NHabitacion);
+            TextView txtArea = (TextView) rowView.findViewById(R.id.Area);
             TextView txtAncho = (TextView) rowView.findViewById(R.id.Ancho);
-            TextView txtGrosor = (TextView) rowView.findViewById(R.id.Grosor);
-            TextView txtObservaciones = (TextView) rowView.findViewById(R.id.Observaciones);
-            txtIDEspeciales.setText(_text[position][0]);
+            TextView txtAlto = (TextView) rowView.findViewById(R.id.Alto);
+            TextView txtCopete = (TextView) rowView.findViewById(R.id.Copete);
+            TextView txtProyecciones = (TextView) rowView.findViewById(R.id.Proyecciones);
+            TextView txtFijacion = (TextView) rowView.findViewById(R.id.Fijacion);
+            txtIDGaleria.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
             txtIDProyectoDisp.setText(_text[position][3]);
-            txtIDEstatus.setText(_text[position][15]);
-            txtNombre.setText(_text[position][4]);
-            txtAlto.setText(_text[position][5]);
-            txtAncho.setText(_text[position][6]);
-            txtGrosor.setText(_text[position][7]);
-            txtObservaciones.setText(_text[position][8]);
+            txtIDEstatus.setText(_text[position][19]);
+            txtNombre.setText(_text[position][13]);
+            txtFecha.setText(_text[position][4]);
+            txtComentarios.setText(_text[position][12]);
+            txtNHabitacion.setText(_text[position][5]);
+            txtArea.setText(_text[position][6]);
+            txtAncho.setText(_text[position][7]);
+            txtAlto.setText(_text[position][8]);
+            txtCopete.setText(_text[position][9]);
+            txtProyecciones.setText(_text[position][10]);
+            txtFijacion.setText(_text[position][11]);
             return rowView;
         }
     }
@@ -161,12 +171,12 @@ public class Fragment_listaEspecial extends Fragment {
     }
 
     public void lista(){
-        String[][] aRef = MainActivity.oDB.ObtenerProyectosEspecial("0", 1);
+        String[][] aRef = MainActivity.oDB.ObtenerProyectosGaleria("0", 1);
         String[][] aDataFolio = null;
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
             for (int iCnt = 0; iCnt < aRef.length; iCnt++){
-                aDataFolio[iCnt] = new String[22];
+                aDataFolio[iCnt] = new String[26];
                 aDataFolio[iCnt][0] = aRef[iCnt][0];
                 aDataFolio[iCnt][1] = aRef[iCnt][1];
                 aDataFolio[iCnt][2] = aRef[iCnt][2];
@@ -189,6 +199,10 @@ public class Fragment_listaEspecial extends Fragment {
                 aDataFolio[iCnt][19] = aRef[iCnt][19];
                 aDataFolio[iCnt][20] = aRef[iCnt][20];
                 aDataFolio[iCnt][21] = aRef[iCnt][21];
+                aDataFolio[iCnt][22] = aRef[iCnt][22];
+                aDataFolio[iCnt][23] = aRef[iCnt][23];
+                aDataFolio[iCnt][24] = aRef[iCnt][24];
+                aDataFolio[iCnt][25] = aRef[iCnt][25];
             }
             ListView list;
             list = (ListView) vista.findViewById(R.id.lista);
