@@ -1,7 +1,6 @@
 package com.example.mhernandez.tomademedidas;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -89,9 +88,16 @@ public class Fragment_listaProyecto extends Fragment {
             public boolean onItemLongClick(final AdapterView<?> aList, View vItem, final int iPosition, long l){
                 customDialog = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
                 customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                customDialog.setContentView(R.layout.menu_tabla);
+                customDialog.setContentView(R.layout.menu_tabla_proyecto);
 
-                ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener(){
+                ((Button) customDialog.findViewById(R.id.btnCerrar)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        customDialog.dismiss();
+                    }
+                });
+
+                ((Button) customDialog.findViewById(R.id.btnVer)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
                         customDialog.dismiss();
@@ -100,6 +106,7 @@ public class Fragment_listaProyecto extends Fragment {
                         Intent rIntent = new Intent(vista.getContext(), listaProyectos.class);
                         rIntent.putExtra("IdProyecto", aDat[1]);
                         rIntent.putExtra("IdDisp", aDat[2]);
+                        rIntent.putExtra("IdFormato", aDat[5]);
                         rIntent.putExtra("nombre", aDat[6]);
                         rIntent.putExtra("fecha", aDat[7]);
                         rIntent.putExtra("pedidoSap", aDat[8]);
@@ -111,7 +118,7 @@ public class Fragment_listaProyecto extends Fragment {
                     }
                 });
 
-                ((Button) customDialog.findViewById(R.id.btnEliminar)).setOnClickListener(new View.OnClickListener(){
+                ((Button) customDialog.findViewById(R.id.btnBorrar)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
                         customDialog.dismiss();
@@ -176,8 +183,8 @@ public class Fragment_listaProyecto extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = _context.getLayoutInflater();
             View rowView = inflater.inflate(R.layout.activity_listaproyectos, null, true);
-            TextView txtIdProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
-            TextView txtIdDisp = (TextView) rowView.findViewById(R.id.idDisp);
+            TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
+            TextView txtIDDisp = (TextView) rowView.findViewById(R.id.IDDisp);
             TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
             TextView txtAutorizado = (TextView) rowView.findViewById(R.id.autorizado);
             TextView txtATecho = (TextView) rowView.findViewById(R.id.ATecho);
@@ -185,8 +192,6 @@ public class Fragment_listaProyecto extends Fragment {
             TextView txtFecha = (TextView) rowView.findViewById(R.id.fecha);
             TextView txtAMuro = (TextView) rowView.findViewById(R.id.AMuro);
             TextView txtAEspeciales = (TextView) rowView.findViewById(R.id.AEspeciales);
-            TextView txtIDDisp = (TextView) rowView.findViewById(R.id.IDDisp);
-            TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
             TextView txtIDCliente = (TextView) rowView.findViewById(R.id.IDCliente);
             TextView txtIDUser = (TextView) rowView.findViewById(R.id.IDUser);
             TextView txtIDClienteDisp = (TextView) rowView.findViewById(R.id.IDClienteDisp);
@@ -255,6 +260,5 @@ public class Fragment_listaProyecto extends Fragment {
             list.setTag(aRef);
             list.setAdapter(adapter);
         }
-
     }
 }

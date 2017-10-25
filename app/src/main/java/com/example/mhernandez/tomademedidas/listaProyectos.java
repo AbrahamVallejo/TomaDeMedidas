@@ -25,6 +25,7 @@ public class listaProyectos extends AppCompatActivity {
         Bundle oExt = this.getIntent().getExtras();
         final String idProyecto = oExt.getString("IdProyecto");
         final String idDisp = oExt.getString("IdDisp");
+        final int idFormato = oExt.getInt("IdFormato");
         String nom = oExt.getString("nombre");
         String fec = oExt.getString("fecha");
         String sap = oExt.getString("pedidoSap");
