@@ -19,12 +19,22 @@
 
     <style name="ButtonStyle" parent="Base.TextAppearance.AppCompat.Widget.Button">
         <item name="android:background">@color/buttonColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">sans</item>
         <item name="android:textColor">@color/buttonTextColor</item>
     </style>
 
     <style name="ButtonStyle2" parent="Base.TextAppearance.AppCompat.Widget.Button">
         <item name="android:background">@android:color/holo_green_dark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">sans</item>
         <item name="android:textColor">@color/buttonTextColor</item>
+    </style>
+
+    <style name="TextCrear" parent="Base.TextAppearance.AppCompat.Widget.Button">
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="Theme_Dialog_Translucent" parent="android:Theme.Dialog">
