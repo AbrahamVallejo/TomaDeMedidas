@@ -22,7 +22,7 @@
         <item name="android:textColor">@color/buttonTextColor</item>
     </style>
 
-    <style name="ButtonStyle2" parent="Base.TextAppearance.AppCompat.Widget.Button.Colored">
+    <style name="ButtonStyle2" parent="Base.TextAppearance.AppCompat.Widget.Button">
         <item name="android:background">@android:color/holo_green_dark</item>
         <item name="android:textColor">@color/buttonTextColor</item>
     </style>

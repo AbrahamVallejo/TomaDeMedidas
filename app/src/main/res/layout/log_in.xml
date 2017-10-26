@@ -12,9 +12,10 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingTop="25dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="20dp"
             android:text="@string/usuario"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
 
@@ -37,6 +38,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="25dp"
             android:text="@string/contrase_a"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
 
@@ -60,7 +62,9 @@
         android:paddingTop="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/ButtonStyle"
+        style="@style/ButtonStyle2"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:onClick="onSaveClickIniciar"
         android:text="@string/iniciar" />
 

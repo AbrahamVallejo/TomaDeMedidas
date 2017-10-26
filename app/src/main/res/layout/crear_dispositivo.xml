@@ -6,8 +6,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:paddingTop="50dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="20dp"
         android:text="Nombre Dispositivo"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp" />
@@ -27,8 +27,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:paddingTop="50dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="20dp"
         android:text="Usuario Dispositivo"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp" />
@@ -49,8 +49,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        style="@style/ButtonStyle"
+        style="@style/ButtonStyle2"
         android:onClick="onSaveClickDispositivo"
+        android:textStyle="bold"
         android:text="Registrar Dispositivo" />
 
 
