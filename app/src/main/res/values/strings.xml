@@ -60,6 +60,13 @@
     <string name="proyecto_galeria">Proyecto Galeria</string>
     <string name="proyecto_especial">Proyecto Especial</string>
     <string name="modificar_proyecto">Modificar Proyecto</string>
+    <string name="ej_metros">Metros. Ej: 2.5</string>
+    <string name="ej_edificio">Texto. Ej: A1, Triángulo</string>
+    <string name="ej_habitacion">Texto. Ej: A1, 1</string>
+    <string name="ej_piso">Número. Ej: A1, 2</string>
+    <string name="ej_hojas">Metros. Ej: 1</string>
+    <string name="observacion_hoteleria">Texto. Ej: La fijación sera a muro</string>
+    <string name="observacion_residencial">Texto. Ej: La fijación sera a techo</string>
 
     <string-array name="spinnerItems">
         <item>Cama</item>

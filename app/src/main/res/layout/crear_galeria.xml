@@ -14,11 +14,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:textStyle="bold"
+                android:paddingTop="8dp"
+                style="@style/TextCrear"
                 android:text="@string/numero_de_habitaciones"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp" />
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
                 android:id="@+id/txt_numero_habitaciones"
@@ -35,10 +34,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
+                style="@style/TextCrear"
                 android:text="@string/area"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -55,10 +53,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
+                style="@style/TextCrear"
                 android:text="@string/ancho"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -74,10 +71,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
+                style="@style/TextCrear"
                 android:text="@string/alto"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -93,10 +89,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
+                style="@style/TextCrear"
                 android:text="@string/copete"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -112,10 +107,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
+                style="@style/TextCrear"
                 android:text="@string/proyecciones"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -131,10 +125,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
+                style="@style/TextCrear"
                 android:text="@string/fijacion"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -151,9 +144,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/comentarios"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
                 android:layout_width="match_parent"

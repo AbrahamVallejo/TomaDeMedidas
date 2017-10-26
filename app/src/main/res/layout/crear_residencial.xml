@@ -16,9 +16,8 @@
             android:layout_height="wrap_content"
             android:text="Ubicacion: "
             android:paddingTop="5dp"
-            android:textStyle="bold"
+            style="@style/TextCrear"
             android:textColor="@android:color/black"
-            android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -37,9 +36,7 @@
             android:layout_height="wrap_content"
             android:text="A: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -47,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
@@ -57,9 +55,7 @@
             android:layout_height="wrap_content"
             android:text="B: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -67,18 +63,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
             android:textSize="12sp"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="C: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -86,6 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
@@ -96,9 +93,7 @@
             android:layout_height="wrap_content"
             android:text="D: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -106,6 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
@@ -116,9 +112,7 @@
             android:layout_height="wrap_content"
             android:text="E: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -126,6 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
@@ -136,9 +131,7 @@
             android:layout_height="wrap_content"
             android:text="F: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -146,6 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
@@ -156,9 +150,7 @@
             android:layout_height="wrap_content"
             android:text="G: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -166,6 +158,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
@@ -176,9 +169,7 @@
             android:layout_height="wrap_content"
             android:text="H: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -186,6 +177,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
@@ -196,9 +188,7 @@
             android:layout_height="wrap_content"
             android:text="Prof Marco: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -206,6 +196,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
@@ -216,9 +207,7 @@
             android:layout_height="wrap_content"
             android:text="Prof Jaladera: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -226,6 +215,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:digits="1234567890-."
             android:maxLength="20"
@@ -236,9 +226,7 @@
             android:layout_height="wrap_content"
             android:text="Control: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -252,51 +240,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medida Sugerida: "
-            android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
-            android:textAppearance="@style/TextAppearance.AppCompat"/>
-
-        <EditText
-            android:id="@+id/txtMedidaSugerida"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:maxLength="20"
-            android:digits="abcdefghijklmnñopqrstuüvwxyz ABCDEFGHIJKLMNÑOPQRSTUÜVWXYZ
-            -.,()1234567890"
-            android:textSize="12sp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Observaciones: "
-            android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
-            android:textAppearance="@style/TextAppearance.AppCompat"/>
-
-        <EditText
-            android:id="@+id/txtObservaciones"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:maxLength="400"
-            android:textSize="12sp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="Fijacion: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -315,9 +261,7 @@
             android:layout_height="wrap_content"
             android:text="Piso: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -336,23 +280,59 @@
             android:layout_height="wrap_content"
             android:text="Corredera: "
             android:paddingTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
+            style="@style/TextCrear"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
-            android:id="@+id/txtCorredera"
+                android:id="@+id/txtCorredera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="100"
+                android:digits="abcdefghijklmnñopqrstuüvwxyz ABCDEFGHIJKLMNÑOPQRSTUÜVWXYZ
+            -.,()1234567890"
+                android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medida Sugerida: "
+            android:paddingTop="8dp"
+            style="@style/TextCrear"
+            android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+         <EditText
+                android:id="@+id/txtMedidaSugerida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/ej_metros"
+                android:inputType="text"
+                android:maxLength="20"
+                android:digits="abcdefghijklmnñopqrstuüvwxyz ABCDEFGHIJKLMNÑOPQRSTUÜVWXYZ
+            -.,()1234567890"
+                android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Observaciones: "
+            android:paddingTop="8dp"
+            style="@style/TextCrear"
+            android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+        <EditText
+            android:id="@+id/txtObservaciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/observacion_residencial"
             android:inputType="text"
-            android:maxLength="100"
-            android:digits="abcdefghijklmnñopqrstuüvwxyz ABCDEFGHIJKLMNÑOPQRSTUÜVWXYZ
-            -.,()1234567890"
+            android:maxLength="400"
             android:textSize="12sp"/>
 
-        <Button
+         <Button
             android:id="@+id/Guardar"
             style="@style/ButtonStyle2"
             android:layout_marginLeft="10dp"

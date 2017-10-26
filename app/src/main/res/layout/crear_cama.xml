@@ -15,10 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
+        style="@style/TextCrear"
         android:text="@string/numero_de_habitaciones"
-        android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
             android:id="@+id/txt_numero_habitaciones"
@@ -36,9 +35,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/a"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="14sp"/>
+            style="@style/TextCrear"
+            android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
             android:id="@+id/txt_A"
@@ -56,9 +54,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/b"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="14sp"/>
+            style="@style/TextCrear"
+            android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
             android:id="@+id/txt_B"
@@ -75,9 +72,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/c"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="14sp"/>
+            style="@style/TextCrear"
+            android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
             android:id="@+id/txt_C"
@@ -94,9 +90,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/d"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="14sp"/>
+            style="@style/TextCrear"
+            android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
             android:id="@+id/txt_D"
@@ -113,9 +108,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/e"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="14sp"/>
+            style="@style/TextCrear"
+            android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
             android:id="@+id/txt_E"
@@ -132,9 +126,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/f"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="14sp"/>
+            style="@style/TextCrear"
+            android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
             android:id="@+id/txt_F"
@@ -151,9 +144,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/g"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="14sp"/>
+            style="@style/TextCrear"
+            android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
             android:id="@+id/txt_G"
@@ -170,9 +162,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/observaciones"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="14sp"/>
+            style="@style/TextCrear"
+            android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
             android:id="@+id/txt_observaciones"
