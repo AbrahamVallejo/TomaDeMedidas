@@ -35,6 +35,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:typeface">sans</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
     <style name="Theme_Dialog_Translucent" parent="android:Theme.Dialog">
