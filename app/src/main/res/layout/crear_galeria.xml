@@ -3,156 +3,177 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="0dp"
-        android:text="@string/numero_de_habitaciones"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="16sp" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/txt_numero_habitaciones"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="20"
-        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
-        -.,()1234567890"
-        android:textSize="14sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:textStyle="bold"
+                android:text="@string/numero_de_habitaciones"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="16sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="1dp"
-        android:text="@string/area"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="16sp"/>
+            <EditText
+                android:id="@+id/txt_numero_habitaciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="20"
+                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
+                -.,()1234567890"
+                android:textSize="14sp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="20"
-        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
-        -.,()1234567890"
-        android:id="@+id/txt_area"
-        android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:textStyle="bold"
+                android:text="@string/area"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="16sp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="1dp"
-        android:text="@string/ancho"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="16sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="20"
+                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
+                -.,()1234567890"
+                android:id="@+id/txt_area"
+                android:textSize="14sp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:maxLength="20"
-        android:digits=".1234567890"
-        android:id="@+id/txt_ancho"
-        android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:textStyle="bold"
+                android:text="@string/ancho"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="16sp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="1dp"
-        android:text="@string/alto"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="16sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:maxLength="20"
+                android:digits=".1234567890"
+                android:id="@+id/txt_ancho"
+                android:textSize="14sp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:maxLength="20"
-        android:digits=".1234567890"
-        android:id="@+id/txt_alto"
-        android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:textStyle="bold"
+                android:text="@string/alto"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="16sp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="1dp"
-        android:text="@string/copete"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="16sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:maxLength="20"
+                android:digits=".1234567890"
+                android:id="@+id/txt_alto"
+                android:textSize="14sp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="20"
-        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
-        android:id="@+id/txt_copete"
-        android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:textStyle="bold"
+                android:text="@string/copete"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="16sp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="1dp"
-        android:text="@string/proyecciones"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="16sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="20"
+                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
+                android:id="@+id/txt_copete"
+                android:textSize="14sp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="20"
-        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
-        android:id="@+id/txt_proyecciones"
-        android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:textStyle="bold"
+                android:text="@string/proyecciones"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="16sp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="1dp"
-        android:text="@string/fijacion"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="16sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="20"
+                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
+                android:id="@+id/txt_proyecciones"
+                android:textSize="14sp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="50"
-        android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
-        android:id="@+id/txt_fijacion"
-        android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:textStyle="bold"
+                android:text="@string/fijacion"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="16sp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="1dp"
-        android:text="@string/comentarios"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="16sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="50"
+                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
+                android:id="@+id/txt_fijacion"
+                android:textSize="14sp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="200"
-        android:id="@+id/txt_comentarios"
-        android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/comentarios"
+                android:paddingTop="8dp"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="16sp"/>
 
-    <Button
-        android:id="@+id/Guardar"
-        style="@style/ButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/guardar"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="200"
+                android:id="@+id/txt_comentarios"
+                android:textSize="14sp" />
 
+            <Button
+                android:id="@+id/Guardar"
+                style="@style/ButtonStyle2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/guardar"/>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

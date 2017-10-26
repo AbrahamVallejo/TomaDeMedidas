@@ -93,12 +93,13 @@ public class Fragment_proyecto extends Fragment {
         Button botonCamara = ((Button) vista.findViewById(R.id.TomarFoto));
 
         String[][] aRes= MainActivity.oDB.ObtenerClientes("0",1);
-        spClientes= ((Spinner) vista.findViewById(R.id.spinner_cliente));
+        spClientes= ( vista.findViewById(R.id.spinner_cliente));
         List<String> listaClientesSql;
         //ArrayAdapter<String> comboAdapterSql;
         listaClientesSql = new ArrayList<>();
         for(int i = 0; i < aRes.length; i++){
-            listaClientesSql.add(aRes[i][0]+". "+aRes[i][2]);
+            String inde = String.valueOf(aRes[i][0]+"."+aRes[i][1]);
+            listaClientesSql.add(inde+"- "+aRes[i][2]);
         }
         Log.v("[obtener]",listaClientesSql.toString());
         //comboAdapterSql = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaClientesSql);

@@ -15,6 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ubicacion: "
+            android:paddingTop="5dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -34,6 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="A: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -52,6 +56,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="B: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -69,6 +75,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="C: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -87,6 +95,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="D: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -105,6 +115,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="E: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -123,6 +135,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="F: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -141,6 +155,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="G: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -159,6 +175,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="H: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -177,6 +195,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Prof Marco: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -195,6 +215,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Prof Jaladera: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -213,6 +235,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Control: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -229,6 +253,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Medida Sugerida: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -248,6 +274,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Observaciones: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -265,6 +293,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Fijacion: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -284,6 +314,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Piso: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -303,6 +335,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Corredera: "
+            android:paddingTop="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -320,7 +354,10 @@
 
         <Button
             android:id="@+id/Guardar"
-            style="@style/ButtonStyle"
+            style="@style/ButtonStyle2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/guardar"/>

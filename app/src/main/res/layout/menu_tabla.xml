@@ -22,7 +22,7 @@
         android:id="@+id/btnModificar"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        style="@style/ButtonStyle"
+        style="@style/ButtonStyle2"
         android:text="MODIFICAR"
         android:textSize="15dp"
         android:textStyle="bold"

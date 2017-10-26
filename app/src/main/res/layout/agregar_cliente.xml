@@ -59,9 +59,12 @@
 
     <Button
         android:id="@+id/Guardar"
-        style="@style/ButtonStyle"
+        style="@style/ButtonStyle2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:onClick="onSaveClickClientes"
         android:text="@string/guardar" />
 

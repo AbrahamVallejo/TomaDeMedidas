@@ -15,8 +15,9 @@
     <Button
         android:id="@+id/btnCerrar"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        style="@style/ButtonStyle"
+        android:layout_height="45dp"
+        style="@style/ButtonStyle2"
+        android:textStyle="bold"
         android:text="CERRAR"
         android:layout_weight="0"/>
 
@@ -28,9 +29,10 @@
     <Button
         android:id="@+id/btnVer"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        style="@style/ButtonStyle"
+        android:layout_height="50dp"
+        style="@style/ButtonStyle2"
         android:text="VER"
+        android:textStyle="bold"
         android:layout_weight="0"/>
 
     <TextView
@@ -41,8 +43,9 @@
     <Button
         android:id="@+id/btnBorrar"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         style="@style/ButtonStyle"
         android:text="BORRAR"
+        android:textStyle="bold"
         android:layout_weight="0"/>
 </LinearLayout>
