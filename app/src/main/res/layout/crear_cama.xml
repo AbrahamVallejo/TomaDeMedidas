@@ -14,8 +14,9 @@
         <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="0dp"
+        android:paddingTop="5dp"
         android:text="@string/numero_de_habitaciones"
+        android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="14sp" />
 
@@ -33,8 +34,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="1dp"
+            android:paddingTop="8dp"
             android:text="@string/a"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="14sp"/>
 
@@ -46,13 +48,15 @@
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:digits=".1234567890"
+            android:textStyle="bold"
             android:textSize="12sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="1dp"
+            android:paddingTop="8dp"
             android:text="@string/b"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="14sp"/>
 
@@ -69,8 +73,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="1dp"
+            android:paddingTop="8dp"
             android:text="@string/c"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="14sp"/>
 
@@ -87,8 +92,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="1dp"
+            android:paddingTop="8dp"
             android:text="@string/d"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="14sp"/>
 
@@ -105,8 +111,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="1dp"
+            android:paddingTop="8dp"
             android:text="@string/e"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="14sp"/>
 
@@ -123,8 +130,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="1dp"
+            android:paddingTop="8dp"
             android:text="@string/f"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="14sp"/>
 
@@ -141,8 +149,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="1dp"
+            android:paddingTop="8dp"
             android:text="@string/g"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="14sp"/>
 
@@ -159,8 +168,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="1dp"
+            android:paddingTop="8dp"
             android:text="@string/observaciones"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="14sp"/>
 
@@ -175,9 +185,12 @@
 
         <Button
             android:id="@+id/Guardar"
-            style="@style/ButtonStyle"
+            style="@style/ButtonStyle2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textStyle="bold"
             android:text="@string/guardar"/>
 
         </LinearLayout>
