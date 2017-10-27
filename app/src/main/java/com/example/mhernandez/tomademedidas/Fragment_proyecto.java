@@ -186,8 +186,8 @@ public class Fragment_proyecto extends Fragment {
         fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, view.sID);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-    }
-    */
+    }*/
+
 
     private static Uri getOutputMediaFileUri(int type, String pID){
         return Uri.fromFile(getOutputMediaFile(type,pID));
