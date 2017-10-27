@@ -4,13 +4,9 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Ancho: "
         android:paddingTop="8dp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:textSize="15sp"
+        style="@style/TextCrear"
         android:textAppearance="@style/TextAppearance.AppCompat"/>
 
     <EditText
@@ -18,19 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/ej_metros"
         android:inputType="numberDecimal"
         android:maxLength="20"
         android:digits=".1234567890"
         android:textSize="12sp"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Alto: "
         android:paddingTop="8dp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:textSize="15sp"
+        style="@style/TextCrear"
         android:textAppearance="@style/TextAppearance.AppCompat"/>
 
     <EditText
@@ -38,19 +31,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/ej_metros"
         android:inputType="numberDecimal"
         android:maxLength="20"
         android:digits=".1234567890"
         android:textSize="12sp"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/TextCrear"
         android:text="Grosor: "
         android:paddingTop="8dp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:textSize="15sp"
         android:textAppearance="@style/TextAppearance.AppCompat"/>
 
     <EditText
@@ -58,19 +48,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/ej_metros"
         android:inputType="numberDecimal"
         android:maxLength="20"
         android:digits=".1234567890"
         android:textSize="12sp"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Observaciones: "
         android:paddingTop="8dp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:textSize="15sp"
+        style="@style/TextCrear"
         android:textAppearance="@style/TextAppearance.AppCompat"/>
 
     <EditText
@@ -78,6 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Texto. Ej: Es una mesa."
         android:inputType="text"
         android:maxLength="600"
         android:textSize="12sp"/>
