@@ -6,25 +6,23 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:textStyle="bold"
+                android:paddingTop="8dp"
+                style="@style/TextCrear"
                 android:text="@string/numero_de_habitaciones"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp" />
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
                 android:id="@+id/txt_numero_habitaciones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Texto. Ej: A1, 2."
                 android:inputType="text"
                 android:maxLength="20"
                 android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
@@ -32,13 +30,10 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
+                style="@style/TextCrear"
                 android:text="@string/area"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -46,19 +41,17 @@
                 android:ems="10"
                 android:inputType="text"
                 android:maxLength="20"
+                android:hint="Spinner"
                 android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
                 -.,()1234567890"
                 android:id="@+id/txt_area"
                 android:textSize="14sp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
+                style="@style/TextCrear"
                 android:text="@string/ancho"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -66,18 +59,16 @@
                 android:ems="10"
                 android:inputType="numberDecimal"
                 android:maxLength="20"
+                android:hint="@string/ej_metros"
                 android:digits=".1234567890"
                 android:id="@+id/txt_ancho"
                 android:textSize="14sp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
+                style="@style/TextCrear"
                 android:text="@string/alto"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -85,23 +76,22 @@
                 android:ems="10"
                 android:inputType="numberDecimal"
                 android:maxLength="20"
+                android:hint="@string/ej_metros"
                 android:digits=".1234567890"
                 android:id="@+id/txt_alto"
                 android:textSize="14sp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
+                style="@style/TextCrear"
                 android:text="@string/copete"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Spinner"
                 android:inputType="text"
                 android:maxLength="20"
                 android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
@@ -109,18 +99,16 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
+                style="@style/TextCrear"
                 android:text="@string/proyecciones"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Spinner"
                 android:inputType="text"
                 android:maxLength="20"
                 android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
@@ -128,18 +116,16 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
+                style="@style/TextCrear"
                 android:text="@string/fijacion"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Spinner"
                 android:inputType="text"
                 android:maxLength="50"
                 android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
@@ -147,18 +133,16 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="@string/comentarios"
                 android:paddingTop="8dp"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="16sp"/>
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Texto. Ej: Solo se requiere la vista izquierda"
                 android:inputType="text"
                 android:maxLength="200"
                 android:id="@+id/txt_comentarios"

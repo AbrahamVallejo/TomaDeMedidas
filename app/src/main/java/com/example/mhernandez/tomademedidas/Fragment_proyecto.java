@@ -2,6 +2,7 @@ package com.example.mhernandez.tomademedidas;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -86,11 +87,13 @@ public class Fragment_proyecto extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.crear_proyecto, container, false);
         Button botonCamara = ((Button) vista.findViewById(R.id.TomarFoto));
+        ImageView oImg = (ImageView) vista.findViewById(R.id.imgFoto);
 
         String[][] aRes= MainActivity.oDB.ObtenerClientes("0",1);
         spClientes= ( vista.findViewById(R.id.spinner_cliente));
@@ -106,13 +109,11 @@ public class Fragment_proyecto extends Fragment {
         spClientes.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, listaClientesSql));
 
 
-
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");
             if(fileUri != null){
-                ImageView oImg = (ImageView) vista.findViewById(R.id.imgFoto);
-                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(savedInstanceState.getString("foto"),200,200);
-                oImg.setImageBitmap(bit_map);
+                //Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(savedInstanceState.getString("foto"),200,200);
+                //oImg.setImageBitmap(bit_map);
             }
         }
 
@@ -179,11 +180,10 @@ public class Fragment_proyecto extends Fragment {
 
     /*
     public void onFotoClick(View view){
-        Toast.makeText(getActivity(),
-                "si",
-                Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "si", Toast.LENGTH_LONG).show();
+
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, view.sID);
+        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, this.sID);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
@@ -194,7 +194,8 @@ public class Fragment_proyecto extends Fragment {
     }
 
     private static File getOutputMediaFile(int type, String pID){
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),APP_PATH);
+        File mediaStorageDir = new
+                File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),APP_PATH);
         if (!mediaStorageDir.exists()){
             if (!mediaStorageDir.mkdirs()){
                 return null;
@@ -212,11 +213,12 @@ public class Fragment_proyecto extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
+        {
             if (resultCode == RESULT_OK){
-                //ImageView oImg = (ImageView)getActivity().findViewById(R.id.imgFoto);
+                ImageView oImg = (ImageView)getActivity().findViewById(R.id.imgFoto);//
                 Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
-                //oImg.setImageBitmap(bit_map);
+                oImg.setImageBitmap(bit_map);//
             }else if(resultCode == RESULT_CANCELED){
                 // User cancelled the image capture
             }else {
@@ -224,4 +226,5 @@ public class Fragment_proyecto extends Fragment {
             }
         }
     }
+
 }
