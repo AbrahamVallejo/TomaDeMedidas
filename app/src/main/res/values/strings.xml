@@ -9,8 +9,8 @@
     <string name="nuevo_cliente">Nuevo Cliente</string>
     <string name="proyecto">Proyecto</string>
     <string name="agregar_cliente">Agregar Cliente</string>
-    <string name="direccion">Direccion</string>
-    <string name="telefono">Telefono</string>
+    <string name="direccion">Dirección</string>
+    <string name="telefono">Teléfono</string>
     <string name="nombre">Nombre</string>
     <string name="guardar">Guardar</string>
     <string name="accesorios_especiales">Accesorios Especiales</string>
@@ -23,7 +23,7 @@
     <string name="texto_ej_tornillos_esp">Texto Ej: Tornillos esp.</string>
     <string name="texto_ej_pijas">Texto Ej: Pijas.</string>
     <string name="texto_ej_remodelacion">TEXTO EJ: REMODELACION.</string>
-    <string name="solicitar_al_area_de_ventas">Solicitar al area de ventas</string>
+    <string name="solicitar_al_area_de_ventas">Solicitar al área de ventas</string>
     <string name="pedido_sap">Pedido Sap</string>
     <string name="nombre_proyecto">Nombre Proyecto</string>
     <string name="toma_de_medidas">Toma de Medidas</string>
