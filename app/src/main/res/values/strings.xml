@@ -22,7 +22,7 @@
     <string name="texto_ej_tornillos">Texto Ej: Tornillos.</string>
     <string name="texto_ej_tornillos_esp">Texto Ej: Tornillos esp.</string>
     <string name="texto_ej_pijas">Texto Ej: Pijas.</string>
-    <string name="texto_ej_remodelacion">TEXTO EJ: REMODELACION.</string>
+    <string name="texto_ej_remodelacion">TEXTO EJ: REMODELACIÓN.</string>
     <string name="solicitar_al_area_de_ventas">Solicitar al área de ventas</string>
     <string name="pedido_sap">Pedido Sap</string>
     <string name="nombre_proyecto">Nombre Proyecto</string>
@@ -33,13 +33,13 @@
     <string name="usuario">Usuario</string>
     <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="numero_de_habitaciones">Numero de habitaciones</string>
-    <string name="area">Area</string>
+    <string name="numero_de_habitaciones">Número de habitaciones</string>
+    <string name="area">Área</string>
     <string name="ancho">Ancho</string>
     <string name="alto">Alto</string>
     <string name="copete">Copete</string>
     <string name="proyecciones">Proyecciones</string>
-    <string name="fijacion">Fijacion</string>
+    <string name="fijacion">Fijación</string>
     <string name="comentarios">Comentarios</string>
     <string name="a">A</string>
     <string name="b">B</string>
@@ -50,7 +50,7 @@
     <string name="g">G</string>
     <string name="observaciones">Observaciones</string>
     <string name="log_in">Log In</string>
-    <string name="description">Description</string>
+    <string name="description">Descriptión</string>
     <string name="modificar_cliente">Modificar Cliente</string>
     <string name="tomar_foto">Tomar Foto</string>
     <string name="registrar_dispositivo">Registrar Dispositivo</string>
