@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,7 +76,8 @@ public class Fragment_listaProyecto extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
+
         vista = inflater.inflate(R.layout.list_activity, container, false);
 
         lista();
@@ -100,13 +102,50 @@ public class Fragment_listaProyecto extends Fragment {
                 ((Button) customDialog.findViewById(R.id.btnVer)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
-                        customDialog.dismiss();
-
                         String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
-                        Intent rIntent = new Intent(vista.getContext(), listaProyectos.class);
-                        rIntent.putExtra("IdProyecto", aDat[1]);
-                        rIntent.putExtra("IdDisp", aDat[2]);
-                        rIntent.putExtra("IdFormato", aDat[5]);
+                        customDialog.dismiss();
+                        String Formato = aDat[4];
+                        if (Formato.equals("2")){
+                            Log.v("[FRAGMENT]", Formato);
+/*                            Fragment childFragment = new Fragment_listaHoteleria();
+                            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+                            transaction.replace(R.id.lista, childFragment).commit();*/
+                            Intent rIntent = new Intent(vista.getContext(), listaHoteleria.class);
+                            startActivity(rIntent);
+                        }else if (Formato.equals("4")){
+                            Log.v("[FRAGMENT]", Formato);
+/*                            Fragment childFragment = new Fragment_listaCama();
+                            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+                            transaction.replace(R.id.lista, childFragment).commit();*/
+                            Intent rIntent = new Intent(vista.getContext(), listaCama.class);
+                            startActivity(rIntent);
+                        }else if (Formato.equals("1")){
+                            Log.v("[FRAGMENT]", Formato);
+/*                            Fragment childFragment = new Fragment_listaResidencial();
+                            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+                            transaction.replace(R.id.lista, childFragment).commit();*/
+                            Intent rIntent = new Intent(vista.getContext(), listaResidencial.class);
+                            startActivity(rIntent);
+                        }else if (Formato.equals("3")){
+                            Log.v("[FRAGMENT]", Formato);
+/*                            Fragment childFragment = new Fragment_listaGaleria();
+                            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+                            transaction.replace(R.id.lista, childFragment).commit();*/
+                            Intent rIntent = new Intent(vista.getContext(), listaGaleria.class);
+                            startActivity(rIntent);
+                        }else if (Formato.equals("5")){
+                            Log.v("[FRAGMENT]", Formato);
+/*                            Fragment childFragment = new Fragment_listaEspecial();
+                            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+                            transaction.replace(R.id.lista, childFragment).commit();*/
+                            Intent rItent = new Intent(vista.getContext(), listaEspecial.class);
+                            startActivity(rItent);
+                        }
+
+/*                        Intent rIntent = new Intent(vista.getContext(), listaProyectos.class);
+                        rIntent.putExtra("IdProyecto", aDat[0]);
+                        rIntent.putExtra("IdDisp", aDat[1]);
+                        rIntent.putExtra("IdFormato", aDat[4]);
                         rIntent.putExtra("nombre", aDat[6]);
                         rIntent.putExtra("fecha", aDat[7]);
                         rIntent.putExtra("pedidoSap", aDat[8]);
@@ -114,7 +153,7 @@ public class Fragment_listaProyecto extends Fragment {
                         rIntent.putExtra("ATecho", aDat[19]);
                         rIntent.putExtra("AMuro", aDat[20]);
                         rIntent.putExtra("AEspeciales", aDat[21]);
-                        startActivity(rIntent);
+                        startActivity(rIntent);*/
                     }
                 });
 
@@ -182,7 +221,7 @@ public class Fragment_listaProyecto extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = _context.getLayoutInflater();
-            View rowView = inflater.inflate(R.layout.activity_listaproyectos, null, true);
+            View rowView = inflater.inflate(R.layout.activity_listaproyectos, null);
             TextView txtIDProyecto = (TextView) rowView.findViewById(R.id.IDProyecto);
             TextView txtIDDisp = (TextView) rowView.findViewById(R.id.IDDisp);
             TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
