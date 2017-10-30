@@ -80,13 +80,12 @@ public class MainActivity extends AppCompatActivity
         if (aux != false){
             getclienteLista();
             getproyectoLista();
-            Log.v("obtener2", "Voy por los Agentes");
             getusuarioLista();
             getproyectoCamaLista();
             getproyectoEspecialLista();
-            getproyectoGaleriaLista();
-            getproyectoHoteleriaLista();
-            getproyectoResidencialLista();
+                //getproyectoGaleriaLista();
+                //getproyectoHoteleriaLista();
+                //getproyectoResidencialLista();
         }
         else {
             Toast.makeText(this, "Sin Acceso a la Red", Toast.LENGTH_SHORT).show();
