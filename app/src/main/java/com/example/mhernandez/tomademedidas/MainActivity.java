@@ -26,9 +26,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Fragment_clientes.OnFragmentInteractionListener,
         Fragment_proyecto.OnFragmentInteractionListener, Fragment_listaProyecto.OnFragmentInteractionListener,
-        Fragment_listaClientes.OnFragmentInteractionListener, Fragment_listaResidencial.OnFragmentInteractionListener,
-        Fragment_listaHoteleria.OnFragmentInteractionListener, Fragment_listaGaleria.OnFragmentInteractionListener,
-        Fragment_listaEspecial.OnFragmentInteractionListener, Fragment_listaCama.OnFragmentInteractionListener{
+        Fragment_listaClientes.OnFragmentInteractionListener{
 
     public static DBProvider oDB;
 
@@ -79,10 +77,12 @@ public class MainActivity extends AppCompatActivity
         boolean aux = isOnlineNet();
         if (aux != false){
             getclienteLista();
+/*
             getproyectoLista();
             getusuarioLista();
             getproyectoCamaLista();
             getproyectoEspecialLista();
+*/
                 //getproyectoGaleriaLista();
                 //getproyectoHoteleriaLista();
                 //getproyectoResidencialLista();
@@ -206,8 +206,6 @@ public class MainActivity extends AppCompatActivity
             rIntent.putExtra("PedidoSap", PS);
             startActivity(rIntent);
         }
-
-        //MainActivity.oDB.insertProyecto(formatoSelected);
     }
 
     @Override
