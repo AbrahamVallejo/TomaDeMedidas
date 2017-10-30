@@ -67,6 +67,7 @@
     <string name="ej_hojas">Metros. Ej: 1</string>
     <string name="observacion_hoteleria">Texto. Ej: La fijación sera a muro</string>
     <string name="observacion_residencial">Texto. Ej: La fijación sera a techo</string>
+    <string name="observacion_cama">Texto. Ej: Las patas de la cama miden 10cm.</string>
 
     <string-array name="spinnerItems">
         <item>Cama</item>

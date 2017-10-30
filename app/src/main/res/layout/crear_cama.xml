@@ -160,7 +160,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Texto. Ej: Las patas de la cama miden 10cm."
+            android:hint="@string/observacion_cama"
             android:inputType="text"
             android:maxLength="500"
             android:textSize="12sp"/>
