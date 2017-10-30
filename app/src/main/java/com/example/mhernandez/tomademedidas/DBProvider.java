@@ -221,7 +221,7 @@ public class DBProvider {
                 + DBhelper.ID_USUARIOAUTORIZA + ", " + DBhelper.COLUMN_NAME_AUTORIZADO + ", " + DBhelper.ID_ESTATUS + ", "
                 + DBhelper.COLUMN_NAME_PAGADO
                 + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
-        Log.v("[obtener]", nombreP);
+        Log.v("[obtenerPC]", nombreP);
 
     }
 
@@ -239,11 +239,41 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_CAMA + " = ?", aData);
     }
 
-    public void insertProyectoEspecial(String ancho, String alto, String grosor, String AIMG, String observaciones) {
-        Object[] aData = {ancho, alto, grosor, AIMG, observaciones};
-        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " (" + DBhelper.COLUMN_NAME_ANCHO + ", "
-                + DBhelper.COLUMN_NAME_ALTO + ", " + DBhelper.COLUMN_NAME_GROSOR + ", " + DBhelper.COLUMN_NAME_AIMG + ", " + DBhelper.COLUMN_NAME_OBSERVACIONES
-                + ") VALUES(?, ?, ?, ?, ?)", aData);
+    public void insertProyectoEspecial(int idEsp, int idDisp, int idPro, int idProDisp, String nombre,
+                                       double alto, double ancho, double grosor, String observaciones, String AIMG,
+                                       String fecha, int formato, int idUserAlta, int idUserMod, String fechaAlta,
+                                       int estatus, int autorizado, int idUserAuto, String fechaAuto, int pagado,
+                                       String fechaPago, int idUserPago) {
+        Log.v("[obtenerPE]", "Insertar Especial");
+        Object[] aData = {idEsp, idDisp, idPro, idProDisp, nombre, alto, ancho, grosor, observaciones, AIMG, fecha,
+                formato, idUserAlta, idUserMod, fechaAlta, estatus, autorizado, idUserAuto, fechaAuto, pagado, fechaPago, idUserPago};
+        /*Log.v("[obtenerPE]", "IdEs:"+idEsp +" IdDisp"+ idDisp +" "+ idPro+" "+ idProDisp+" "+ nombre+" "+ alto+ ancho+ grosor+" Ob:"+ observaciones+" Ima:"+ AIMG+" Fec:"+ fecha+
+               "  "+formato+ idUserAlta+ idUserMod+" fe:"+ fechaAlta+ estatus+ autorizado+ idUserAuto+" fe:"+ fechaAuto+ pagado+" fe:"+ fechaPago+ idUserPago);*/
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " ("
+                + DBhelper.ID_ESPECIALES + ", "
+                + DBhelper.ID_DISP + ", "
+                + DBhelper.ID_PROYECTO + ", "
+                + DBhelper.ID_PROYECTO_DISP + ", "
+                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", "
+                + DBhelper.COLUMN_NAME_ALTO + ", "
+                + DBhelper.COLUMN_NAME_ANCHO + ", "
+                + DBhelper.COLUMN_NAME_GROSOR + ", "
+                + DBhelper.COLUMN_NAME_OBSERVACIONES + ", "
+                + DBhelper.COLUMN_NAME_AIMG + ", "
+                + DBhelper.COLUMN_NAME_FECHA + ", "
+                + DBhelper.COLUMN_NAME_FORMATO + ", "
+                + DBhelper.ID_USUARIO_ALTA + ", "
+                + DBhelper.ID_USUARIO_MOD + ", "
+                + DBhelper.COLUMN_NAME_FECHA_ALTA + ", "
+                + DBhelper.ID_ESTATUS + ", "
+                + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
+                + DBhelper.ID_USUARIOAUTORIZA + ", "
+                + DBhelper.COLUMN_NAME_FECHAAUTORIZA + ", "
+                + DBhelper.COLUMN_NAME_PAGADO + ", "
+                + DBhelper.COLUMN_NAME_FECHA_PAGO + ", "
+                + DBhelper.ID_USUARIO_PAGO
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+        Log.v("[obtenerPE]", nombre);
     }
 
     public void updateProyectoEspecial(String idEspecial, String ancho, String alto, String grosor, String AIMG, String observaciones) {
