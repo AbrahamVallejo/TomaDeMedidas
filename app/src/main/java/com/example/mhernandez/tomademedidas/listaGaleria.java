@@ -1,11 +1,10 @@
 package com.example.mhernandez.tomademedidas;
 
 import android.app.Activity;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -13,110 +12,27 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Fragment_listaGaleria.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Fragment_listaGaleria#newInstance} factory method to
- * create an instance of this fragment.
+ * Created by mhernandez on 30/10/2017.
  */
-public class Fragment_listaGaleria extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    View vista;
-
-    private OnFragmentInteractionListener mListener;
-
-    public Fragment_listaGaleria() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment_listaGaleria.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Fragment_listaGaleria newInstance(String param1, String param2) {
-        Fragment_listaGaleria fragment = new Fragment_listaGaleria();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+public class listaGaleria extends AppCompatActivity {
+    public static DBProvider oDB;
+    public listaGaleria() { oDB = new DBProvider(this);}
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        vista = inflater.inflate(R.layout.list_activity, container, false);
+        setContentView(R.layout.list_activity);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         lista();
 
-        ListView tlList = ((ListView) vista.findViewById(R.id.lista));
-
-        return vista;
+        ListView tlList = ((ListView) this.findViewById(R.id.lista));
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
-    public class CustomAdapter extends ArrayAdapter<String[]>{
+    public class CustomAdapter extends ArrayAdapter<String[]> {
         private final Activity _context;
         private final String[][] _text;
 
@@ -171,7 +87,7 @@ public class Fragment_listaGaleria extends Fragment {
     }
 
     public void lista(){
-        String[][] aRef = MainActivity.oDB.ObtenerProyectosGaleria("0", 1);
+        String[][] aRef = oDB.ObtenerProyectosGaleria("0", 1);
         String[][] aDataFolio = null;
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
@@ -205,10 +121,20 @@ public class Fragment_listaGaleria extends Fragment {
                 aDataFolio[iCnt][25] = aRef[iCnt][25];
             }
             ListView list;
-            list = (ListView) vista.findViewById(R.id.lista);
-            CustomAdapter adapter = new CustomAdapter(getActivity(), aDataFolio);
+            list = (ListView) this.findViewById(R.id.lista);
+            CustomAdapter adapter = new CustomAdapter(this, aDataFolio);
             list.setTag(aRef);
             list.setAdapter(adapter);
         }
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

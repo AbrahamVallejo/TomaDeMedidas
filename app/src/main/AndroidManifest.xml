@@ -86,6 +86,25 @@
             android:label="@string/proyecto_especial">
         </activity>
 
+        <activity android:name=".listaCama"
+            android:label="Cama">
+        </activity>
+
+        <activity android:name=".listaEspecial"
+            android:label="Especial">
+        </activity>
+
+        <activity android:name=".listaGaleria"
+            android:label="Galeria">
+        </activity>
+
+        <activity android:name=".listaHoteleria"
+            android:label="Hoteleria">
+        </activity>
+
+        <activity android:name=".listaResidencial"
+            android:label="Residencial">
+        </activity>
     </application>
 
 </manifest>
