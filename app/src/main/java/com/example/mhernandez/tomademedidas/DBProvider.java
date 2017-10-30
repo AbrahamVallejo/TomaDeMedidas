@@ -341,6 +341,8 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " WHERE " + DBhelper.ID_RESIDENCIAL + " = ?", aData);
     }
 
+
+    //Tabla Dispositivos
     public void insertDispositivo(int idDisp,String nombre, int activo, String usuario, int fuera) {
         Object[] aData = {idDisp, nombre, activo, usuario, fuera};
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_DISPOSITIVOS + " (" + DBhelper.ID_DISP + ", " + DBhelper.COLUMN_NAME_NOMBRE + ", "
@@ -353,7 +355,6 @@ public class DBProvider {
         Object[] aData = {ID_DISP};
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_DISPOSITIVOS + " WHERE " + DBhelper.ID_DISP + " <> ?", aData);
     }
-
     public String[][] lastDispositivo() {
         int iCnt = 0;
         String[][] aData = null;
@@ -400,7 +401,8 @@ public class DBProvider {
         return (aData);
     }
 
-    //Tabla User
+
+    //Tabla User para Login
     public void insertUser(int id,String usuario, String pass, String email, int status, String nombre, String apellido, int verificacion) {
         Object[] aData = {id, usuario, pass, email, status, nombre, apellido, verificacion};
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_USER + " (" + DBhelper._ID + ", " + DBhelper.COLUMN_NAME_USERNAME + ", "
@@ -502,6 +504,74 @@ public class DBProvider {
     }
 
 
+    //Tabla Usuario para sacar los Agentes
+    public void insertAgentes(int idUsuario,String nombre, String apellido, int estatus, int tipo) {
+        Object[] aData = {idUsuario, nombre, apellido, estatus, tipo};
+        Log.v("obtenerA", "Voy a insertar: "+nombre);
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_USUARIO + " (" + DBhelper.ID_USUARIO + ", " + DBhelper.COLUMN_NAME_NOMBRE + ", "
+                + DBhelper.COLUMN_NAME_APELLIDO + ", " + DBhelper.COLUMN_NAME_ESTATUS + ", "
+                + DBhelper.ID_TIPOUSUARIO + ") VALUES(?, ?, ?, ?, ?)", aData);
+        Log.v("obtenerA", "Agente: "+nombre);
+    }
+
+    public String[][] buscarAgente(int idUsuario) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils= {( String.valueOf(idUsuario) )};
+        Cursor Ars;                Log.v("obtenerA", "Voy a buscar tu Agente");
+        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USUARIO + " WHERE " + DBhelper.ID_USUARIO + " = ?", aFils);
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][5];
+            while (Ars.moveToNext()) {
+                aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_USUARIO));
+                aData[iCnt][1] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE ));
+                aData[iCnt][2] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_APELLIDO ));
+                aData[iCnt][3] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_ESTATUS ));
+                aData[iCnt][4] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_TIPOUSUARIO ));
+                iCnt++; }
+        }
+        else{
+            aData = new String[1][1];
+            aData[0][0]= "0";
+        }
+        Ars.close();
+        CloseDB();  Log.v("[obtenerA", "Vuelvo de Buscar Agente");
+        return (aData);
+    }
+
+    public String[][] ObtenerAgentes(String id, int tipo) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)};
+        Cursor aRS;
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USUARIO + " WHERE " + DBhelper.ID_USUARIO + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USUARIO + " WHERE " + DBhelper.ID_USUARIO + " = ?", aFils);
+        }
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[5];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE));
+                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_APELLIDO));
+                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ESTATUS));
+                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_TIPOUSUARIO));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+
+        aRS.close();
+        CloseDB();
+        return (aData);
+    }
+
+
+
+
     //Ya obtiene los Dispositivos
     public String[][] ObtenerDispositivos(String id, int tipo) {
         int iCnt = 0;
@@ -533,7 +603,6 @@ public class DBProvider {
         CloseDB();              Log.v("[obtener]","Llevo todos los Dispositivos!!!");
         return (aData);
     }
-
     //Ya obtiene los Clientes
     public String[][] ObtenerClientes(String id, int tipo) {
         int iCnt = 0;
@@ -572,7 +641,6 @@ public class DBProvider {
         aRS = querySQL("Select * From " + DBhelper.TABLE_NAME_CLIENTE, null);
         return aRS;
     }
-
     //Ya obtiene los proyectos
     public String[][] ObtenerProyectos(String id, int tipo) {
         int iCnt = 0;

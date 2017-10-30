@@ -437,7 +437,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     proyecto.put("id_user", "1");
                     proyecto.put("nombre_proyecto", "PruebaDeProyecto");
                     proyecto.put("pedido_sap", "S/P");
-                    //proyecto.put("fecha", "/Date(1506871200000)/");
+                    proyecto.put("fecha", "/Date(1506871200000)/");
                     proyecto.put("autorizado", "0");
                     proyecto.put("accesorios_techo", "Cosas Techadas");
                     proyecto.put("accesorios_muro", "Cosas Murosadas");
@@ -456,6 +456,42 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 exception = e;
             }
         }
+        else if(urls[0] == "getusuarioLista"){
+            try{
+                sResp = NetServices.connectPost2(URL_WS1 + "wsusuario.svc/"+ urls[0]);
+                String[] aFujs = null;
+                JSONArray jaData = new JSONArray((sResp));
+                aFujs = new String[jaData.length()];
+                Log.v("[PRUEBA]", sResp);
+                for (int i = 0; i<jaData.length(); i++){
+                    JSONObject joFuj = jaData.getJSONObject(i);
+                    aFujs[i] = joFuj.getString("id_usuario");
+                    aFujs[i] = joFuj.getString("nombre");
+                    aFujs[i] = joFuj.getString("apellido");
+                    //aFujs[i] = joFuj.getString("usuario1");
+                    //aFujs[i] = joFuj.getString("contrasena");
+                    aFujs[i] = joFuj.getString("estatus");
+                    aFujs[i] = joFuj.getString("id_tipousuario");
+                    //aFujs[i] = joFuj.getString("fecha");
+                    Log.v("PRUEBA", joFuj.getString("id_usuario"));
+                    Log.v("PRUEBA", joFuj.getString("nombre")); Log.v("PRUEBA","...");
+                    if (joFuj.getString("estatus") == "true"){
+                        Log.v("obtenerA","IdUser: "+joFuj.getString("id_usuario") );
+                        if (Integer.parseInt(joFuj.getString("id_tipousuario") )== 1){//Log.v("obtener2","Tipo: "+joFuj.getString("id_tipousuario") );
+                            String[][] aRef = MainActivity.oDB.buscarAgente(Integer.parseInt(joFuj.getString("id_usuario")) );
+                            Log.v("obtenerA",aRef[0][0]);
+                            if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_usuario"))) {
+                                MainActivity.oDB.insertAgentes(Integer.parseInt(joFuj.getString("id_usuario")),
+                                        joFuj.getString("nombre"), joFuj.getString("apellido"),
+                                        1, Integer.parseInt(joFuj.getString("id_tipousuario")) );
+                            }
+                        }
+                    }
+                }
+            }catch (Exception e){
+                exception = e;
+            }
+        }
         else if(urls[0] == "getformatoLista"){
             try{
                 sResp = NetServices.connectPost2(URL_WS1 + "wsformato.svc/"+ urls[0]);
@@ -470,30 +506,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     Log.v("PRUEBA", joFuj.getString("id_formato"));
                     Log.v("PRUEBA", joFuj.getString("formato1")); Log.v("PRUEBA","...");
                 }
-            }catch (Exception e){
-                exception = e;
-            }
-        }
-        else if(urls[0] == "getusuarioLista"){
-            try{
-                sResp = NetServices.connectPost2(URL_WS1 + "wsusuario.svc/"+ urls[0]);
-                String[] aFujs = null; /*
-                JSONArray jaData = new JSONArray((sResp));
-                aFujs = new String[jaData.length()];
-                Log.v("PRUEBA", sResp);
-                for (int i = 0; i<jaData.length(); i++){
-                    JSONObject joFuj = jaData.getJSONObject(i);
-                    aFujs[i] = joFuj.getString("id_usuario");
-                    aFujs[i] = joFuj.getString("nombre");
-                    aFujs[i] = joFuj.getString("apellido");
-                    aFujs[i] = joFuj.getString("usuario1");
-                    aFujs[i] = joFuj.getString("contrasena");
-                    aFujs[i] = joFuj.getString("estatus");
-                    aFujs[i] = joFuj.getString("id_tipousuario");
-                    aFujs[i] = joFuj.getString("fecha");
-                    Log.v("PRUEBA", joFuj.getString("id_usuario"));
-                    Log.v("PRUEBA", joFuj.getString("nombre")); Log.v("PRUEBA","...");
-                }*/
             }catch (Exception e){
                 exception = e;
             }
