@@ -12,8 +12,6 @@
             android:orientation="vertical">
 
         <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:paddingTop="5dp"
         style="@style/TextCrear"
         android:text="@string/numero_de_habitaciones"
@@ -24,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_habitacion"
             android:maxLength="20"
             android:digits="AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
             -.,()1234567890"
@@ -31,8 +30,6 @@
             android:textSize="12sp" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/a"
             style="@style/TextCrear"
@@ -43,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:digits=".1234567890"
@@ -50,8 +48,6 @@
             android:textSize="12sp"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/b"
             style="@style/TextCrear"
@@ -62,14 +58,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:digits=".1234567890"
             android:textSize="12sp"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/c"
             style="@style/TextCrear"
@@ -80,14 +75,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:digits=".1234567890"
             android:textSize="12sp"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/d"
             style="@style/TextCrear"
@@ -98,14 +92,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:digits=".1234567890"
             android:textSize="12sp"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/e"
             style="@style/TextCrear"
@@ -116,14 +109,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:digits=".1234567890"
             android:textSize="12sp"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/f"
             style="@style/TextCrear"
@@ -134,14 +126,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:digits=".1234567890"
             android:textSize="12sp"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/g"
             style="@style/TextCrear"
@@ -152,14 +143,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/ej_metros"
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:digits=".1234567890"
             android:textSize="12sp"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/observaciones"
             style="@style/TextCrear"
@@ -170,6 +160,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/observacion_cama"
             android:inputType="text"
             android:maxLength="500"
             android:textSize="12sp"/>
