@@ -24,7 +24,11 @@ import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, Fragment_clientes.OnFragmentInteractionListener, Fragment_proyecto.OnFragmentInteractionListener, Fragment_listaProyecto.OnFragmentInteractionListener, Fragment_listaClientes.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener, Fragment_clientes.OnFragmentInteractionListener,
+        Fragment_proyecto.OnFragmentInteractionListener, Fragment_listaProyecto.OnFragmentInteractionListener,
+        Fragment_listaClientes.OnFragmentInteractionListener, Fragment_listaResidencial.OnFragmentInteractionListener,
+        Fragment_listaHoteleria.OnFragmentInteractionListener, Fragment_listaGaleria.OnFragmentInteractionListener,
+        Fragment_listaEspecial.OnFragmentInteractionListener, Fragment_listaCama.OnFragmentInteractionListener{
 
     public static DBProvider oDB;
 
@@ -76,6 +80,11 @@ public class MainActivity extends AppCompatActivity
         if (aux != false){
             getclienteLista();
             getproyectoLista();
+            getproyectoCamaLista();
+            getproyectoEspecialLista();
+            getproyectoGaleriaLista();
+            getproyectoHoteleriaLista();
+            getproyectoResidencialLista();
         }
         else {
             Toast.makeText(this, "Sin Acceso a la Red", Toast.LENGTH_SHORT).show();
@@ -141,7 +150,7 @@ public class MainActivity extends AppCompatActivity
         int formatoSelected;
 
         if (selected.equals("Hoteleria")){
-            formatoSelected = 1;
+            formatoSelected = 2;
             Intent rIntent = new Intent(MainActivity.this, hoteleria.class);
             rIntent.putExtra("idFormato", formatoSelected);
             rIntent.putExtra("nombreProyecto", nombreProyecto);
@@ -152,7 +161,7 @@ public class MainActivity extends AppCompatActivity
             rIntent.putExtra("PedidoSap", PS);
             startActivity(rIntent);
         }else if (selected.equals("Cama")){
-            formatoSelected = 2;
+            formatoSelected = 4;
             Intent rIntent = new Intent(MainActivity.this, cama.class);
             rIntent.putExtra("idFormato", formatoSelected);
             rIntent.putExtra("nombreProyecto", nombreProyecto);
@@ -163,7 +172,7 @@ public class MainActivity extends AppCompatActivity
             rIntent.putExtra("PedidoSap", PS);
             startActivity(rIntent);
         }else if (selected.equals("Residencial")){
-            formatoSelected = 3;
+            formatoSelected = 1;
             Intent rIntent = new Intent(MainActivity.this, residencial.class);
             rIntent.putExtra("idFormato", formatoSelected);
             rIntent.putExtra("nombreProyecto", nombreProyecto);
@@ -174,7 +183,7 @@ public class MainActivity extends AppCompatActivity
             rIntent.putExtra("PedidoSap", PS);
             startActivity(rIntent);
         }else if (selected.equals("Galeria")){
-            formatoSelected = 4;
+            formatoSelected = 3;
             Intent rIntent = new Intent(MainActivity.this, galeria.class);
             rIntent.putExtra("idFormato", formatoSelected);
             rIntent.putExtra("nombreProyecto", nombreProyecto);
@@ -253,7 +262,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.EditarProyecto){
             FragmentTransaction = true;
             fragment = new Fragment_listaProyecto();
-    }
+        }
 
         if (FragmentTransaction){
             getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();
