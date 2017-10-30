@@ -45,7 +45,7 @@ public class Fragment_proyecto extends Fragment {
     private static final String APP_PATH = "droidBH";
     private Uri fileUri;
     String sID;
-    private Spinner spClientes;
+    private Spinner spClientes, spAgentes;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -95,19 +95,8 @@ public class Fragment_proyecto extends Fragment {
         Button botonCamara = ((Button) vista.findViewById(R.id.TomarFoto));
         ImageView oImg = (ImageView) vista.findViewById(R.id.imgFoto);
 
-        String[][] aRes= MainActivity.oDB.ObtenerClientes("0",1);
-        spClientes= ( vista.findViewById(R.id.spinner_cliente));
-        List<String> listaClientesSql;
-        //ArrayAdapter<String> comboAdapterSql;
-        listaClientesSql = new ArrayList<>();
-        for(int i = 0; i < aRes.length; i++){
-            String inde = String.valueOf(aRes[i][0]+"."+aRes[i][1]);
-            listaClientesSql.add(inde+"- "+aRes[i][2]);
-        }
-        Log.v("[obtener]",listaClientesSql.toString());
-        //comboAdapterSql = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaClientesSql);
-        spClientes.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, listaClientesSql));
-
+        spinnerCliente();
+        spinnerAgente();
 
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");
@@ -128,6 +117,34 @@ public class Fragment_proyecto extends Fragment {
         });
 
         return vista;
+    }
+
+    public void spinnerCliente(){
+        String[][] aRes= MainActivity.oDB.ObtenerClientes("0",1);
+        spClientes= ( vista.findViewById(R.id.spinner_cliente));
+        List<String> listaClientesSql; //ArrayAdapter<String> comboAdapterSql;
+        listaClientesSql = new ArrayList<>();
+        for(int i = 0; i < aRes.length; i++){
+            String inde = String.valueOf(aRes[i][0]+"."+aRes[i][1]);
+            listaClientesSql.add(inde+"- "+aRes[i][2]);
+        }
+        Log.v("[obtener]",listaClientesSql.toString()); //comboAdapterSql = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaClientesSql);
+        spClientes.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, listaClientesSql));
+
+    }
+
+    public void spinnerAgente(){
+        String[][] aRes= MainActivity.oDB.ObtenerAgentes("0",1);
+        spAgentes= ( vista.findViewById(R.id.spinner_agente));
+        List<String> listaClientesSql; //ArrayAdapter<String> comboAdapterSql;
+        listaClientesSql = new ArrayList<>();
+        for(int i = 0; i < aRes.length; i++){
+            String inde = String.valueOf(aRes[i][0] );
+            listaClientesSql.add(inde+"- "+aRes[i][1]);
+        }
+        Log.v("[obtener]",listaClientesSql.toString()); //comboAdapterSql = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaClientesSql);
+        spAgentes.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, listaClientesSql));
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -62,22 +62,27 @@
         </activity>
       
         <activity android:name=".hoteleria"
+            android:screenOrientation="portrait"
             android:label="@string/proyecto_hoteleria">
         </activity>
 
         <activity android:name=".cama"
+            android:screenOrientation="portrait"
             android:label="@string/proyecto_cama">
         </activity>
         
         <activity android:name=".residencial"
+            android:screenOrientation="portrait"
             android:label="@string/proyecto_residencial">
         </activity>
 
         <activity android:name=".galeria"
+            android:screenOrientation="portrait"
             android:label="@string/proyecto_galeria">
         </activity>
 
         <activity android:name=".especial"
+            android:screenOrientation="portrait"
             android:label="@string/proyecto_especial">
         </activity>
 
