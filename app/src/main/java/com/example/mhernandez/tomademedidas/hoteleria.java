@@ -93,8 +93,7 @@ public class hoteleria extends AppCompatActivity {
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione una ubicación...";
         for(int i = 0; i < aRes.length; i++){
-            String inde = String.valueOf(aRes[i][0]);
-            aData[i+1] = (inde+" - "+aRes[i][2]);
+            aData[i+1] = (aRes[i][2]);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spAreaH.setAdapter(adapter);
@@ -106,8 +105,7 @@ public class hoteleria extends AppCompatActivity {
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un valor...";
         for(int i = 0; i < aRes.length; i++){
-            String inde = String.valueOf(aRes[i][0]);
-            aData[i+1] = (inde+" - "+aRes[i][1]);
+            aData[i+1] = (aRes[i][1]);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spControlH.setAdapter(adapter);
@@ -119,8 +117,7 @@ public class hoteleria extends AppCompatActivity {
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un lado...";
         for(int i = 0; i < aRes.length; i++){
-            String inde = String.valueOf(aRes[i][0]);
-            aData[i+1] = (inde+" - "+aRes[i][1]);
+            aData[i+1] = (aRes[i][1]);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spFijacionH.setAdapter(adapter);
@@ -132,8 +129,7 @@ public class hoteleria extends AppCompatActivity {
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione uno...";
         for(int i = 0; i < aRes.length; i++){
-            String inde = String.valueOf(aRes[i][0]);
-            aData[i+1] = (inde+" - "+aRes[i][1]);   //aData[i+1] = ("Valor " +i);
+            aData[i+1] = (aRes[i][1]);   //aData[i+1] = ("Valor " +i);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spCorrederaH.setAdapter(adapter);
