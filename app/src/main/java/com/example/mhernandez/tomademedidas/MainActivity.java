@@ -79,10 +79,9 @@ public class MainActivity extends AppCompatActivity
             getclienteLista();      getcopeteLista();
             getfijacionLista();     getproyeccionLista();
             getubicacionLista();    getcontrolLista();
-            getcorrederaLista();
+            getcorrederaLista();    getusuarioLista();
 /*
             getproyectoLista();
-            getusuarioLista();
             getproyectoCamaLista();
             getproyectoEspecialLista();
 */
