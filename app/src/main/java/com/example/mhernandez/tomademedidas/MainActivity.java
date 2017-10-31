@@ -73,12 +73,13 @@ public class MainActivity extends AppCompatActivity
         Proyecto.setTitle(P);
         navigationView.setNavigationItemSelectedListener(this);
 
-        MainActivity.oDB.ObtenerClientes("0",1);
+        MainActivity.oDB.ObtenerCorredera("0",1);
         boolean aux = isOnlineNet();
         if (aux != false){
             getclienteLista();      getcopeteLista();
             getfijacionLista();     getproyeccionLista();
             getubicacionLista();    getcontrolLista();
+            getcorrederaLista();
 /*
             getproyectoLista();
             getusuarioLista();
@@ -406,19 +407,31 @@ public class MainActivity extends AppCompatActivity
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES CONTROL!", Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getcontrolLista");
+    }
+
+    public void getcorrederaLista(){
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                        "ERROR EN EL WEB SERVICES CORREDERA!", Toast.LENGTH_LONG).show();
             }
         });
-        oNS.execute("getcontrolLista");
+        oNS.execute("getcorrederaLista");
     }
 
     public void getformatoLista(){

@@ -132,13 +132,12 @@ public class residencial extends AppCompatActivity {
     }
 
     public void spinnerCorredera(){
-        String[][] aRes= residencial.oDB.ObtenerProyeccion("0",1);
+        String[][] aRes= residencial.oDB.ObtenerCorredera("0",1);
         spCorrederaR= (Spinner)( findViewById(R.id.spinner_correderaR));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione uno...";
         for(int i = 0; i < aRes.length; i++){
-            //aData[i+1] = (aRes[i][1]);
-            aData[i+1] = ("Valor " +i);
+            aData[i+1] = (aRes[i][1]);  //aData[i+1] = ("Valor " +i);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spCorrederaR.setAdapter(adapter);
