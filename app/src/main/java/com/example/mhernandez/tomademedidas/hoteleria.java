@@ -127,14 +127,13 @@ public class hoteleria extends AppCompatActivity {
     }
 
     public void spinnerCorredera(){
-        String[][] aRes= hoteleria.oDB.ObtenerProyeccion("0",1);
+        String[][] aRes= hoteleria.oDB.ObtenerCorredera("0",1);
         spCorrederaH= (Spinner)( findViewById(R.id.spinner_correderaH));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione uno...";
         for(int i = 0; i < aRes.length; i++){
             String inde = String.valueOf(aRes[i][0]);
-            //aData[i+1] = (inde+" - "+aRes[i][1]);
-            aData[i+1] = ("Valor " +i);
+            aData[i+1] = (inde+" - "+aRes[i][1]);   //aData[i+1] = ("Valor " +i);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spCorrederaH.setAdapter(adapter);

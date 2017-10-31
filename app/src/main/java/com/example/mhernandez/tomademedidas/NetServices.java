@@ -537,6 +537,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("area_ubicacion");
                     aFujs[i] = joFuj.getString("id_disp");
                     Log.v("PRUEBA", joFuj.getString("area_ubicacion")); Log.v("PRUEBA","...");
+
                     String[][] aRef = MainActivity.oDB.buscarUbicacion(Integer.parseInt(joFuj.getString("id_area")));
                     if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_area"))) {
                         Log.v("obtenerU", "aRef:"+aRef[0][0] +" area:"+joFuj.getString("id_area") );
@@ -561,6 +562,29 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("id_formato");
                     Log.v("PRUEBA", joFuj.getString("id_formato"));
                     Log.v("PRUEBA", joFuj.getString("formato1")); Log.v("PRUEBA","...");
+                }
+            }catch (Exception e){
+                exception = e;
+            }
+        }
+        else if(urls[0] == "getcorrederaLista"){
+            try{
+                sResp = NetServices.connectPost2(URL_WS1 + "wscorredera.svc/"+ urls[0]);
+                String[] aFujs = null;
+                JSONArray jaData = new JSONArray((sResp));
+                aFujs = new String[jaData.length()];
+                Log.v("PRUEBAC", sResp);
+                for (int i = 0; i<jaData.length(); i++){
+                    JSONObject joFuj = jaData.getJSONObject(i);
+                    aFujs[i] = joFuj.getString("id_corredera");
+                    aFujs[i] = joFuj.getString("valor");
+                    Log.v("PRUEBAC", joFuj.getString("id_corredera"));
+                    Log.v("PRUEBAC", joFuj.getString("valor")); Log.v("PRUEBAC","...");
+
+                    String[][] aRef = MainActivity.oDB.buscarCorredera(Integer.parseInt(joFuj.getString("id_corredera")));
+                    if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_corredera"))) {
+                        MainActivity.oDB.insertCorredera(Integer.parseInt(joFuj.getString("id_corredera")), joFuj.getString("valor"));
+                    }
                 }
             }catch (Exception e){
                 exception = e;
