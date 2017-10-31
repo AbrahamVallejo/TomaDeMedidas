@@ -69,7 +69,6 @@
             <EditText
                 android:id="@+id/proyecto_nombre_proyecto"
                 style="@style/EditText"
-                android:ems="10"
                 android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
                 -.,()/#1234567890"
                 android:maxLength="100"
