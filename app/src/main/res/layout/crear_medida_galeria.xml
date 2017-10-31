@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:paddingTop="8dp"
+                style="@style/TextCrear"
+                android:text="@string/numero_de_habitaciones"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/txt_numero_habitaciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Texto. Ej: A1, 2."
+                android:inputType="text"
+                android:maxLength="20"
+                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
+                -.,()1234567890"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/crearArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Crear area"/>
+
+            <TextView
+                android:paddingTop="8dp"
+                style="@style/TextCrear"
+                android:text="@string/area"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+
+            <Spinner
+                android:id="@+id/spinner_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </Spinner>
+
+            <TextView
+                android:paddingTop="8dp"
+                style="@style/TextCrear"
+                android:text="@string/ancho"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:maxLength="20"
+                android:hint="@string/ej_metros"
+                android:digits=".1234567890"
+                android:id="@+id/txt_ancho"
+                android:textSize="14sp" />
+
+            <TextView
+                android:paddingTop="8dp"
+                style="@style/TextCrear"
+                android:text="@string/alto"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:maxLength="20"
+                android:hint="@string/ej_metros"
+                android:digits=".1234567890"
+                android:id="@+id/txt_alto"
+                android:textSize="14sp" />
+
+            <TextView
+                android:paddingTop="8dp"
+                style="@style/TextCrear"
+                android:text="@string/copete"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+
+            <Spinner
+                android:id="@+id/spinner_copete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </Spinner>
+
+            <TextView
+                android:paddingTop="8dp"
+                style="@style/TextCrear"
+                android:text="@string/proyecciones"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <Spinner
+                android:id="@+id/spinner_proyecciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </Spinner>
+
+            <TextView
+                android:paddingTop="8dp"
+                style="@style/TextCrear"
+                android:text="@string/fijacion"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+            <Spinner
+                android:id="@+id/spinner_fijacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </Spinner>
+
+            <TextView
+                android:text="@string/comentarios"
+                android:paddingTop="8dp"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Texto. Ej: Solo se requiere la vista izquierda"
+                android:inputType="text"
+                android:maxLength="200"
+                android:id="@+id/txt_comentarios"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:paddingTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Imagen"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/Imagen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="12sp"/>
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="50"
+                android:contentDescription="Foto"
+                android:maxHeight="200dp"
+                android:maxWidth="200dp"
+                android:minHeight="200dp"
+                android:minWidth="200dp"/>
+
+            <Button
+                android:id="@+id/Guardar"
+                style="@style/ButtonStyle2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/guardar"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

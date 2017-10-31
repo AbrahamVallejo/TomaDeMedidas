@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edificio: "
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/txtEdificio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/ej_edificio"
+                android:inputType="text"
+                android:maxLength="45"
+                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Piso: "
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/txtPiso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/ej_piso"
+                android:inputType="number"
+                android:maxLength="20"
+                android:digits=".1234567890"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Habitacion: "
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/txtHabitacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/ej_habitacion"
+                android:inputType="text"
+                android:maxLength="20"
+                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
+                -.,()1234567890"
+                android:textSize="12sp"/>
+
+            <Button
+                android:id="@+id/crearArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Crear Area" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Area: "
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <Spinner
+                android:id="@+id/spinner_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </Spinner>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ancho: "
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/txtAncho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/ej_metros"
+                android:inputType="numberDecimal"
+                android:maxLength="20"
+                android:digits=".1234567890"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alto: "
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/txtAlto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/ej_metros"
+                android:inputType="numberDecimal"
+                android:maxLength="20"
+                android:digits=".1234567890"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hojas: "
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/txtHojas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/ej_hojas"
+                android:inputType="numberDecimal"
+                android:maxLength="20"
+                android:digits=".1234567890"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Control: "
+                android:paddingTop="8dp"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <Spinner
+                android:id="@+id/spinner_control"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </Spinner>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fijacion: "
+                android:paddingTop="8dp"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <Spinner
+                android:id="@+id/spinner_fijacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </Spinner>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Corredera: "
+                android:paddingTop="8dp"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <Spinner
+                android:id="@+id/spinner_corredera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </Spinner>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Medida Sugerida: "
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/txtMedidaSugerida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/ej_metros"
+                android:inputType="text"
+                android:maxLength="45"
+                android:digits="mtsx MTSX-.,()1234567890"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Observaciones: "
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/txtObservaciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="500"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:paddingTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Imagen"
+                style="@style/TextCrear"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <EditText
+                android:id="@+id/Imagen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="12sp"/>
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="50"
+                android:contentDescription="Foto"
+                android:maxHeight="200dp"
+                android:maxWidth="200dp"
+                android:minHeight="200dp"
+                android:minWidth="200dp"/>
+
+            <Button
+                android:id="@+id/Guardar"
+                style="@style/ButtonStyle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold"
+                android:text="@string/guardar"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
