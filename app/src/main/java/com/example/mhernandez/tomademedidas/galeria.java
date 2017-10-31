@@ -25,8 +25,7 @@ import java.util.List;
 
 public class galeria extends AppCompatActivity {
 
-    private Spinner spArea;
-    View vista = null;
+    private Spinner spArea, spFijacion, spCopete, spProye;
 
     public static DBProvider oDB;
     public galeria() {oDB = new DBProvider(this);}
@@ -37,6 +36,9 @@ public class galeria extends AppCompatActivity {
         setContentView(R.layout.crear_galeria);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle oExt = this.getIntent().getExtras();
+        //Llenar los spinner
+        spinnerArea(); spinnerCopete(); spinnerFijacion(); spinnerProyecciones();
+
         final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
         final String accesoriosMuro = oExt.getString("accesoriosMuro");
@@ -47,13 +49,11 @@ public class galeria extends AppCompatActivity {
         final EditText NHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
         final EditText Ancho = (EditText) this.findViewById(R.id.txt_ancho);
         final EditText Alto = (EditText) this.findViewById(R.id.txt_alto);
-        final EditText Copete = (EditText) this.findViewById(R.id.txt_copete);
-        final EditText Proyecciones = (EditText) this.findViewById(R.id.txt_proyecciones);
-        final EditText Fijacion = (EditText) this.findViewById(R.id.txt_fijacion);
+        //final EditText Copete = (EditText) this.findViewById(R.id.txt_copete);
+        //final EditText Proyecciones = (EditText) this.findViewById(R.id.txt_proyecciones);
+        //final EditText Fijacion = (EditText) this.findViewById(R.id.txt_fijacion);
         final EditText Comentarios = (EditText) this.findViewById(R.id.txt_comentarios);
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
-        Log.v("[a2","Voy al spinner");
-        spinnerArea();
         Guardar.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -61,14 +61,14 @@ public class galeria extends AppCompatActivity {
                         String numeroHabitaciones = NHabitaciones.getText().toString();
                         String txtAncho = Ancho.getText().toString();
                         String txtAlto = Alto.getText().toString();
-                        String txtCopete = Copete.getText().toString();
-                        String txtProyecciones = Proyecciones.getText().toString();
-                        String txtFijacion = Fijacion.getText().toString();
+                        //String txtCopete = Copete.getText().toString();
+                        //String txtProyecciones = Proyecciones.getText().toString();
+                        //String txtFijacion = Fijacion.getText().toString();
                         String txtComentarios = Comentarios.getText().toString();
                         oDB.insertProyecto(1, 2, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
-                        oDB.insertProyectoGaleria(numeroHabitaciones, "a", txtAncho, txtAlto, txtCopete,
-                                txtProyecciones, txtFijacion, "IMAGEN", txtComentarios);
+                        //oDB.insertProyectoGaleria(numeroHabitaciones, "a", txtAncho, txtAlto, txtCopete,
+                        //        txtProyecciones, txtFijacion, "IMAGEN", txtComentarios);
                         finish();
                     }
                 }
@@ -97,25 +97,55 @@ public class galeria extends AppCompatActivity {
     }*/
 
     public void spinnerArea(){
-        Log.v("[a2","Funcion Spinner");
-        String[][] aRes= galeria.oDB.ObtenerClientes("0",1);
-        spArea= (Spinner)( findViewById(R.id.spinner_cliente));
-        List<String> listaClientesSql; //ArrayAdapter<String> comboAdapterSql;
-        listaClientesSql = new ArrayList<>();
-        for(int i = 0; i < aRes.length; i++){
-            String inde = String.valueOf(aRes[i][0]+"."+aRes[i][1]);
-            listaClientesSql.add(inde+"- "+aRes[i][2]);
+        String[][] aRes= galeria.oDB.ObtenerAgentes("0",1);
+        spArea= (Spinner)( findViewById(R.id.spinner_area));
+        final String[] aData = new String[aRes.length];
+        aData[0]="Seleccione un Área:";
+        for(int i = 1; i < aRes.length; i++){
+            String inde = String.valueOf(aRes[i][0]);
+            aData[i] = (inde+" - "+aRes[i][1]);
         }
-        Log.v("[a2]",listaClientesSql.toString()); //comboAdapterSql = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaClientesSql);
-        final String[] aData = new String[2];
-        aData[0] = "1";
-        aData[1] = "2";
-
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spArea.setAdapter(adapter);
+    }
 
-        //spArea.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, listaClientesSql));
+    public void spinnerCopete(){
+        String[][] aRes= galeria.oDB.ObtenerAgentes("0",1);
+        spCopete= (Spinner)( findViewById(R.id.spinner_copete));
+        final String[] aData = new String[aRes.length];
+        aData[0]="Seleccione un Copete:";
+        for(int i = 1; i < aRes.length; i++){
+            String inde = String.valueOf(aRes[i][0]);
+            aData[i] = (inde+" - "+aRes[i][1]);
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
+        spCopete.setAdapter(adapter);
+    }
 
+    public void spinnerFijacion(){
+        String[][] aRes= galeria.oDB.ObtenerAgentes("0",1);
+        spFijacion= (Spinner)( findViewById(R.id.spinner_fijacion));
+        final String[] aData = new String[aRes.length];
+        aData[0]="Seleccione una Fijación:";
+        for(int i = 1; i < aRes.length; i++){
+            String inde = String.valueOf(aRes[i][0]);
+            aData[i] = (inde+" - "+aRes[i][1]);
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
+        spFijacion.setAdapter(adapter);
+    }
+
+    public void spinnerProyecciones(){
+        String[][] aRes= galeria.oDB.ObtenerAgentes("0",1);
+        spProye= (Spinner)( findViewById(R.id.spinner_proyecciones));
+        final String[] aData = new String[aRes.length];
+        aData[0]="Seleccione un Proyección:";
+        for(int i = 1; i < aRes.length; i++){
+            String inde = String.valueOf(aRes[i][0]);
+            aData[i] = (inde+" - "+aRes[i][1]);
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
+        spProye.setAdapter(adapter);
     }
 
 
