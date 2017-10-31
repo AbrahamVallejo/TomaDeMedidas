@@ -122,19 +122,15 @@ public class Fragment_proyecto extends Fragment {
     public void spinnerCliente(){
         String[][] aRes= MainActivity.oDB.ObtenerClientes("0",1);
         spClientes= ( vista.findViewById(R.id.spinner_cliente));
-        /*List<String> listaClientesSql; //ArrayAdapter<String> comboAdapterSql;
-        listaClientesSql = new ArrayList<>();
+        /*List<String> listaClientesSql; //ArrayAdapter<String> comboAdapterSql;listaClientesSql = new ArrayList<>();
+        for(int i = 0; i < aRes.length; i++){   String inde = String.valueOf(aRes[i][0]+"."+aRes[i][1]);   listaClientesSql.add(inde+"- "+aRes[i][2]);
+        }Log.v("[obtener]",listaClientesSql.toString()); //comboAdapterSql = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaClientesSql);
+        spClientes.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, listaClientesSql));*/
+        final String[] aData = new String[aRes.length+1];
+        aData[0]="Seleccione un cliente:";
         for(int i = 0; i < aRes.length; i++){
             String inde = String.valueOf(aRes[i][0]+"."+aRes[i][1]);
-            listaClientesSql.add(inde+"- "+aRes[i][2]);
-        }
-        Log.v("[obtener]",listaClientesSql.toString()); //comboAdapterSql = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaClientesSql);
-        spClientes.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, listaClientesSql));*/
-        final String[] aData = new String[aRes.length];
-        aData[0]="Seleccione un Cliente:";
-        for(int i = 1; i < aRes.length; i++){
-            String inde = String.valueOf(aRes[i][0]+"."+aRes[i][1]);
-            aData[i] = (inde+" - "+aRes[i][2]);
+            aData[i+1] = (inde+" - "+aRes[i][2]);
         }
         ArrayAdapter adapter = new ArrayAdapter(getActivity().getApplicationContext(),R.layout.simple_spinner_item,aData);
         spClientes.setAdapter(adapter);
@@ -143,15 +139,16 @@ public class Fragment_proyecto extends Fragment {
     public void spinnerAgente(){
         String[][] aRes= MainActivity.oDB.ObtenerAgentes("0",1);
         spAgentes= ( vista.findViewById(R.id.spinner_agente));
-        final String[] aData = new String[aRes.length];
-        aData[0]="Seleccione un Agente:";
-        for(int i = 1; i < aRes.length; i++){
+        final String[] aData = new String[aRes.length+1];
+        aData[0]="Seleccione un agente de venta...";
+        for(int i = 0; i < aRes.length; i++){
             String inde = String.valueOf(aRes[i][0]);
-            aData[i] = (inde+" - "+aRes[i][1]);
+            aData[i+1] = (inde+" - "+aRes[i][1]);
         }
         ArrayAdapter adapter = new ArrayAdapter(getActivity().getApplicationContext(),R.layout.simple_spinner_item,aData);
         spAgentes.setAdapter(adapter);
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

@@ -97,52 +97,52 @@ public class galeria extends AppCompatActivity {
     }*/
 
     public void spinnerArea(){
-        String[][] aRes= galeria.oDB.ObtenerAgentes("0",1);
+        String[][] aRes= galeria.oDB.ObtenerUbicacion("0",1);
         spArea= (Spinner)( findViewById(R.id.spinner_area));
-        final String[] aData = new String[aRes.length];
-        aData[0]="Seleccione un Área:";
-        for(int i = 1; i < aRes.length; i++){
+        final String[] aData = new String[aRes.length+1];
+        aData[0]="Seleccione una ubicación...";
+        for(int i = 0; i < aRes.length; i++){
             String inde = String.valueOf(aRes[i][0]);
-            aData[i] = (inde+" - "+aRes[i][1]);
+            aData[i+1] = (inde+" - "+aRes[i][2]);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spArea.setAdapter(adapter);
     }
 
     public void spinnerCopete(){
-        String[][] aRes= galeria.oDB.ObtenerAgentes("0",1);
+        String[][] aRes= galeria.oDB.ObtenerCopete("0",1);
         spCopete= (Spinner)( findViewById(R.id.spinner_copete));
-        final String[] aData = new String[aRes.length];
-        aData[0]="Seleccione un Copete:";
-        for(int i = 1; i < aRes.length; i++){
+        final String[] aData = new String[aRes.length+1];
+        aData[0]="Seleccione un valor...";
+        for(int i = 0; i < aRes.length; i++){
             String inde = String.valueOf(aRes[i][0]);
-            aData[i] = (inde+" - "+aRes[i][1]);
+            aData[i+1] = (inde+" - "+aRes[i][1]);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spCopete.setAdapter(adapter);
     }
 
     public void spinnerFijacion(){
-        String[][] aRes= galeria.oDB.ObtenerAgentes("0",1);
+        String[][] aRes= galeria.oDB.ObtenerFijacion("0",1);
         spFijacion= (Spinner)( findViewById(R.id.spinner_fijacion));
-        final String[] aData = new String[aRes.length];
-        aData[0]="Seleccione una Fijación:";
-        for(int i = 1; i < aRes.length; i++){
+        final String[] aData = new String[aRes.length+1];
+        aData[0]="Seleccione un lado...";
+        for(int i = 0; i < aRes.length; i++){
             String inde = String.valueOf(aRes[i][0]);
-            aData[i] = (inde+" - "+aRes[i][1]);
+            aData[i+1] = (inde+" - "+aRes[i][1]);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spFijacion.setAdapter(adapter);
     }
 
     public void spinnerProyecciones(){
-        String[][] aRes= galeria.oDB.ObtenerAgentes("0",1);
+        String[][] aRes= galeria.oDB.ObtenerProyeccion("0",1);
         spProye= (Spinner)( findViewById(R.id.spinner_proyecciones));
-        final String[] aData = new String[aRes.length];
-        aData[0]="Seleccione un Proyección:";
-        for(int i = 1; i < aRes.length; i++){
+        final String[] aData = new String[aRes.length+1];
+        aData[0]="Seleccione un valor...";
+        for(int i = 0; i < aRes.length; i++){
             String inde = String.valueOf(aRes[i][0]);
-            aData[i] = (inde+" - "+aRes[i][1]);
+            aData[i+1] = (inde+" - "+aRes[i][1]);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spProye.setAdapter(adapter);

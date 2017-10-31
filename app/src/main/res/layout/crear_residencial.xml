@@ -16,27 +16,23 @@
                 android:layout_height="wrap_content"
                 android:text="Ubicacion: "
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textColor="@android:color/black"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-            <EditText
-                android:id="@+id/txtUbicacion"
+            <Spinner
+                android:id="@+id/spinner_ubicacionR"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:maxLength="100"
-                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
-                    -.,()/#1234567890"
-                android:textSize="12sp"/>
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Piso: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -56,7 +52,7 @@
             android:layout_height="wrap_content"
             android:text="A: "
             android:paddingTop="8dp"
-            style="@style/TextCrear"
+            style="@style/TextView"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -75,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:text="B: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -94,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:text="C: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -109,11 +105,9 @@
                 android:textSize="12sp"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="D: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -128,11 +122,9 @@
                 android:textSize="12sp"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="E: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -147,11 +139,9 @@
                 android:textSize="12sp"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="F: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -166,11 +156,9 @@
                 android:textSize="12sp"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="G: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -185,11 +173,9 @@
                 android:textSize="12sp"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="H: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -204,11 +190,9 @@
                 android:textSize="12sp"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Prof Marco: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -223,11 +207,9 @@
                 android:textSize="12sp"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Prof Jaladera: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -242,81 +224,63 @@
                 android:textSize="12sp"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Control: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-            <EditText
-                android:id="@+id/txtControl"
+            <Spinner
+                android:id="@+id/spinner_controlR"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:textSize="12sp"/>
+                android:layout_height="wrap_content" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Agpto: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-            <EditText
-                android:id="@+id/txtAgpto"
+            <Spinner
+                android:id="@+id/spinner_agptoR"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:textSize="12sp"/>
+                android:layout_height="wrap_content" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Fijacion: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-            <EditText
-                android:id="@+id/txtFijacion"
+            <Spinner
+                android:id="@+id/spinner_fijacionR"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:maxLength="45"
-                android:digits="abcdefghijklmnñopqrstuüvwxyz ABCDEFGHIJKLMNÑOPQRSTUÜVWXYZ
-                -.,()1234567890"
-                android:textSize="12sp"/>
+                android:layout_height="wrap_content" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Corredera: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-            <EditText
-                    android:id="@+id/txtCorredera"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:maxLength="100"
-                    android:digits="abcdefghijklmnñopqrstuüvwxyz ABCDEFGHIJKLMNÑOPQRSTUÜVWXYZ
-                -.,()1234567890"
-                    android:textSize="12sp"/>
+            <Spinner
+                android:id="@+id/spinner_correderaR"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Medida Sugerida: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
              <EditText
@@ -336,7 +300,7 @@
                 android:layout_height="wrap_content"
                 android:text="Observaciones: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText

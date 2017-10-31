@@ -17,7 +17,7 @@
                 android:text="Edificio: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -37,7 +37,7 @@
                 android:text="Piso: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -57,7 +57,7 @@
                 android:text="Habitacion: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -84,7 +84,7 @@
                 android:text="Area: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <Spinner
@@ -99,7 +99,7 @@
                 android:text="Ancho: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -119,7 +119,7 @@
                 android:text="Alto: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -139,7 +139,7 @@
                 android:text="Hojas: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -158,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:text="Control: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <Spinner
@@ -172,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:text="Fijacion: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <Spinner
@@ -186,7 +186,7 @@
                 android:layout_height="wrap_content"
                 android:text="Corredera: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <Spinner
@@ -201,7 +201,7 @@
                 android:text="Medida Sugerida: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -221,7 +221,7 @@
                 android:text="Observaciones: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -238,7 +238,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Imagen"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText

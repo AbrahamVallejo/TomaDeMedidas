@@ -17,7 +17,7 @@
                 android:text="Edificio: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -37,7 +37,7 @@
                 android:text="Piso: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -57,7 +57,7 @@
                 android:text="Habitacion: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -73,24 +73,18 @@
                 android:textSize="12sp"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Area: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-            <EditText
-                android:id="@+id/txtArea"
+            <Spinner
+                android:id="@+id/spinner_areaH"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:maxLength="100"
-                android:inputType="text"
-                android:digits="abcdefghijklmnñopqrstuüvwxyz ABCDEFGHIJKLMNÑOPQRSTUÜVWXYZ
-                -.,:()1234567890"
-                android:textSize="12sp"/>
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -98,7 +92,7 @@
                 android:text="Ancho: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -118,7 +112,7 @@
                 android:text="Alto: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -138,7 +132,7 @@
                 android:text="Hojas: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -158,18 +152,15 @@
                 android:text="Control: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-            <EditText
-                android:id="@+id/txtControl"
+            <Spinner
+                android:id="@+id/spinner_controlH"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:maxLength="45"
-                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
-                android:textSize="12sp"/>
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -177,18 +168,15 @@
                 android:text="Fijacion: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-            <EditText
-                android:id="@+id/txtFijacion"
+            <Spinner
+                android:id="@+id/spinner_fijacionH"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:maxLength="45"
-                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
-                android:textSize="12sp"/>
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -196,17 +184,15 @@
                 android:text="Corredera: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-            <EditText
-                android:id="@+id/txtCorredera"
+            <Spinner
+                android:id="@+id/spinner_correderaH"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:maxLength="100"
-                android:textSize="12sp"/>
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -214,7 +200,7 @@
                 android:text="Medida Sugerida: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -234,7 +220,7 @@
                 android:text="Observaciones: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText

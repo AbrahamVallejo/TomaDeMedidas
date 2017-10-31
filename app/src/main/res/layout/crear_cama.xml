@@ -13,7 +13,7 @@
 
         <TextView
         android:paddingTop="5dp"
-        style="@style/TextCrear"
+        style="@style/TextView"
         android:text="@string/numero_de_habitaciones"
         android:textAppearance="@style/TextAppearance.AppCompat"/>
 
@@ -32,7 +32,7 @@
         <TextView
             android:paddingTop="8dp"
             android:text="@string/a"
-            style="@style/TextCrear"
+            style="@style/TextView"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -50,7 +50,7 @@
         <TextView
             android:paddingTop="8dp"
             android:text="@string/b"
-            style="@style/TextCrear"
+            style="@style/TextView"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -67,7 +67,7 @@
         <TextView
             android:paddingTop="8dp"
             android:text="@string/c"
-            style="@style/TextCrear"
+            style="@style/TextView"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -84,7 +84,7 @@
         <TextView
             android:paddingTop="8dp"
             android:text="@string/d"
-            style="@style/TextCrear"
+            style="@style/TextView"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -101,7 +101,7 @@
         <TextView
             android:paddingTop="8dp"
             android:text="@string/e"
-            style="@style/TextCrear"
+            style="@style/TextView"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -118,7 +118,7 @@
         <TextView
             android:paddingTop="8dp"
             android:text="@string/f"
-            style="@style/TextCrear"
+            style="@style/TextView"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -135,7 +135,7 @@
         <TextView
             android:paddingTop="8dp"
             android:text="@string/g"
-            style="@style/TextCrear"
+            style="@style/TextView"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
@@ -152,7 +152,7 @@
         <TextView
             android:paddingTop="8dp"
             android:text="@string/observaciones"
-            style="@style/TextCrear"
+            style="@style/TextView"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
         <EditText
