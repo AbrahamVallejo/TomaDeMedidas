@@ -70,10 +70,15 @@
     <string name="observacion_cama">Texto. Ej: Las patas de la cama miden 10cm.</string>
 
     <string-array name="spinnerItems">
+        <item>Seleccione un Formato:</item>
         <item>Cama</item>
         <item>Especial</item>
         <item>Galeria</item>
         <item>Hoteleria</item>
         <item>Residencial</item>
+    </string-array>
+
+    <string-array name="empty_array">
+        <item>No se han cargado datos</item>
     </string-array>
 </resources>
