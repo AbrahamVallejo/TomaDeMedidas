@@ -523,16 +523,13 @@ public class MainActivity extends AppCompatActivity
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                        "ERROR EN EL WEB SERVICES UBICACIÓN!", Toast.LENGTH_LONG).show();
             }
         });
         oNS.execute("getubicacionLista");
