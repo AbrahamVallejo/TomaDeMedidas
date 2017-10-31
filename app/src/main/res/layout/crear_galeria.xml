@@ -82,16 +82,12 @@
                 android:text="@string/copete"
                 android:textAppearance="@style/TextAppearance.AppCompat" />
 
-            <EditText
+            <Spinner
+                android:id="@+id/spinner_copete"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Spinner"
-                android:inputType="text"
-                android:maxLength="20"
-                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
-                android:id="@+id/txt_copete"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:paddingTop="8dp"
@@ -99,16 +95,12 @@
                 android:text="@string/proyecciones"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
-            <EditText
+            <Spinner
+                android:id="@+id/spinner_proyecciones"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Spinner"
-                android:inputType="text"
-                android:maxLength="20"
-                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
-                android:id="@+id/txt_proyecciones"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:paddingTop="8dp"
@@ -116,16 +108,12 @@
                 android:text="@string/fijacion"
                 android:textAppearance="@style/TextAppearance.AppCompat" />
 
-            <EditText
+            <Spinner
+                android:id="@+id/spinner_fijacion"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Spinner"
-                android:inputType="text"
-                android:maxLength="50"
-                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ"
-                android:id="@+id/txt_fijacion"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:text="@string/comentarios"
