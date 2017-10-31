@@ -893,6 +893,65 @@ public class DBProvider {
         return (aData);
     }
 
+    //Tabla para sacar Corredera
+    public void insertCorredera(int idCorredera, String valor) {
+        Object[] aData = {idCorredera, valor};
+        Log.v("PRUEBAC", "Voy a insertar: "+valor);
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_CORREDERA + " (" + DBhelper.ID_CORREDERA + ", "
+                + DBhelper.COLUMN_NAME_VALOR + ") VALUES(?, ?)", aData);
+        Log.v("PRUEBAC", "Corredera: "+valor);
+    }
+
+    public String[][] buscarCorredera(int idCorredera) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils= {( String.valueOf(idCorredera) )};
+        Cursor Ars;
+        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CORREDERA + " WHERE " + DBhelper.ID_CORREDERA + " = ?", aFils);
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][2];
+            while (Ars.moveToNext()) {
+                aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_CORREDERA));
+                aData[iCnt][1] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_VALOR ));
+                iCnt++; }
+        }
+        else{
+            aData = new String[1][1];
+            aData[0][0]= "0";
+        }
+        Ars.close();
+        CloseDB();  Log.v("[PRUEBAC", "Vuelvo de Buscar Corredera");
+        return (aData);
+    }
+
+    public String[][] ObtenerCorredera(String id, int tipo) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)};
+        Cursor aRS;
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CORREDERA + " WHERE " + DBhelper.ID_CORREDERA + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CORREDERA + " WHERE " + DBhelper.ID_CORREDERA + " = ?", aFils);
+        }
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[2];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_CORREDERA));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_VALOR));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+
+        aRS.close();
+        CloseDB();
+        return (aData);
+    }
+
+
 
     //Ya obtiene los Dispositivos
     public String[][] ObtenerDispositivos(String id, int tipo) {
@@ -1462,6 +1521,9 @@ public class DBProvider {
         private static final String TABLE_NAME_USUARIO = "usuario";
         private static final String ID_USUARIO = "id_usuario";
         private static final String COLUMN_NAME_CONTRASENA = "contrasena";
+        private static final String TABLE_NAME_CORREDERA = "corredera";
+        private static final String ID_CORREDERA = "id_corredera";
+        private static final String COLUMN_NAME_VALOR = "valor";
 
         DBhelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -1522,6 +1584,12 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_ESTADO + " TEXT,"
                     + "PRIMARY KEY (" + DBhelper.ID_CONTROL + ")"
                     + ");");                                                                        Log.v("[obtener]","DB Control Lista");
+
+            db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_CORREDERA + " ("
+                    + DBhelper.ID_CORREDERA + " INTEGER,"
+                    + DBhelper.COLUMN_NAME_VALOR + " TEXT,"
+                    + "PRIMARY KEY (" + DBhelper.ID_CORREDERA + ")"
+                    + ");");                                                                        Log.v("[obtener]","DB Corredera Lista");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_COPETE + " ("
                     + DBhelper.ID_COPETE + " INTEGER,"
