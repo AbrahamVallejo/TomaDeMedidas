@@ -562,6 +562,11 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("id_formato");
                     Log.v("PRUEBA", joFuj.getString("id_formato"));
                     Log.v("PRUEBA", joFuj.getString("formato1")); Log.v("PRUEBA","...");
+
+                    String[][] aRef = MainActivity.oDB.buscarFormato(Integer.parseInt(joFuj.getString("id_formato")));
+                    if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_formato"))) {
+                        MainActivity.oDB.insertFormato(Integer.parseInt(joFuj.getString("id_formato")), joFuj.getString("formato1"));
+                    }
                 }
             }catch (Exception e){
                 exception = e;

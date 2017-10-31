@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity
             getfijacionLista();     getproyeccionLista();
             getubicacionLista();    getcontrolLista();
             getcorrederaLista();    getusuarioLista();
+            getformatoLista();
 /*
             getproyectoLista();
             getproyectoCamaLista();
@@ -311,8 +312,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(),
-                        "ERROR EN EL WEB SERVICES CLIENTE!",
-                        Toast.LENGTH_LONG).show();
+                        "ERROR EN EL WEB SERVICES CLIENTE!", Toast.LENGTH_LONG).show();
             }
         });
         oNS.execute("getclienteLista");
@@ -322,38 +322,16 @@ public class MainActivity extends AppCompatActivity
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(),
-                        "ERROR EN EL WEB SERVICES USUARIO!",
-                        Toast.LENGTH_LONG).show();
+                        "ERROR EN EL WEB SERVICES USUARIO!", Toast.LENGTH_LONG).show();
             }
         });
         oNS.execute("getusuarioLista");
-    }
-
-    public void PostHojasList(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("gethojasLista");
     }
 
     public void getfijacionLista(){
@@ -437,19 +415,31 @@ public class MainActivity extends AppCompatActivity
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES FORMATO!", Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getformatoLista");
+    }
+
+    public void getubicacionLista(){
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                        "ERROR EN EL WEB SERVICES UBICACIÓN!", Toast.LENGTH_LONG).show();
             }
         });
-        oNS.execute("getformatoLista");
+        oNS.execute("getubicacionLista");
     }
 
     public void getestatusLista(){
@@ -469,6 +459,25 @@ public class MainActivity extends AppCompatActivity
             }
         });
         oNS.execute("getestatusLista");
+    }
+
+    public void PostHojasList(){
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                Toast.makeText(getApplicationContext(),
+                        "TODO PERFECTO EN EL WEB SERVICES!",
+                        Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(),
+                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("gethojasLista");
     }
 
 
@@ -527,22 +536,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
         oNS.execute("gettipousuarioLista");
-    }
-
-    public void getubicacionLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "ERROR EN EL WEB SERVICES UBICACIÓN!", Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("getubicacionLista");
     }
 
     public void getproyectoResidencialLista(){
@@ -687,8 +680,7 @@ public class MainActivity extends AppCompatActivity
             File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),APP_PATH);
             if (!mediaStorageDir.exists()){
                 if (!mediaStorageDir.mkdirs()){
-                    return null;
-                }
+                    return null;}
             }
             }
 
