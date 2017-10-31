@@ -13,15 +13,14 @@
 
             <TextView
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:text="@string/numero_de_habitaciones"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
                 android:id="@+id/txt_numero_habitaciones"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
+                style="@style/EditText"
                 android:hint="Texto. Ej: A1, 2."
                 android:inputType="text"
                 android:maxLength="20"
@@ -31,7 +30,7 @@
 
             <TextView
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:text="@string/area"
                 android:textAppearance="@style/TextAppearance.AppCompat" />
 
@@ -44,41 +43,35 @@
 
             <TextView
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:text="@string/ancho"
                 android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
+                style="@style/EditText"
                 android:inputType="numberDecimal"
                 android:maxLength="20"
                 android:hint="@string/ej_metros"
                 android:digits=".1234567890"
-                android:id="@+id/txt_ancho"
-                android:textSize="14sp" />
+                android:id="@+id/txt_ancho" />
 
             <TextView
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:text="@string/alto"
                 android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
+                style="@style/EditText"
                 android:inputType="numberDecimal"
                 android:maxLength="20"
                 android:hint="@string/ej_metros"
                 android:digits=".1234567890"
-                android:id="@+id/txt_alto"
-                android:textSize="14sp" />
+                android:id="@+id/txt_alto" />
 
             <TextView
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:text="@string/copete"
                 android:textAppearance="@style/TextAppearance.AppCompat" />
 
@@ -91,7 +84,7 @@
 
             <TextView
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:text="@string/proyecciones"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
@@ -104,7 +97,7 @@
 
             <TextView
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:text="@string/fijacion"
                 android:textAppearance="@style/TextAppearance.AppCompat" />
 
@@ -118,18 +111,15 @@
             <TextView
                 android:text="@string/comentarios"
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
+                style="@style/EditText"
                 android:hint="Texto. Ej: Solo se requiere la vista izquierda"
                 android:inputType="text"
                 android:maxLength="200"
-                android:id="@+id/txt_comentarios"
-                android:textSize="14sp" />
+                android:id="@+id/txt_comentarios" />
 
             <Button
                 android:id="@+id/Guardar"

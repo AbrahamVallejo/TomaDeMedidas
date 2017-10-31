@@ -599,6 +599,241 @@ public class DBProvider {
         return (aData);
     }
 
+    //Tabla Copete
+    public void insertCopete(int idCopete, String estado) {
+        Object[] aData = {idCopete, estado};
+        Log.v("obtenerC", "Voy a insertar: "+estado);
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_COPETE + " (" + DBhelper.ID_COPETE + ", "
+                + DBhelper.COLUMN_NAME_ESTADO + ") VALUES(?, ?)", aData);
+        Log.v("obtenerC", "Copete: "+estado);
+    }
+
+    public String[][] buscarCopete(int idCopete) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils= {( String.valueOf(idCopete) )};
+        Cursor Ars;
+        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_COPETE + " WHERE " + DBhelper.ID_COPETE + " = ?", aFils);
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][2];
+            while (Ars.moveToNext()) {
+                aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_COPETE));
+                aData[iCnt][1] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_ESTADO ));
+                iCnt++; }
+        }
+        else{
+            aData = new String[1][1];
+            aData[0][0]= "0";
+        }
+        Ars.close();
+        CloseDB();  Log.v("[obtenerC", "Vuelvo de Buscar Copete");
+        return (aData);
+    }
+
+    public String[][] ObtenerCopete(String id, int tipo) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)};
+        Cursor aRS;
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_COPETE + " WHERE " + DBhelper.ID_COPETE + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_COPETE + " WHERE " + DBhelper.ID_COPETE + " = ?", aFils);
+        }
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[2];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_COPETE));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ESTADO));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+
+        aRS.close();
+        CloseDB();
+        return (aData);
+    }
+
+    //Tabla para sacar Fijacion
+    public void insertFijacion(int idFijacion, String estado) {
+        Object[] aData = {idFijacion, estado};
+        Log.v("obtenerF", "Voy a insertar: "+estado);
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_FIJACION + " (" + DBhelper.ID_FIJACION + ", "
+                + DBhelper.COLUMN_NAME_ESTADO + ") VALUES(?, ?)", aData);
+        Log.v("obtenerF", "Fijacion: "+estado);
+    }
+
+    public String[][] buscarFijacion(int idFijacion) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils= {( String.valueOf(idFijacion) )};
+        Cursor Ars;
+        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_FIJACION + " WHERE " + DBhelper.ID_FIJACION + " = ?", aFils);
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][2];
+            while (Ars.moveToNext()) {
+                aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_FIJACION));
+                aData[iCnt][1] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_ESTADO ));
+                iCnt++; }
+        }
+        else{
+            aData = new String[1][1];
+            aData[0][0]= "0";
+        }
+        Ars.close();
+        CloseDB();  Log.v("[obtenerF", "Vuelvo de Buscar Fijación");
+        return (aData);
+    }
+
+    public String[][] ObtenerFijacion(String id, int tipo) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)};
+        Cursor aRS;
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_FIJACION + " WHERE " + DBhelper.ID_FIJACION + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_FIJACION + " WHERE " + DBhelper.ID_FIJACION + " = ?", aFils);
+        }
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[2];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_FIJACION));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ESTADO));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+
+        aRS.close();
+        CloseDB();
+        return (aData);
+    }
+
+    //Tabla para sacar Proyeccion
+    public void insertProyeccion(int idProye, String estado) {
+        Object[] aData = {idProye, estado};
+        Log.v("obtenerP", "Voy a insertar: "+estado);
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECCION + " (" + DBhelper.ID_PROYECCION + ", "
+                + DBhelper.COLUMN_NAME_ESTADO + ") VALUES(?, ?)", aData);
+        Log.v("obtenerP", "Proyección: "+estado);
+    }
+
+    public String[][] buscarProyeccion(int idProye) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils= {( String.valueOf(idProye) )};
+        Cursor Ars;
+        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECCION + " WHERE " + DBhelper.ID_PROYECCION + " = ?", aFils);
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][2];
+            while (Ars.moveToNext()) {
+                aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_PROYECCION));
+                aData[iCnt][1] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_ESTADO ));
+                iCnt++; }
+        }
+        else{
+            aData = new String[1][1];
+            aData[0][0]= "0";
+        }
+        Ars.close();
+        CloseDB();  Log.v("[obtenerP", "Vuelvo de Buscar Proyección");
+        return (aData);
+    }
+
+    public String[][] ObtenerProyeccion(String id, int tipo) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)};
+        Cursor aRS;
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECCION + " WHERE " + DBhelper.ID_PROYECCION + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECCION + " WHERE " + DBhelper.ID_PROYECCION + " = ?", aFils);
+        }
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[2];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECCION));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ESTADO));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+
+        aRS.close();
+        CloseDB();
+        return (aData);
+    }
+
+    //Tabla para sacar Ubicacion
+    public void insertUbicacion(int idUbi, int idDisp, String ubi) {
+        Object[] aData = {idUbi, idDisp, ubi};
+        Log.v("obtenerU", "Voy a insertar: "+ubi);
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_UBICACION + " (" + DBhelper.ID_AREA + ", "
+                + DBhelper.ID_DISP + ", "
+                + DBhelper.COLUMN_NAME_AREA_UBICACION + ") VALUES(?, ?, ?)", aData);
+        Log.v("obtenerU", "Ubicación: "+ubi);
+    }
+
+    public String[][] buscarUbicacion(int idFijacion) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils= {( String.valueOf(idFijacion) )};
+        Cursor Ars;
+        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_UBICACION + " WHERE " + DBhelper.ID_AREA + " = ?", aFils);
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][3];
+            while (Ars.moveToNext()) {
+                aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_AREA));
+                aData[iCnt][1] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP ));
+                aData[iCnt][2] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_AREA_UBICACION ));
+                iCnt++; }
+        }
+        else{
+            aData = new String[1][1];
+            aData[0][0]= "0";
+        }
+        Ars.close();
+        CloseDB();  Log.v("[obtenerU", "Vuelvo de Buscar Ubicación");
+        return (aData);
+    }
+
+    public String[][] ObtenerUbicacion(String id, int tipo) {
+        Log.v("[obtenerU", "Estoy en ObtenerUbicacion");
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)};
+        Cursor aRS;
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_UBICACION + " WHERE " + DBhelper.ID_AREA + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_UBICACION + " WHERE " + DBhelper.ID_AREA + " = ?", aFils);
+        }
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[3];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_AREA));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP ));
+                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AREA_UBICACION ));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+
+        aRS.close();
+        CloseDB();
+        return (aData);
+    }
 
 
 
@@ -1233,7 +1468,7 @@ public class DBProvider {
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_COPETE + " ("
                     + DBhelper.ID_COPETE + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_ESTADO + " INTEGER,"
+                    + DBhelper.COLUMN_NAME_ESTADO + " TEXT,"
                     + "PRIMARY KEY (" + DBhelper.ID_COPETE + ")"
                     + ");");                                                                        Log.v("[obtener]","DB Copete  [lista]");
 

@@ -16,7 +16,7 @@
                 android:layout_height="wrap_content"
                 android:text="Ubicacion: "
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textColor="@android:color/black"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="Piso: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:text="A: "
             android:paddingTop="8dp"
-            style="@style/TextCrear"
+            style="@style/TextView"
             android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:text="B: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:text="C: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:text="D: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:text="E: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:text="F: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -170,7 +170,7 @@
                 android:layout_height="wrap_content"
                 android:text="G: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -189,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:text="H: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -208,7 +208,7 @@
                 android:layout_height="wrap_content"
                 android:text="Prof Marco: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -227,7 +227,7 @@
                 android:layout_height="wrap_content"
                 android:text="Prof Jaladera: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -246,7 +246,7 @@
                 android:layout_height="wrap_content"
                 android:text="Control: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -262,7 +262,7 @@
                 android:layout_height="wrap_content"
                 android:text="Agpto: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -278,7 +278,7 @@
                 android:layout_height="wrap_content"
                 android:text="Fijacion: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -297,7 +297,7 @@
                 android:layout_height="wrap_content"
                 android:text="Corredera: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -316,7 +316,7 @@
                 android:layout_height="wrap_content"
                 android:text="Medida Sugerida: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
              <EditText
@@ -336,7 +336,7 @@
                 android:layout_height="wrap_content"
                 android:text="Observaciones: "
                 android:paddingTop="8dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText

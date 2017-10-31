@@ -17,7 +17,7 @@
                 android:text="Edificio: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -37,7 +37,7 @@
                 android:text="Piso: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -57,7 +57,7 @@
                 android:text="Habitacion: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -78,7 +78,7 @@
                 android:text="Area: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -98,7 +98,7 @@
                 android:text="Ancho: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -118,7 +118,7 @@
                 android:text="Alto: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -138,7 +138,7 @@
                 android:text="Hojas: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -158,7 +158,7 @@
                 android:text="Control: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -177,7 +177,7 @@
                 android:text="Fijacion: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -196,7 +196,7 @@
                 android:text="Corredera: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -214,7 +214,7 @@
                 android:text="Medida Sugerida: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
@@ -234,7 +234,7 @@
                 android:text="Observaciones: "
                 android:textColor="@android:color/black"
                 android:paddingTop="5dp"
-                style="@style/TextCrear"
+                style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
