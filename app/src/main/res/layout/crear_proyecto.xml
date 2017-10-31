@@ -23,6 +23,7 @@
 
             <Spinner
                 android:id="@+id/spinner_cliente"
+                android:entries="@array/empty_array"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:overlapAnchor="false"/>
@@ -52,6 +53,8 @@
 
             <Spinner
                 android:id="@+id/spinner_agente"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
