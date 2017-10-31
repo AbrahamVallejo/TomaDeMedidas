@@ -6,7 +6,7 @@
     <TextView
         android:text="Ancho: "
         android:paddingTop="8dp"
-        style="@style/TextCrear"
+        style="@style/TextView"
         android:textAppearance="@style/TextAppearance.AppCompat"/>
 
     <EditText
@@ -23,7 +23,7 @@
     <TextView
         android:text="Alto: "
         android:paddingTop="8dp"
-        style="@style/TextCrear"
+        style="@style/TextView"
         android:textAppearance="@style/TextAppearance.AppCompat"/>
 
     <EditText
@@ -38,7 +38,7 @@
         android:textSize="12sp"/>
 
     <TextView
-        style="@style/TextCrear"
+        style="@style/TextView"
         android:text="Grosor: "
         android:paddingTop="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat"/>
@@ -57,7 +57,7 @@
     <TextView
         android:text="Observaciones: "
         android:paddingTop="8dp"
-        style="@style/TextCrear"
+        style="@style/TextView"
         android:textAppearance="@style/TextAppearance.AppCompat"/>
 
     <EditText
