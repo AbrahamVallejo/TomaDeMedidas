@@ -35,17 +35,12 @@
                 android:text="@string/area"
                 android:textAppearance="@style/TextAppearance.AppCompat" />
 
-            <EditText
+            <Spinner
+                android:id="@+id/spinner_area"
+                android:entries="@array/empty_array"
+                android:overlapAnchor="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:maxLength="20"
-                android:hint="Spinner"
-                android:digits="aábcdeéfghiíjklmnñoópqrstuúüvwxyz AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ
-                -.,()1234567890"
-                android:id="@+id/txt_area"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:paddingTop="8dp"
