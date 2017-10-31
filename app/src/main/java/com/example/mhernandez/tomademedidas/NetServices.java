@@ -269,8 +269,11 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     JSONObject joFuj = jaData.getJSONObject(i);
                     aFujs[i] = joFuj.getString("estado");
                     aFujs[i] = joFuj.getString("id_control");
-                    Log.v("PRUEBA", joFuj.getString("id_control"));
                     Log.v("PRUEBA", joFuj.getString("estado"));
+                    String[][] aRef = MainActivity.oDB.buscarControl(Integer.parseInt(joFuj.getString("id_control")));//Log.v("[obtener]",aRef[0][0]);
+                    if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_control"))) {
+                        MainActivity.oDB.insertControl(Integer.parseInt(joFuj.getString("id_control")), joFuj.getString("estado"));
+                    }
                 }
             }catch (Exception e){
                 exception = e;
@@ -521,6 +524,30 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 exception = e;
             }
         }
+        else if(urls[0] == "getubicacionLista"){
+            try{
+                sResp = NetServices.connectPost2(URL_WS1 + "wsubicacion.svc/"+ urls[0]);
+                String[] aFujs = null;
+                JSONArray jaData = new JSONArray((sResp));
+                aFujs = new String[jaData.length()];
+                Log.v("PRUEBA", sResp);
+                for (int i = 0; i<jaData.length(); i++){
+                    JSONObject joFuj = jaData.getJSONObject(i);
+                    aFujs[i] = joFuj.getString("id_area");
+                    aFujs[i] = joFuj.getString("area_ubicacion");
+                    aFujs[i] = joFuj.getString("id_disp");
+                    Log.v("PRUEBA", joFuj.getString("area_ubicacion")); Log.v("PRUEBA","...");
+                    String[][] aRef = MainActivity.oDB.buscarUbicacion(Integer.parseInt(joFuj.getString("id_area")));
+                    if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_area"))) {
+                        Log.v("obtenerU", "aRef:"+aRef[0][0] +" area:"+joFuj.getString("id_area") );
+                        MainActivity.oDB.insertUbicacion(Integer.parseInt(joFuj.getString("id_area")),
+                                Integer.parseInt(joFuj.getString("id_disp")), joFuj.getString("area_ubicacion"));
+                    }
+                }
+            }catch (Exception e){
+                exception = e;
+            }
+        }
         else if(urls[0] == "getformatoLista"){
             try{
                 sResp = NetServices.connectPost2(URL_WS1 + "wsformato.svc/"+ urls[0]);
@@ -612,30 +639,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("estatus");
                     Log.v("PRUEBA", joFuj.getString("id_tipousuario"));
                     Log.v("PRUEBA", joFuj.getString("tipo")); Log.v("PRUEBA","...");
-                }
-            }catch (Exception e){
-                exception = e;
-            }
-        }
-        else if(urls[0] == "getubicacionLista"){
-            try{
-                sResp = NetServices.connectPost2(URL_WS1 + "wsubicacion.svc/"+ urls[0]);
-                String[] aFujs = null;
-                JSONArray jaData = new JSONArray((sResp));
-                aFujs = new String[jaData.length()];
-                Log.v("PRUEBA", sResp);
-                for (int i = 0; i<jaData.length(); i++){
-                    JSONObject joFuj = jaData.getJSONObject(i);
-                    aFujs[i] = joFuj.getString("id_area");
-                    aFujs[i] = joFuj.getString("area_ubicacion");
-                    aFujs[i] = joFuj.getString("id_disp");
-                    Log.v("PRUEBA", joFuj.getString("area_ubicacion")); Log.v("PRUEBA","...");
-                    String[][] aRef = MainActivity.oDB.buscarUbicacion(Integer.parseInt(joFuj.getString("id_area")));
-                    if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_area"))) {
-                        Log.v("obtenerU", "aRef:"+aRef[0][0] +" area:"+joFuj.getString("id_area") );
-                        MainActivity.oDB.insertUbicacion(Integer.parseInt(joFuj.getString("id_area")),
-                                Integer.parseInt(joFuj.getString("id_disp")), joFuj.getString("area_ubicacion"));
-                    }
                 }
             }catch (Exception e){
                 exception = e;

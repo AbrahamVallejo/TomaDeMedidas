@@ -76,11 +76,9 @@ public class MainActivity extends AppCompatActivity
         MainActivity.oDB.ObtenerClientes("0",1);
         boolean aux = isOnlineNet();
         if (aux != false){
-            getclienteLista();
-            getcopeteLista();
-            getfijacionLista();
-            getproyeccionLista();
-            getubicacionLista();
+            getclienteLista();      getcopeteLista();
+            getfijacionLista();     getproyeccionLista();
+            getubicacionLista();    getcontrolLista();
 /*
             getproyectoLista();
             getusuarioLista();
