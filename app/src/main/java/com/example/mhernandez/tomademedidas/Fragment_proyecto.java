@@ -45,7 +45,7 @@ public class Fragment_proyecto extends Fragment {
     private static final String APP_PATH = "droidBH";
     private Uri fileUri;
     String sID;
-    private Spinner spClientes, spAgentes;
+    private Spinner spClientes, spAgentes, spFormato;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -95,8 +95,9 @@ public class Fragment_proyecto extends Fragment {
         Button botonCamara = ((Button) vista.findViewById(R.id.TomarFoto));
         ImageView oImg = (ImageView) vista.findViewById(R.id.imgFoto);
 
-        spinnerCliente();
-        spinnerAgente();
+        //Llenar los Spinners
+        spinnerCliente();   spinnerAgente();
+        //spinnerFormato();
 
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");
@@ -147,6 +148,19 @@ public class Fragment_proyecto extends Fragment {
         }
         ArrayAdapter adapter = new ArrayAdapter(getActivity().getApplicationContext(),R.layout.simple_spinner_item,aData);
         spAgentes.setAdapter(adapter);
+    }
+
+    public void spinnerFormato(){
+        String[][] aRes= MainActivity.oDB.ObtenerFormato("0",1);
+        spFormato= ( vista.findViewById(R.id.spinner_formato));
+        final String[] aData = new String[aRes.length+1];
+        aData[0]="Seleccione un agente de venta...";
+        for(int i = 0; i < aRes.length; i++){
+            String inde = String.valueOf(aRes[i][0]);
+            aData[i+1] = (inde+" - "+aRes[i][1]);
+        }
+        ArrayAdapter adapter = new ArrayAdapter(getActivity().getApplicationContext(),R.layout.simple_spinner_item,aData);
+        spFormato.setAdapter(adapter);
     }
 
 

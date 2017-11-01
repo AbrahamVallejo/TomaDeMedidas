@@ -951,6 +951,64 @@ public class DBProvider {
         return (aData);
     }
 
+    //Tabla para sacar Formato
+    public void insertFormato(int idFormato, String valor) {
+        Object[] aData = {idFormato, valor};
+        Log.v("PRUEBAC", "Voy a insertar: "+valor);
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_FORMATO + " (" + DBhelper.ID_FORMATO + ", "
+                + DBhelper.COLUMN_NAME_FORMATO + ") VALUES(?, ?)", aData);
+        Log.v("PRUEBAC", "Corredera: "+valor);
+    }
+
+    public String[][] buscarFormato(int idFormato) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils= {( String.valueOf(idFormato) )};
+        Cursor Ars;
+        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_FORMATO + " WHERE " + DBhelper.ID_FORMATO + " = ?", aFils);
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][2];
+            while (Ars.moveToNext()) {
+                aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_FORMATO));
+                aData[iCnt][1] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_FORMATO ));
+                iCnt++; }
+        }
+        else{
+            aData = new String[1][1];
+            aData[0][0]= "0";
+        }
+        Ars.close();
+        CloseDB();  Log.v("[PRUEBAC", "Vuelvo de Buscar Corredera");
+        return (aData);
+    }
+
+    public String[][] ObtenerFormato(String id, int tipo) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)};
+        Cursor aRS;
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_FORMATO + " WHERE " + DBhelper.ID_FORMATO + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_FORMATO + " WHERE " + DBhelper.ID_FORMATO + " = ?", aFils);
+        }
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[2];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_FORMATO));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FORMATO));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+
+        aRS.close();
+        CloseDB();
+        return (aData);
+    }
+
 
 
     //Ya obtiene los Dispositivos
