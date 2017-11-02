@@ -57,12 +57,14 @@
                 android:textStyle="normal"
                 android:visibility="invisible" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="fill_vertical"
             android:orientation="vertical"
             android:layout_weight="50">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -93,6 +95,16 @@
                 android:textColor="@android:color/black"
                 android:textSize="5dp"
                 android:textStyle="bold"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/checkCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="50"
+                android:checked="false"
+                android:text="Sincronizado"
                 android:visibility="invisible" />
         </LinearLayout>
     </LinearLayout>

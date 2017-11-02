@@ -15,6 +15,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -195,11 +196,23 @@ public class Fragment_listaClientes extends Fragment {
             TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
             TextView txtTelefono = (TextView) rowView.findViewById(R.id.telefono);
             TextView txtDireccion = (TextView) rowView.findViewById(R.id.direccion);
+            CheckBox checkCliente = (CheckBox) rowView.findViewById(R.id.checkCliente);
             txtIdCliente.setText(_text[position][0]);
             txtIdDisp.setText(_text[position][1]);
             txtNombre.setText(_text[position][2]);
             txtTelefono.setText(_text[position][3]);
             txtDireccion.setText(_text[position][4]);
+            Log.v("checkbox",_text[position][5]);
+            if( Integer.parseInt(_text[position][5]) == 0){
+                checkCliente.setVisibility(View.VISIBLE);
+                checkCliente.setChecked(true);
+                checkCliente.setEnabled(false);
+                checkCliente.setFocusable(true);
+            }else {
+                checkCliente.setVisibility(View.VISIBLE);
+                checkCliente.setEnabled(false);
+                checkCliente.setFocusable(true);
+            }
             return rowView;
         }
     }
