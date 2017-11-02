@@ -81,12 +81,12 @@ public class MainActivity extends AppCompatActivity
         MainActivity.oDB.ObtenerCorredera("0",1);
         boolean aux = isOnlineNet();
         if (aux != false){
-            /*getclienteLista();      getcopeteLista();
+            getclienteLista();      getcopeteLista();
             getfijacionLista();     getproyeccionLista();
             getubicacionLista();    getcontrolLista();
             getcorrederaLista();    getusuarioLista();
-            getformatoLista();      */
-            Sincliente();
+            getformatoLista();
+
 /*
             getproyectoLista();
             getproyectoCamaLista();
@@ -217,6 +217,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void onSaveClickSincronizar(){
+        boolean aux = isOnlineNet();
+        if (aux != false) {
+            Sincliente();
+        }
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -242,8 +248,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.sincronizar) {
+            onSaveClickSincronizar();
         }
 
         return super.onOptionsItemSelected(item);
