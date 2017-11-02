@@ -87,23 +87,23 @@
         </activity>
 
         <activity android:name=".listaCama"
-            android:label="Cama">
+            android:label="Editar Cama">
         </activity>
 
         <activity android:name=".listaEspecial"
-            android:label="Especial">
+            android:label="Editar Especial">
         </activity>
 
         <activity android:name=".listaGaleria"
-            android:label="Galeria">
+            android:label="Editar Galeria">
         </activity>
 
         <activity android:name=".listaHoteleria"
-            android:label="Hoteleria">
+            android:label="Editar Hoteleria">
         </activity>
 
         <activity android:name=".listaResidencial"
-            android:label="Residencial">
+            android:label="Editar Residencial">
         </activity>
     </application>
 
