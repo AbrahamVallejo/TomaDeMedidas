@@ -42,28 +42,32 @@ public class DBProvider {
     }
 
 
-    public void insertCliente(int idCliente,int idDisp,String nombre, String telefono, String direccion) {
-            Object[] aData = {idCliente, idDisp, nombre, telefono, direccion};
+    public void insertCliente(int idCliente,int idDisp,String nombre, String telefono, String direccion, int sinc) {
+            Object[] aData = {idCliente, idDisp, nombre, telefono, direccion, sinc};
             executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_CLIENTE + " (" + DBhelper.ID_CLIENTE + ", " + DBhelper.ID_DISP + ", "
-                    + DBhelper.COLUMN_NAME_NOMBRE + ", " + DBhelper.COLUMN_NAME_TELEFONO + ", "
-                    + DBhelper.COLUMN_NAME_DIRECCION + ") VALUES(?, ?, ?, ?, ?)", aData);
+                    + DBhelper.COLUMN_NAME_NOMBRE + ", "
+                    + DBhelper.COLUMN_NAME_TELEFONO + ", "
+                    + DBhelper.COLUMN_NAME_DIRECCION + ", "
+                    + DBhelper.COLUMN_NAME_SINCRONIZAR + ") VALUES(?, ?, ?, ?, ?, ?)", aData);
     }
+
     public String[][] buscarCliente(int client, int Disp) {
         int iCnt = 0;
         String[][] aData = null;
         String[] aFils= {(String.valueOf(client)), (String.valueOf(Disp)) };
-        Cursor Ars; Log.v("[obtener", "Voy a buscar tu Cliente");                               //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
+        Cursor Ars; Log.v("[obtener]", "Voy a buscar tu Cliente");                               //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
         Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " = ? AND "
                 +DBhelper.ID_DISP +" = ?" , aFils);
-        Log.v("[obtener", "Encontre tu Cliente "+ Ars.getCount() );
+        Log.v("[obtener]", "Encontre tu Cliente " );
         if (Ars.getCount() > 0) {
-            aData = new String[Ars.getCount()][5];
+            aData = new String[Ars.getCount()][6];
             while (Ars.moveToNext()) {                                                              //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP)) );
                 aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_CLIENTE));               //Log.v("[obtener", aData[0][0] );
                 aData[iCnt][1] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP));
                 aData[iCnt][2] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE));
                 aData[iCnt][3] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_TELEFONO));
                 aData[iCnt][4] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_DIRECCION));
+                aData[iCnt][5] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_SINCRONIZAR));
                 iCnt++; }
         }
         else{
@@ -71,7 +75,7 @@ public class DBProvider {
             aData[0][0]= "0";
         }
         Ars.close();
-        CloseDB();  Log.v("[obtener", "Voy de regreso");
+        CloseDB();  Log.v("[obtener]", "Voy de regreso");
         return (aData);
     }
 
@@ -102,12 +106,14 @@ public class DBProvider {
 
     }
 
-    public void updateCliente(String idCliente,String idDisp, String nombre, String telefono, String direccion) {
+    public void updateCliente(String idCliente,String idDisp, String nombre, String telefono, String direccion, int sinc) {
         int idC=Integer.parseInt(idCliente);
         int idD= Integer.parseInt(idDisp);
-        Object[] aData = {nombre,telefono, direccion, idC, idD};
+        Object[] aData = {nombre,telefono, direccion, sinc, idC, idD};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_CLIENTE + " SET " + DBhelper.COLUMN_NAME_NOMBRE + " = ?, "
-                + DBhelper.COLUMN_NAME_TELEFONO + " = ?, " + DBhelper.COLUMN_NAME_DIRECCION + " = ?"
+                + DBhelper.COLUMN_NAME_TELEFONO + " = ?, "
+                + DBhelper.COLUMN_NAME_DIRECCION + " = ?, "
+                + DBhelper.COLUMN_NAME_SINCRONIZAR + " = ?"
                 + " WHERE " + DBhelper.ID_CLIENTE + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
         Log.v("[obtener]", "Modificado");
     }
@@ -120,6 +126,53 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
         Log.v("[obtener]", "Delete");
     }
+
+    //Ya obtiene los Clientes
+    public String[][] ObtenerClientes(String id, int tipo) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)};
+        Cursor aRS;
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ?", aFils);
+            //Log.v("[obtener]", "SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ?");
+        }
+        else if (tipo == 3) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ? " +
+                    "AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 3", aFils);
+
+        }else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " = ?", aFils);
+        }
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[6];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_CLIENTE));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP));
+                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE));
+                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_TELEFONO));
+                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_DIRECCION));
+                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_SINCRONIZAR));    //Log.v("[obtener]", aData[iCnt][0] + "  Disp:"+ aData[iCnt][1] + "  Nombre:"+ aData[iCnt][2]+ "  Telefono:"+ aData[iCnt][3]);
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+
+        aRS.close();
+        CloseDB();
+        return (aData);
+    }
+
+    public Cursor getAllClientes(){
+        Cursor aRS;
+        aRS = querySQL("Select * From " + DBhelper.TABLE_NAME_CLIENTE, null);
+        return aRS;
+    }
+
+
+
 
     public void insertProyecto(int idProyecto, int idDisp, int idCliente, int idClienteDisp, int idFormato, int idUser,
                                String nombreProyecto, String PedidoSap, String fecha, int autorizado, String accesoriosTecho,
@@ -1042,44 +1095,7 @@ public class DBProvider {
         CloseDB();              Log.v("[obtener]","Llevo todos los Dispositivos!!!");
         return (aData);
     }
-    //Ya obtiene los Clientes
-    public String[][] ObtenerClientes(String id, int tipo) {
-        int iCnt = 0;
-        String[][] aData = null;
-        String[] aFils = {(id)};
-        Cursor aRS;
-        if (tipo == 1) {
-            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ?", aFils);
-            //Log.v("[obtener]", "SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ?");
-        } else {
-            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " = ?", aFils);
-        }
-        if (aRS.getCount() > 0) {
-            aData = new String[aRS.getCount()][];
-            while (aRS.moveToNext()) {
-                aData[iCnt] = new String[6];
-                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_CLIENTE));
-                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP));
-                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE));
-                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_TELEFONO));
-                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_DIRECCION));
-                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_ALTA));    //Log.v("[obtener]", aData[iCnt][0] + "  Disp:"+ aData[iCnt][1] + "  Nombre:"+ aData[iCnt][2]+ "  Telefono:"+ aData[iCnt][3]);
-                iCnt++;
-            }
-        } else {
-            aData = new String[0][];
-        }
 
-        aRS.close();
-        CloseDB();
-        return (aData);
-    }
-
-    public Cursor getAllClientes(){
-        Cursor aRS;
-        aRS = querySQL("Select * From " + DBhelper.TABLE_NAME_CLIENTE, null);
-        return aRS;
-    }
     //Ya obtiene los proyectos
     public String[][] ObtenerProyectos(String id, int tipo) {
         int iCnt = 0;
@@ -1582,6 +1598,7 @@ public class DBProvider {
         private static final String TABLE_NAME_CORREDERA = "corredera";
         private static final String ID_CORREDERA = "id_corredera";
         private static final String COLUMN_NAME_VALOR = "valor";
+        private static final String COLUMN_NAME_SINCRONIZAR = "sincronizar";
 
         DBhelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -1598,6 +1615,7 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_TELEFONO + " TEXT,"
                     + DBhelper.COLUMN_NAME_DIRECCION + " TEXT,"
                     + DBhelper.COLUMN_NAME_FECHA_ALTA + " TEXT,"
+                    + DBhelper.COLUMN_NAME_SINCRONIZAR + " INTEGER,"
                     + "PRIMARY KEY (" + DBhelper.ID_CLIENTE + "," + DBhelper.ID_DISP + ")"
                     + ");");                                                                        Log.v("[obtener]","DB Cliente [lista]");
 

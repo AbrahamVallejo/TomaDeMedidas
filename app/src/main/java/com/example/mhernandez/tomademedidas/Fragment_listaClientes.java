@@ -114,7 +114,17 @@ public class Fragment_listaClientes extends Fragment {
                         String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
                         String idCliente = aDat[0];
                         String idDisp = aDat[1];
-                        MainActivity.oDB.deleteCliente(idCliente, idDisp);
+
+                        Log.v("[addC]","C:"+idCliente +" D:"+ idDisp);
+                        String[][] aRef = MainActivity.oDB.buscarCliente(Integer.parseInt(idCliente), Integer.parseInt(idDisp) );
+                        Log.v("[addC]",aRef[0][5]);
+
+                        if (Integer.parseInt(aRef[0][5]) == 1) {
+                            MainActivity.oDB.deleteCliente(idCliente, idDisp);
+                        }
+                        if (Integer.parseInt(aRef[0][5]) != 1) {
+                            MainActivity.oDB.updateCliente(idCliente, idDisp, "borrar", "000", "borrar", 3);
+                        }
                         Toast.makeText(getActivity(), "REGISTRO ELIMINADO", Toast.LENGTH_SHORT).show();
                         lista();
                     }
@@ -201,19 +211,21 @@ public class Fragment_listaClientes extends Fragment {
     }
 
     public void lista(){
-        String[][] aRef = MainActivity.oDB.ObtenerClientes("0", 1);
+        String[][] aRef = MainActivity.oDB.ObtenerClientes("0", 3);
         String[][] aDataFolio = null;
+
+        Log.v("[add]","# Clientes: "+aRef.length);
 
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
             for (int iCnt = 0; iCnt < aRef.length; iCnt++){
-                aDataFolio[iCnt] = new String[6];
-                aDataFolio[iCnt][0] = aRef[iCnt][0];
-                aDataFolio[iCnt][1] = aRef[iCnt][1];
-                aDataFolio[iCnt][2] = aRef[iCnt][2];
-                aDataFolio[iCnt][3] = aRef[iCnt][3];
-                aDataFolio[iCnt][4] = aRef[iCnt][4];
-                aDataFolio[iCnt][5] = aRef[iCnt][5];
+                    aDataFolio[iCnt] = new String[6];
+                    aDataFolio[iCnt][0] = aRef[iCnt][0];
+                    aDataFolio[iCnt][1] = aRef[iCnt][1];
+                    aDataFolio[iCnt][2] = aRef[iCnt][2];
+                    aDataFolio[iCnt][3] = aRef[iCnt][3];
+                    aDataFolio[iCnt][4] = aRef[iCnt][4];
+                    aDataFolio[iCnt][5] = aRef[iCnt][5];
             }
 
             ListView list;

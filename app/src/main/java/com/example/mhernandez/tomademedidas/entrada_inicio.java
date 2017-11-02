@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 import java.util.Date;
 
@@ -21,6 +22,10 @@ public class entrada_inicio extends AppCompatActivity {
     @Override
         protected void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
+            //Quitar Barra de Titulo y Barra de Notificaciones
+            this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
             setContentView(R.layout.entrada_inicio);
 
             Thread timerThread = new Thread(){
@@ -28,19 +33,18 @@ public class entrada_inicio extends AppCompatActivity {
                     String[][] aux1 = entrada_inicio.oDB.ObtenerDispositivos("0",1);
 
                     try{
-                            //String[][] aRef = entrada_inicio.oDB.lastDispositivo(); //Log.v("[obtener]", "Aqui voy ");
-                            Log.v("[obtener]", "Traigo un: "+ aux1.length);
-                            boolean aux = isOnlineNet();
-                            Log.v("[obtener]", "Conexion: "+ aux);
+                            //String[][] aRef = entrada_inicio.oDB.lastDispositivo();   //Log.v("[obtener]", "Aqui voy ");//Log.v("[obtener]", "Traigo un: "+ aux1.length);
+                            boolean aux = isOnlineNet();        //Log.v("[obtener]", "Conexion: "+ aux);
                             if (aux != false){
                                 getuserLista();
-                                sleep(1000);
+                                sleep(500);
                                 if (aux1.length == 0){
                                     Intent intent = new Intent(entrada_inicio.this, registrar_Dispositivo.class);
                                     intent.putExtra("internet", 0);
                                     startActivity(intent);
                                 }else {
                                     Intent intent = new Intent(entrada_inicio.this, log_in.class);
+                                    //Intent intent = new Intent(entrada_inicio.this, MainActivity.class);
                                     startActivity(intent);
                                 }
                             }else{
@@ -121,26 +125,3 @@ public class entrada_inicio extends AppCompatActivity {
 
 
 }
-
-
-/*
-public void addcliente(String nombre, String dire, String tel){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                    Toast.makeText(getApplicationContext(),
-                    "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                    Toast.LENGTH_LONG).show();
-                    }
-                    });
-        oNS.execute("addcliente", nombre, dire,tel);
-}
-
-*/
