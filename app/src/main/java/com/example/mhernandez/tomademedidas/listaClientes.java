@@ -57,9 +57,16 @@ public class listaClientes extends AppCompatActivity {
                             direccion.setHint("Campo Vacío");Log.v("[obtener]",part3);
                         }
                         if(aux==0){
-                        oDB.updateCliente(idCliente,idDisp,nombre.getText().toString(),telefono.getText().toString(),direccion.getText().toString());
-                        Toast.makeText(getApplicationContext(), "SE HAN GUARDADO LOS CAMBIOS", Toast.LENGTH_SHORT).show();
-                        finish(); }
+                            String[][] aRef = MainActivity.oDB.buscarCliente(Integer.parseInt(idCliente), Integer.parseInt(idDisp) );
+                            if (Integer.parseInt(aRef[0][5]) == 1) {
+                                oDB.updateCliente(idCliente, idDisp, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString(), 1);
+                            }
+                            if (Integer.parseInt(aRef[0][5]) != 1) {
+                                oDB.updateCliente(idCliente, idDisp, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString(), 2);
+                            }
+                            Toast.makeText(getApplicationContext(), "SE HAN GUARDADO LOS CAMBIOS", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
                     }
                 });
     }
@@ -75,4 +82,5 @@ public class listaClientes extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

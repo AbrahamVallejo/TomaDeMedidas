@@ -381,7 +381,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     Log.v("[obtener]",aRef[0][0]);
                     if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_cliente"))) {
                         MainActivity.oDB.insertCliente(Integer.parseInt(joFuj.getString("id_cliente")), Integer.parseInt(joFuj.getString("id_disp")),
-                         joFuj.getString("nombre"), joFuj.getString("telefono"), joFuj.getString("direccion"));
+                         joFuj.getString("nombre"), joFuj.getString("telefono"), joFuj.getString("direccion"), 0);
                     }
                 }
             }catch (Exception e){
@@ -389,25 +389,89 @@ public class NetServices extends AsyncTask<String, Void, Object> {
             }
         }
         else if(urls[0] == "addcliente"){
-            String[][] aux1 = entrada_inicio.oDB.ObtenerDispositivos("0",1);
-            Log.v("[add]","Voy a insertar en WS" );
-            try{
+                    Log.v("[add]","Voy a insertar en WS" );
+                    try {
+                        JSONObject json = new JSONObject();
+                        JSONObject dipositivo = new JSONObject();
+                        try {
+                            dipositivo.put("id_cliente", urls[1] );
+                            dipositivo.put("id_disp", urls[2] );
+                            dipositivo.put("nombre", urls[3] );
+                            dipositivo.put("direccion", urls[4] );
+                            dipositivo.put("telefono", urls[5] );
+                        } catch (JSONException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        json.put("cliente", dipositivo);
+                        sResp = NetServices.connectPost3(URL_WS1 + "wscliente.svc/" + urls[0], json.toString());
+                        Log.v("[add]", "T: "+sResp.length() +" "+sResp);
+                        if (sResp.length() == 6){
+                            Log.v("[add]","Retorno nulo" );
+                        }
+                        else{
+                            Log.v("[add]","Insertar en Local" );
+                            MainActivity.oDB.updateCliente(urls[1], urls[2], urls[3], urls[5],urls[4], 0);
+                        }
+                    } catch (Exception e) {
+                        exception = e;
+                    }
+        }
+        else if(urls[0] == "modifycliente"){
+            Log.v("[add]","Voy a modificar en WS" );
+            try {
                 JSONObject json = new JSONObject();
                 JSONObject dipositivo = new JSONObject();
                 try {
-                    dipositivo.put("id_cliente", "0");
-                    dipositivo.put("id_disp", "4");
-                    dipositivo.put("nombre", urls[1]);
-                    dipositivo.put("direccion", urls[2]);
-                    dipositivo.put("telefono", urls[3]);
+                    dipositivo.put("id_cliente", urls[1] );
+                    dipositivo.put("id_disp", urls[2] );
+                    dipositivo.put("nombre", urls[3] );
+                    dipositivo.put("direccion", urls[4] );
+                    dipositivo.put("telefono", urls[5] );
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                json.put("cliente",dipositivo); //Log.v("[add]",json.toString() );
-                sResp = NetServices.connectPost3(URL_WS1 + "wscliente.svc/"+ urls[0],json.toString());
-                Log.v("[add]",sResp);
-            }catch (Exception e){
+                json.put("cliente", dipositivo);    //Log.v("[add]",json.toString() );
+                sResp = NetServices.connectPost3(URL_WS1 + "wscliente.svc/" + urls[0], json.toString());
+                Log.v("[add]", "T: "+sResp.length() +" "+sResp);
+                if (sResp.length() == 6){
+                    Log.v("[add]","Retorno nulo" );
+                }
+                else{
+                    Log.v("[add]","Modificar en Local" );
+                    MainActivity.oDB.updateCliente(urls[1], urls[2], urls[3], urls[5],urls[4], 0);
+                }
+            } catch (Exception e) {
+                exception = e;
+            }
+        }
+        else if(urls[0] == "deletecliente"){
+            Log.v("[add]","Voy a Eliminar en WS" );
+            try {
+                JSONObject json = new JSONObject();
+                JSONObject dipositivo = new JSONObject();
+                try {
+                    dipositivo.put("id_cliente", urls[1] );
+                    dipositivo.put("id_disp", urls[2] );
+                    dipositivo.put("nombre", urls[3] );
+                    dipositivo.put("direccion", urls[4] );
+                    dipositivo.put("telefono", urls[5] );
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                json.put("cliente", dipositivo);    //Log.v("[add]",json.toString() );
+                sResp = NetServices.connectPost3(URL_WS1 + "wscliente.svc/" + urls[0], json.toString());
+                Log.v("[add]", "T: "+sResp.length() +" "+sResp);
+                if (sResp.length() == 6){
+                    Log.v("[add]","Retorno nulo" );
+                }
+                else{
+                    Log.v("[add]","Eliminar en Local" );
+                    MainActivity.oDB.deleteCliente(urls[1], urls[2]);
+                }
+            } catch (Exception e) {
                 exception = e;
             }
         }

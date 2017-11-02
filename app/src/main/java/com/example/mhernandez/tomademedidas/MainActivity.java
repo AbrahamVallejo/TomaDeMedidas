@@ -16,6 +16,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -42,6 +44,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Quitar Barra de Notificaciones
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -76,11 +81,12 @@ public class MainActivity extends AppCompatActivity
         MainActivity.oDB.ObtenerCorredera("0",1);
         boolean aux = isOnlineNet();
         if (aux != false){
-            getclienteLista();      getcopeteLista();
+            /*getclienteLista();      getcopeteLista();
             getfijacionLista();     getproyeccionLista();
             getubicacionLista();    getcontrolLista();
             getcorrederaLista();    getusuarioLista();
-            getformatoLista();
+            getformatoLista();      */
+            Sincliente();
 /*
             getproyectoLista();
             getproyectoCamaLista();
@@ -93,9 +99,6 @@ public class MainActivity extends AppCompatActivity
         else {
             Toast.makeText(this, "Sin Acceso a la Red", Toast.LENGTH_SHORT).show();
         }
-        //oDB.insertCliente(150, 1, "Aaron", "12340183", "Direccion"); //oDB.insertCliente(0, 2, "Mario", "13245768", "Dues");  //oDB.updateCliente( "1", "1", "Modificado", "Modificado", "Modificación");
-        //getproyectoLista();
-        //getproyectoCamaLista();
 
     }
 
@@ -125,7 +128,10 @@ public class MainActivity extends AppCompatActivity
                     ID = 1;
                 }else {
                     ID = Integer.parseInt(aRef[(0)][0]) +1; }
-            MainActivity.oDB.insertCliente(ID, 4, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString() );
+            String[][] aRefD = MainActivity.oDB.lastDispositivo();
+            int idDisp = Integer.parseInt(aRefD[(0)][0]);
+
+            MainActivity.oDB.insertCliente(ID, idDisp, nombre.getText().toString(), telefono.getText().toString(), direccion.getText().toString(),1);
             nombre.setText(""); telefono.setText(""); direccion.setText("");
             Toast.makeText(this, "CLIENTE AGREGADO", Toast.LENGTH_SHORT).show();
         }else {
@@ -650,6 +656,57 @@ public class MainActivity extends AppCompatActivity
             }
         });
         oNS.execute("getproyecto_camaLista");
+    }
+
+
+    public void Sincliente(){
+        String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",1);
+        for (int i =0; i < aux1.length; i++) {
+            if (Integer.valueOf(aux1[i][5]) == 1) {
+                Log.v("[add]","Entre al if Insert" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                        //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(),
+                                "ERROR EN EL WEB SERVICES AddCliente!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("addcliente", aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][4], aux1[i][3]);
+            }
+            if (Integer.valueOf(aux1[i][5]) == 2) {
+                Log.v("[add]","Entre al if Modify" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                        //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(),"ERROR EN EL WEB SERVICES ModificarCliente!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("modifycliente", aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][4], aux1[i][3]);
+            }
+            if (Integer.valueOf(aux1[i][5]) == 3) {
+                Log.v("[add]","Entre al if Eliminar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                        //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(),"ERROR EN EL WEB SERVICES EliminarCliente!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("deletecliente", aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][4], aux1[i][3]);
+            }
+        }
+
     }
 
 
