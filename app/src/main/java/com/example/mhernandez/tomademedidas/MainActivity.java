@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         MainActivity.oDB.ObtenerCorredera("0",1);
+        //MainActivity.oDB.insertProyectoEspecial(1,1,55,1,"Hola", 0.2, 0.5, 0.6, "hola", "hola","12/12/12", 1, 1, 1, "11/11/11", 2,1,1, "12/12/12", 1, "11/11/11", 2);
 
     }
 
@@ -281,16 +282,12 @@ public class MainActivity extends AppCompatActivity
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "WEB SERVICES PROYECTO!", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PROYECTO!", Toast.LENGTH_LONG).show();
             }
         });
         oNS.execute("getproyectoLista");
@@ -632,15 +629,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                        "WEB SERVICES PROYECTO-CAMA!", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                        "OCURRIO UN ERROR EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
             }
         });
         oNS.execute("getproyecto_camaLista");
@@ -723,10 +718,9 @@ public class MainActivity extends AppCompatActivity
                 getubicacionLista();    getcontrolLista();
                 getcorrederaLista();    getusuarioLista();
                 getformatoLista();
-                getproyectoLista();
 
-                //getproyectoLista();
-                //getproyectoCamaLista();
+                getproyectoLista();
+                getproyectoCamaLista();
                 //getproyectoEspecialLista();
                 //getproyectoGaleriaLista();
                 //getproyectoHoteleriaLista();
@@ -737,7 +731,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
 
     public Boolean isOnlineNet() {
         try {

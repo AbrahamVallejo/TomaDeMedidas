@@ -817,6 +817,12 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("pagado");
                     Log.v("PRUEBA", joFuj.getString("id_hoteleria"));
                     Log.v("PRUEBA", joFuj.getString("habitacion")); Log.v("PRUEBA","...");
+                    //MainActivity.oDB.insertProyectoHoteleria();
+                    /*
+                    (String habitacion, String area, String ancho, String alto,
+                    String hojas, String AIMG, String observaciones, String piso, String edificio,
+                    String control, String fijacion, String medidaSujerida, String corredera)
+                             */
                 }
             }catch (Exception e){
                 exception = e;

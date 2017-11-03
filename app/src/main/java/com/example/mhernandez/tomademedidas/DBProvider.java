@@ -314,8 +314,7 @@ public class DBProvider {
         Log.v("[obtenerPE]", "Insertar Especial");
         Object[] aData = {idEsp, idDisp, idPro, idProDisp, nombre, alto, ancho, grosor, observaciones, AIMG, fecha,
                 formato, idUserAlta, idUserMod, fechaAlta, estatus, autorizado, idUserAuto, fechaAuto, pagado, fechaPago, idUserPago};
-        /*Log.v("[obtenerPE]", "IdEs:"+idEsp +" IdDisp"+ idDisp +" "+ idPro+" "+ idProDisp+" "+ nombre+" "+ alto+ ancho+ grosor+" Ob:"+ observaciones+" Ima:"+ AIMG+" Fec:"+ fecha+
-               "  "+formato+ idUserAlta+ idUserMod+" fe:"+ fechaAlta+ estatus+ autorizado+ idUserAuto+" fe:"+ fechaAuto+ pagado+" fe:"+ fechaPago+ idUserPago);*/
+
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " ("
                 + DBhelper.ID_ESPECIALES + ", "
                 + DBhelper.ID_DISP + ", "
@@ -339,7 +338,7 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_PAGADO + ", "
                 + DBhelper.COLUMN_NAME_FECHA_PAGO + ", "
                 + DBhelper.ID_USUARIO_PAGO
-                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+                + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
         Log.v("[obtenerPE]", nombre);
     }
 
