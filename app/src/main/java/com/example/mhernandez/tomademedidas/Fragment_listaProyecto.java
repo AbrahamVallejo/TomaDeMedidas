@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,37 +106,22 @@ public class Fragment_listaProyecto extends Fragment {
                         String Formato = aDat[4];
                         if (Formato.equals("2")){
                             Log.v("[FRAGMENT]", Formato);
-/*                            Fragment childFragment = new Fragment_listaHoteleria();
-                            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-                            transaction.replace(R.id.lista, childFragment).commit();*/
                             Intent rIntent = new Intent(vista.getContext(), listaHoteleria.class);
                             startActivity(rIntent);
                         }else if (Formato.equals("4")){
                             Log.v("[FRAGMENT]", Formato);
-/*                            Fragment childFragment = new Fragment_listaCama();
-                            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-                            transaction.replace(R.id.lista, childFragment).commit();*/
                             Intent rIntent = new Intent(vista.getContext(), listaCama.class);
                             startActivity(rIntent);
                         }else if (Formato.equals("1")){
                             Log.v("[FRAGMENT]", Formato);
-/*                            Fragment childFragment = new Fragment_listaResidencial();
-                            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-                            transaction.replace(R.id.lista, childFragment).commit();*/
                             Intent rIntent = new Intent(vista.getContext(), listaResidencial.class);
                             startActivity(rIntent);
                         }else if (Formato.equals("3")){
                             Log.v("[FRAGMENT]", Formato);
-/*                            Fragment childFragment = new Fragment_listaGaleria();
-                            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-                            transaction.replace(R.id.lista, childFragment).commit();*/
                             Intent rIntent = new Intent(vista.getContext(), listaGaleria.class);
                             startActivity(rIntent);
                         }else if (Formato.equals("5")){
                             Log.v("[FRAGMENT]", Formato);
-/*                            Fragment childFragment = new Fragment_listaEspecial();
-                            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-                            transaction.replace(R.id.lista, childFragment).commit();*/
                             Intent rItent = new Intent(vista.getContext(), listaEspecial.class);
                             startActivity(rItent);
                         }

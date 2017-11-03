@@ -128,6 +128,10 @@ public class MainActivity extends AppCompatActivity
         EditText AccEspecial = (EditText) this.findViewById(R.id.proyecto_accesorios_especiales);
         EditText PedidoSap = (EditText) this.findViewById(R.id.proyecto_pedido_sap);
 
+        //Separa cliente en idCliente y id Disp
+
+        //Separa agente en idAgente
+
         String selected = formato.getSelectedItem().toString();
         String nombreProyecto = proyecto.getText().toString();
         String accesorioMuro = AccMuro.getText().toString();

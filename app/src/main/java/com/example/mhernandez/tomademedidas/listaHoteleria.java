@@ -1,13 +1,16 @@
 package com.example.mhernandez.tomademedidas;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,6 +22,7 @@ import android.widget.TextView;
 public class listaHoteleria extends AppCompatActivity {
     public static DBProvider oDB;
     public listaHoteleria() { oDB = new DBProvider(this);}
+    Dialog customDialog = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -29,6 +33,45 @@ public class listaHoteleria extends AppCompatActivity {
         lista();
 
         ListView tlList = ((ListView) this.findViewById(R.id.lista));
+
+        tlList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                ((Button) customDialog.findViewById(R.id.btnVer)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        customDialog.dismiss();
+                    }
+                });
+
+                ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+
+                        customDialog.dismiss();
+                    }
+                });
+
+                ((Button) customDialog.findViewById(R.id.btnCerrar)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        customDialog.dismiss();
+                    }
+                });
+
+                ((Button) customDialog.findViewById(R.id.btnEliminar)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        customDialog.dismiss();
+                    }
+                });
+
+                return false;
+            }
+        });
     }
 
     public class CustomAdapter extends ArrayAdapter<String[]> {
