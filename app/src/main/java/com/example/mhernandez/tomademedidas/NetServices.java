@@ -377,12 +377,12 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("direccion");
                     Log.v("PRUEBA", joFuj.getString("id_cliente"));
                     Log.v("PRUEBA", joFuj.getString("nombre")); Log.v("PRUEBA","...");
-                    String[][] aRef = MainActivity.oDB.buscarCliente(Integer.parseInt(joFuj.getString("id_cliente")) ,Integer.parseInt(joFuj.getString("id_disp")));
+            /*        String[][] aRef = MainActivity.oDB.buscarCliente(Integer.parseInt(joFuj.getString("id_cliente")) ,Integer.parseInt(joFuj.getString("id_disp")));
                     Log.v("[obtener]",aRef[0][0]);
-                    if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_cliente"))) {
+                    if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_cliente"))) {*/
                         MainActivity.oDB.insertCliente(Integer.parseInt(joFuj.getString("id_cliente")), Integer.parseInt(joFuj.getString("id_disp")),
                          joFuj.getString("nombre"), joFuj.getString("telefono"), joFuj.getString("direccion"), 0);
-                    }
+            //        }
                 }
             }catch (Exception e){
                 exception = e;
