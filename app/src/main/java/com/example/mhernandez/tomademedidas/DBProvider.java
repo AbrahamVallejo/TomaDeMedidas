@@ -170,6 +170,15 @@ public class DBProvider {
         return (aData);
     }
 
+    public void deleteAllCliente(String idCliente, String idDisp) {
+        int idC = Integer.parseInt(idCliente);
+        int idD = Integer.parseInt(idDisp);
+
+        Object[] aData = {idC, idD};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ?" + " AND " + DBhelper.ID_DISP + " <> ?", aData);
+        Log.v("[obtener]", "Delete");
+    }
+
     public Cursor getAllClientes(){
         Cursor aRS;
         aRS = querySQL("Select * From " + DBhelper.TABLE_NAME_CLIENTE, null);

@@ -13,4 +13,8 @@
         android:orderInCategory="100"
         android:title="Sincronizar" />
 
+    <item
+        android:id="@+id/descargar"
+        android:orderInCategory="100"
+        android:title="Descargar" />
 </menu>

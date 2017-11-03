@@ -197,30 +197,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void onSaveClickSincronizar(){
-        boolean aux = isOnlineNet();
-        if (aux != false) {
-            Sincliente();
-
-            getclienteLista();      getcopeteLista();
-            getfijacionLista();     getproyeccionLista();
-            getubicacionLista();    getcontrolLista();
-            getcorrederaLista();    getusuarioLista();
-            getformatoLista();
-
-            /*
-            getproyectoLista();
-            getproyectoCamaLista();
-            getproyectoEspecialLista();
-            */
-            //getproyectoGaleriaLista();
-            //getproyectoHoteleriaLista();
-            //getproyectoResidencialLista();
-        }
-        else {
-            Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
-        }
-    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -247,7 +223,10 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.sincronizar) {
-            onSaveClickSincronizar();
+            Sincronizar();
+        }
+        else if (id == R.id.descargar) {
+            descargarWS();
         }
 
         return super.onOptionsItemSelected(item);
@@ -662,6 +641,15 @@ public class MainActivity extends AppCompatActivity
         oNS.execute("getproyecto_camaLista");
     }
 
+    public void Sincronizar(){
+        boolean aux = isOnlineNet();
+        if (aux != false) {
+            Sincliente();
+        }
+        else {
+            Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
+        }
+    }
 
     public void Sincliente(){
         String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
@@ -711,6 +699,36 @@ public class MainActivity extends AppCompatActivity
             }
         }
         Toast.makeText(this, "Clientes Sincronizados", Toast.LENGTH_SHORT).show();
+    }
+
+    public void descargarWS(){
+        String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
+
+        if(aux1.length >= 1){
+            Toast.makeText(this, "Sincronización Requerida", Toast.LENGTH_LONG).show();
+        }else{
+            boolean aux = isOnlineNet();
+            if (aux != false) {
+                MainActivity.oDB.deleteAllCliente("0","0");
+
+                getclienteLista();      getcopeteLista();
+                getfijacionLista();     getproyeccionLista();
+                getubicacionLista();    getcontrolLista();
+                getcorrederaLista();    getusuarioLista();
+                getformatoLista();
+                getproyectoLista();
+
+                //getproyectoLista();
+                //getproyectoCamaLista();
+                //getproyectoEspecialLista();
+                //getproyectoGaleriaLista();
+                //getproyectoHoteleriaLista();
+                //getproyectoResidencialLista();
+                Toast.makeText(this, "Descarga Completa", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
 
