@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity
         Fragment_listaClientes.OnFragmentInteractionListener{
 
     public static DBProvider oDB;
+    int UBICACION=0;
 
     public MainActivity() { oDB = new DBProvider(this);}
     /*
@@ -249,16 +250,16 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.NuevoCliente){
             FragmentTransaction = true;
-            fragment = new Fragment_clientes();
+            fragment = new Fragment_clientes(); UBICACION=1;
         } else if (id == R.id.NuevoProyecto){
             FragmentTransaction = true;
-            fragment = new Fragment_proyecto();
+            fragment = new Fragment_proyecto(); UBICACION=3;
         } else if (id == R.id.EditarCliente){
             FragmentTransaction = true;
-            fragment = new Fragment_listaClientes();
+            fragment = new Fragment_listaClientes(); UBICACION=2;
         } else if (id == R.id.EditarProyecto){
             FragmentTransaction = true;
-            fragment = new Fragment_listaProyecto();
+            fragment = new Fragment_listaProyecto(); UBICACION=4;
         }
 
         if (FragmentTransaction){
@@ -642,9 +643,21 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void Sincronizar(){
+        Fragment fragment;
         boolean aux = isOnlineNet();
         if (aux != false) {
-            Sincliente();
+            if(UBICACION==2){
+                Sincliente();
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                /*fragment = new Fragment_listaClientes();
+                getSupportFragmentManager().beginTransaction().replace(R.id.list_activity, fragment).commit(); */
+            }
+            if(UBICACION==4){
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            }
+
         }
         else {
             Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
