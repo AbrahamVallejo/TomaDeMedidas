@@ -1,5 +1,6 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -653,6 +654,7 @@ public class MainActivity extends AppCompatActivity
 
     public void Sincliente(){
         String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
+
         for (int i =0; i < aux1.length; i++) {
             if (Integer.valueOf(aux1[i][5]) == 1) {
                 Log.v("[add]","Entre al if Insert" );
@@ -699,6 +701,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
         Toast.makeText(this, "Clientes Sincronizados", Toast.LENGTH_SHORT).show();
+
     }
 
     public void descargarWS(){
@@ -746,6 +749,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     /*
+        boolean FragmentTransaction = true;
+        Fragment fragment = new Fragment_listaClientes();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();
+
+        Dialog customDialog = new Dialog(this.getApplicationContext(), R.style.Theme_Dialog_Translucent);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setContentView(R.layout.cargando);
+
         public void onFotoClick(View v){
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
