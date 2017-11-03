@@ -26,12 +26,12 @@
                 android:layout_weight="50"
                 android:text="nombre"
                 android:textColor="@android:color/black"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingTop="5dp"
+                android:paddingTop="3dp"
                 android:layout_weight="50"
                 android:text="Teléfono: "
                 android:textColor="@android:color/black"
@@ -45,7 +45,7 @@
                 android:gravity="end"
                 android:text="telefono"
                 android:textColor="@android:color/black"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textStyle="italic"/>
         </LinearLayout>
 
@@ -70,13 +70,13 @@
                 android:id="@+id/direccion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="5dp"
+                android:paddingTop="2dp"
                 android:layout_weight="50"
                 android:gravity="right"
                 android:text="direccion"
-                android:layout_gravity="end"
+                android:layout_gravity="center"
                 android:textColor="@android:color/black"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textStyle="normal" />
         </LinearLayout>
 
@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="50"
             android:textSize="11dp"
-            android:paddingBottom="8dp"
+            android:paddingBottom="5dp"
             android:textStyle="bold"/>
     </LinearLayout>
 

@@ -201,23 +201,28 @@ public class MainActivity extends AppCompatActivity
         boolean aux = isOnlineNet();
         if (aux != false) {
             Sincliente();
-
+        }
+        else {
+            Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
+        }
+    }
+    public void descargarWS(){
+        boolean aux = isOnlineNet();
+        if (aux != false) {
             getclienteLista();      getcopeteLista();
             getfijacionLista();     getproyeccionLista();
             getubicacionLista();    getcontrolLista();
             getcorrederaLista();    getusuarioLista();
             getformatoLista();
-
-            /*
             getproyectoLista();
-            getproyectoCamaLista();
-            getproyectoEspecialLista();
-            */
+
+            //getproyectoLista();
+            //getproyectoCamaLista();
+            //getproyectoEspecialLista();
             //getproyectoGaleriaLista();
             //getproyectoHoteleriaLista();
             //getproyectoResidencialLista();
-        }
-        else {
+        }else {
             Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
         }
     }
@@ -248,6 +253,9 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.sincronizar) {
             onSaveClickSincronizar();
+        }
+        else if (id == R.id.descargar) {
+            descargarWS();
         }
 
         return super.onOptionsItemSelected(item);
