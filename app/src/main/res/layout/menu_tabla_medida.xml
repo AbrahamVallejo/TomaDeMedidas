@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/contenedor"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceSmallPopupMenu"
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="Seleccione una de las opciones siguientes: "/>
+
+    <Button
+        android:id="@+id/btnVer"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        style="@style/ButtonStyle2"
+        android:text="Ver MEDIDA"
+        android:layout_weight="0"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        />
+
+    <Button
+        android:id="@+id/btnNuevaMedida"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        style="@style/ButtonStyle2"
+        android:text="NUEVA MEDIDA"
+        android:layout_weight="0"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        />
+
+    <Button
+        android:id="@+id/btnCerrar"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        style="@style/ButtonStyle2"
+        android:text="CERRAR MEDIDA"
+        android:layout_weight="0"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        />
+
+    <Button
+        android:id="@+id/btnBorrar"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        style="@style/ButtonStyle"
+        android:text="BORRAR"
+        android:layout_weight="0"/>
+</LinearLayout>
