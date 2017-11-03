@@ -724,6 +724,7 @@ public class MainActivity extends AppCompatActivity
                 //getproyectoGaleriaLista();
                 //getproyectoHoteleriaLista();
                 //getproyectoResidencialLista();
+                Toast.makeText(this, "Descarga Completa", Toast.LENGTH_SHORT).show();
             }else {
                 Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
             }
