@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -195,11 +197,18 @@ public class Fragment_listaClientes extends Fragment {
             TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
             TextView txtTelefono = (TextView) rowView.findViewById(R.id.telefono);
             TextView txtDireccion = (TextView) rowView.findViewById(R.id.direccion);
+            TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
             txtIdCliente.setText(_text[position][0]);
             txtIdDisp.setText(_text[position][1]);
             txtNombre.setText(_text[position][2]);
             txtTelefono.setText(_text[position][3]);
             txtDireccion.setText(_text[position][4]);
+
+            Log.v("checkbox",_text[position][5]);
+            if( Integer.parseInt(_text[position][5]) == 0){
+                checkCliente.setTextColor(Color.BLACK);
+                checkCliente.setText("Sincronizado");
+            }
             return rowView;
         }
     }

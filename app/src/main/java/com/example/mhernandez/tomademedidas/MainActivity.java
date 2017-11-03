@@ -79,26 +79,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         MainActivity.oDB.ObtenerCorredera("0",1);
-        boolean aux = isOnlineNet();
-        if (aux != false){
-            /*getclienteLista();      getcopeteLista();
-            getfijacionLista();     getproyeccionLista();
-            getubicacionLista();    getcontrolLista();
-            getcorrederaLista();    getusuarioLista();
-            getformatoLista();      */
-            Sincliente();
-/*
-            getproyectoLista();
-            getproyectoCamaLista();
-            getproyectoEspecialLista();
-*/
-                //getproyectoGaleriaLista();
-                //getproyectoHoteleriaLista();
-                //getproyectoResidencialLista();
-        }
-        else {
-            Toast.makeText(this, "Sin Acceso a la Red", Toast.LENGTH_SHORT).show();
-        }
 
     }
 
@@ -217,6 +197,30 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void onSaveClickSincronizar(){
+        boolean aux = isOnlineNet();
+        if (aux != false) {
+            Sincliente();
+
+            getclienteLista();      getcopeteLista();
+            getfijacionLista();     getproyeccionLista();
+            getubicacionLista();    getcontrolLista();
+            getcorrederaLista();    getusuarioLista();
+            getformatoLista();
+
+            /*
+            getproyectoLista();
+            getproyectoCamaLista();
+            getproyectoEspecialLista();
+            */
+            //getproyectoGaleriaLista();
+            //getproyectoHoteleriaLista();
+            //getproyectoResidencialLista();
+        }
+        else {
+            Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
+        }
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -242,8 +246,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.sincronizar) {
+            onSaveClickSincronizar();
         }
 
         return super.onOptionsItemSelected(item);
@@ -660,7 +664,7 @@ public class MainActivity extends AppCompatActivity
 
 
     public void Sincliente(){
-        String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",1);
+        String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
         for (int i =0; i < aux1.length; i++) {
             if (Integer.valueOf(aux1[i][5]) == 1) {
                 Log.v("[add]","Entre al if Insert" );
@@ -706,7 +710,7 @@ public class MainActivity extends AppCompatActivity
                 oNS.execute("deletecliente", aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][4], aux1[i][3]);
             }
         }
-
+        Toast.makeText(this, "Clientes Sincronizados", Toast.LENGTH_SHORT).show();
     }
 
 

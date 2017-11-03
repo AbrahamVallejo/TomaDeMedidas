@@ -137,6 +137,11 @@ public class DBProvider {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ?", aFils);
             //Log.v("[obtener]", "SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ?");
         }
+        else if (tipo == 2) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ? " +
+                    "AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 0", aFils);
+
+        }
         else if (tipo == 3) {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ? " +
                     "AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 3", aFils);
