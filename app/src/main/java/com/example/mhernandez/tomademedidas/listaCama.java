@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,13 +24,17 @@ public class listaCama extends AppCompatActivity {
     public static DBProvider oDB;
     public listaCama() { oDB = new DBProvider(this);}
     Dialog customDialog = null;
-
+    public int idProyecto=0;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_activity);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Bundle oExt = this.getIntent().getExtras();
+        idProyecto = oExt.getInt("idProyecto");
+        Log.v("[FRAGMENT]", "ID "+idProyecto);
 
         lista();
 
@@ -126,7 +131,7 @@ public class listaCama extends AppCompatActivity {
     }
 
     public void lista(){
-        String[][] aRef = oDB.ObtenerProyectosCama("0", 1);
+        String[][] aRef = oDB.ProyectosCamaProyecto(String.valueOf(idProyecto), 2);
         String[][] aDataFolio = null;
         if (aRef != null){
             aDataFolio = new String[aRef.length][];

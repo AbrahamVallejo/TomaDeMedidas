@@ -109,8 +109,9 @@ public class Fragment_listaProyecto extends Fragment {
                             Intent rIntent = new Intent(vista.getContext(), listaHoteleria.class);
                             startActivity(rIntent);
                         }else if (Formato.equals("4")){
-                            Log.v("[FRAGMENT]", Formato);
+                            Log.v("[FRAGMENT]", Formato );
                             Intent rIntent = new Intent(vista.getContext(), listaCama.class);
+                            rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             startActivity(rIntent);
                         }else if (Formato.equals("1")){
                             Log.v("[FRAGMENT]", Formato);
