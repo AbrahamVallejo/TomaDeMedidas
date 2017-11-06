@@ -179,12 +179,6 @@ public class DBProvider {
         Log.v("[obtener]", "Delete");
     }
 
-    public Cursor getAllClientes(){
-        Cursor aRS;
-        aRS = querySQL("Select * From " + DBhelper.TABLE_NAME_CLIENTE, null);
-        return aRS;
-    }
-
 
 
 
@@ -384,17 +378,37 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " WHERE " + DBhelper.ID_GALERIA + " = ?", aData);
     }
 
-    public void insertProyectoHoteleria(String habitacion, String area, String ancho, String alto,
-                                        String hojas, String AIMG, String observaciones, String piso, String edificio,
-                                        String control, String fijacion, String medidaSujerida, String corredera) {
-        Object[] aData = {habitacion, area, ancho, alto, hojas, AIMG, observaciones, piso, edificio,
-                control, fijacion, medidaSujerida, corredera};
-        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " (" + DBhelper.COLUMN_NAME_HABITACION + ", "
-                + DBhelper.COLUMN_NAME_AREA + ", " + DBhelper.COLUMN_NAME_ANCHO + ", " + DBhelper.COLUMN_NAME_ALTO + ", "
-                + DBhelper.COLUMN_NAME_HOJAS + ", " + DBhelper.COLUMN_NAME_AIMG + ", " + DBhelper.COLUMN_NAME_OBSERVACIONES + ", " + DBhelper.COLUMN_NAME_PISO + ", "
-                + DBhelper.COLUMN_NAME_EDIFICIO + ", " + DBhelper.COLUMN_NAME_CONTROL + ", " + DBhelper.COLUMN_NAME_FIJACION + ", "
-                + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + ", " + DBhelper.COLUMN_NAME_CORREDERA
-                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+
+    public void insertProyectoHoteleria(String id, String idDisp, String idPro, String idProDis, String accMuro,
+                                        String accTecho, String habitacion, String area, String ancho, String alto,
+                                        String hojas, String observaciones, String nombrePro, String AIMG, String fecha,
+                                        String formato, String piso, String edificio, String control, String fijacion,
+                                        String fechaAl, String userAl, String userMod, String estatus, String medidaSujerida,
+                                        String autorizado, String userAuto, String fechaAuto, String pagado, String userPago,
+                                        String corredera) {
+        Log.v("[ProH]","Voy a insertar Hoteleria " + nombrePro +" Piso: "+piso);
+        Object[] aData = { id, idDisp, idPro, idProDis, accMuro, accTecho, habitacion, area, ancho, alto, hojas, observaciones, nombrePro,
+                            AIMG, fecha, formato, piso, edificio, control, fijacion, fechaAl, userAl, userMod, estatus, medidaSujerida,
+                            autorizado, userAuto, fechaAuto, pagado, userPago, corredera};
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " ("
+                + DBhelper.ID_HOTELERIA + ", " + DBhelper.ID_DISP + ", "
+                + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_PROYECTO_DISP + ", "
+                + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + ", " + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + ", "
+                + DBhelper.COLUMN_NAME_HABITACION + ", " + DBhelper.COLUMN_NAME_AREA + ", "
+                + DBhelper.COLUMN_NAME_ANCHO + ", " + DBhelper.COLUMN_NAME_ALTO + ", "
+                + DBhelper.COLUMN_NAME_HOJAS + ", " + DBhelper.COLUMN_NAME_OBSERVACIONES + ", "
+                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", " + DBhelper.COLUMN_NAME_AIMG + ", "
+                + DBhelper.COLUMN_NAME_FECHA + ", " + DBhelper.COLUMN_NAME_FORMATO + ", "
+                + DBhelper.COLUMN_NAME_PISO + ", " + DBhelper.COLUMN_NAME_EDIFICIO + ", "
+                + DBhelper.COLUMN_NAME_CONTROL + ", " + DBhelper.COLUMN_NAME_FIJACION + ", "
+                + DBhelper.COLUMN_NAME_FECHA_ALTA + ", " + DBhelper.ID_USUARIO_ALTA + ", "
+                + DBhelper.ID_USUARIO_MOD + ", " + DBhelper.ID_ESTATUS + ", "
+                + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + ", " + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
+                + DBhelper.ID_USUARIOAUTORIZA + ", " + DBhelper.COLUMN_NAME_FECHAAUTORIZA + ", "
+                + DBhelper.COLUMN_NAME_PAGADO + ", " + DBhelper.ID_USUARIO_PAGO + ", "
+                + DBhelper.COLUMN_NAME_CORREDERA
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+        Log.v("[ProH]","Inserte Hoteleria " + nombrePro);
     }
 
     public void updateProyectoHoteleria(String idHoteleria, String habitacion, String area, String ancho, String alto,
@@ -1631,6 +1645,63 @@ public class DBProvider {
         CloseDB();
         return (aData);
     }
+    //
+    public String[][] ProyectoHoteleriaProyecto(String id, int tipo) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)}; Log.v("[FRAGMENT]", "Vengo por Proyectos: "+id );
+        Cursor aRS;
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_PROYECTO + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aFils);
+        }
+        Log.v("[FRAGMENT]", "Encontre : "+ aRS.getCount() );
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[31];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_HOTELERIA));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP));
+                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO));
+                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO_DISP));
+                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ACCESORIOS_MURO));
+                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ACCESORIOS_TECHO));
+                aData[iCnt][6] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_HABITACION));
+                aData[iCnt][7] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AREA));
+                aData[iCnt][8] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ANCHO));
+                aData[iCnt][9] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ALTO));
+                aData[iCnt][10] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_HOJAS));
+                aData[iCnt][11] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_OBSERVACIONES));
+                aData[iCnt][12] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE_PROYECTO));
+                aData[iCnt][13] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AIMG));
+                aData[iCnt][14] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA));
+                aData[iCnt][15] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FORMATO));
+                aData[iCnt][16] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PISO)); Log.v("[FRAGMENT]", "PisoH: "+aData[iCnt][16]);
+                aData[iCnt][17] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_EDIFICIO));
+                aData[iCnt][18] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_CONTROL));
+                aData[iCnt][19] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FIJACION));
+                aData[iCnt][20] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_ALTA));
+                aData[iCnt][21] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_ALTA));
+                aData[iCnt][22] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_MOD));
+                aData[iCnt][23] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_ESTATUS));
+                aData[iCnt][24] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA));
+                aData[iCnt][25] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AUTORIZADO));
+                aData[iCnt][26] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIOAUTORIZA));
+                aData[iCnt][27] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHAAUTORIZA));
+                aData[iCnt][28] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PAGADO));
+                aData[iCnt][29] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_PAGO));
+                aData[iCnt][30] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_CORREDERA));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+
+        aRS.close();
+        CloseDB();
+        return (aData);
+    }
 
 
     //Creación Tablas Base De Datos ++
@@ -2006,7 +2077,7 @@ public class DBProvider {
                     + DBhelper.ID_USUARIO_MOD + " INTEGER,"
                     + DBhelper.ID_ESTATUS + " INTEGER,"
                     + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + " TEXT,"
-                    + DBhelper.COLUMN_NAME_AUTORIZADO + "TINYINT,"
+                    + DBhelper.COLUMN_NAME_AUTORIZADO + " TINYINT,"
                     + DBhelper.ID_USUARIOAUTORIZA + " INTEGER,"
                     + DBhelper.COLUMN_NAME_FECHAAUTORIZA + " TEXT,"
                     + DBhelper.COLUMN_NAME_PAGADO + " TINYINT,"
