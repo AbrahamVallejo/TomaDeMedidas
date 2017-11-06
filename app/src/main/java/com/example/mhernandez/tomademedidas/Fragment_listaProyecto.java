@@ -120,6 +120,7 @@ public class Fragment_listaProyecto extends Fragment {
                         }else if (Formato.equals("3")){
                             Log.v("[FRAGMENT]", Formato);
                             Intent rIntent = new Intent(vista.getContext(), listaGaleria.class);
+                            rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             startActivity(rIntent);
                         }else if (Formato.equals("5")){
                             Log.v("[FRAGMENT]", Formato);
