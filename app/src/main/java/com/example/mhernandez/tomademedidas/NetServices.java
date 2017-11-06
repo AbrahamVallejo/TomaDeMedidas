@@ -862,12 +862,10 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                             Integer.parseInt(joFuj.getString("id_proyecto")),
                             Integer.parseInt(joFuj.getString("id_proyecto_disp")),
                             joFuj.getString("nombre_proyecto"),
-                            Double.parseDouble(joFuj.getString("alto")),
-                            Double.parseDouble(joFuj.getString("ancho")),
-                            Double.parseDouble(joFuj.getString("grosor")),
-                            joFuj.getString("observaciones"),
-                            joFuj.getString("aImg"),
-                            joFuj.getString("fecha"),
+                            joFuj.getString("alto"),
+                            joFuj.getString("ancho"),
+                            joFuj.getString("grosor"),
+                            joFuj.getString("observaciones"),   joFuj.getString("aImg"),    joFuj.getString("fecha"),
                             Integer.parseInt(joFuj.getString("formato")),
                             Integer.parseInt(joFuj.getString("id_usuario_alta")),
                             Integer.parseInt(joFuj.getString("id_usuario_mod")),
@@ -875,7 +873,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                             Integer.parseInt(joFuj.getString("id_estatus")),
                             Integer.parseInt(joFuj.getString("autorizado")),
                             1, joFuj.getString("fecha"),
-                            1, joFuj.getString("fecha"), 1
+                            1, joFuj.getString("fecha"),0
                             );
                 }
             }catch (Exception e){

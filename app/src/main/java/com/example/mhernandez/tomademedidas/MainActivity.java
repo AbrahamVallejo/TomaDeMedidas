@@ -81,8 +81,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         MainActivity.oDB.ObtenerCorredera("0",1);
-        //MainActivity.oDB.insertProyectoEspecial(1,1,55,1,"Hola", 0.2, 0.5, 0.6, "hola", "hola","12/12/12", 1, 1, 1, "11/11/11", 2,1,1, "12/12/12", 1, "11/11/11", 2);
-
+        //MainActivity.oDB.ObtenerProyectosEspecial("0",1);
     }
 
     public void onSaveClickClientes(View view){
@@ -726,15 +725,15 @@ public class MainActivity extends AppCompatActivity
             if (aux != false) {
                 MainActivity.oDB.deleteAllCliente("0","0");
 
-                getclienteLista();      getcopeteLista();
+                //getclienteLista();
+                getcopeteLista();       getformatoLista();
                 getfijacionLista();     getproyeccionLista();
                 getubicacionLista();    getcontrolLista();
                 getcorrederaLista();    getusuarioLista();
-                getformatoLista();
 
                 getproyectoLista();
                 getproyectoCamaLista();
-                //getproyectoEspecialLista();
+                getproyectoEspecialLista();
                 //getproyectoGaleriaLista();
                 //getproyectoHoteleriaLista();
                 //getproyectoResidencialLista();

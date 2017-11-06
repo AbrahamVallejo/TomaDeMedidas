@@ -43,8 +43,8 @@ public class entrada_inicio extends AppCompatActivity {
                                     intent.putExtra("internet", 0);
                                     startActivity(intent);
                                 }else {
-                                    Intent intent = new Intent(entrada_inicio.this, log_in.class);
-                                    //Intent intent = new Intent(entrada_inicio.this, MainActivity.class);
+                                    //Intent intent = new Intent(entrada_inicio.this, log_in.class);
+                                    Intent intent = new Intent(entrada_inicio.this, MainActivity.class);
                                     startActivity(intent);
                                 }
                             }else{
