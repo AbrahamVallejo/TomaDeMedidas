@@ -56,18 +56,19 @@ public class listaGaleria extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent rIntent = new Intent(listaGaleria.this, medidaGaleria.class);
                         startActivity(rIntent);
+                      
                         customDialog.dismiss();
                     }
                 });
 
-                ((Button) customDialog.findViewById(R.id.btnNuevaGaleria)).setOnClickListener(new View.OnClickListener(){
+              ((Button) customDialog.findViewById(R.id.btnNuevaGaleria)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
 
                         customDialog.dismiss();
                     }
                 });
-
+              
                 ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
