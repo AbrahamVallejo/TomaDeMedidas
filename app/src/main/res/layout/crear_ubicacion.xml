@@ -25,5 +25,4 @@
         android:text="Guardar"
         style="@style/ButtonStyle2"
         android:textStyle="bold"/>
-
 </LinearLayout>

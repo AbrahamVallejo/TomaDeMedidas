@@ -18,7 +18,7 @@
         android:textColor="@android:color/black"/>
 
     <Spinner
-        android:id="@+id/Tipo"
+        android:id="@+id/TipoGaleria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15dp">
