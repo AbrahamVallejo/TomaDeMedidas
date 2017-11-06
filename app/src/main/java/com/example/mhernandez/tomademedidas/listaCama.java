@@ -75,6 +75,14 @@ public class listaCama extends AppCompatActivity {
                     }
                 });
 
+                ((Button) customDialog.findViewById(R.id.btnCerrar)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        customDialog.dismiss();
+                    }
+                });
+
                 ((Button) customDialog.findViewById(R.id.btnBorrar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

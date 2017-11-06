@@ -2,6 +2,7 @@ package com.example.mhernandez.tomademedidas;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -44,14 +45,24 @@ public class listaHoteleria extends AppCompatActivity {
                 customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 customDialog.setContentView(R.layout.menu_tabla_medida);
 
-                ((Button) customDialog.findViewById(R.id.btnVer)).setOnClickListener(new View.OnClickListener() {
+                ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Intent rIntent = new Intent(listaHoteleria.this, medidaHoteleria.class);
+                        startActivity(rIntent);
                         customDialog.dismiss();
                     }
                 });
 
-                ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener(){
+                ((Button) customDialog.findViewById(R.id.btnNuevaGaleria)).setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+
+                        customDialog.dismiss();
+                    }
+                });
+
+                ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
 
