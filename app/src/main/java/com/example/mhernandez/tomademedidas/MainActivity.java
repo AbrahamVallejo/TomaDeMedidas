@@ -572,15 +572,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                        "TODO PERFECTO EN EL WEB SERVICES PRO-ESP!", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                        "ERROR EN EL WEB SERVICES PRO-ESP!", Toast.LENGTH_LONG).show();
             }
         });
         oNS.execute("getproyecto_especialLista");
@@ -609,16 +607,13 @@ public class MainActivity extends AppCompatActivity
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                        "ERROR EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
             }
         });
         oNS.execute("getproyecto_galeriaLista");
@@ -628,14 +623,13 @@ public class MainActivity extends AppCompatActivity
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "WEB SERVICES PROYECTO-CAMA!", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "WEB SERVICES PROYECTO-CAMA!", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                        "ERROR EN EL WEB SERVICES PRO-CAMA!", Toast.LENGTH_LONG).show();
             }
         });
         oNS.execute("getproyecto_camaLista");
@@ -734,7 +728,7 @@ public class MainActivity extends AppCompatActivity
                 getproyectoLista();
                 getproyectoCamaLista();
                 getproyectoEspecialLista();
-                //getproyectoGaleriaLista();
+                getproyectoGaleriaLista();
                 //getproyectoHoteleriaLista();
                 //getproyectoResidencialLista();
                 Toast.makeText(this, "Descarga Completa", Toast.LENGTH_SHORT).show();

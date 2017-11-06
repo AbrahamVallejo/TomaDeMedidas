@@ -353,13 +353,21 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " WHERE " + DBhelper.ID_ESPECIALES + " = ?", aData);
     }
 
-    public void insertProyectoGaleria(String nHabitaciones, String area, String ancho, String alto,
-                                      String copete, String proyecciones, String fijacion, String AIMG, String comentarios) {
-        Object[] aData = {nHabitaciones, area, ancho, alto, copete, proyecciones, fijacion, AIMG, comentarios};
-        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " (" + DBhelper.COLUMN_NAME_N_HABITACION + ", "
-                + DBhelper.COLUMN_NAME_AREA + ", " + DBhelper.COLUMN_NAME_ANCHO + ", " + DBhelper.COLUMN_NAME_ALTO + ", "
-                + DBhelper.COLUMN_NAME_COPETE + ", " + DBhelper.COLUMN_NAME_PROYECCIONES + ", " + DBhelper.COLUMN_NAME_FIJACION + ", "
-                + DBhelper.COLUMN_NAME_AIMG + ", " + DBhelper.COLUMN_NAME_COMENTARIOS + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+    public void insertProyectoGaleria(String idGal, String idDisp, String idPro,String idProDi, String fecha, String nHabitaciones, String area, String ancho, String alto,
+                                      String copete, String proyecciones, String fijacion, String comentarios, String nombrePro, String AIMG,
+                                      String formato, String userAlta, String userMod, String fechaAl, String estatus, String autorizado,
+                                      String userAuto, String fechaAuto, String pagado, String fechaPago, String userPago) {
+        Object[] aData = {idGal, idDisp, idPro, idProDi, fecha, nHabitaciones, area, ancho, alto, copete, proyecciones, fijacion, comentarios,
+                nombrePro, AIMG, formato, userAlta, userMod, fechaAl, estatus, autorizado, userAuto, fechaAuto, pagado, fechaPago, userPago};
+
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " ("
+                + DBhelper.ID_GALERIA + ", " + DBhelper.ID_DISP + ", " + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_PROYECTO_DISP + ", " + DBhelper.COLUMN_NAME_FECHA + ", "
+                + DBhelper.COLUMN_NAME_N_HABITACION + ", " + DBhelper.COLUMN_NAME_AREA + ", " + DBhelper.COLUMN_NAME_ANCHO + ", " + DBhelper.COLUMN_NAME_ALTO + ", "
+                + DBhelper.COLUMN_NAME_COPETE + ", " + DBhelper.COLUMN_NAME_PROYECCIONES + ", " + DBhelper.COLUMN_NAME_FIJACION + ", " + DBhelper.COLUMN_NAME_COMENTARIOS + ", "
+                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", " + DBhelper.COLUMN_NAME_AIMG + ", " + DBhelper.COLUMN_NAME_FORMATO + ", " + DBhelper.ID_USUARIO_ALTA + ", "
+                + DBhelper.ID_USUARIO_MOD + ", " + DBhelper.COLUMN_NAME_FECHA_ALTA + ", " + DBhelper.ID_ESTATUS + ", " + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
+                + DBhelper.ID_USUARIOAUTORIZA + ", " + DBhelper.COLUMN_NAME_FECHAAUTORIZA + ", " + DBhelper.COLUMN_NAME_PAGADO + ", " + DBhelper.COLUMN_NAME_FECHA_PAGO + ", "
+                + DBhelper.ID_USUARIO_PAGO + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
     }
 
     public void updateProyectoGaleria(String idGaleria, String nHabitaciones, String area, String ancho, String alto,
@@ -1213,60 +1221,6 @@ public class DBProvider {
 
     }
 
-    public String[][] ProyectosCamaProyecto(String id, int tipo) {
-        int iCnt = 0;
-        String[][] aData = null;
-        String[] aFils = {(id)};
-        Cursor aRS;
-        if (tipo == 1) {
-            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_PROYECTO + " <> ?", aFils);
-        } else {
-            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aFils);
-        }
-
-        if (aRS.getCount() > 0) {
-            aData = new String[aRS.getCount()][];
-            while (aRS.moveToNext()) {
-                aData[iCnt] = new String[27];
-                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_CAMA));
-                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP));
-                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO));
-                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO_DISP));
-                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_N_HABITACION));
-                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_A));
-                aData[iCnt][6] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_B));
-                aData[iCnt][7] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_C));
-                aData[iCnt][8] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_D));
-                aData[iCnt][9] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_E));
-                aData[iCnt][10] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_F));
-                aData[iCnt][11] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE_PROYECTO));
-                aData[iCnt][12] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AIMG));
-                aData[iCnt][13] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA));
-                aData[iCnt][14] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FORMATO));
-                aData[iCnt][15] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_G));
-                aData[iCnt][16] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_OBSERVACIONES));
-                aData[iCnt][17] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_ALTA));
-                aData[iCnt][18] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_MOD));
-                aData[iCnt][19] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_ALTA));
-                aData[iCnt][20] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_ESTATUS));
-                aData[iCnt][21] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AUTORIZADO));
-                aData[iCnt][22] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIOAUTORIZA));
-                aData[iCnt][23] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHAAUTORIZA));
-                aData[iCnt][24] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PAGADO));
-                aData[iCnt][25] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_PAGO));
-                aData[iCnt][26] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_PAGO));
-                iCnt++;
-            }
-        } else {
-            aData = new String[0][];
-        }
-
-        aRS.close();
-        CloseDB();
-        return (aData);
-
-    }
-
     public String[][] ObtenerProyectosEspecial(String id, int tipo) {
         int iCnt = 0; Log.v("[obtenerPE]","Estoy en obtener ProyectosEspecial");
         String[][] aData = null;
@@ -1276,54 +1230,6 @@ public class DBProvider {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " WHERE " + DBhelper.ID_ESPECIALES + " <> ?", aFils);
         } else {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " WHERE " + DBhelper.ID_ESPECIALES + " = ?", aFils);
-        }
-
-        if (aRS.getCount() > 0) {
-            aData = new String[aRS.getCount()][];
-            while (aRS.moveToNext()) {
-                aData[iCnt] = new String[22];
-                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_ESPECIALES));
-                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP));
-                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO));
-                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO_DISP));
-                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE_PROYECTO)); Log.v("[obtenerPE]", aData[iCnt][4]);
-                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ALTO));
-                aData[iCnt][6] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ANCHOESP));
-                aData[iCnt][7] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_GROSOR));
-                aData[iCnt][8] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_OBSERVACIONES));
-                aData[iCnt][9] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AIMG));
-                aData[iCnt][10] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA));
-                aData[iCnt][11] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FORMATO));
-                aData[iCnt][12] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_ALTA));
-                aData[iCnt][13] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_MOD));
-                aData[iCnt][14] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_ALTA));
-                aData[iCnt][15] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_ESTATUS));
-                aData[iCnt][16] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AUTORIZADO));
-                aData[iCnt][17] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIOAUTORIZA));
-                aData[iCnt][18] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHAAUTORIZA));
-                aData[iCnt][19] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PAGADO));
-                aData[iCnt][20] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_PAGO));
-                aData[iCnt][21] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_PAGO));
-                iCnt++;
-            }
-        } else {
-            aData = new String[0][];
-        }
-
-        aRS.close();
-        CloseDB();
-        return (aData);
-    }
-
-    public String[][] ProyectosEspecialProyecto(String id, int tipo) {
-        int iCnt = 0; Log.v("[obtenerPE]","Estoy en obtener ProyectosEspecial");
-        String[][] aData = null;
-        String[] aFils = {(id)};
-        Cursor aRS;
-        if (tipo == 1) {
-            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " WHERE " + DBhelper.ID_PROYECTO + " <> ?", aFils);
-        } else {
-            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aFils);
         }
 
         if (aRS.getCount() > 0) {
@@ -1570,6 +1476,162 @@ public class DBProvider {
         CloseDB();
         return (aData);
     }
+
+    //ESPECIALES PARA LOS FRAGMENT DE LISTAR
+    public String[][] ProyectosCamaProyecto(String id, int tipo) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)};
+        Cursor aRS;
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_PROYECTO + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aFils);
+        }
+
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[27];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_CAMA));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP));
+                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO));
+                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO_DISP));
+                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_N_HABITACION));
+                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_A));
+                aData[iCnt][6] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_B));
+                aData[iCnt][7] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_C));
+                aData[iCnt][8] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_D));
+                aData[iCnt][9] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_E));
+                aData[iCnt][10] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_F));
+                aData[iCnt][11] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE_PROYECTO));
+                aData[iCnt][12] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AIMG));
+                aData[iCnt][13] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA));
+                aData[iCnt][14] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FORMATO));
+                aData[iCnt][15] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_G));
+                aData[iCnt][16] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_OBSERVACIONES));
+                aData[iCnt][17] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_ALTA));
+                aData[iCnt][18] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_MOD));
+                aData[iCnt][19] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_ALTA));
+                aData[iCnt][20] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_ESTATUS));
+                aData[iCnt][21] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AUTORIZADO));
+                aData[iCnt][22] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIOAUTORIZA));
+                aData[iCnt][23] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHAAUTORIZA));
+                aData[iCnt][24] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PAGADO));
+                aData[iCnt][25] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_PAGO));
+                aData[iCnt][26] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_PAGO));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+
+        aRS.close();
+        CloseDB();
+        return (aData);
+
+    }
+
+    public String[][] ProyectosEspecialProyecto(String id, int tipo) {
+        int iCnt = 0; Log.v("[obtenerPE]","Estoy en obtener ProyectosEspecial");
+        String[][] aData = null;
+        String[] aFils = {(id)};
+        Cursor aRS;
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " WHERE " + DBhelper.ID_PROYECTO + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aFils);
+        }
+
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[22];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_ESPECIALES));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP));
+                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO));
+                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO_DISP));
+                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE_PROYECTO)); Log.v("[obtenerPE]", aData[iCnt][4]);
+                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ALTO));
+                aData[iCnt][6] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ANCHOESP));
+                aData[iCnt][7] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_GROSOR));
+                aData[iCnt][8] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_OBSERVACIONES));
+                aData[iCnt][9] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AIMG));
+                aData[iCnt][10] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA));
+                aData[iCnt][11] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FORMATO));
+                aData[iCnt][12] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_ALTA));
+                aData[iCnt][13] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_MOD));
+                aData[iCnt][14] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_ALTA));
+                aData[iCnt][15] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_ESTATUS));
+                aData[iCnt][16] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AUTORIZADO));
+                aData[iCnt][17] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIOAUTORIZA));
+                aData[iCnt][18] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHAAUTORIZA));
+                aData[iCnt][19] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PAGADO));
+                aData[iCnt][20] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_PAGO));
+                aData[iCnt][21] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_PAGO));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+
+        aRS.close();
+        CloseDB();
+        return (aData);
+    }
+
+    public String[][] ProyectosGaleriaProyecto(String id, int tipo) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)};
+        Cursor aRS;
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " WHERE " + DBhelper.ID_PROYECTO + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aFils);
+        }
+
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[26];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_GALERIA));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP));
+                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO));
+                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO_DISP));
+                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA));
+                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_N_HABITACION));
+                aData[iCnt][6] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AREA));
+                aData[iCnt][7] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ANCHO));
+                aData[iCnt][8] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ALTO));
+                aData[iCnt][9] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_COPETE));
+                aData[iCnt][10] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PROYECCIONES));
+                aData[iCnt][11] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FIJACION));
+                aData[iCnt][12] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_COMENTARIOS));
+                aData[iCnt][13] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE_PROYECTO));
+                aData[iCnt][14] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AIMG));
+                aData[iCnt][15] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FORMATO));
+                aData[iCnt][16] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_ALTA));
+                aData[iCnt][17] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_MOD));
+                aData[iCnt][18] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_ALTA));
+                aData[iCnt][19] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_ESTATUS));
+                aData[iCnt][20] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AUTORIZADO));
+                aData[iCnt][21] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIOAUTORIZA));
+                aData[iCnt][22] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHAAUTORIZA));
+                aData[iCnt][23] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PAGADO));
+                aData[iCnt][24] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_PAGO));
+                aData[iCnt][25] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_PAGO));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+
+        aRS.close();
+        CloseDB();
+        return (aData);
+    }
+
 
     //Creación Tablas Base De Datos ++
     public class DBhelper extends SQLiteOpenHelper {
