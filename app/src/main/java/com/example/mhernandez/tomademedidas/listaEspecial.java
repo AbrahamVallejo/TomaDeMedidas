@@ -124,7 +124,7 @@ public class listaEspecial extends AppCompatActivity {
     }
 
     public void lista(){
-        String[][] aRef = oDB.ProyectosEspecialProyecto(String.valueOf(idProyecto), 1);
+        String[][] aRef = oDB.ProyectosEspecialProyecto(String.valueOf(idProyecto), 2);
         String[][] aDataFolio = null;
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
