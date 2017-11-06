@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,12 +26,17 @@ public class listaHoteleria extends AppCompatActivity {
     public static DBProvider oDB;
     public listaHoteleria() { oDB = new DBProvider(this);}
     Dialog customDialog = null;
+    public int idProyecto=0;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_activity);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Bundle oExt = this.getIntent().getExtras();
+        idProyecto = oExt.getInt("idProyecto");
+        Log.v("[FRAGMENT]", "ID "+idProyecto);
 
         lista();
 
@@ -149,7 +155,7 @@ public class listaHoteleria extends AppCompatActivity {
     }
 
     public void lista(){
-        String[][] aRef = oDB.ObtenerProyectosHoteleria("0", 1);
+        String[][] aRef = oDB.ProyectoHoteleriaProyecto(String.valueOf(idProyecto), 2);
         String[][] aDataFolio = null;
         if (aRef !=  null){
             aDataFolio = new String[aRef.length][];
@@ -171,7 +177,7 @@ public class listaHoteleria extends AppCompatActivity {
                 aDataFolio[iCnt][13] = aRef[iCnt][13];
                 aDataFolio[iCnt][14] = aRef[iCnt][14];
                 aDataFolio[iCnt][15] = aRef[iCnt][15];
-                aDataFolio[iCnt][16] = aRef[iCnt][16];
+                aDataFolio[iCnt][16] = aRef[iCnt][16]; Log.v("[FRAGMENT]", "Piso: "+aRef[iCnt][16]);
                 aDataFolio[iCnt][17] = aRef[iCnt][17];
                 aDataFolio[iCnt][18] = aRef[iCnt][18];
                 aDataFolio[iCnt][19] = aRef[iCnt][19];
