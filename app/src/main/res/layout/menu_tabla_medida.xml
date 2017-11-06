@@ -13,11 +13,11 @@
         android:text="Seleccione una de las opciones siguientes: "/>
 
     <Button
-        android:id="@+id/btnVer"
+        android:id="@+id/btnNuevaMedida"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         style="@style/ButtonStyle2"
-        android:text="Ver MEDIDA"
+        android:text="NUEVA MEDIDA"
         android:layout_weight="0"/>
 
     <TextView
@@ -26,12 +26,26 @@
         />
 
     <Button
-        android:id="@+id/btnNuevaMedida"
+        android:id="@+id/btnNuevaGaleria"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         style="@style/ButtonStyle2"
-        android:text="NUEVA MEDIDA"
+        android:text="NUEVA GALERIA"
         android:layout_weight="0"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        />
+
+    <Button
+        android:id="@+id/btnModificar"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        style="@style/ButtonStyle2"
+        android:text="MODIFICAR MEDIDA"
+        android:layout_weight="0"/>
+
 
     <TextView
         android:layout_width="match_parent"

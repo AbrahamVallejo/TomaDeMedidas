@@ -2,12 +2,14 @@ package com.example.mhernandez.tomademedidas;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -34,18 +36,33 @@ public class listaGaleria extends AppCompatActivity {
 
         ListView tlList = ((ListView) this.findViewById(R.id.lista));
 
-        tlList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-                ((Button) customDialog.findViewById(R.id.btnVer)).setOnClickListener(new View.OnClickListener() {
+        tlList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+
+            @Override
+            public boolean onItemLongClick(final AdapterView<?> aList, View vItem,final int iPosition, long l) {
+                customDialog = new Dialog(listaGaleria.this, R.style.Theme_Dialog_Translucent);
+                customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                customDialog.setContentView(R.layout.menu_tabla_medida);
+
+                ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Intent rIntent = new Intent(listaGaleria.this, medidaGaleria.class);
+                        startActivity(rIntent);
                         customDialog.dismiss();
                     }
                 });
 
-                ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener(){
+                ((Button) customDialog.findViewById(R.id.btnNuevaGaleria)).setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+
+                        customDialog.dismiss();
+                    }
+                });
+
+                ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
 
@@ -61,18 +78,17 @@ public class listaGaleria extends AppCompatActivity {
                     }
                 });
 
-                ((Button) customDialog.findViewById(R.id.btnEliminar)).setOnClickListener(new View.OnClickListener() {
+                ((Button) customDialog.findViewById(R.id.btnBorrar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
                         customDialog.dismiss();
                     }
                 });
-
+                customDialog.show();
                 return false;
             }
-        });
-    }
+        });    }
 
 
     public class CustomAdapter extends ArrayAdapter<String[]> {

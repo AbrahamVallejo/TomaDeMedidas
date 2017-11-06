@@ -37,9 +37,9 @@ public class especial extends AppCompatActivity {
         Guardar.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View view){
-                        String txtAncho = Ancho.getText().toString();
-                        String txtAlto = Alto.getText().toString();
-                        String txtGrosor = Grosor.getText().toString();
+                        Double txtAncho = Double.parseDouble(Ancho.getText().toString());
+                        Double txtAlto = Double.parseDouble(Alto.getText().toString());
+                        Double txtGrosor = Double.parseDouble(Grosor.getText().toString());
                         String OBS = Observaciones.getText().toString();
                         oDB.insertProyecto(1, 2, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
