@@ -124,6 +124,7 @@ public class Fragment_listaProyecto extends Fragment {
                         }else if (Formato.equals("5")){
                             Log.v("[FRAGMENT]", Formato);
                             Intent rItent = new Intent(vista.getContext(), listaEspecial.class);
+                            rItent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             startActivity(rItent);
                         }
 
