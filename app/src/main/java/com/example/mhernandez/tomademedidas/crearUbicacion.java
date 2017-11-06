@@ -30,7 +30,8 @@ public class crearUbicacion extends AppCompatActivity {
             public void onClick(View v) {
                 String txtUbicacion = Ubicacion.getText().toString();
                 Integer idArea = 0;
-                Integer idDisp = 0;
+                String[][] aRefD = MainActivity.oDB.lastDispositivo();
+                int idDisp = Integer.parseInt(aRefD[(0)][0]);
                 oDB.insertUbicacion(idArea, idDisp, txtUbicacion);
                 finish();
             }
