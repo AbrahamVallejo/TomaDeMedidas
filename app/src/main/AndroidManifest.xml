@@ -105,6 +105,11 @@
         <activity android:name=".listaResidencial"
             android:label="Editar Residencial">
         </activity>
+        <activity android:name=".medidaGaleria"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Editar Residencial">
+        </activity>
     </application>
 
 </manifest>

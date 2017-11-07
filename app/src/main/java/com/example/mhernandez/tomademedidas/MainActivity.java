@@ -4,8 +4,10 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,6 +22,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 import java.util.Calendar;
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity
 
     public static DBProvider oDB;
     int UBICACION=0;
+    ProgressBar progreso;
+    int miProgreso = 0;
 
     public MainActivity() { oDB = new DBProvider(this);}
     /*
@@ -52,6 +57,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        progreso=(ProgressBar)findViewById(R.id.progressbar);
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +89,7 @@ public class MainActivity extends AppCompatActivity
         MainActivity.oDB.ObtenerCorredera("0",1);
         //MainActivity.oDB.ObtenerProyectosEspecial("0",1);
     }
+
 
     public void onSaveClickClientes(View view){
         EditText nombre = (EditText) this.findViewById(R.id.txt_cliente_nombre);
@@ -283,11 +290,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "WEB SERVICES PROYECTO!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PROYECTO!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getproyectoLista");
@@ -298,12 +307,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "ERROR EN EL WEB SERVICES CLIENTE!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES CLIENTE!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getclienteLista");
@@ -314,12 +324,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "ERROR EN EL WEB SERVICES USUARIO!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES USUARIO!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getusuarioLista");
@@ -330,11 +341,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES FIJACIÓN!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getfijacionLista");
@@ -345,11 +358,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PROYECCIÓN!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getproyeccionLista");
@@ -360,12 +375,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "ERROR EN EL WEB SERVICES COPETE!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES COPETE!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getcopeteLista");
@@ -376,11 +392,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES CONTROL!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getcontrolLista");
@@ -391,12 +409,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "ERROR EN EL WEB SERVICES CORREDERA!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES CORREDERA!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getcorrederaLista");
@@ -407,11 +426,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES FORMATO!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getformatoLista");
@@ -422,12 +443,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "ERROR EN EL WEB SERVICES UBICACIÓN!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES UBICACIÓN!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getubicacionLista");
@@ -533,13 +555,16 @@ public class MainActivity extends AppCompatActivity
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                progreso.setVisibility(View.INVISIBLE);
+                Toast.makeText(getApplicationContext(), "Descarga Completa", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        " ERROR EN EL WEB SERVICES PRO-Residencial!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-Residencial!", Toast.LENGTH_LONG).show();
+                progreso.setVisibility(View.INVISIBLE);
+                Toast.makeText(getApplicationContext(), "Descarga Completa", Toast.LENGTH_SHORT).show();
             }
         });
         oNS.execute("getproyecto_residencialLista");
@@ -550,12 +575,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES PRO-HOTEL!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "ERROR EN EL WEB SERVICES PRO-HOTEL!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-HOTEL!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getproyecto_hoteleriaLista");
@@ -565,14 +591,14 @@ public class MainActivity extends AppCompatActivity
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES PRO-ESP!", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES PRO-ESP!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "ERROR EN EL WEB SERVICES PRO-ESP!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-ESP!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getproyecto_especialLista");
@@ -601,13 +627,14 @@ public class MainActivity extends AppCompatActivity
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "ERROR EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getproyecto_galeriaLista");
@@ -618,12 +645,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "WEB SERVICES PROYECTO-CAMA!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "ERROR EN EL WEB SERVICES PRO-CAMA!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-CAMA!", Toast.LENGTH_LONG).show();
+                miProgreso++;
             }
         });
         oNS.execute("getproyecto_camaLista");
@@ -635,10 +663,8 @@ public class MainActivity extends AppCompatActivity
         if (aux != false) {
             if(UBICACION==2){
                 Sincliente();
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intent);
-                /*fragment = new Fragment_listaClientes();
-                getSupportFragmentManager().beginTransaction().replace(R.id.list_activity, fragment).commit(); */
             }
             if(UBICACION==4){
                 Intent intent = new Intent(this, MainActivity.class);
@@ -653,7 +679,6 @@ public class MainActivity extends AppCompatActivity
 
     public void Sincliente(){
         String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
-
         for (int i =0; i < aux1.length; i++) {
             if (Integer.valueOf(aux1[i][5]) == 1) {
                 Log.v("[add]","Entre al if Insert" );
@@ -710,23 +735,23 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, "Sincronización Requerida", Toast.LENGTH_LONG).show();
         }else{
             boolean aux = isOnlineNet();
+            miProgreso=0; progreso.setVisibility(View.VISIBLE);
             if (aux != false) {
                 MainActivity.oDB.deleteAllCliente("0","0");
-                MainActivity.oDB.deleteAllResidencial("0","0");
-
                 getclienteLista();
+
                 getcopeteLista();       getformatoLista();
                 getfijacionLista();     getproyeccionLista();
                 getubicacionLista();    getcontrolLista();
                 getcorrederaLista();    getusuarioLista();
-
+                /*
                 getproyectoLista();
                 getproyectoCamaLista();
                 getproyectoEspecialLista();
                 getproyectoGaleriaLista();
-                getproyectoHoteleriaLista();
+                getproyectoHoteleriaLista();*/
+                MainActivity.oDB.deleteAllResidencial("0","0");
                 getproyectoResidencialLista();
-                Toast.makeText(this, "Descarga Completa", Toast.LENGTH_SHORT).show();
             }else {
                 Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
             }

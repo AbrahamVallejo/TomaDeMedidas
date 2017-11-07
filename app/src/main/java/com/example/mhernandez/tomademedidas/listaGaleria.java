@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,6 +32,8 @@ public class listaGaleria extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        //Quitar Barra de Notificaciones
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.list_activity);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -54,8 +57,8 @@ public class listaGaleria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent rIntent = new Intent(listaGaleria.this, medidaGaleria.class);
-                        startActivity(rIntent);
+                        Intent intent = new Intent(listaGaleria.this, medidaGaleria.class);
+                        startActivity(intent);
                       
                         customDialog.dismiss();
                     }
