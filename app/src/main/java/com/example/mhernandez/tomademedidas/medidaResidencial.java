@@ -1,13 +1,12 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-
-import java.security.Guard;
 
 /**
  * Created by mhernandez on 06/11/2017.
@@ -25,6 +24,8 @@ public class medidaResidencial extends AppCompatActivity {
         setContentView(R.layout.crear_medida_residencial);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = getIntent().getExtras();
+        final int idProyecto = oExt.getInt("idProyecto");
+        final int idProyectoDisp = oExt.getInt("idProyectoDisp");
         final Spinner Ubicacion = (Spinner) this.findViewById(R.id.spinner_ubicacion);
         final EditText Piso = (EditText) this.findViewById(R.id.txtPiso);
         final EditText A = (EditText) this.findViewById(R.id.txtA);
@@ -43,6 +44,14 @@ public class medidaResidencial extends AppCompatActivity {
         final Spinner Corredera = (Spinner) this.findViewById(R.id.spinner_corredera);
         final EditText MedidaSugerida = (EditText) this.findViewById(R.id.txtMedidaSugerida);
         final EditText Observaciones = (EditText) this.findViewById(R.id.txtObservaciones);
+        final Button crearUbicacion = (Button) this.findViewById(R.id.crearUbicacion);
+        crearUbicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent rIntent = new Intent(medidaResidencial.this, crearUbicacion.class);
+                startActivity(rIntent);
+            }
+        });
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -27,6 +27,8 @@ public class medidaHoteleria extends AppCompatActivity {
         setContentView(R.layout.crear_medida_hoteleria);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
+        final int idProyecto = oExt.getInt("idProyecto");
+        final int idProyectoDisp = oExt.getInt("idProyectoDisp");
         final EditText Edificio = (EditText) this.findViewById(R.id.txtEdificio);
         final EditText Piso = (EditText) this.findViewById(R.id.txtPiso);
         final EditText Habitacion = (EditText) this.findViewById(R.id.txtHabitacion);
@@ -39,6 +41,14 @@ public class medidaHoteleria extends AppCompatActivity {
         final Spinner Corredera = (Spinner) this.findViewById(R.id.spinner_corredera);
         final EditText MedidaSugerida = (EditText) this.findViewById(R.id.txtMedidaSugerida);
         final EditText Observaciones = (EditText) this.findViewById(R.id.txtObservaciones);
+        final Button crearArea = (Button) this.findViewById(R.id.crearArea);
+        crearArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent rIntent = new Intent(medidaHoteleria.this, crearArea.class);
+                startActivity(rIntent);
+            }
+        });
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override

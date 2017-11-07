@@ -1,6 +1,5 @@
 package com.example.mhernandez.tomademedidas;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,12 +18,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -136,10 +135,6 @@ public class MainActivity extends AppCompatActivity
         EditText AccTecho = (EditText) this.findViewById(R.id.proyecto_accesorios_techo);
         EditText AccEspecial = (EditText) this.findViewById(R.id.proyecto_accesorios_especiales);
         EditText PedidoSap = (EditText) this.findViewById(R.id.proyecto_pedido_sap);
-
-        //Separa cliente en idCliente y id Disp
-
-        //Separa agente en idAgente
 
         String selected = formato.getSelectedItem().toString();
         String nombreProyecto = proyecto.getText().toString();
