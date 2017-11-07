@@ -370,6 +370,29 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " WHERE " + DBhelper.ID_ESPECIALES + " = ?", aData);
     }
 
+    public String[][] lastEspecial(){
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = null;
+        Cursor aRs; Log.v("[obtener", "PoryectoEsspecial ID: ");
+        aRs = querySQL("SELECT MAX (" + DBhelper.ID_ESPECIALES + ") AS " + DBhelper.ID_ESPECIALES + " FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL, aFils);
+        if (aRs.getCount() > 0){
+            aData = new String[aRs.getCount()][1];
+            while (aRs.moveToNext()){
+                if (aRs.getString(aRs.getColumnIndex(DBhelper.ID_ESPECIALES)) == null){
+                    aData[iCnt][0] = "0";
+                }else {
+                    aData[iCnt][0] = aRs.getString(aRs.getColumnIndex(DBhelper.ID_ESPECIALES));
+                }
+                iCnt++;
+            }
+        }
+        aRs.close();
+        CloseDB();
+        Log.v("[obtener", "Voy de regreso");
+        return aData;
+    }
+
     public void insertProyectoGaleria(String idGal, String idDisp, String idPro,String idProDi, String fecha, String nHabitaciones, String area, String ancho, String alto,
                                       String copete, String proyecciones, String fijacion, String comentarios, String nombrePro, String AIMG,
                                       String formato, String userAlta, String userMod, String fechaAl, String estatus, String autorizado,
@@ -401,6 +424,28 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " WHERE " + DBhelper.ID_GALERIA + " = ?", aData);
     }
 
+    public String[][] lastGaleria(){
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = null;
+        Cursor aRs; Log.v("[obtener", "ProyectoGaleria ID: ");
+        aRs = querySQL("SELECT MAX (" + DBhelper.ID_GALERIA + ") AS " + DBhelper.ID_GALERIA + " FROM " + DBhelper.TABLE_NAME_PROYECTO_GALERIA, aFils);
+        if (aRs.getCount() > 0){
+            aData = new String[aRs.getCount()][1];
+            while (aRs.moveToNext()){
+                if (aRs.getString(aRs.getColumnIndex(DBhelper.ID_GALERIA)) == null){
+                    aData[iCnt][0] = "0";
+                }else {
+                    aData[iCnt][0] = aRs.getString(aRs.getColumnIndex(DBhelper.ID_GALERIA));
+                }
+                iCnt++;
+            }
+        }
+        aRs.close();
+        CloseDB();
+        Log.v("[obtener", "Voy de regreso");
+        return aData;
+    }
 
     public void insertProyectoHoteleria(String id, String idDisp, String idPro, String idProDis, String accMuro,
                                         String accTecho, String habitacion, String area, String ancho, String alto,
@@ -450,6 +495,29 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_HOTELERIA + " = ?", aData);
     }
 
+    public String[][] lastHoteleria(){
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = null;
+        Cursor aRs; Log.v("[obtener", "ProyectoHoteleria ID: ");
+        aRs = querySQL("SELECT MAX (" + DBhelper.ID_HOTELERIA + ") AS " + DBhelper.ID_HOTELERIA + " FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA, aFils);
+        if (aRs.getCount() > 0){
+            aData = new String[aRs.getCount()][1];
+            while (aRs.moveToNext()){
+                if (aRs.getString(aRs.getColumnIndex(DBhelper.ID_HOTELERIA)) == null){
+                    aData[iCnt][0] = "0";
+                }else {
+                    aData[iCnt][0] = aRs.getString(aRs.getColumnIndex(DBhelper.ID_HOTELERIA));
+                }
+                iCnt++;
+            }
+        }
+        aRs.close();
+        CloseDB();
+        Log.v("[obtener", "Voy de regreso");
+        return aData;
+    }
+
     public void insertProyectoResidencial(String ubicacion, String A, String B, String C, String D,
                                           String E, String F, String G, String H, String profMarco, String profJaladera,
                                           String control, String medidaSujerida, String AIMG, String observaciones, String fijacion,
@@ -481,6 +549,28 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " WHERE " + DBhelper.ID_RESIDENCIAL + " = ?", aData);
     }
 
+    public String[][] lastResidencial(){
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = null;
+        Cursor aRs; Log.v("[obtener", "ProyectoResidencial ID: ");
+        aRs = querySQL("SELECT MAX (" + DBhelper.ID_RESIDENCIAL + ") AS " + DBhelper.ID_RESIDENCIAL + " FROM " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL, aFils);
+        if (aRs.getCount() > 0){
+            aData = new String[aRs.getCount()][1];
+            while (aRs.moveToNext()){
+                if (aRs.getString(aRs.getColumnIndex(DBhelper.ID_RESIDENCIAL)) == null){
+                    aData[iCnt][0] = "0";
+                }else {
+                    aData[iCnt][0] = aRs.getString(aRs.getColumnIndex(DBhelper.ID_RESIDENCIAL));
+                }
+                iCnt++;
+            }
+        }
+        aRs.close();
+        CloseDB();
+        Log.v("[obtener", "Voy de regreso");
+        return aData;
+    }
 
     //Tabla Dispositivos
     public void insertDispositivo(int idDisp,String nombre, int activo, String usuario, int fuera) {
