@@ -736,12 +736,12 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         }
         else if(urls[0] == "getproyecto_residencialLista"){
             try{
+                Log.v("PRUEBA", "Hola");
                 sResp = NetServices.connectPost2(URL_WS1 + "wsproyecto_residencial.svc/"+ urls[0]);
+                Log.v("PRUEBA", sResp);
                 String[] aFujs = null;
                 JSONArray jaData = new JSONArray((sResp));
-                Log.v("PRUEBA", "Hola");
                 aFujs = new String[jaData.length()];
-                Log.v("PRUEBA", sResp);
                 for (int i = 0; i<jaData.length(); i++){
                     JSONObject joFuj = jaData.getJSONObject(i);
                     aFujs[i] = joFuj.getString("id_residencial");
@@ -777,6 +777,18 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("id_usuario_pago");
                     Log.v("PRUEBA", joFuj.getString("id_residencial"));
                     Log.v("PRUEBA", joFuj.getString("ubicacion")); Log.v("PRUEBA","...");
+                    MainActivity.oDB.insertProyectoResidencial(joFuj.getString("id_residencial"),
+                            joFuj.getString("id_disp"), joFuj.getString("id_proyecto"),joFuj.getString("id_proyecto_disp"),
+                            joFuj.getString("ubicacion"), joFuj.getString("a"), joFuj.getString("b"), joFuj.getString("c"),
+                            joFuj.getString("d"),joFuj.getString("e"), joFuj.getString("f"), joFuj.getString("g"), joFuj.getString("h"),
+                            joFuj.getString("prof_marco"), joFuj.getString("prof_jaladera"), joFuj.getString("control"), joFuj.getString("agpto"),
+                            joFuj.getString("medida_sujerida"), joFuj.getString("observaciones"), " ", " ",
+                            joFuj.getString("nombre_proyecto"), joFuj.getString("fecha"),
+                            joFuj.getString("formato"), joFuj.getString("id_usuario_alta"), joFuj.getString("id_usuario_mod"), " ",
+                            joFuj.getString("id_estatus"), joFuj.getString("fijacion"), joFuj.getString("piso"), joFuj.getString("autorizado"),
+                            " ", " ", joFuj.getString("pagado"), joFuj.getString("fecha_pago"),
+                            joFuj.getString("id_usuario_pago"), "");
+
                 }
             }catch (Exception e){
                 exception = e;
