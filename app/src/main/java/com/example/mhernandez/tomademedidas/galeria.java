@@ -56,8 +56,10 @@ public class galeria extends AppCompatActivity {
                         //String txtFijacion = Fijacion.getText().toString();
                         String txtComentarios = Comentarios.getText().toString();
                         String[][] aRefD = MainActivity.oDB.lastDispositivo();
-                        String[][] aRef = MainActivity.oDB.lastProyecto();
-                        int idProyecto = Integer.parseInt(aRef[(0)][0]) + 1;
+                        String[][] aRefP = MainActivity.oDB.lastProyecto();
+                        String[][] aRefG = MainActivity.oDB.lastGaleria();
+                        int idProyecto = Integer.parseInt(aRefP[(0)][0]) + 1;
+                        int idGaleria = Integer.parseInt(aRefG[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);

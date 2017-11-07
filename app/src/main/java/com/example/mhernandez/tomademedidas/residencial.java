@@ -75,8 +75,10 @@ public class residencial extends AppCompatActivity {
                         String txtPiso = Piso.getText().toString();
                         //String txtCorredera = Corredera.getText().toString();
                         String[][] aRefD = MainActivity.oDB.lastDispositivo();
-                        String[][] aRef = MainActivity.oDB.lastProyecto();
-                        int idProyecto = Integer.parseInt(aRef[(0)][0]) + 1;
+                        String[][] aRefP = MainActivity.oDB.lastProyecto();
+                        String[][] aRefR = MainActivity.oDB.lastResidencial();
+                        int idProyecto = Integer.parseInt(aRefP[(0)][0]) + 1;
+                        int idResidencial = Integer.parseInt(aRefR[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
