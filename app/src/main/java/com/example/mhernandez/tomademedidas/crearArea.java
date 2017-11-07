@@ -30,8 +30,9 @@ public class crearArea extends AppCompatActivity {
             public void onClick(View v) {
                 String txtArea = Area.getText().toString();
                 String[][] aRefD = MainActivity.oDB.lastDispositivo();
+                String[][] aRefA = MainActivity.oDB.lastUbicacion();
+                int idArea = Integer.parseInt(aRefA[(0)][0]) + 1;
                 int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                Integer idArea = 0;
                 oDB.insertUbicacion(idArea, idDisp, txtArea);
                 finish();
             }

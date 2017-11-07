@@ -42,8 +42,10 @@ public class especial extends AppCompatActivity {
                         Double txtGrosor = Double.parseDouble(Grosor.getText().toString());
                         String OBS = Observaciones.getText().toString();
                         String[][] aRefD = MainActivity.oDB.lastDispositivo();
-                        String[][] aRef = MainActivity.oDB.lastProyecto();
-                        int idProyecto = Integer.parseInt(aRef[(0)][0]) + 1;
+                        String[][] aRefP = MainActivity.oDB.lastProyecto();
+                        String[][] aRefE = MainActivity.oDB.lastEspecial();
+                        int idProyecto = Integer.parseInt(aRefP[(0)][0]) + 1;
+                        int idEspecial = Integer.parseInt(aRefE[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);

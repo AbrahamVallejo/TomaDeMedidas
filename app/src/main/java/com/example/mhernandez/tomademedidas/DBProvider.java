@@ -1063,6 +1063,29 @@ public class DBProvider {
         return (aData);
     }
 
+    public String[][] lastUbicacion(){
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = null;
+        Cursor aRs; Log.v("[obtener", "Ubicacion ID: ");
+        aRs = querySQL("SELECT MAX (" + DBhelper.ID_AREA + ") AS " + DBhelper.ID_AREA + " FROM " + DBhelper.TABLE_NAME_UBICACION, aFils);
+        if (aRs.getCount() > 0){
+            aData = new String[aRs.getCount()][1];
+            while (aRs.moveToNext()){
+                if (aRs.getString(aRs.getColumnIndex(DBhelper.ID_AREA)) == null){
+                    aData[iCnt][0] = "0";
+                }else {
+                    aData[iCnt][0] = aRs.getString(aRs.getColumnIndex(DBhelper.ID_AREA));
+                }
+                iCnt++;
+            }
+        }
+        aRs.close();
+        CloseDB();
+        Log.v("[obtener", "Voy de regreso");
+        return aData;
+    }
+
     //Tabla para sacar Control
     public void insertControl(int idControl, String estado) {
         Object[] aData = {idControl, estado};

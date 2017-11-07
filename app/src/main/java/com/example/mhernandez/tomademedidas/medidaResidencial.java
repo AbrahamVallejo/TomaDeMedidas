@@ -24,6 +24,8 @@ public class medidaResidencial extends AppCompatActivity {
         setContentView(R.layout.crear_medida_residencial);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = getIntent().getExtras();
+        final int idProyecto = oExt.getInt("idProyecto");
+        final int idProyectoDisp = oExt.getInt("idProyectoDisp");
         final Spinner Ubicacion = (Spinner) this.findViewById(R.id.spinner_ubicacion);
         final EditText Piso = (EditText) this.findViewById(R.id.txtPiso);
         final EditText A = (EditText) this.findViewById(R.id.txtA);

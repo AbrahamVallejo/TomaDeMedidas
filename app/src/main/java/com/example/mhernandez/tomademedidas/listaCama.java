@@ -50,10 +50,14 @@ public class listaCama extends AppCompatActivity {
                 customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 customDialog.setContentView(R.layout.menu_tabla_medida);
 
+                final String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
+
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent rIntent = new Intent(listaCama.this, medidaCama.class);
+                        rIntent.putExtra("idProyecto", aDat[2]);
+                        rIntent.putExtra("idProyectoDisp", aDat[3]);
                         startActivity(rIntent);
                         customDialog.dismiss();
                     }
