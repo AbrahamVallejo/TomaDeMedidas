@@ -39,6 +39,14 @@ public class medidaHoteleria extends AppCompatActivity {
         final Spinner Corredera = (Spinner) this.findViewById(R.id.spinner_corredera);
         final EditText MedidaSugerida = (EditText) this.findViewById(R.id.txtMedidaSugerida);
         final EditText Observaciones = (EditText) this.findViewById(R.id.txtObservaciones);
+        final Button crearArea = (Button) this.findViewById(R.id.crearArea);
+        crearArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent rIntent = new Intent(medidaHoteleria.this, crearArea.class);
+                startActivity(rIntent);
+            }
+        });
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override

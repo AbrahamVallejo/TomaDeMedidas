@@ -50,10 +50,16 @@ public class cama extends AppCompatActivity{
                         Double txtE = Double.parseDouble(E.getText().toString());
                         Double txtF = Double.parseDouble(F.getText().toString());
                         Double txtG = Double.parseDouble(G.getText().toString());
+                        String[][] aRefD = MainActivity.oDB.lastDispositivo();
+                        String[][] aRefP = MainActivity.oDB.lastProyecto();
+                        String[][] aRefC = MainActivity.oDB.lastCama();
+                        int idProyecto = Integer.parseInt(aRefP[(0)][0]) + 1;
+                        int idDisp = Integer.parseInt(aRefD[(0)][0]);
+                        int idCama = Integer.parseInt(aRefC[(0)][0]) + 1;
                         String OBS = Observaciones.getText().toString();
-                        oDB.insertProyecto(2, 3, 4, 5, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
+                        oDB.insertProyecto(idProyecto, idDisp, 4, 5, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
-                        oDB.insertProyectoCama(2, 3, 4, 5, numeroHabitaciones, txtA, txtB, txtC,
+                        oDB.insertProyectoCama(idCama, idDisp, idProyecto, idDisp, numeroHabitaciones, txtA, txtB, txtC,
                                 txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, idFormato, OBS, 0, 1, 1, 1);
                         finish();
                     }

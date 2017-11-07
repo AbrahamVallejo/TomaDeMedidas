@@ -1,14 +1,14 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Button;
 
-import java.security.Guard;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -36,6 +36,14 @@ public class medidaGaleria extends AppCompatActivity {
         final Spinner Proyecciones = (Spinner) this.findViewById(R.id.spinner_proyecciones);
         final Spinner Fijacion = (Spinner) this.findViewById(R.id.spinner_fijacion);
         final EditText Comentarios = (EditText) this.findViewById(R.id.txt_comentarios);
+        final Button crearArea = (Button) this.findViewById(R.id.crearArea);
+        crearArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent rIntent = new Intent(medidaGaleria.this, crearArea.class);
+                startActivity(rIntent);
+            }
+        });
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
