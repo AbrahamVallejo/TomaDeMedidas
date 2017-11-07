@@ -28,6 +28,8 @@ public class medidaGaleria extends AppCompatActivity {
         setContentView(R.layout.crear_medida_galeria);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = getIntent().getExtras();
+        final int idProyecto = oExt.getInt("idProyecto");
+        final int idProyectoDisp = oExt.getInt("idProyectoDisp");
         final EditText NHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
         final Spinner Area = (Spinner) this.findViewById(R.id.spinner_area);
         final EditText Ancho = (EditText) this.findViewById(R.id.txt_ancho);

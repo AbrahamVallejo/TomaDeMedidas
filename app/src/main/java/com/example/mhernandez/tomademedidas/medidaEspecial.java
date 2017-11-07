@@ -26,6 +26,8 @@ public class medidaEspecial extends AppCompatActivity {
         setContentView(R.layout.crear_medida_especial);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
+        final int idProyecto = oExt.getInt("idProyecto");
+        final int idProyectoDisp = oExt.getInt("idProyectoDisp");
         final EditText Ancho = (EditText) this.findViewById(R.id.txtAncho);
         final EditText Alto = (EditText) this.findViewById(R.id.txtAlto);
         final EditText Grosor = (EditText) this.findViewById(R.id.txtGrosor);
