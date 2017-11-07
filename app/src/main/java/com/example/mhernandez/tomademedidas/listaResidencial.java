@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,12 +26,17 @@ public class listaResidencial extends AppCompatActivity {
     public static DBProvider oDB;
     public listaResidencial() { oDB = new DBProvider(this);}
     Dialog customDialog = null;
+    public int idProyecto=0;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_activity);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Bundle oExt = this.getIntent().getExtras();
+        idProyecto = oExt.getInt("idProyecto");
+        Log.v("[FRAGMENT]", "ID "+idProyecto);
 
         lista();
 
@@ -161,7 +167,7 @@ public class listaResidencial extends AppCompatActivity {
     }
 
     public void lista(){
-        String[][] aRef = oDB.ObtenerProyectosResidencial("0", 1);
+        String[][] aRef = oDB.ProyectoResidencialProyecto(String.valueOf(idProyecto), 2);
         String[][] aDataFolio = null;
         if (aRef != null){
             aDataFolio = new String[aRef.length][];

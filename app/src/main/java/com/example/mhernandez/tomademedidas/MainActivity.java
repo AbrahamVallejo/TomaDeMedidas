@@ -533,16 +533,13 @@ public class MainActivity extends AppCompatActivity
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
-                Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                        " ERROR EN EL WEB SERVICES PRO-Residencial!", Toast.LENGTH_LONG).show();
             }
         });
         oNS.execute("getproyecto_residencialLista");
@@ -715,8 +712,9 @@ public class MainActivity extends AppCompatActivity
             boolean aux = isOnlineNet();
             if (aux != false) {
                 MainActivity.oDB.deleteAllCliente("0","0");
+                MainActivity.oDB.deleteAllResidencial("0","0");
 
-                //getclienteLista();
+                getclienteLista();
                 getcopeteLista();       getformatoLista();
                 getfijacionLista();     getproyeccionLista();
                 getubicacionLista();    getcontrolLista();
@@ -727,7 +725,7 @@ public class MainActivity extends AppCompatActivity
                 getproyectoEspecialLista();
                 getproyectoGaleriaLista();
                 getproyectoHoteleriaLista();
-                //getproyectoResidencialLista();
+                getproyectoResidencialLista();
                 Toast.makeText(this, "Descarga Completa", Toast.LENGTH_SHORT).show();
             }else {
                 Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
