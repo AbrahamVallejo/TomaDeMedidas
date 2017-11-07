@@ -23,7 +23,7 @@ public class modificarCama extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle oExt = this.getIntent().getExtras();
         final int idCama =  Integer.parseInt(oExt.getString("idCama"));
-        int idDisp = Integer.parseInt(oExt.getString("idDisp"));
+        final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
         int idProyecto = Integer.parseInt(oExt.getString("idProyecto"));
         int idProyectoDisp = Integer.parseInt(oExt.getString("idProyectoDisp"));
         String NHabitaciones = oExt.getString("NHabitaciones");
@@ -66,7 +66,7 @@ public class modificarCama extends AppCompatActivity {
                 Double F = Double.parseDouble(txtF.getText().toString());
                 Double G = Double.parseDouble(txtG.getText().toString());
                 String Observaciones = txtObservaciones.getText().toString();
-                oDB.updateProyectoCama(idCama, NHabitaciones, A, B , C, D , E , F, G, "IMAGEN", Observaciones);
+                oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, "IMAGEN", Observaciones);
             }
         });
 
