@@ -64,7 +64,11 @@ public class hoteleria extends AppCompatActivity {
                         //String txtFijacion = Fijacion.getText().toString();
                         String txtMedidaSugerida = MedidaSugerida.getText().toString();
                         //String txtCorredera = Corredera.getText().toString();
-                        oDB.insertProyecto(1, 2, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
+                        String[][] aRefD = MainActivity.oDB.lastDispositivo();
+                        String[][] aRef = MainActivity.oDB.lastProyecto();
+                        int idProyecto = Integer.parseInt(aRef[(0)][0]) + 1;
+                        int idDisp = Integer.parseInt(aRefD[(0)][0]);
+                        oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
                         /*oDB.insertProyectoHoteleria(txtHabitacion, txtArea, txtAncho, txtAlto, txtHojas,
                                 "IMAGEN", txtObservaciones, txtPiso, txtEdificio, txtControl, txtFijacion,

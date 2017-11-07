@@ -41,7 +41,11 @@ public class especial extends AppCompatActivity {
                         Double txtAlto = Double.parseDouble(Alto.getText().toString());
                         Double txtGrosor = Double.parseDouble(Grosor.getText().toString());
                         String OBS = Observaciones.getText().toString();
-                        oDB.insertProyecto(1, 2, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
+                        String[][] aRefD = MainActivity.oDB.lastDispositivo();
+                        String[][] aRef = MainActivity.oDB.lastProyecto();
+                        int idProyecto = Integer.parseInt(aRef[(0)][0]) + 1;
+                        int idDisp = Integer.parseInt(aRefD[(0)][0]);
+                        oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
                         //oDB.insertProyectoEspecial(txtAncho, txtAlto, txtGrosor, "IMAGEN", OBS);
                         finish();
