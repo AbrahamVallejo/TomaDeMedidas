@@ -300,6 +300,29 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_CAMA + " = ?", aData);
     }
 
+    public String[][] lastCama(){
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = null;
+        Cursor aRs; Log.v("[obtener", "ProyectoCama ID: ");
+        aRs = querySQL("SELECT MAX (" + DBhelper.ID_CAMA + ") AS " + DBhelper.ID_CAMA + " FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA, aFils);
+        if (aRs.getCount() > 0){
+            aData = new String[aRs.getCount()][1];
+            while (aRs.moveToNext()){
+                if (aRs.getString(aRs.getColumnIndex(DBhelper.ID_CAMA)) == null){
+                    aData[iCnt][0] = "0";
+                }else {
+                    aData[iCnt][0] = aRs.getString(aRs.getColumnIndex(DBhelper.ID_CAMA));
+                }
+                iCnt++;
+            }
+        }
+        aRs.close();
+        CloseDB();
+        Log.v("[obtener", "Voy de regreso");
+        return aData;
+    }
+
     public void insertProyectoEspecial(int idEsp, int idDisp, int idPro, int idProDisp, String nombre,
                                        String alto, String ancho, String grosor, String observaciones, String AIMG,
                                        String fecha, int formato, int idUserAlta, int idUserMod, String fechaAlta,
