@@ -286,8 +286,8 @@ public class DBProvider {
 
     }
 
-    public void updateProyectoCama(String idCama, String nHabitaciones, String A, String B, String C, String D,
-                                   String E, String F, String G, String AIMG, String Observaciones) {
+    public void updateProyectoCama(int idCama, String nHabitaciones, Double A, Double B, Double C, Double D,
+                                   Double E, Double F, Double G, String AIMG, String Observaciones) {
         Object[] aData = {idCama, nHabitaciones, A, B, C, D, E, F, G, AIMG, Observaciones};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " SET " + DBhelper.COLUMN_NAME_N_HABITACION + " = ?, "
                 + DBhelper.COLUMN_NAME_A + " = ?, " + DBhelper.COLUMN_NAME_B + " = ?, " + DBhelper.COLUMN_NAME_C + " = ?, "
