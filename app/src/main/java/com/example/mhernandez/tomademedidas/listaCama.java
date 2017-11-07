@@ -74,7 +74,20 @@ public class listaCama extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Intent rIntent = new Intent(listaCama.this, modificarCama.class);
+                        rIntent.putExtra("idCama", aDat[0]);
+                        rIntent.putExtra("idDisp", aDat[1]);
+                        rIntent.putExtra("idProyecto", aDat[2]);
+                        rIntent.putExtra("idProyectoDisp", aDat[3]);
+                        rIntent.putExtra("NHabitaciones", aDat[4]);
+                        rIntent.putExtra("A", aDat[5]);
+                        rIntent.putExtra("B", aDat[6]);
+                        rIntent.putExtra("C", aDat[7]);
+                        rIntent.putExtra("D", aDat[8]);
+                        rIntent.putExtra("E", aDat[9]);
+                        rIntent.putExtra("F", aDat[10]);
+                        rIntent.putExtra("G", aDat[15]);
+                        rIntent.putExtra("Observaciones", aDat[16]);
                         customDialog.dismiss();
                     }
                 });
@@ -126,20 +139,25 @@ public class listaCama extends AppCompatActivity {
             TextView txtB = (TextView) rowView.findViewById(R.id.B);
             TextView txtC = (TextView) rowView.findViewById(R.id.C);
             TextView txtD = (TextView) rowView.findViewById(R.id.D);
+            TextView txtE = (TextView) rowView.findViewById(R.id.E);
             TextView txtF = (TextView) rowView.findViewById(R.id.F);
+            TextView txtG = (TextView) rowView.findViewById(R.id.G);
             txtIDCama.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
             txtIDProyectoDisp.setText(_text[position][3]);
             txtIDEstatus.setText(_text[position][20]);
-            txtNombre.setText(_text[position][11]);
+            txtNombre.setText(_text[position][12]);
             txtNHabitacion.setText(_text[position][4]);
             txtObservaciones.setText(_text[position][16]);
             txtA.setText(_text[position][5]);
             txtB.setText(_text[position][6]);
             txtC.setText(_text[position][7]);
             txtD.setText(_text[position][8]);
-            txtF.setText(_text[position][9]);
+            txtE.setText(_text[position][9]);
+            txtF.setText(_text[position][10]);
+            txtG.setText(_text[position][15]);
+
             return rowView;
         }
     }

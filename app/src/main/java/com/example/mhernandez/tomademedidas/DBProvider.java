@@ -286,13 +286,13 @@ public class DBProvider {
 
     }
 
-    public void updateProyectoCama(String idCama, String nHabitaciones, String A, String B, String C, String D,
-                                   String E, String F, String G, String AIMG, String Observaciones) {
-        Object[] aData = {idCama, nHabitaciones, A, B, C, D, E, F, G, AIMG, Observaciones};
+    public void updateProyectoCama(int idCama, int idDisp, String nHabitaciones, Double A, Double B, Double C, Double D,
+                                   Double E, Double F, Double G, String AIMG, String Observaciones) {
+        Object[] aData = {nHabitaciones, A, B, C, D, E, F, G, AIMG, Observaciones, idCama, idDisp};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " SET " + DBhelper.COLUMN_NAME_N_HABITACION + " = ?, "
                 + DBhelper.COLUMN_NAME_A + " = ?, " + DBhelper.COLUMN_NAME_B + " = ?, " + DBhelper.COLUMN_NAME_C + " = ?, "
                 + DBhelper.COLUMN_NAME_E + " = ?, " + DBhelper.COLUMN_NAME_F + " = ?, " + DBhelper.COLUMN_NAME_G + " = ?, "
-                + DBhelper.COLUMN_NAME_AIMG + " = ?, " + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ?, " + " WHERE " + DBhelper.ID_CAMA + " = ?", aData);
+                + DBhelper.COLUMN_NAME_AIMG + " = ?, " + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ?, " + " WHERE " + DBhelper.ID_CAMA + " = ?" + "AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public void deleteProyectoCama(String idCama) {
