@@ -39,9 +39,9 @@ public class galeria extends AppCompatActivity {
         final EditText NHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
         final EditText Ancho = (EditText) this.findViewById(R.id.txt_ancho);
         final EditText Alto = (EditText) this.findViewById(R.id.txt_alto);
-        //final EditText Copete = (EditText) this.findViewById(R.id.txt_copete);
-        //final EditText Proyecciones = (EditText) this.findViewById(R.id.txt_proyecciones);
-        //final EditText Fijacion = (EditText) this.findViewById(R.id.txt_fijacion);
+        final Spinner Copete = (Spinner) this.findViewById(R.id.spinner_copete);
+        final Spinner Proyecciones = (Spinner) this.findViewById(R.id.spinner_proyecciones);
+        final Spinner Fijacion = (Spinner) this.findViewById(R.id.spinner_fijacion);
         final EditText Comentarios = (EditText) this.findViewById(R.id.txt_comentarios);
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(
@@ -51,9 +51,9 @@ public class galeria extends AppCompatActivity {
                         String numeroHabitaciones = NHabitaciones.getText().toString();
                         String txtAncho = Ancho.getText().toString();
                         String txtAlto = Alto.getText().toString();
-                        //String txtCopete = Copete.getText().toString();
-                        //String txtProyecciones = Proyecciones.getText().toString();
-                        //String txtFijacion = Fijacion.getText().toString();
+                        String txtCopete = Copete.getSelectedItem().toString();
+                        String txtProyecciones = Proyecciones.getSelectedItem().toString();
+                        String txtFijacion = Fijacion.getSelectedItem().toString();
                         String txtComentarios = Comentarios.getText().toString();
                         String[][] aRefD = MainActivity.oDB.lastDispositivo();
                         String[][] aRefP = MainActivity.oDB.lastProyecto();
