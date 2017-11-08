@@ -73,7 +73,16 @@ public class listaEspecial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Intent rIntent = new Intent(listaEspecial.this, modificarEspecial.class);
+                        rIntent.putExtra("idEspecial", aDat[0]);
+                        rIntent.putExtra("idDisp", aDat[1]);
+                        rIntent.putExtra("idProyecto", aDat[2]);
+                        rIntent.putExtra("idProyectoDisp", aDat[3]);
+                        rIntent.putExtra("Alto", aDat[5]);
+                        rIntent.putExtra("Ancho", aDat[6]);
+                        rIntent.putExtra("Grosor", aDat[7]);
+                        rIntent.putExtra("Observaciones", aDat[8]);
+                        startActivity(rIntent);
                         customDialog.dismiss();
                     }
                 });

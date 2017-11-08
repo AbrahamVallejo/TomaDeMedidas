@@ -88,6 +88,7 @@ public class listaCama extends AppCompatActivity {
                         rIntent.putExtra("F", aDat[10]);
                         rIntent.putExtra("G", aDat[15]);
                         rIntent.putExtra("Observaciones", aDat[16]);
+                        startActivity(rIntent);
                         customDialog.dismiss();
                     }
                 });
