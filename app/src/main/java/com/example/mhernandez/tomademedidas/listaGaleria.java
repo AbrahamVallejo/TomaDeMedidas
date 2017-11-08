@@ -75,7 +75,20 @@ public class listaGaleria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
-
+                        Intent rIntent = new Intent(listaGaleria.this, modificarGaleria.class);
+                        rIntent.putExtra("idGaleria", aDat[0]);
+                        rIntent.putExtra("idDisp", aDat[1]);
+                        rIntent.putExtra("idProyecto", aDat[2]);
+                        rIntent.putExtra("idProyectoDisp", aDat[3]);
+                        rIntent.putExtra("NHabitaciones", aDat[5]);
+                        rIntent.putExtra("Area", aDat[6]);
+                        rIntent.putExtra("Ancho", aDat[7]);
+                        rIntent.putExtra("Alto", aDat[8]);
+                        rIntent.putExtra("Copete", aDat[9]);
+                        rIntent.putExtra("Proyecciones", aDat[10]);
+                        rIntent.putExtra("Fijacion", aDat[11]);
+                        rIntent.putExtra("Comentarios", aDat[12]);
+                        startActivity(rIntent);
                         customDialog.dismiss();
                     }
                 });
