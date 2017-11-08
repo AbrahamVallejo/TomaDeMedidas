@@ -358,11 +358,11 @@ public class DBProvider {
         Log.v("[obtenerPE]", nombre);
     }
 
-    public void updateProyectoEspecial(String idEspecial, String ancho, String alto, String grosor, String AIMG, String observaciones) {
-        Object[] aData = {idEspecial, ancho, alto, grosor, AIMG, observaciones};
+    public void updateProyectoEspecial(int idEspecial, int idDisp, Double ancho, Double alto, Double grosor, String AIMG, String observaciones) {
+        Object[] aData = {ancho, alto, grosor, AIMG, observaciones, idEspecial, idDisp};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " SET " + DBhelper.COLUMN_NAME_ANCHOESP + " = ?, "
                 + DBhelper.COLUMN_NAME_ALTO + " = ?, " + DBhelper.COLUMN_NAME_GROSOR + " = ?, " + DBhelper.COLUMN_NAME_AIMG + " = ?, " + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ?, "
-                + " WHERE " + DBhelper.ID_ESPECIALES + " = ?", aData);
+                + " WHERE " + DBhelper.ID_ESPECIALES + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public void deleteProyectoEspecial(String idEspecial) {
