@@ -656,12 +656,12 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment;
         boolean aux = isOnlineNet();
         if (aux != false) {
-            if(UBICACION==2){
+            if(UBICACION==2 || UBICACION ==1){
                 Sincliente();
                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intent);
             }
-            if(UBICACION==4){
+            if(UBICACION==4 || UBICACION ==3){
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             }
@@ -729,24 +729,42 @@ public class MainActivity extends AppCompatActivity
         if(aux1.length >= 1){
             Toast.makeText(this, "Sincronización Requerida", Toast.LENGTH_LONG).show();
         }else{
+            progreso.setVisibility(View.VISIBLE);
             boolean aux = isOnlineNet();
-            miProgreso=0; progreso.setVisibility(View.VISIBLE);
             if (aux != false) {
                 MainActivity.oDB.deleteAllCliente("0","0");
-                getclienteLista();
+                MainActivity.oDB.deleteAllProyectos("0","0");
+                MainActivity.oDB.deleteAllProyectosCama("0","0");
+                MainActivity.oDB.deleteAllProyectosEspecial("0","0");
+                MainActivity.oDB.deleteAllHoteleria("0","0");
+                MainActivity.oDB.deleteAllProyectosGaleria("0","0");
+                MainActivity.oDB.deleteAllResidencial("0","0");
 
+                Thread timerThread = new Thread(){
+                    public void run(){
+                        try {
+                            sleep(500);
+                                getclienteLista();
+                                getproyectoLista();
+                                getproyectoCamaLista();
+                                getproyectoEspecialLista();
+                                getproyectoHoteleriaLista();
+                                getproyectoGaleriaLista();
+                                getproyectoResidencialLista();
+                        }catch (InterruptedException e){
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                timerThread.start();
+
+                /*
                 getcopeteLista();       getformatoLista();
                 getfijacionLista();     getproyeccionLista();
                 getubicacionLista();    getcontrolLista();
                 getcorrederaLista();    getusuarioLista();
-                /*
-                getproyectoLista();
-                getproyectoCamaLista();
-                getproyectoEspecialLista();
-                getproyectoGaleriaLista();
-                getproyectoHoteleriaLista();*/
-                MainActivity.oDB.deleteAllResidencial("0","0");
-                getproyectoResidencialLista();
+                */
+
             }else {
                 Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
             }

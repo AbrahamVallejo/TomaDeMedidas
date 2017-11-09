@@ -137,6 +137,7 @@ public class listaResidencial extends AppCompatActivity {
             TextView txtF = (TextView) rowView.findViewById(R.id.F);
             TextView txtG = (TextView) rowView.findViewById(R.id.G);
             TextView txtH = (TextView) rowView.findViewById(R.id.H);
+            TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             txtIDResidencial.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
@@ -160,6 +161,11 @@ public class listaResidencial extends AppCompatActivity {
             txtF.setText(_text[position][10]);
             txtG.setText(_text[position][11]);
             txtH.setText(_text[position][12]);
+            if (Integer.parseInt(_text[position][27]) == 1){
+                txtEstatus.setText("Activo");
+            }else{
+                txtEstatus.setText("Cerrado");
+            }
             return rowView;
         }
     }

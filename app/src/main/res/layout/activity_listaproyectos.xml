@@ -85,56 +85,6 @@
                 android:text="Acc. Especiales"
                 android:textColor="@android:color/black"
                 android:textSize="16dp"/>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/IDDisp"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:text="id"
-                    android:visibility="invisible" />
-                <TextView
-                    android:id="@+id/IDProyecto"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:text="id"
-                    android:visibility="invisible" />
-                <TextView
-                    android:id="@+id/IDCliente"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:text="id"
-                    android:visibility="invisible" />
-                <TextView
-                    android:id="@+id/IDUser"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:text="id"
-                    android:visibility="invisible" />
-                <TextView
-                    android:id="@+id/IDClienteDisp"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:text="id"
-                    android:visibility="invisible" />
-                <TextView
-                    android:id="@+id/IDFormato"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:text="id"
-                    android:visibility="invisible" />
-            </LinearLayout>
-
         </LinearLayout>
 
         //Layout Derecha
@@ -210,12 +160,84 @@
                 android:textColor="@android:color/black"
                 android:textSize="16dp"
                 android:typeface="sans"/>
-        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="Estatus: "
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:textStyle="normal" />
+                <TextView
+                    android:id="@+id/EstatusProyecto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:text="Estatus"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:typeface="sans"/>
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="5dp">
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="horizontal" >
+        <TextView
+            android:id="@+id/IDDisp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:text="id"
+            android:visibility="invisible" />
+        <TextView
+            android:id="@+id/IDProyecto"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:text="id"
+            android:visibility="invisible" />
+        <TextView
+            android:id="@+id/IDCliente"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:text="id"
+            android:visibility="invisible" />
+        <TextView
+            android:id="@+id/IDUser"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:text="id"
+            android:visibility="invisible" />
+        <TextView
+            android:id="@+id/IDClienteDisp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:text="id"
+            android:visibility="invisible" />
+        <TextView
+            android:id="@+id/IDFormato"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:text="id"
+            android:visibility="invisible" />
+        <TextView
+            android:id="@+id/checkCliente"
+            android:layout_width="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:textSize="11dp"
+            android:paddingBottom="5dp"
+            android:textStyle="bold"/>
     </LinearLayout>
+
 </LinearLayout>

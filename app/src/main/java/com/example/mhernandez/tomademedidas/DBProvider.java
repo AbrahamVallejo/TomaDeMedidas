@@ -176,7 +176,7 @@ public class DBProvider {
 
         Object[] aData = {idC, idD};
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " <> ?" + " AND " + DBhelper.ID_DISP + " <> ?", aData);
-        Log.v("[obtener]", "Delete");
+        Log.v("[DELETE]", "All Clientes Eliminados");
     }
 
 
@@ -188,7 +188,6 @@ public class DBProvider {
         Object[] aData = {idProyecto, idDisp, idCliente, idClienteDisp, idFormato, idUser, nombreProyecto, PedidoSap,
                 fecha, autorizado, accesoriosTecho, accesoriosMuro, accesoriosEspeciales, idEstatus, idUsuarioVenta};
      //Log.v("[obtener]", "Voy a insertar Proyecto");
-
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO + " (" + DBhelper.ID_PROYECTO + ", "
                 + DBhelper.ID_DISP + ", " + DBhelper.ID_CLIENTE + ", " + DBhelper.ID_CLIENTE_DISP + ", "
                 + DBhelper.ID_FORMATO + ", " + DBhelper.ID_USER + ", " + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", "
@@ -267,6 +266,15 @@ public class DBProvider {
         return (aData);
     }
 
+    public void deleteAllProyectos(String id, String idDisp) {
+        int idC = Integer.parseInt(id);
+        int idD = Integer.parseInt(idDisp);
+
+        Object[] aData = {idC, idD};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " <> ?" + " AND " + DBhelper.ID_DISP + " <> ?", aData);
+        Log.v("[DELETE]", "All Proyectos Eliminado");
+    }
+
 
     public void insertProyectoCama(int idCama,int idDisp,int idProyecto, int idProyectoDisp, String nHabitaciones, double A,
                                    double B, double C, double D, double E, double F, double G, String fecha, String nombreP, int formato,
@@ -282,8 +290,7 @@ public class DBProvider {
                 + DBhelper.ID_USUARIOAUTORIZA + ", " + DBhelper.COLUMN_NAME_AUTORIZADO + ", " + DBhelper.ID_ESTATUS + ", "
                 + DBhelper.COLUMN_NAME_PAGADO
                 + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
-        Log.v("[obtenerPC]", nombreP);
-
+        //Log.v("[obtenerPC]", nombreP);
     }
 
     public void updateProyectoCama(int idCama, int idDisp, String nHabitaciones, Double A, Double B, Double C, Double D,
@@ -298,6 +305,15 @@ public class DBProvider {
     public void deleteProyectoCama(String idCama) {
         Object[] aData = {idCama};
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_CAMA + " = ?", aData);
+    }
+
+    public void deleteAllProyectosCama(String id, String idDisp) {
+        int idC = Integer.parseInt(id);
+        int idD = Integer.parseInt(idDisp);
+
+        Object[] aData = {idC, idD};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_CAMA + " <> ?" + " AND " + DBhelper.ID_DISP + " <> ?", aData);
+        Log.v("[DELETE]", "All Proyecto Cama Eliminado");
     }
 
     public String[][] lastCama(){
@@ -322,6 +338,7 @@ public class DBProvider {
         Log.v("[obtener", "Voy de regreso");
         return aData;
     }
+
 
     public void insertProyectoEspecial(int idEsp, int idDisp, int idPro, int idProDisp, String nombre,
                                        String alto, String ancho, String grosor, String observaciones, String AIMG,
@@ -354,8 +371,6 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_PAGADO + ", "
                 + DBhelper.COLUMN_NAME_FECHA_PAGO + ", "
                 + DBhelper.ID_USUARIO_PAGO + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
-
-        Log.v("[obtenerPE]", nombre);
     }
 
     public void updateProyectoEspecial(int idEspecial, int idDisp, Double ancho, Double alto, Double grosor, String AIMG, String observaciones) {
@@ -368,6 +383,15 @@ public class DBProvider {
     public void deleteProyectoEspecial(String idEspecial) {
         Object[] aData = {idEspecial};
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " WHERE " + DBhelper.ID_ESPECIALES + " = ?", aData);
+    }
+
+    public void deleteAllProyectosEspecial(String id, String idDisp) {
+        int idC = Integer.parseInt(id);
+        int idD = Integer.parseInt(idDisp);
+
+        Object[] aData = {idC, idD};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " WHERE " + DBhelper.ID_ESPECIALES + " <> ?" + " AND " + DBhelper.ID_DISP + " <> ?", aData);
+        Log.v("[DELETE]", "All Proyecto Especial Eliminado");
     }
 
     public String[][] lastEspecial(){
@@ -392,6 +416,7 @@ public class DBProvider {
         Log.v("[obtener", "Voy de regreso");
         return aData;
     }
+
 
     public void insertProyectoGaleria(String idGal, String idDisp, String idPro,String idProDi, String fecha, String nHabitaciones, String area, String ancho, String alto,
                                       String copete, String proyecciones, String fijacion, String comentarios, String nombrePro, String AIMG,
@@ -424,6 +449,15 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " WHERE " + DBhelper.ID_GALERIA + " = ?", aData);
     }
 
+    public void deleteAllProyectosGaleria(String id, String idDisp) {
+        int idC = Integer.parseInt(id);
+        int idD = Integer.parseInt(idDisp);
+
+        Object[] aData = {idC, idD};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " WHERE " + DBhelper.ID_GALERIA + " <> ?" + " AND " + DBhelper.ID_DISP + " <> ?", aData);
+        Log.v("[DELETE]", "All Proyecto Galeria Eliminado");
+    }
+
     public String[][] lastGaleria(){
         int iCnt = 0;
         String[][] aData = null;
@@ -454,7 +488,7 @@ public class DBProvider {
                                         String fechaAl, String userAl, String userMod, String estatus, String medidaSujerida,
                                         String autorizado, String userAuto, String fechaAuto, String pagado, String userPago,
                                         String corredera) {
-        Log.v("[ProH]","Voy a insertar Hoteleria " + nombrePro +" Piso: "+piso);
+        //Log.v("[ProH]","Voy a insertar Hoteleria " + nombrePro +" Piso: "+piso);
         Object[] aData = { id, idDisp, idPro, idProDis, accMuro, accTecho, habitacion, area, ancho, alto, hojas, observaciones, nombrePro,
                             AIMG, fecha, formato, piso, edificio, control, fijacion, fechaAl, userAl, userMod, estatus, medidaSujerida,
                             autorizado, userAuto, fechaAuto, pagado, userPago, corredera};
@@ -476,7 +510,6 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_PAGADO + ", " + DBhelper.ID_USUARIO_PAGO + ", "
                 + DBhelper.COLUMN_NAME_CORREDERA
                 + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
-        Log.v("[ProH]","Inserte Hoteleria " + nombrePro);
     }
 
     public void updateProyectoHoteleria(String idHoteleria, String habitacion, String area, String ancho, String alto,
@@ -495,7 +528,17 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_HOTELERIA + " = ?", aData);
     }
 
-  public String[][] lastHoteleria(){
+    public void deleteAllHoteleria(String id, String idDisp) {
+        int idC = Integer.parseInt(id);
+        int idD = Integer.parseInt(idDisp);
+
+        Object[] aData = {idC, idD};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_HOTELERIA + " <> ?" + " AND " + DBhelper.ID_DISP + " <> ?", aData);
+        Log.v("[DELETE]", "All Proyecto Hoteleria Eliminado");
+    }
+
+
+    public String[][] lastHoteleria(){
         int iCnt = 0;
         String[][] aData = null;
         String[] aFils = null;
@@ -589,14 +632,14 @@ public class DBProvider {
         Log.v("[obtener", "Voy de regreso");
         return aData;
     }
-  
-  public void deleteAllResidencial(String idCliente, String idDisp) {
-        int idC = Integer.parseInt(idCliente);
+
+    public void deleteAllResidencial(String id, String idDisp) {
+        int idC = Integer.parseInt(id);
         int idD = Integer.parseInt(idDisp);
 
         Object[] aData = {idC, idD};
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " WHERE " + DBhelper.ID_RESIDENCIAL + " <> ?" + " AND " + DBhelper.ID_DISP + " <> ?", aData);
-        Log.v("[obtener]", "All Proyecto Residencial Eliminado");
+        Log.v("[DELETE]", "All Proyecto Residencial Eliminado");
     }
 
     //Tabla Dispositivos
