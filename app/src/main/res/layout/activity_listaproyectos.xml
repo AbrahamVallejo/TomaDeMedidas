@@ -24,31 +24,6 @@
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:paddingTop="2dp"
-                    android:text="Autorizado: "
-                    android:textColor="@android:color/black"
-                    android:textSize="15dp"
-                    android:textStyle="normal"
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/autorizado"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:paddingTop="2dp"
-                    android:text="autor"
-                    android:textColor="@android:color/black"
-                    android:textSize="15dp"
-                    android:textStyle="normal"
-                    android:typeface="sans"/>
-            </LinearLayout>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -102,6 +77,30 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:text="Autorizado: "
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:textStyle="normal"
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/autorizado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="autor"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:textStyle="normal"
+                    android:typeface="sans"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Pedido Sap: "
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
@@ -119,11 +118,11 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingTop="2dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:paddingTop="2dp"
                     android:layout_weight="1"
                     android:text="Fecha:  "
                     android:textColor="@android:color/black"
@@ -134,13 +133,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="50"
-                    android:paddingTop="2dp"
                     android:text="Fecha"
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
                     android:textStyle="normal"/>
             </LinearLayout>
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -161,37 +158,31 @@
                 android:textSize="16dp"
                 android:typeface="sans"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="5dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:text="Estatus: "
-                    android:textColor="@android:color/black"
-                    android:textSize="15dp"
-                    android:textStyle="normal" />
-                <TextView
-                    android:id="@+id/EstatusProyecto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="50"
-                    android:text="Estatus"
-                    android:textColor="@android:color/black"
-                    android:textSize="15dp"
-                    android:typeface="sans"/>
-            </LinearLayout>
-
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right"
+        android:paddingTop="2dp"
+        android:gravity="left"
         android:orientation="horizontal" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estatus: "
+            android:textColor="@android:color/black"
+            android:textSize="15dp"
+            android:textStyle="normal" />
+        <TextView
+            android:id="@+id/EstatusProyecto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estatus"
+            android:textColor="@android:color/black"
+            android:textSize="15dp"
+            android:typeface="sans"/>
+
         <TextView
             android:id="@+id/IDDisp"
             android:layout_width="10dp"

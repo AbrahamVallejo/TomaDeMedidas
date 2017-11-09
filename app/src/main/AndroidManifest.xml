@@ -116,6 +116,24 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Editar Residencial">
         </activity>
+
+        <activity android:name=".medidaHoteleria"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Editar Residencial">
+        </activity>
+
+
+        <activity android:name=".crearArea"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Editar Residencial">
+        </activity>
+        <activity android:name=".crearGaleria"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Editar Residencial">
+        </activity>
     </application>
 
 </manifest>
