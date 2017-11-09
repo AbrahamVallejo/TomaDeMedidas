@@ -9,20 +9,6 @@
     tools:context="com.example.mhernandez.tomademedidas.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:gravity="end"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/progressbar"
-            android:visibility="invisible"
-            />
-    </LinearLayout>
 
 <!--
     <ListView

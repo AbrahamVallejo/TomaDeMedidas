@@ -1,5 +1,6 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity
 
     public static DBProvider oDB;
     int UBICACION=0;
-    ProgressBar progreso;
+    Dialog customDialog = null;
     int miProgreso = 0;
 
     public MainActivity() { oDB = new DBProvider(this);}
@@ -56,7 +58,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        progreso=(ProgressBar)findViewById(R.id.progressbar);
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +67,6 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });*/
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -228,6 +228,8 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        //customDialog = new Dialog(getApplicationContext(), R.style.Theme_Dialog_Translucent);
+        //customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.sincronizar) {
@@ -551,14 +553,16 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
-                progreso.setVisibility(View.INVISIBLE);
+                Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(rIntent);
                 Toast.makeText(getApplicationContext(), "Descarga Completa", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-Residencial!", Toast.LENGTH_LONG).show();
-                progreso.setVisibility(View.INVISIBLE);
+                Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(rIntent);
                 Toast.makeText(getApplicationContext(), "Descarga Completa", Toast.LENGTH_SHORT).show();
             }
         });
@@ -729,9 +733,11 @@ public class MainActivity extends AppCompatActivity
         if(aux1.length >= 1){
             Toast.makeText(this, "Sincronización Requerida", Toast.LENGTH_LONG).show();
         }else{
-            progreso.setVisibility(View.VISIBLE);
             boolean aux = isOnlineNet();
             if (aux != false) {
+                //customDialog.setContentView(R.layout.activity_cargando);
+                setContentView(R.layout.activity_cargando);
+
                 MainActivity.oDB.deleteAllCliente("0","0");
                 MainActivity.oDB.deleteAllProyectos("0","0");
                 MainActivity.oDB.deleteAllProyectosCama("0","0");

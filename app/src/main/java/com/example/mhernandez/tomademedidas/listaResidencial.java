@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by mhernandez on 30/10/2017.
@@ -67,7 +68,6 @@ public class listaResidencial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnNuevaGaleria)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
-
                         customDialog.dismiss();
                     }
                 });
@@ -75,7 +75,9 @@ public class listaResidencial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
-
+                        if (Integer.parseInt(aDat[27]) !=1){
+                            Toast.makeText(listaResidencial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }
                         customDialog.dismiss();
                     }
                 });
@@ -83,7 +85,9 @@ public class listaResidencial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnCerrar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        if (Integer.parseInt(aDat[27]) !=1){
+                            Toast.makeText(listaResidencial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }
                         customDialog.dismiss();
                     }
                 });
