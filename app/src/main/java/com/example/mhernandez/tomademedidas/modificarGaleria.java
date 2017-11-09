@@ -1,6 +1,5 @@
 package com.example.mhernandez.tomademedidas;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -10,61 +9,62 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import java.util.Calendar;
-import java.util.Date;
-
 /**
- * Created by mhernandez on 03/11/2017.
+ * Created by mhernandez on 08/11/2017.
  */
 
 
-public class medidaGaleria extends AppCompatActivity {
+public class modificarGaleria extends AppCompatActivity {
 
     private Spinner spArea, spFijacion, spCopete, spProye;
 
     public static DBProvider oDB;
-    public medidaGaleria() {oDB = new DBProvider(this);}
+    public modificarGaleria() {oDB = new DBProvider(this);}
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crear_medida_galeria);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        final Bundle oExt = getIntent().getExtras();
+        Bundle oExt = this.getIntent().getExtras();
         spinnerArea(); spinnerCopete(); spinnerFijacion(); spinnerProyecciones();
-        final int idProyecto = oExt.getInt("idProyecto");
-        final int idProyectoDisp = oExt.getInt("idProyectoDisp");
-        final EditText NHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
-        final Spinner Area = (Spinner) this.findViewById(R.id.spinner_area);
-        final EditText Ancho = (EditText) this.findViewById(R.id.txt_ancho);
-        final EditText Alto = (EditText) this.findViewById(R.id.txt_alto);
-        final Spinner Copete = (Spinner) this.findViewById(R.id.spinner_copete);
-        final Spinner Proyecciones = (Spinner) this.findViewById(R.id.spinner_proyecciones);
-        final Spinner Fijacion = (Spinner) this.findViewById(R.id.spinner_fijacion);
-        final EditText Comentarios = (EditText) this.findViewById(R.id.txt_comentarios);
-        final Button crearArea = (Button) this.findViewById(R.id.crearArea);
-        crearArea.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent rIntent = new Intent(medidaGaleria.this, crearArea.class);
-                startActivity(rIntent);
-            }
-        });
-        Button Guardar = (Button) this.findViewById(R.id.Guardar);
+        final int idGaleria = Integer.parseInt(oExt.getString("idGaleria"));
+        final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
+        int idProyecto = Integer.parseInt(oExt.getString("idProyecto"));
+        int idProyectoDisp = Integer.parseInt(oExt.getString("idProyectoDisp"));
+        String NHabitaciones = oExt.getString("NHabitaciones");
+        String Area = oExt.getString("Area");
+        String Ancho = oExt.getString("Ancho");
+        String Alto = oExt.getString("Alto");
+        String Copete = oExt.getString("Copete");
+        String Proyecciones = oExt.getString("Proyecciones");
+        String Fijacion = oExt.getString("Fijacion");
+        String Comentarios = oExt.getString("Comentarios");
+        final EditText txtNHabitaciones = (EditText) findViewById(R.id.txt_numero_habitaciones);
+        final Spinner txtArea = (Spinner) findViewById(R.id.spinner_area);
+        final EditText txtAncho = (EditText) findViewById(R.id.txt_ancho);
+        final EditText txtAlto = (EditText) findViewById(R.id.txt_alto);
+        final Spinner txtCopete = (Spinner) findViewById(R.id.spinner_copete);
+        final Spinner txtProyecciones = (Spinner) findViewById(R.id.spinner_proyecciones);
+        final Spinner txtFijacion = (Spinner) findViewById(R.id.spinner_fijacion);
+        final EditText txtComentarios = (EditText) findViewById(R.id.txt_comentarios);
+        Button Guardar = (Button) findViewById(R.id.Guardar);
+        txtNHabitaciones.setText(NHabitaciones.trim());
+        txtAncho.setText(Ancho.trim());
+        txtAlto.setText(Alto.trim());
+        txtComentarios.setText(Comentarios.trim());
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date currentTime = Calendar.getInstance().getTime();
-                String FechaAlta = currentTime.toString();
-                String numeroHabitaciones = NHabitaciones.getText().toString();
-                String txtArea  = Area.getSelectedItem().toString();
-                Double txtAncho = Double.parseDouble(Ancho.getText().toString());
-                Double txtAlto = Double.parseDouble(Alto.getText().toString());
-                String txtCopete = Copete.getSelectedItem().toString();
-                String txtProyecciones = Proyecciones.getSelectedItem().toString();
-                String txtFijacion = Fijacion.getSelectedItem().toString();
-                String OBS = Comentarios.getText().toString();
-//                oDB.insertProyectoGaleria();
+                String NHabitaciones = txtNHabitaciones.getText().toString();
+                String Area = txtArea.getSelectedItem().toString();
+                Double Ancho = Double.parseDouble(txtAncho.getText().toString());
+                Double Alto = Double.parseDouble(txtAlto.getText().toString());
+                String Copete = txtCopete.getSelectedItem().toString();
+                String Proyecciones = txtProyecciones.getSelectedItem().toString();
+                String Fijacion =  txtFijacion.getSelectedItem().toString();
+                String Comentarios = txtComentarios.getText().toString();
+                oDB.updateProyectoGaleria(idGaleria, idDisp, NHabitaciones, Area, Ancho, Alto, Copete, Proyecciones, Fijacion, "IMAGEN", Comentarios);
                 finish();
             }
         });
@@ -80,6 +80,7 @@ public class medidaGaleria extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     public void spinnerArea(){
         String[][] aRes= galeria.oDB.ObtenerUbicacion("0",1);
         spArea= (Spinner)( findViewById(R.id.spinner_area));
@@ -131,5 +132,4 @@ public class medidaGaleria extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spProye.setAdapter(adapter);
     }
-
 }

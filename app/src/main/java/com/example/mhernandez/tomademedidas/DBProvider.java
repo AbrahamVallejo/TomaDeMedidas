@@ -435,13 +435,13 @@ public class DBProvider {
                 + DBhelper.ID_USUARIO_PAGO + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
     }
 
-    public void updateProyectoGaleria(String idGaleria, String nHabitaciones, String area, String ancho, String alto,
+    public void updateProyectoGaleria(int idGaleria, int idDisp, String nHabitaciones, String area, Double ancho, Double alto,
                                       String copete, String proyecciones, String fijacion, String AIMG, String comentarios) {
-        Object[] aData = {idGaleria, nHabitaciones, area, ancho, alto, copete, proyecciones, fijacion, AIMG, comentarios};
+        Object[] aData = {nHabitaciones, area, ancho, alto, copete, proyecciones, fijacion, AIMG, comentarios, idGaleria, idDisp};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " SET " + DBhelper.COLUMN_NAME_N_HABITACION + " = ?, "
                 + DBhelper.COLUMN_NAME_AREA + " = ?, " + DBhelper.COLUMN_NAME_ANCHO + " ?, " + DBhelper.COLUMN_NAME_ALTO + " = ?, "
                 + DBhelper.COLUMN_NAME_COPETE + " = ?, " + DBhelper.COLUMN_NAME_PROYECCIONES + " = ?, " + DBhelper.COLUMN_NAME_FIJACION + " = ?, "
-                + DBhelper.COLUMN_NAME_AIMG + " = ?, " + DBhelper.COLUMN_NAME_COMENTARIOS + " = ?, " + " WHERE " + DBhelper.ID_GALERIA + " = ?", aData);
+                + DBhelper.COLUMN_NAME_AIMG + " = ?, " + DBhelper.COLUMN_NAME_COMENTARIOS + " = ?, " + " WHERE " + DBhelper.ID_GALERIA + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public void deleteProyectoGaleria(String idGaleria) {
