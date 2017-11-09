@@ -375,9 +375,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("nombre");
                     aFujs[i] = joFuj.getString("telefono");
                     aFujs[i] = joFuj.getString("direccion");
-                    Log.v("PRUEBA", joFuj.getString("id_cliente"));
-                    Log.v("PRUEBA", joFuj.getString("nombre")); Log.v("PRUEBA","...");
-
+                    Log.v("PRUEBA", "Cliente: "+joFuj.getString("nombre"));
                     MainActivity.oDB.insertCliente(Integer.parseInt(joFuj.getString("id_cliente")), Integer.parseInt(joFuj.getString("id_disp")),
                             joFuj.getString("nombre"), joFuj.getString("telefono"), joFuj.getString("direccion"), 0);
                 }
@@ -481,7 +479,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 JSONArray jaData = new JSONArray((sResp));
                 aFujs = new String[jaData.length()];    //Log.v("PRUEBA", sResp);
                 for (int i = 0; i<jaData.length(); i++){
-                    Log.v("PRUEBA", "Hola");
                     JSONObject joFuj = jaData.getJSONObject(i);
                     aFujs[i] = joFuj.getString("id_proyecto");
                     aFujs[i] = joFuj.getString("id_disp");
@@ -499,10 +496,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("accesorios_muro");
                     aFujs[i] = joFuj.getString("id_estatus");
                     aFujs[i] = joFuj.getString("id_usuario_venta");
-                    //Log.v("PRUEBA", joFuj.getString("id_proyecto"));  Log.v("PRUEBA", joFuj.getString("nombre_proyecto")); Log.v("PRUEBA","...");
-                    String[][] aRef = MainActivity.oDB.buscarProyecto(Integer.parseInt(joFuj.getString("id_proyecto")) ,Integer.parseInt(joFuj.getString("id_disp")));
-                    Log.v("[Pro]",aRef[0][0]);
-                    if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_proyecto"))) {
+                    Log.v("PRUEBA","Proyecto: "+ joFuj.getString("nombre_proyecto"));
                         MainActivity.oDB.insertProyecto(Integer.parseInt(joFuj.getString("id_proyecto")),
                                 Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_cliente")),
                                 Integer.parseInt(joFuj.getString("id_cliente_disp")), Integer.parseInt(joFuj.getString("id_formato")),
@@ -510,7 +504,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                                 joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("autorizado")), joFuj.getString("accesorios_techo"),
                                 joFuj.getString("accesorios_muro"),"0", Integer.parseInt(joFuj.getString("id_estatus")),
                                 Integer.parseInt(joFuj.getString("id_usuario_venta")) );
-                    }
                 }
             }catch (Exception e){
                 exception = e;
@@ -775,8 +768,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("pagado");
                     aFujs[i] = joFuj.getString("fecha_pago");
                     aFujs[i] = joFuj.getString("id_usuario_pago");
-                    Log.v("PRUEBA", joFuj.getString("id_residencial"));
-                    Log.v("PRUEBA", joFuj.getString("ubicacion")); Log.v("PRUEBA","...");
+                    Log.v("PRUEBA","Residencial: "+ joFuj.getString("ubicacion"));
                     MainActivity.oDB.insertProyectoResidencial(joFuj.getString("id_residencial"),
                             joFuj.getString("id_disp"), joFuj.getString("id_proyecto"),joFuj.getString("id_proyecto_disp"),
                             joFuj.getString("ubicacion"), joFuj.getString("a"), joFuj.getString("b"), joFuj.getString("c"),
@@ -825,8 +817,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("medida_sujerida");
                     aFujs[i] = joFuj.getString("autorizado");
                     aFujs[i] = joFuj.getString("pagado");
-                    Log.v("PRUEBA", joFuj.getString("id_hoteleria"));
-                    Log.v("PRUEBA", joFuj.getString("habitacion")); Log.v("PRUEBA","...");
+                    Log.v("PRUEBA","Hoteleria:  " +joFuj.getString("id_hoteleria"));
                     MainActivity.oDB.insertProyectoHoteleria(joFuj.getString("id_hoteleria"), joFuj.getString("id_disp"),
                             joFuj.getString("id_proyecto"), joFuj.getString("id_proyecto_disp"), " "," ",
                             joFuj.getString("habitacion"), joFuj.getString("area"),
@@ -868,8 +859,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("id_estatus");
                     aFujs[i] = joFuj.getString("autorizado");
                     //aFujs[i] = joFuj.getString("pagado"); //aFujs[i] = joFuj.getString("fecha_pago");
-                    Log.v("PRUEBA", joFuj.getString("id_especiales"));
-                    Log.v("PRUEBA", joFuj.getString("nombre_proyecto")); Log.v("PRUEBA","...");
+                    Log.v("PRUEBA", "Especial: "+ joFuj.getString("nombre_proyecto"));
                     MainActivity.oDB.insertProyectoEspecial(Integer.parseInt(joFuj.getString("id_especiales")),
                             Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_proyecto")),
                             Integer.parseInt(joFuj.getString("id_proyecto_disp")), joFuj.getString("nombre_proyecto"),
@@ -940,8 +930,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("pagado");
                     aFujs[i] = joFuj.getString("fecha_pago");
                     aFujs[i] = joFuj.getString("id_usuario_pago");
-                    Log.v("PRUEBA", joFuj.getString("id_galeria"));
-                    Log.v("PRUEBA", joFuj.getString("nombre_proyecto")); Log.v("PRUEBA","...");
+                    Log.v("PRUEBA","Galeria: "+ joFuj.getString("nombre_proyecto"));
                     MainActivity.oDB.insertProyectoGaleria( joFuj.getString("id_galeria"), joFuj.getString("id_disp"),
                             joFuj.getString("id_proyecto"), joFuj.getString("id_proyecto_disp"),
                             joFuj.getString("fecha"), joFuj.getString("n_habitacion"), joFuj.getString("area"),
@@ -985,8 +974,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("id_estatus");
                     aFujs[i] = joFuj.getString("autorizado");
                     aFujs[i] = joFuj.getString("pagado");
-                    Log.v("PRUEBA", joFuj.getString("id_cama"));
-                    Log.v("PRUEBA", joFuj.getString("n_habitacion")); Log.v("[obtenerPC]","Insertar Cama");
+                    Log.v("[obtenerPC]","Cama: " + joFuj.getString("nombre_proyecto") );
                     MainActivity.oDB.insertProyectoCama(Integer.parseInt(joFuj.getString("id_cama")),
                             Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_proyecto")),
                             Integer.parseInt(joFuj.getString("id_proyecto_disp")), joFuj.getString("n_habitacion"),

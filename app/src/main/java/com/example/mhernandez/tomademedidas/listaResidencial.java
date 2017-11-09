@@ -11,11 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by mhernandez on 30/10/2017.
@@ -31,6 +33,9 @@ public class listaResidencial extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        //Quitar Barra de Notificaciones
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.list_activity);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -67,7 +72,6 @@ public class listaResidencial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnNuevaGaleria)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
-
                         customDialog.dismiss();
                     }
                 });
@@ -75,7 +79,9 @@ public class listaResidencial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
-
+                        if (Integer.parseInt(aDat[27]) !=1){
+                            Toast.makeText(listaResidencial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }
                         customDialog.dismiss();
                     }
                 });
@@ -83,7 +89,9 @@ public class listaResidencial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnCerrar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        if (Integer.parseInt(aDat[27]) !=1){
+                            Toast.makeText(listaResidencial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }
                         customDialog.dismiss();
                     }
                 });
@@ -137,6 +145,7 @@ public class listaResidencial extends AppCompatActivity {
             TextView txtF = (TextView) rowView.findViewById(R.id.F);
             TextView txtG = (TextView) rowView.findViewById(R.id.G);
             TextView txtH = (TextView) rowView.findViewById(R.id.H);
+            TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             txtIDResidencial.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
@@ -152,6 +161,7 @@ public class listaResidencial extends AppCompatActivity {
             txtAgpto.setText(_text[position][16]);
             txtCorredera.setText(_text[position][36]);
             txtObservaciones.setText(_text[position][18]);
+
             txtA.setText(_text[position][5]);
             txtB.setText(_text[position][6]);
             txtC.setText(_text[position][7]);
@@ -160,6 +170,11 @@ public class listaResidencial extends AppCompatActivity {
             txtF.setText(_text[position][10]);
             txtG.setText(_text[position][11]);
             txtH.setText(_text[position][12]);
+            if (Integer.parseInt(_text[position][27]) == 1){
+                txtEstatus.setText("Activo");
+            }else{
+                txtEstatus.setText("Cerrado");
+            }
             return rowView;
         }
     }

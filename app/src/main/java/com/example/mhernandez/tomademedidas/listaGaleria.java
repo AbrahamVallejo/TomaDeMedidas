@@ -11,11 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by mhernandez on 30/10/2017.
@@ -31,6 +33,8 @@ public class listaGaleria extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        //Quitar Barra de Notificaciones
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.list_activity);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -50,16 +54,14 @@ public class listaGaleria extends AppCompatActivity {
                 customDialog = new Dialog(listaGaleria.this, R.style.Theme_Dialog_Translucent);
                 customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 customDialog.setContentView(R.layout.menu_tabla_medida);
-
                 final String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
 
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent rIntent = new Intent(listaGaleria.this, medidaGaleria.class);
-                        rIntent.putExtra("idProyecto", aDat[2]);
-                        rIntent.putExtra("idProyectoDisp", aDat[3]);
-                        startActivity(rIntent);
+                        Intent intent = new Intent(listaGaleria.this, medidaGaleria.class);
+                        startActivity(intent);
+                      
                         customDialog.dismiss();
                     }
                 });
@@ -75,20 +77,24 @@ public class listaGaleria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
-                        Intent rIntent = new Intent(listaGaleria.this, modificarGaleria.class);
-                        rIntent.putExtra("idGaleria", aDat[0]);
-                        rIntent.putExtra("idDisp", aDat[1]);
-                        rIntent.putExtra("idProyecto", aDat[2]);
-                        rIntent.putExtra("idProyectoDisp", aDat[3]);
-                        rIntent.putExtra("NHabitaciones", aDat[5]);
-                        rIntent.putExtra("Area", aDat[6]);
-                        rIntent.putExtra("Ancho", aDat[7]);
-                        rIntent.putExtra("Alto", aDat[8]);
-                        rIntent.putExtra("Copete", aDat[9]);
-                        rIntent.putExtra("Proyecciones", aDat[10]);
-                        rIntent.putExtra("Fijacion", aDat[11]);
-                        rIntent.putExtra("Comentarios", aDat[12]);
-                        startActivity(rIntent);
+                        if (Integer.parseInt(aDat[19]) !=1){
+                            Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else{
+                            Intent rIntent = new Intent(listaGaleria.this, modificarGaleria.class);
+                            rIntent.putExtra("idGaleria", aDat[0]);
+                            rIntent.putExtra("idDisp", aDat[1]);
+                            rIntent.putExtra("idProyecto", aDat[2]);
+                            rIntent.putExtra("idProyectoDisp", aDat[3]);
+                            rIntent.putExtra("NHabitaciones", aDat[5]);
+                            rIntent.putExtra("Area", aDat[6]);
+                            rIntent.putExtra("Ancho", aDat[7]);
+                            rIntent.putExtra("Alto", aDat[8]);
+                            rIntent.putExtra("Copete", aDat[9]);
+                            rIntent.putExtra("Proyecciones", aDat[10]);
+                            rIntent.putExtra("Fijacion", aDat[11]);
+                            rIntent.putExtra("Comentarios", aDat[12]);
+                            startActivity(rIntent);
+                        }
                         customDialog.dismiss();
                     }
                 });
