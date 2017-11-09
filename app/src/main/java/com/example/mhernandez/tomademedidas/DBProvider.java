@@ -561,7 +561,7 @@ public class DBProvider {
         return aData;
     }
   
-      public void insertProyectoResidencial(String id, String idDisp, String idPro,String idProDisp,String ubicacion, String A, String B, String C, String D,
+    public void insertProyectoResidencial(String id, String idDisp, String idPro,String idProDisp,String ubicacion, String A, String B, String C, String D,
                                           String E, String F, String G, String H, String profMarco, String profJaladera,
                                           String control, String AGPTO, String medidaSujerida, String observaciones, String AIMG, String instalador,
                                           String nombre, String fecha, String formato, String userAl, String userMod, String fechaAl, String estatus,
@@ -610,7 +610,7 @@ public class DBProvider {
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " WHERE " + DBhelper.ID_RESIDENCIAL + " = ?", aData);
     }
 
-  public String[][] lastResidencial(){
+    public String[][] lastResidencial(){
         int iCnt = 0;
         String[][] aData = null;
         String[] aFils = null;

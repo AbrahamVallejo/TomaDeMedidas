@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by mhernandez on 30/10/2017.
@@ -53,6 +54,7 @@ public class listaGaleria extends AppCompatActivity {
                 customDialog = new Dialog(listaGaleria.this, R.style.Theme_Dialog_Translucent);
                 customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 customDialog.setContentView(R.layout.menu_tabla_medida);
+                final String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
 
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -75,7 +77,9 @@ public class listaGaleria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
-
+                        if (Integer.parseInt(aDat[19]) !=1){
+                            Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }
                         customDialog.dismiss();
                     }
                 });

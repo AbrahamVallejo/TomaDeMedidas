@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,6 +33,9 @@ public class listaResidencial extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        //Quitar Barra de Notificaciones
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.list_activity);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -157,6 +161,7 @@ public class listaResidencial extends AppCompatActivity {
             txtAgpto.setText(_text[position][16]);
             txtCorredera.setText(_text[position][36]);
             txtObservaciones.setText(_text[position][18]);
+
             txtA.setText(_text[position][5]);
             txtB.setText(_text[position][6]);
             txtC.setText(_text[position][7]);
