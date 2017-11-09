@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -224,7 +225,9 @@ public class Fragment_listaProyecto extends Fragment {
             TextView txtIDUser = (TextView) rowView.findViewById(R.id.IDUser);
             TextView txtIDClienteDisp = (TextView) rowView.findViewById(R.id.IDClienteDisp);
             TextView txtIDFormato = (TextView) rowView.findViewById(R.id.IDFormato);
+            TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             String[] parts = _text[position][7].split("T");
+
             txtNombre.setText(_text[position][6]);
             txtFecha.setText(_text[position][7]);
             txtFecha.setText(parts[0]);
@@ -232,13 +235,26 @@ public class Fragment_listaProyecto extends Fragment {
             txtAutorizado.setText(_text[position][12]);
             txtATecho.setText(_text[position][19].toLowerCase());
             txtAMuro.setText(_text[position][20].toLowerCase());
-            txtAEspeciales.setText(_text[position][21].toLowerCase());
+            if (_text[position][21].length() >2){
+                txtAEspeciales.setText(_text[position][21].toLowerCase());
+            }else{
+                txtAEspeciales.setText("(no definido)");
+                txtAEspeciales.setTextColor(Color.rgb(204,85,85));
+            }
+
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][0]);
             txtIDCliente.setText(_text[position][2]);
             txtIDUser.setText(_text[position][5]);
             txtIDClienteDisp.setText(_text[position][3]);
             txtIDFormato.setText(_text[position][4]);
+
+            if (Integer.parseInt(_text[position][10]) == 1){
+                txtEstatus.setText("Activo");
+            }else{
+                txtEstatus.setText("Cerrado");
+            }
+
             return rowView;
         }
 

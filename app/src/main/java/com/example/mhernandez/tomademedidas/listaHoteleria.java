@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by mhernandez on 30/10/2017.
@@ -75,7 +76,9 @@ public class listaHoteleria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
-
+                        if (Integer.parseInt(aDat[23]) !=1){
+                            Toast.makeText(listaHoteleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }
                         customDialog.dismiss();
                     }
                 });
@@ -131,6 +134,7 @@ public class listaHoteleria extends AppCompatActivity {
             TextView txtControl = (TextView) rowView.findViewById(R.id.Control);
             TextView txtFijacion = (TextView) rowView.findViewById(R.id.Fijacion);
             TextView txtCorredera = (TextView) rowView.findViewById(R.id.Corredera);
+            TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             txtIDHoteleria.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
@@ -148,6 +152,12 @@ public class listaHoteleria extends AppCompatActivity {
             txtControl.setText(_text[position][18]);
             txtFijacion.setText(_text[position][19]);
             txtCorredera.setText(_text[position][30]);
+            if (Integer.parseInt(_text[position][23]) == 1){
+                txtEstatus.setText("Activo");
+            }else{
+                txtEstatus.setText("Cerrado");
+            }
+
             return rowView;
         }
     }

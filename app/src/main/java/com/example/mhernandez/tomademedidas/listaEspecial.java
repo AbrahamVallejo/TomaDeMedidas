@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by mhernandez on 30/10/2017.
@@ -73,6 +74,9 @@ public class listaEspecial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (Integer.parseInt(aDat[15]) !=1){
+                            Toast.makeText(listaEspecial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else{
                         Intent rIntent = new Intent(listaEspecial.this, modificarEspecial.class);
                         rIntent.putExtra("idEspecial", aDat[0]);
                         rIntent.putExtra("idDisp", aDat[1]);
@@ -83,6 +87,7 @@ public class listaEspecial extends AppCompatActivity {
                         rIntent.putExtra("Grosor", aDat[7]);
                         rIntent.putExtra("Observaciones", aDat[8]);
                         startActivity(rIntent);
+                        }
                         customDialog.dismiss();
                     }
                 });

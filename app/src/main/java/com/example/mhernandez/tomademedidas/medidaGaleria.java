@@ -32,6 +32,7 @@ public class medidaGaleria extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = getIntent().getExtras();
         spinnerArea(); spinnerCopete(); spinnerFijacion(); spinnerProyecciones();
+
         final int idProyecto = oExt.getInt("idProyecto");
         final int idProyectoDisp = oExt.getInt("idProyectoDisp");
         final EditText NHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
@@ -81,7 +82,7 @@ public class medidaGaleria extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void spinnerArea(){
-        String[][] aRes= galeria.oDB.ObtenerUbicacion("0",1);
+        String[][] aRes= medidaGaleria.oDB.ObtenerUbicacion("0",1);
         spArea= (Spinner)( findViewById(R.id.spinner_area));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione una ubicación...";
@@ -94,7 +95,7 @@ public class medidaGaleria extends AppCompatActivity {
     }
 
     public void spinnerCopete(){
-        String[][] aRes= galeria.oDB.ObtenerCopete("0",1);
+        String[][] aRes= medidaGaleria.oDB.ObtenerCopete("0",1);
         spCopete= (Spinner)( findViewById(R.id.spinner_copete));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un valor...";
@@ -107,7 +108,7 @@ public class medidaGaleria extends AppCompatActivity {
     }
 
     public void spinnerFijacion(){
-        String[][] aRes= galeria.oDB.ObtenerFijacion("0",1);
+        String[][] aRes= medidaGaleria.oDB.ObtenerFijacion("0",1);
         spFijacion= (Spinner)( findViewById(R.id.spinner_fijacion));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un lado...";
@@ -120,7 +121,7 @@ public class medidaGaleria extends AppCompatActivity {
     }
 
     public void spinnerProyecciones(){
-        String[][] aRes= galeria.oDB.ObtenerProyeccion("0",1);
+        String[][] aRes= medidaGaleria.oDB.ObtenerProyeccion("0",1);
         spProye= (Spinner)( findViewById(R.id.spinner_proyecciones));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un valor...";
