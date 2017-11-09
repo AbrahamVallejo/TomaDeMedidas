@@ -60,6 +60,8 @@ public class listaGaleria extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(listaGaleria.this, medidaGaleria.class);
+                        intent.putExtra("idProyecto", aDat[2]);
+                        intent.putExtra("idProyectoDisp", aDat[3]);
                         startActivity(intent);
                       
                         customDialog.dismiss();
@@ -149,13 +151,16 @@ public class listaGaleria extends AppCompatActivity {
             TextView txtCopete = (TextView) rowView.findViewById(R.id.Copete);
             TextView txtProyecciones = (TextView) rowView.findViewById(R.id.Proyecciones);
             TextView txtFijacion = (TextView) rowView.findViewById(R.id.Fijacion);
+            TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
+            String[] parts = _text[position][4].split("T");
+            txtFecha.setText(parts[0]);
+
             txtIDGaleria.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
             txtIDProyectoDisp.setText(_text[position][3]);
             txtIDEstatus.setText(_text[position][19]);
             txtNombre.setText(_text[position][13]);
-            txtFecha.setText(_text[position][4]);
             txtComentarios.setText(_text[position][12]);
             txtNHabitacion.setText(_text[position][5]);
             txtArea.setText(_text[position][6]);
@@ -164,6 +169,11 @@ public class listaGaleria extends AppCompatActivity {
             txtCopete.setText(_text[position][9]);
             txtProyecciones.setText(_text[position][10]);
             txtFijacion.setText(_text[position][11]);
+            if (Integer.parseInt(_text[position][19]) == 1){
+                txtEstatus.setText("Activo");
+            }else{
+                txtEstatus.setText("Cerrado");
+            }
             return rowView;
         }
     }
