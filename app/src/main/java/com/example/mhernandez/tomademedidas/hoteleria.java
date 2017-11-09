@@ -94,7 +94,7 @@ public class hoteleria extends AppCompatActivity {
 
     public void spinnerArea(){
         String[][] aRes= hoteleria.oDB.ObtenerUbicacion("0",1);
-        spAreaH= (Spinner)( findViewById(R.id.spinner_areaH));
+        spAreaH= (Spinner)( findViewById(R.id.spinner_area));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione una ubicación...";
         for(int i = 0; i < aRes.length; i++){
@@ -106,7 +106,7 @@ public class hoteleria extends AppCompatActivity {
 
     public void spinnerControl(){
         String[][] aRes= hoteleria.oDB.ObtenerControl("0",1);
-        spControlH= (Spinner)( findViewById(R.id.spinner_controlH));
+        spControlH= (Spinner)( findViewById(R.id.spinner_control));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un valor...";
         for(int i = 0; i < aRes.length; i++){
@@ -118,7 +118,7 @@ public class hoteleria extends AppCompatActivity {
 
     public void spinnerFijacion(){
         String[][] aRes= hoteleria.oDB.ObtenerFijacion("0",1);
-        spFijacionH= (Spinner)( findViewById(R.id.spinner_fijacionH));
+        spFijacionH= (Spinner)( findViewById(R.id.spinner_fijacion));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un lado...";
         for(int i = 0; i < aRes.length; i++){
@@ -130,7 +130,7 @@ public class hoteleria extends AppCompatActivity {
 
     public void spinnerCorredera(){
         String[][] aRes= hoteleria.oDB.ObtenerCorredera("0",1);
-        spCorrederaH= (Spinner)( findViewById(R.id.spinner_correderaH));
+        spCorrederaH= (Spinner)( findViewById(R.id.spinner_corredera));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione uno...";
         for(int i = 0; i < aRes.length; i++){

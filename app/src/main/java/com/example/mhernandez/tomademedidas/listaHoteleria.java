@@ -78,6 +78,25 @@ public class listaHoteleria extends AppCompatActivity {
                     public void onClick(View v){
                         if (Integer.parseInt(aDat[23]) !=1){
                             Toast.makeText(listaHoteleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else{
+                            Intent rIntent = new Intent(listaHoteleria.this, modificarHoteleria.class);
+                            rIntent.putExtra("idHoteleria", aDat[0]);
+                            rIntent.putExtra("idDisp", aDat[1]);
+                            rIntent.putExtra("idProyecto", aDat[2]);
+                            rIntent.putExtra("idProyectoDisp", aDat[3]);
+                            rIntent.putExtra("Edificio", aDat[17]);
+                            rIntent.putExtra("Piso", aDat[16]);
+                            rIntent.putExtra("Habitacion", aDat[6]);
+                            rIntent.putExtra("Area", aDat[7]);
+                            rIntent.putExtra("Ancho", aDat[8]);
+                            rIntent.putExtra("Alto", aDat[9]);
+                            rIntent.putExtra("Hojas", aDat[10]);
+                            rIntent.putExtra("Control", aDat[18]);
+                            rIntent.putExtra("Fijacion", aDat[19]);
+                            rIntent.putExtra("Corredera", aDat[20]);
+                            rIntent.putExtra("MedidaSugerida", aDat[24]);
+                            rIntent.putExtra("Observaciones", aDat[11]);
+                            startActivity(rIntent);
                         }
                         customDialog.dismiss();
                     }
@@ -135,6 +154,8 @@ public class listaHoteleria extends AppCompatActivity {
             TextView txtFijacion = (TextView) rowView.findViewById(R.id.Fijacion);
             TextView txtCorredera = (TextView) rowView.findViewById(R.id.Corredera);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
+            TextView txtMedidaSugerida = (TextView) rowView.findViewById(R.id.MedidaSugerida);
+            txtMedidaSugerida.setText(_text[position][24]);
             txtIDHoteleria.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
