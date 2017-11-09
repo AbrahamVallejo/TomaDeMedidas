@@ -238,7 +238,7 @@ public class Fragment_listaProyecto extends Fragment {
             if (_text[position][21].length() >2){
                 txtAEspeciales.setText(_text[position][21].toLowerCase());
             }else{
-                txtAEspeciales.setText("(no definido)");
+                txtAEspeciales.setText("(no definido)"); //txtAEspeciales.setTextSize(10);
                 txtAEspeciales.setTextColor(Color.rgb(204,85,85));
             }
 

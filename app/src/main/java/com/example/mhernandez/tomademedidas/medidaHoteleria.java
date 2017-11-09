@@ -50,7 +50,7 @@ public class medidaHoteleria extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent rIntent = new Intent(medidaHoteleria.this, crearArea.class);
-                startActivity(rIntent);
+                //startActivity(rIntent);
             }
         });
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
@@ -88,7 +88,7 @@ public class medidaHoteleria extends AppCompatActivity {
     }
 
     public void spinnerArea(){
-        String[][] aRes= hoteleria.oDB.ObtenerUbicacion("0",1);
+        String[][] aRes= medidaHoteleria.oDB.ObtenerUbicacion("0",1);
         spAreaH= (Spinner)( findViewById(R.id.spinner_area));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione una ubicación...";
@@ -100,7 +100,7 @@ public class medidaHoteleria extends AppCompatActivity {
     }
 
     public void spinnerControl(){
-        String[][] aRes= hoteleria.oDB.ObtenerControl("0",1);
+        String[][] aRes= medidaHoteleria.oDB.ObtenerControl("0",1);
         spControlH= (Spinner)( findViewById(R.id.spinner_control));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un valor...";
@@ -112,7 +112,7 @@ public class medidaHoteleria extends AppCompatActivity {
     }
 
     public void spinnerFijacion(){
-        String[][] aRes= hoteleria.oDB.ObtenerFijacion("0",1);
+        String[][] aRes= medidaHoteleria.oDB.ObtenerFijacion("0",1);
         spFijacionH= (Spinner)( findViewById(R.id.spinner_fijacion));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un lado...";
@@ -124,7 +124,7 @@ public class medidaHoteleria extends AppCompatActivity {
     }
 
     public void spinnerCorredera(){
-        String[][] aRes= hoteleria.oDB.ObtenerCorredera("0",1);
+        String[][] aRes= medidaHoteleria.oDB.ObtenerCorredera("0",1);
         spCorrederaH= (Spinner)( findViewById(R.id.spinner_corredera));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione uno...";
