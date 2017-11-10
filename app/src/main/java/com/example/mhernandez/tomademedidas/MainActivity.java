@@ -749,7 +749,7 @@ public class MainActivity extends AppCompatActivity
                 Thread timerThread = new Thread(){
                     public void run(){
                         try {
-                            sleep(500);
+                            sleep(1000);
                                 getclienteLista();
                                 getproyectoLista();
                                 getproyectoCamaLista();
@@ -764,12 +764,20 @@ public class MainActivity extends AppCompatActivity
                 };
                 timerThread.start();
 
-                /*
-                getcopeteLista();       getformatoLista();
-                getfijacionLista();     getproyeccionLista();
-                getubicacionLista();    getcontrolLista();
-                getcorrederaLista();    getusuarioLista();
-                */
+                Thread timerThreadDos = new Thread(){
+                    public void run(){
+                        try {
+                            sleep(1000);
+                            getcopeteLista();       getformatoLista();
+                            getfijacionLista();     getproyeccionLista();
+                            getubicacionLista();    getcontrolLista();
+                            getcorrederaLista();    getusuarioLista();
+                        }catch (InterruptedException e){
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                timerThreadDos.start();
 
             }else {
                 Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
