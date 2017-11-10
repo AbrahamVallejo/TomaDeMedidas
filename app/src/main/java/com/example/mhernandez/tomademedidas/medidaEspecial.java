@@ -42,7 +42,12 @@ public class medidaEspecial extends AppCompatActivity {
                 Double txtAlto = Double.parseDouble(Alto.getText().toString());
                 Double txtGrosor = Double.parseDouble(Grosor.getText().toString());
                 String OBS = Observaciones.getText().toString();
-//                oDB.insertProyectoEspecial(1, 2, 3, 4, "NOMBRE PROYECTO", txtAlto, txtAncho, txtGrosor, OBS, "IMAGEN", FechaAlta);
+                String[][] aRefD = MainActivity.oDB.lastDispositivo();
+                String[][] aRefE = MainActivity.oDB.lastEspecial();
+                int idEspecial = Integer.parseInt(aRefE[(0)][0]) + 1;
+                int idDisp = Integer.parseInt(aRefD[(0)][0]);
+                oDB.insertProyectoEspecial(idEspecial, idDisp, idProyecto, idProyectoDisp, "Nombre Proyecto", txtAlto, txtAncho, txtGrosor,
+                        OBS, "IMAGEN", FechaAlta, 5, 1, 1, "Fecha Alta", 1, 1, 1, "Fecha Auto", 1, "Fecha Pago", 1);
                 finish();
             }
         });

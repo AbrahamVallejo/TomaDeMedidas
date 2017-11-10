@@ -65,7 +65,13 @@ public class medidaGaleria extends AppCompatActivity {
                 String txtProyecciones = Proyecciones.getSelectedItem().toString();
                 String txtFijacion = Fijacion.getSelectedItem().toString();
                 String OBS = Comentarios.getText().toString();
-//                oDB.insertProyectoGaleria();
+                String[][] aRefD = MainActivity.oDB.lastDispositivo();
+                String[][] aRefG = MainActivity.oDB.lastGaleria();
+                int idGaleria = Integer.parseInt(aRefG[(0)][0]) + 1;
+                int idDisp = Integer.parseInt(aRefD[(0)][0]);
+                oDB.insertProyectoGaleria(idGaleria, idDisp, idProyecto, idProyectoDisp, FechaAlta, numeroHabitaciones, txtArea,
+                        txtAncho, txtAlto, txtCopete, txtProyecciones, txtFijacion, OBS, "Nombre Proyecto", "IMAGEN",
+                        3, "Usuario Alta", "Usuario Mod", "Fecha Alta", 1, 1, "User Auto", "Fecha Auto", "Pagado", "Fecha Pago", "User Pago");
                 finish();
             }
         });

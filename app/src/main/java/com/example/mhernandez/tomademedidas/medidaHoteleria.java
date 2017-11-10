@@ -50,7 +50,7 @@ public class medidaHoteleria extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent rIntent = new Intent(medidaHoteleria.this, crearArea.class);
-                //startActivity(rIntent);
+                startActivity(rIntent);
             }
         });
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
@@ -71,7 +71,14 @@ public class medidaHoteleria extends AppCompatActivity {
                 String txtCorredera = Corredera.getSelectedItem().toString();
                 String txtMedidaSugerida = MedidaSugerida.getText().toString();
                 String OBS = Observaciones.getText().toString();
-//                oDB.insertProyectoHoteleria();
+                String[][] aRefD = MainActivity.oDB.lastDispositivo();
+                String[][] aRefH = MainActivity.oDB.lastHoteleria();
+                int idHoteleria = Integer.parseInt(aRefH[(0)][0]) + 1;
+                int idDisp = Integer.parseInt(aRefD[(0)][0]);
+                oDB.insertProyectoHoteleria(idHoteleria, idDisp, idProyecto, idDisp, "AccMuro", "AccTecho", txtHabitacion,
+                        txtArea, txtAncho, txtAlto, txtHojas, OBS, "NombreProyecto", "Nombre Proyecto", FechaAlta, 2,
+                        txtPiso, txtEdificio, txtControl, txtFijacion, "Fecha Alta", "Usuario Alto", "Usuario Mod", 1, txtMedidaSugerida, 1,
+                        "User Auto", "Fecha Auto", 1, "User Pagado", txtCorredera);
                 finish();
             }
         });

@@ -364,13 +364,13 @@ public class DBProvider {
     }
 
 
-    public void insertProyectoEspecial(int idEsp, int idDisp, int idPro, int idProDisp, String nombre,
-                                       String alto, String ancho, String grosor, String observaciones, String AIMG,
+    public void insertProyectoEspecial(int idEspecial, int idDisp, int idProyecto, int idProyectoDisp, String nombre,
+                                       double alto, double ancho, double grosor, String observaciones, String AIMG,
                                        String fecha, int formato, int idUserAlta, int idUserMod, String fechaAlta,
                                        int estatus, int autorizado, int idUserAuto, String fechaAuto, int pagado,
                                        String fechaPago, int idUserPago) {
         Log.v("[obtenerPE]", "Insertar Especial");
-        Object[] aData = {idEsp, idDisp, idPro, idProDisp, nombre, alto, ancho, grosor, observaciones, AIMG, fecha,
+        Object[] aData = {idEspecial, idDisp, idProyecto, idProyectoDisp, nombre, alto, ancho, grosor, observaciones, AIMG, fecha,
                 formato, idUserAlta, idUserMod, fechaAlta, estatus, autorizado, idUserAuto, fechaAuto, pagado, fechaPago, idUserPago};
 
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " ("
@@ -442,11 +442,11 @@ public class DBProvider {
     }
 
 
-    public void insertProyectoGaleria(String idGal, String idDisp, String idPro,String idProDi, String fecha, String nHabitaciones, String area, String ancho, String alto,
+    public void insertProyectoGaleria(int idGaleria, int idDisp, int idProyecto, int idProyectoDisp, String fecha, String nHabitaciones, String area, double ancho, double alto,
                                       String copete, String proyecciones, String fijacion, String comentarios, String nombrePro, String AIMG,
-                                      String formato, String userAlta, String userMod, String fechaAl, String estatus, String autorizado,
+                                      int formato, String userAlta, String userMod, String fechaAl, int estatus, int autorizado,
                                       String userAuto, String fechaAuto, String pagado, String fechaPago, String userPago) {
-        Object[] aData = {idGal, idDisp, idPro, idProDi, fecha, nHabitaciones, area, ancho, alto, copete, proyecciones, fijacion, comentarios,
+        Object[] aData = {idGaleria, idDisp, idProyecto, idProyectoDisp, fecha, nHabitaciones, area, ancho, alto, copete, proyecciones, fijacion, comentarios,
                 nombrePro, AIMG, formato, userAlta, userMod, fechaAl, estatus, autorizado, userAuto, fechaAuto, pagado, fechaPago, userPago};
 
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " ("
@@ -505,15 +505,15 @@ public class DBProvider {
         return aData;
     }
 
-    public void insertProyectoHoteleria(String id, String idDisp, String idPro, String idProDis, String accMuro,
-                                        String accTecho, String habitacion, String area, String ancho, String alto,
-                                        String hojas, String observaciones, String nombrePro, String AIMG, String fecha,
-                                        String formato, String piso, String edificio, String control, String fijacion,
-                                        String fechaAl, String userAl, String userMod, String estatus, String medidaSujerida,
-                                        String autorizado, String userAuto, String fechaAuto, String pagado, String userPago,
+    public void insertProyectoHoteleria(int idHoteleria, int idDisp, int idProyecto, int idProyectoDisp, String accMuro,
+                                        String accTecho, String habitacion, String area, Double ancho, Double alto,
+                                        Double hojas, String observaciones, String nombrePro, String AIMG, String fecha,
+                                        int formato, int piso, String edificio, String control, String fijacion,
+                                        String fechaAl, String userAl, String userMod, int estatus, String medidaSujerida,
+                                        int autorizado, String userAuto, String fechaAuto, int pagado, String userPago,
                                         String corredera) {
         //Log.v("[ProH]","Voy a insertar Hoteleria " + nombrePro +" Piso: "+piso);
-        Object[] aData = { id, idDisp, idPro, idProDis, accMuro, accTecho, habitacion, area, ancho, alto, hojas, observaciones, nombrePro,
+        Object[] aData = { idHoteleria, idDisp, idProyecto, idProyectoDisp, accMuro, accTecho, habitacion, area, ancho, alto, hojas, observaciones, nombrePro,
                             AIMG, fecha, formato, piso, edificio, control, fijacion, fechaAl, userAl, userMod, estatus, medidaSujerida,
                             autorizado, userAuto, fechaAuto, pagado, userPago, corredera};
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " ("

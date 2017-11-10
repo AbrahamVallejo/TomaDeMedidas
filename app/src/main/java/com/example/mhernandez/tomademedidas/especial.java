@@ -19,7 +19,7 @@ public class especial extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.crear_especial);
+        setContentView(R.layout.crear_medida_especial);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
         final int idFormato = oExt.getInt("idFormato");
@@ -49,7 +49,8 @@ public class especial extends AppCompatActivity {
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, 1);
-                        //oDB.insertProyectoEspecial(txtAncho, txtAlto, txtGrosor, "IMAGEN", OBS);
+                        oDB.insertProyectoEspecial(idEspecial, idDisp, idProyecto, idDisp, nombreProyecto, txtAlto, txtAncho, txtGrosor,
+                        OBS, "IMAGEN", FechaAlta, idFormato, 1, 1, FechaAlta, 1, 1, 1, "FECHA AUTO", 1, "FECHA PAGO", 1);
                         finish();
                     }
                 }
