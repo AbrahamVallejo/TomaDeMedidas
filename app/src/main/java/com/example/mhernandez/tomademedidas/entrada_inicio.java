@@ -90,26 +90,6 @@ public class entrada_inicio extends AppCompatActivity {
         oNS.execute("getuserLista");
     }
 
-
-    public void addproyecto(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                /*Toast.makeText(getApplicationContext(),
-                        "TODO PERFECTO EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();*/
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("addproyecto");
-    }
-
     public Boolean isOnlineNet() {
         try {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
