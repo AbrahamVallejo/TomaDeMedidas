@@ -442,11 +442,11 @@ public class DBProvider {
     }
 
 
-    public void insertProyectoGaleria(String idGal, String idDisp, String idPro,String idProDi, String fecha, String nHabitaciones, String area, String ancho, String alto,
+    public void insertProyectoGaleria(int idGaleria, int idDisp, int idProyecto, int idProyectoDisp, String fecha, String nHabitaciones, String area, double ancho, double alto,
                                       String copete, String proyecciones, String fijacion, String comentarios, String nombrePro, String AIMG,
-                                      String formato, String userAlta, String userMod, String fechaAl, String estatus, String autorizado,
+                                      int formato, String userAlta, String userMod, String fechaAl, int estatus, int autorizado,
                                       String userAuto, String fechaAuto, String pagado, String fechaPago, String userPago) {
-        Object[] aData = {idGal, idDisp, idPro, idProDi, fecha, nHabitaciones, area, ancho, alto, copete, proyecciones, fijacion, comentarios,
+        Object[] aData = {idGaleria, idDisp, idProyecto, idProyectoDisp, fecha, nHabitaciones, area, ancho, alto, copete, proyecciones, fijacion, comentarios,
                 nombrePro, AIMG, formato, userAlta, userMod, fechaAl, estatus, autorizado, userAuto, fechaAuto, pagado, fechaPago, userPago};
 
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " ("
