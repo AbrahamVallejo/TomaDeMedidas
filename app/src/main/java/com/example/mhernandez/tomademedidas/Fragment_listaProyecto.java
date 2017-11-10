@@ -236,6 +236,7 @@ public class Fragment_listaProyecto extends Fragment {
             TextView txtIDClienteDisp = (TextView) rowView.findViewById(R.id.IDClienteDisp);
             TextView txtIDFormato = (TextView) rowView.findViewById(R.id.IDFormato);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
+            TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
             String[] parts = _text[position][7].split("T");
 
             txtNombre.setText(_text[position][6]);
@@ -264,6 +265,10 @@ public class Fragment_listaProyecto extends Fragment {
             }else{
                 txtEstatus.setText("Cerrado");
             }
+            if( Integer.parseInt(_text[position][23]) == 0){
+                checkCliente.setTextColor(Color.BLACK);
+                checkCliente.setText("Sincronizado");
+            }
 
             return rowView;
         }
@@ -283,7 +288,7 @@ public class Fragment_listaProyecto extends Fragment {
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
             for (int iCnt = 0; iCnt < aRef.length; iCnt++){
-                aDataFolio[iCnt] = new String[23];
+                aDataFolio[iCnt] = new String[24];
                 aDataFolio[iCnt][0] = aRef[iCnt][0];
                 aDataFolio[iCnt][1] = aRef[iCnt][1];
                 aDataFolio[iCnt][2] = aRef[iCnt][2];
@@ -307,6 +312,7 @@ public class Fragment_listaProyecto extends Fragment {
                 aDataFolio[iCnt][20] = aRef[iCnt][20];
                 aDataFolio[iCnt][21] = aRef[iCnt][21];
                 aDataFolio[iCnt][22] = aRef[iCnt][22];
+                aDataFolio[iCnt][23] = aRef[iCnt][23];
             }
             ListView list;
             list = (ListView) vista.findViewById(R.id.lista);
