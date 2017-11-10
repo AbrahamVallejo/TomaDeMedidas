@@ -36,6 +36,7 @@ public class entrada_inicio extends AppCompatActivity {
                             //String[][] aRef = entrada_inicio.oDB.lastDispositivo();   //Log.v("[obtener]", "Aqui voy ");//Log.v("[obtener]", "Traigo un: "+ aux1.length);
                             boolean aux = isOnlineNet();        //Log.v("[obtener]", "Conexion: "+ aux);
                             if (aux != false){
+                                entrada_inicio.oDB.deleteAllUser();
                                 getuserLista();
                                 sleep(500);
                                 if (aux1.length == 0){
@@ -43,8 +44,8 @@ public class entrada_inicio extends AppCompatActivity {
                                     intent.putExtra("internet", 0);
                                     startActivity(intent);
                                 }else {
-                                    //Intent intent = new Intent(entrada_inicio.this, log_in.class);
-                                    Intent intent = new Intent(entrada_inicio.this, MainActivity.class);
+                                    Intent intent = new Intent(entrada_inicio.this, log_in.class);
+                                    //Intent intent = new Intent(entrada_inicio.this, MainActivity.class);
                                     startActivity(intent);
                                 }
                             }else{
@@ -95,7 +96,7 @@ public class entrada_inicio extends AppCompatActivity {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
             int val = p.waitFor();
             boolean reachable = (val == 0); //Log.v("[obtener]",String.valueOf(reachable) );
-            return true;
+            return reachable;
         } catch (Exception e) {
             /* TODO Auto-generated catch block* */
             e.printStackTrace();

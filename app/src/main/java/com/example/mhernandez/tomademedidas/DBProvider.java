@@ -252,7 +252,7 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_FECHA + " = ?, " + DBhelper.COLUMN_NAME_AUTORIZADO + " = ?, "
                 + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + " = ?, " + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + " = ?, "
                 + DBhelper.COLUMN_NAME_ACCESORIOS_ESPECIALES + " = ?, " + DBhelper.ID_ESTATUS + " = ?, "
-                + DBhelper.ID_USUARIO_VENTA + " = ?, " + DBhelper.COLUMN_NAME_SINCRONIZAR + " = ?, "
+                + DBhelper.ID_USUARIO_VENTA + " = ?, " + DBhelper.COLUMN_NAME_SINCRONIZAR + " = ? "
                 + " WHERE " + DBhelper.ID_PROYECTO + " = ?" + "AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
@@ -792,6 +792,14 @@ public class DBProvider {
         Ars.close();
         CloseDB();  Log.v("[obtener", "Vuelvo de BuscarDispositivo");
         return (aData);
+    }
+
+    public void  deleteAllUser(){
+        int idC = 0;
+
+        Object[] aData = {idC};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_USER + " WHERE " + DBhelper._ID + " <> ?", aData);
+        Log.v("[DELETE]", "All User Eliminado");
     }
 
     public String[][] ObtenerUser(String id, int tipo) {

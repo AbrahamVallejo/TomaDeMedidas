@@ -296,13 +296,10 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("nombre");
                     aFujs[i] = joFuj.getString("apellido");
                     aFujs[i] = joFuj.getString("verificacion"); //Log.v("PRUEBA", joFuj.getString("id"));Log.v("PRUEBA","...");
-                    String[][] aRef = entrada_inicio.oDB.buscarUser(Integer.parseInt(joFuj.getString("id")) );
                     //Log.v("[obtener]",aRef[0][0]);
-                    if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id")) ) {
                         entrada_inicio.oDB.insertUser(Integer.parseInt(joFuj.getString("id")),joFuj.getString("username"),
                                 joFuj.getString("password_hash"), joFuj.getString("email"), Integer.parseInt(joFuj.getString("status")),
                                 joFuj.getString("nombre"), joFuj.getString("apellido"), Integer.parseInt(joFuj.getString("verificacion")) );
-                    }
                 }
             }catch (Exception e){
                 exception = e;
@@ -532,12 +529,11 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-                }
-                Log.v("[add]","1: "+proyecto.toString() );
+                }//Log.v("[add]","1: "+proyecto.toString() );
                 json.put("proyecto",proyecto);
                 Log.v("[add]","2: "+json.toString() );
                 sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto.svc/"+ urls[0],json.toString());
-                Log.v("[add]",sResp);
+                Log.v("[add]",sResp);Log.v("[add]","Tam: "+sResp.length());
                 if (sResp.length() == 6){
                     Log.v("[add]","Retorno nulo" );
                 }else{
