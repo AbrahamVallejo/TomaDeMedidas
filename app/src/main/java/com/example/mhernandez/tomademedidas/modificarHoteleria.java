@@ -1,7 +1,6 @@
 package com.example.mhernandez.tomademedidas;
 
 import android.os.Bundle;
-import android.renderscript.Double2;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
