@@ -81,6 +81,30 @@ public class listaResidencial extends AppCompatActivity {
                     public void onClick(View v){
                         if (Integer.parseInt(aDat[27]) !=1){
                             Toast.makeText(listaResidencial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            Intent rIntent = new Intent(listaResidencial.this, modificarResidencial.class);
+                            rIntent.putExtra("idResidencial", aDat[0]);
+                            rIntent.putExtra("idDisp", aDat[1]);
+                            rIntent.putExtra("idProyecto", aDat[2]);
+                            rIntent.putExtra("idProyectoDisp", aDat[3]);
+                            rIntent.putExtra("Ubicacion", aDat[4]);
+                            rIntent.putExtra("Piso", aDat[29]);
+                            rIntent.putExtra("MedidaSugerida", aDat[17]);
+                            rIntent.putExtra("ProfMarco", aDat[13]);
+                            rIntent.putExtra("ProfJaladera", aDat[14]);
+                            rIntent.putExtra("Control", aDat[15]);
+                            rIntent.putExtra("Agpto", aDat[16]);
+                            rIntent.putExtra("Corredera", aDat[36]);
+                            rIntent.putExtra("Observaciones", aDat[18]);
+                            rIntent.putExtra("A", aDat[5]);
+                            rIntent.putExtra("B", aDat[6]);
+                            rIntent.putExtra("C", aDat[7]);
+                            rIntent.putExtra("D", aDat[8]);
+                            rIntent.putExtra("E", aDat[9]);
+                            rIntent.putExtra("F", aDat[10]);
+                            rIntent.putExtra("G", aDat[11]);
+                            rIntent.putExtra("H", aDat[12]);
+                            startActivity(rIntent);
                         }
                         customDialog.dismiss();
                     }

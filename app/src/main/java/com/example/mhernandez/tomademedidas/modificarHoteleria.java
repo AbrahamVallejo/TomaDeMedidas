@@ -27,8 +27,8 @@ public class modificarHoteleria extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle oExt = this.getIntent().getExtras();
         spinnerArea(); spinnerControl(); spinnerFijacion(); spinnerCorredera();
-        int idHoteleria = Integer.parseInt(oExt.getString("idHoteleria"));
-        int idDisp = Integer.parseInt(oExt.getString("idDisp"));
+        final int idHoteleria = Integer.parseInt(oExt.getString("idHoteleria"));
+        final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
         int idProyecto = Integer.parseInt(oExt.getString("idProyecto"));
         int idProyectoDisp = Integer.parseInt(oExt.getString("idProyectoDisp"));
         String Edificio = oExt.getString("Edificio");
@@ -45,16 +45,16 @@ public class modificarHoteleria extends AppCompatActivity {
         String Observaciones = oExt.getString("Observaciones");
         final EditText txtEdificio = (EditText) findViewById(R.id.txtEdificio);
         final EditText txtPiso = (EditText) findViewById(R.id.txtPiso);
-        EditText txtHabitacion = (EditText) findViewById(R.id.txtHabitacion);
-        Spinner txtArea = (Spinner) findViewById(R.id.spinner_area);
-        EditText txtAncho = (EditText) findViewById(R.id.txtAncho);
-        EditText txtAlto = (EditText) findViewById(R.id.txtAlto);
-        EditText txtHojas = (EditText) findViewById(R.id.txtHojas);
-        Spinner txtControl = (Spinner) findViewById(R.id.spinner_control);
-        Spinner txtFijacion = (Spinner) findViewById(R.id.spinner_fijacion);
-        Spinner txtCorredera = (Spinner) findViewById(R.id.spinner_corredera);
-        EditText txtMedidaSugerida = (EditText) findViewById(R.id.txtMedidaSugerida);
-        EditText txtObservaciones = (EditText) findViewById(R.id.txtObservaciones);
+        final EditText txtHabitacion = (EditText) findViewById(R.id.txtHabitacion);
+        final Spinner txtArea = (Spinner) findViewById(R.id.spinner_area);
+        final EditText txtAncho = (EditText) findViewById(R.id.txtAncho);
+        final EditText txtAlto = (EditText) findViewById(R.id.txtAlto);
+        final EditText txtHojas = (EditText) findViewById(R.id.txtHojas);
+        final Spinner txtControl = (Spinner) findViewById(R.id.spinner_control);
+        final Spinner txtFijacion = (Spinner) findViewById(R.id.spinner_fijacion);
+        final Spinner txtCorredera = (Spinner) findViewById(R.id.spinner_corredera);
+        final EditText txtMedidaSugerida = (EditText) findViewById(R.id.txtMedidaSugerida);
+        final EditText txtObservaciones = (EditText) findViewById(R.id.txtObservaciones);
         Button Guardar = (Button) findViewById(R.id.Guardar);
         txtEdificio.setText(Edificio.trim());
         txtPiso.setText(Piso.trim());
@@ -69,7 +69,18 @@ public class modificarHoteleria extends AppCompatActivity {
             public void onClick(View v) {
                 String Edificio = txtEdificio.getText().toString();
                 String Piso = txtPiso.getText().toString();
-
+                String Habitacion = txtHabitacion.getText().toString();
+                String Control = txtControl.getSelectedItem().toString();
+                String Area = txtArea.getSelectedItem().toString();
+                Double Ancho = Double.parseDouble(txtAncho.getText().toString());
+                Double Alto = Double.parseDouble(txtAlto.getText().toString());
+                String Hojas = txtHojas.getText().toString();
+                String Fijacion = txtFijacion.getSelectedItem().toString();
+                String Corredera = txtCorredera.getSelectedItem().toString();
+                String MedidaSugerida = txtMedidaSugerida.getText().toString();
+                String Observaciones = txtObservaciones.getText().toString();
+                oDB.updateProyectoHoteleria(idHoteleria, idDisp, Habitacion, Area, Ancho, Alto, Hojas, "IMAGEN",
+                        Observaciones, Piso, Edificio, Control, Fijacion, MedidaSugerida, Corredera);
             }
         });
     }
