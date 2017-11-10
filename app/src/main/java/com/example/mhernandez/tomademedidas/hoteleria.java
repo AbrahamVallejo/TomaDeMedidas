@@ -71,7 +71,7 @@ public class hoteleria extends AppCompatActivity {
                         int idHoteleria = Integer.parseInt(aRefH[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
+                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, 1);
                         /*oDB.insertProyectoHoteleria(txtHabitacion, txtArea, txtAncho, txtAlto, txtHojas,
                                 "IMAGEN", txtObservaciones, txtPiso, txtEdificio, txtControl, txtFijacion,
                                 txtMedidaSugerida, txtCorredera);*/

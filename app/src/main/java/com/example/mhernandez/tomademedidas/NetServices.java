@@ -503,7 +503,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                                 Integer.parseInt(joFuj.getString("id_user")), joFuj.getString("nombre_proyecto"), joFuj.getString("pedido_sap"),
                                 joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("autorizado")), joFuj.getString("accesorios_techo"),
                                 joFuj.getString("accesorios_muro"),"0", Integer.parseInt(joFuj.getString("id_estatus")),
-                                Integer.parseInt(joFuj.getString("id_usuario_venta")) );
+                                Integer.parseInt(joFuj.getString("id_usuario_venta")), 0 );
                 }
             }catch (Exception e){
                 exception = e;
@@ -515,12 +515,12 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 JSONObject json = new JSONObject();
                 JSONObject proyecto = new JSONObject();
                 try {
-                    proyecto.put("id_proyecto", "0");
-                    proyecto.put("id_disp", "5");
-                    proyecto.put("id_cliente", "70");
-                    proyecto.put("id_cliente_disp", "1");
+                    proyecto.put("id_proyecto", urls[1] );
+                    proyecto.put("id_disp", urls[2] );
+                    proyecto.put("id_cliente", 4 );
+                    proyecto.put("id_cliente_disp", 1 );
                     proyecto.put("id_formato", "1");
-                    proyecto.put("id_user", "1");
+                    proyecto.put("id_user", "5");
                     proyecto.put("nombre_proyecto", "PruebaDeProyecto");
                     proyecto.put("pedido_sap", "S/P");
                     proyecto.put("fecha", "/Date(1506871200000)/");
@@ -533,11 +533,21 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                //Log.v("[add]",proyecto.toString() );
+                Log.v("[add]","1: "+proyecto.toString() );
                 json.put("proyecto",proyecto);
-                //Log.v("[add]",json.toString() );
+                Log.v("[add]","2: "+json.toString() );
                 sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto.svc/"+ urls[0],json.toString());
                 Log.v("[add]",sResp);
+                if (sResp.length() == 6){
+                    Log.v("[add]","Retorno nulo" );
+                }else{
+                    String[][] aref = MainActivity.oDB.buscarProyecto(Integer.parseInt(urls[1]), Integer.parseInt(urls[2]) );
+                    MainActivity.oDB.updateProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][2]),
+                            Integer.parseInt(aref[0][3]), Integer.parseInt(aref[0][4]),
+                            Integer.parseInt(aref[0][5]), aref[0][6], aref[0][7], aref[0][8],
+                            Integer.parseInt(aref[0][9]), aref[0][10], aref[0][11],
+                            aref[0][12], Integer.parseInt(aref[0][13]), Integer.parseInt(aref[0][14]), 0);
+                }
             }catch (Exception e){
                 exception = e;
             }
