@@ -505,15 +505,15 @@ public class DBProvider {
         return aData;
     }
 
-    public void insertProyectoHoteleria(String id, String idDisp, String idPro, String idProDis, String accMuro,
-                                        String accTecho, String habitacion, String area, String ancho, String alto,
-                                        String hojas, String observaciones, String nombrePro, String AIMG, String fecha,
-                                        String formato, String piso, String edificio, String control, String fijacion,
-                                        String fechaAl, String userAl, String userMod, String estatus, String medidaSujerida,
-                                        String autorizado, String userAuto, String fechaAuto, String pagado, String userPago,
+    public void insertProyectoHoteleria(int idHoteleria, int idDisp, int idProyecto, int idProyectoDisp, String accMuro,
+                                        String accTecho, String habitacion, String area, Double ancho, Double alto,
+                                        Double hojas, String observaciones, String nombrePro, String AIMG, String fecha,
+                                        int formato, int piso, String edificio, String control, String fijacion,
+                                        String fechaAl, String userAl, String userMod, int estatus, String medidaSujerida,
+                                        int autorizado, String userAuto, String fechaAuto, int pagado, String userPago,
                                         String corredera) {
         //Log.v("[ProH]","Voy a insertar Hoteleria " + nombrePro +" Piso: "+piso);
-        Object[] aData = { id, idDisp, idPro, idProDis, accMuro, accTecho, habitacion, area, ancho, alto, hojas, observaciones, nombrePro,
+        Object[] aData = { idHoteleria, idDisp, idProyecto, idProyectoDisp, accMuro, accTecho, habitacion, area, ancho, alto, hojas, observaciones, nombrePro,
                             AIMG, fecha, formato, piso, edificio, control, fijacion, fechaAl, userAl, userMod, estatus, medidaSujerida,
                             autorizado, userAuto, fechaAuto, pagado, userPago, corredera};
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " ("
