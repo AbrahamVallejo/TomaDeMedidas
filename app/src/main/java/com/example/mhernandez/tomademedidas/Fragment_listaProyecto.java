@@ -154,7 +154,17 @@ public class Fragment_listaProyecto extends Fragment {
                         String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
                         String idProyecto = aDat[0];
                         String idDisp = aDat[1];
-                        MainActivity.oDB.deleteProyecto(idProyecto, idDisp);
+
+                        String[][] aRef = MainActivity.oDB.buscarProyecto(Integer.parseInt(idProyecto), Integer.parseInt(idDisp) );
+                        Log.v("[addC]",aRef[0][5]);
+
+                        if (Integer.parseInt(aRef[0][15]) == 1) {
+                            MainActivity.oDB.deleteProyecto(idProyecto, idDisp);
+                        }
+                        if (Integer.parseInt(aRef[0][15]) != 1) {
+                            MainActivity.oDB.updateProyecto(Integer.parseInt(idProyecto), Integer.parseInt(idDisp), 1, 1, 1,1,
+                                    "borrar", "borrar", "borrar", 1, "borrar", "borrar", "borrar",1,1, 3);
+                        }
                         Toast.makeText(getActivity(), "REGISTRO ELIMINADO", Toast.LENGTH_SHORT).show();
                         lista();
                     }

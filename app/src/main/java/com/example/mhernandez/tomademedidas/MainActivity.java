@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 
 public class MainActivity extends AppCompatActivity
@@ -142,8 +143,11 @@ public class MainActivity extends AppCompatActivity
         String accesorioTecho = AccTecho.getText().toString();
         String accesorioEspecial = AccEspecial.getText().toString();
         String PS = PedidoSap.getText().toString();
-        Date currentTime = Calendar.getInstance().getTime();
-        String FechaAlta = currentTime.toString();
+        GregorianCalendar currentTime = new GregorianCalendar();
+        String FechaAlta = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
+        FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
+
+
 
         int formatoSelected;
 
@@ -666,6 +670,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
             if(UBICACION==4 || UBICACION ==3){
+                SinProyecto();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             }
@@ -727,6 +732,30 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
+    public void SinProyecto(){
+        String[][] aux1 = MainActivity.oDB.ObtenerProyectos("0",2);
+        Log.v("[add]","Tengo: "+aux1.length );
+
+        for (int i =0; i < aux1.length; i++) {
+            if (Integer.valueOf(aux1[i][23]) == 1) {
+                Log.v("[add]","Entre al if Insert" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADDPROYECTO!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("addproyecto", aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][3], aux1[i][4]);
+            }
+        }
+
+    }
+
     public void descargarWS(){
         String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
 
@@ -750,12 +779,12 @@ public class MainActivity extends AppCompatActivity
                     public void run(){
                         try {
                             sleep(1000);
-                                getclienteLista();
+                                getclienteLista();/*
                                 getproyectoLista();
                                 getproyectoCamaLista();
                                 getproyectoEspecialLista();
                                 getproyectoHoteleriaLista();
-                                getproyectoGaleriaLista();
+                                getproyectoGaleriaLista();*/
                                 getproyectoResidencialLista();
                         }catch (InterruptedException e){
                             e.printStackTrace();

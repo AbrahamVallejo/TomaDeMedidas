@@ -1,5 +1,6 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -58,10 +59,11 @@ public class cama extends AppCompatActivity{
                         int idCama = Integer.parseInt(aRefC[(0)][0]) + 1;
                         String OBS = Observaciones.getText().toString();
                         oDB.insertProyecto(idProyecto, idDisp, 4, 5, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1);
+                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, 1);
                         oDB.insertProyectoCama(idCama, idDisp, idProyecto, idDisp, numeroHabitaciones, txtA, txtB, txtC,
                                 txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, idFormato, OBS, 0, 1, 1, 1);
-                        finish();
+                        Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(rIntent);
                     }
                 }
         );
