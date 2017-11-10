@@ -340,13 +340,13 @@ public class DBProvider {
     }
 
 
-    public void insertProyectoEspecial(int idEsp, int idDisp, int idPro, int idProDisp, String nombre,
-                                       String alto, String ancho, String grosor, String observaciones, String AIMG,
+    public void insertProyectoEspecial(int idEspecial, int idDisp, int idProyecto, int idProyectoDisp, String nombre,
+                                       double alto, double ancho, double grosor, String observaciones, String AIMG,
                                        String fecha, int formato, int idUserAlta, int idUserMod, String fechaAlta,
                                        int estatus, int autorizado, int idUserAuto, String fechaAuto, int pagado,
                                        String fechaPago, int idUserPago) {
         Log.v("[obtenerPE]", "Insertar Especial");
-        Object[] aData = {idEsp, idDisp, idPro, idProDisp, nombre, alto, ancho, grosor, observaciones, AIMG, fecha,
+        Object[] aData = {idEspecial, idDisp, idProyecto, idProyectoDisp, nombre, alto, ancho, grosor, observaciones, AIMG, fecha,
                 formato, idUserAlta, idUserMod, fechaAlta, estatus, autorizado, idUserAuto, fechaAuto, pagado, fechaPago, idUserPago};
 
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " ("
