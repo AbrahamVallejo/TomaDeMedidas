@@ -36,15 +36,15 @@ public class modificarCama extends AppCompatActivity {
         String F = oExt.getString("F");
         String G = oExt.getString("G");
         String Observaciones = oExt.getString("Observaciones");
-        final EditText txtNHabitaciones = (EditText) findViewById(R.id.txt_numero_habitaciones);
-        final EditText txtA = (EditText) findViewById(R.id.txt_A);
-        final EditText txtB = (EditText) findViewById(R.id.txt_B);
-        final EditText txtC = (EditText) findViewById(R.id.txt_C);
-        final EditText txtD = (EditText) findViewById(R.id.txt_D);
-        final EditText txtE = (EditText) findViewById(R.id.txt_E);
-        final EditText txtF = (EditText) findViewById(R.id.txt_F);
-        final EditText txtG = (EditText) findViewById(R.id.txt_G);
-        final EditText txtObservaciones = (EditText) findViewById(R.id.txt_observaciones);
+        final EditText txtNHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
+        final EditText txtA = (EditText) this.findViewById(R.id.txt_A);
+        final EditText txtB = (EditText) this.findViewById(R.id.txt_B);
+        final EditText txtC = (EditText) this.findViewById(R.id.txt_C);
+        final EditText txtD = (EditText) this.findViewById(R.id.txt_D);
+        final EditText txtE = (EditText) this.findViewById(R.id.txt_E);
+        final EditText txtF = (EditText) this.findViewById(R.id.txt_F);
+        final EditText txtG = (EditText) this.findViewById(R.id.txt_G);
+        final EditText txtObservaciones = (EditText) this.findViewById(R.id.txt_observaciones);
         txtNHabitaciones.setText(NHabitaciones.trim());
         txtA.setText(A.trim());
         txtB.setText(B.trim());
@@ -54,7 +54,7 @@ public class modificarCama extends AppCompatActivity {
         txtF.setText(F.trim());
         txtG.setText(G.trim());
         txtObservaciones.setText(Observaciones.trim());
-        Button Guardar = (Button) findViewById(R.id.Guardar);
+        Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
