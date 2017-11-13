@@ -184,9 +184,9 @@ public class DBProvider {
 
     public void insertProyecto(int idProyecto, int idDisp, int idCliente, int idClienteDisp, int idFormato, int idUser,
                                String nombreProyecto, String PedidoSap, String fecha, int autorizado, String accesoriosTecho,
-                               String accesoriosMuro, String accesoriosEspeciales, int idEstatus, int idUsuarioVenta, int Sinc) {
+                               String accesoriosMuro, String accesoriosEspeciales, int idEstatus, int idUsuarioVenta, String Agente, int Sinc) {
         Object[] aData = {idProyecto, idDisp, idCliente, idClienteDisp, idFormato, idUser, nombreProyecto, PedidoSap,
-                fecha, autorizado, accesoriosTecho, accesoriosMuro, accesoriosEspeciales, idEstatus, idUsuarioVenta, Sinc};
+                fecha, autorizado, accesoriosTecho, accesoriosMuro, accesoriosEspeciales, idEstatus, idUsuarioVenta, Agente, Sinc};
      //Log.v("[obtener]", "Voy a insertar Proyecto");
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO + " (" + DBhelper.ID_PROYECTO + ", "
                 + DBhelper.ID_DISP + ", " + DBhelper.ID_CLIENTE + ", " + DBhelper.ID_CLIENTE_DISP + ", "
@@ -194,10 +194,9 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_PEDIDO_SAP + ", " + DBhelper.COLUMN_NAME_FECHA + ", "
                 + DBhelper.COLUMN_NAME_AUTORIZADO + ", " + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + ", "
                 + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + ", " + DBhelper.COLUMN_NAME_ACCESORIOS_ESPECIALES + ", "
-                + DBhelper.ID_ESTATUS + ", "
-                + DBhelper.ID_USUARIO_VENTA + ", "
+                + DBhelper.ID_ESTATUS + ", " + DBhelper.ID_USUARIO_VENTA + ", " + DBhelper.COLUMN_NAME_AGENTE_VENTA + ", "
                 + DBhelper.COLUMN_NAME_SINCRONIZAR
-                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
     //Log.v("[obtener]", nombreProyecto);
     }
 
@@ -205,7 +204,7 @@ public class DBProvider {
         int iCnt = 0;
         String[][] aData = null;
         String[] aFils= {(String.valueOf(idProyecto)), (String.valueOf(idDisp)) };
-        Cursor Ars; Log.v("[obtener", "Voy a buscar tu Proyecto");                               //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
+        Cursor Ars; Log.v("[obtener", "Voy a buscar tu Proyecto "+idProyecto+" "+idDisp);                               //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
         Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " = ? AND "
                 +DBhelper.ID_DISP +" = ?" , aFils);
         Log.v("[obtener", "Encontre tu Proyecto "+ Ars.getCount() );
@@ -253,6 +252,17 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + " = ?, " + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + " = ?, "
                 + DBhelper.COLUMN_NAME_ACCESORIOS_ESPECIALES + " = ?, " + DBhelper.ID_ESTATUS + " = ?, "
                 + DBhelper.ID_USUARIO_VENTA + " = ?, " + DBhelper.COLUMN_NAME_SINCRONIZAR + " = ? "
+                + " WHERE " + DBhelper.ID_PROYECTO + " = ?" + "AND " + DBhelper.ID_DISP + " = ?", aData);
+    }
+
+
+    public void cerrarProyecto(int idProyecto, int idDisp, int userCierra, String fecha) {
+        Object[] aData = {2, userCierra, fecha,2, idProyecto, idDisp};
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO + " SET "
+                + DBhelper.ID_ESTATUS + " = ?, "
+                + DBhelper.ID_USUARIO_CIERRA + " = ?, "
+                + DBhelper.COLUMN_NAME_FECHA_CIERRA + " = ?, "
+                + DBhelper.COLUMN_NAME_SINCRONIZAR + " = ? "
                 + " WHERE " + DBhelper.ID_PROYECTO + " = ?" + "AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 

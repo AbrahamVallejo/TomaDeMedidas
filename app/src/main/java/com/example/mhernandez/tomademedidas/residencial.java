@@ -83,7 +83,7 @@ public class residencial extends AppCompatActivity {
                         int idResidencial = Integer.parseInt(aRefR[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, 0);
+                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1,"agente", 1);
                         oDB.insertProyectoResidencial(idResidencial, idDisp, idProyecto, idDisp, txtUbicacion, txtA, txtB, txtC, txtD,
                                 txtE, txtF, txtG, txtH, txtProfMarco, txtProfJaladera, txtControl, txtAgpto, txtMedidaSugeria, txtObservaciones,
                                 "IMAGEN", nombreProyecto, FechaAlta, idFormato, FechaAlta, 1, txtFijacion, txtPiso, 1,

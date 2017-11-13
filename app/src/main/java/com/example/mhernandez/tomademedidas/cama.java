@@ -23,6 +23,10 @@ public class cama extends AppCompatActivity{
         setContentView(R.layout.crear_medida_cama);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
+        final int idCliente = oExt.getInt("id_cliente");
+        final int idclienteDisp = oExt.getInt("id_cliente_disp");
+        final String Agente = oExt.getString("Agente");
+
         final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
         final String accesoriosMuro = oExt.getString("accesoriosMuro");
@@ -58,8 +62,8 @@ public class cama extends AppCompatActivity{
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         int idCama = Integer.parseInt(aRefC[(0)][0]) + 1;
                         String OBS = Observaciones.getText().toString();
-                        oDB.insertProyecto(idProyecto, idDisp, 4, 5, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, 1);
+                        oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
+                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, Agente,1);
                         oDB.insertProyectoCama(idCama, idDisp, idProyecto, idDisp, numeroHabitaciones, txtA, txtB, txtC,
                                 txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, idFormato, OBS, 0, 1, 1, 1);
                         Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);

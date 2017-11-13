@@ -64,7 +64,7 @@ public class galeria extends AppCompatActivity {
                         int idGaleria = Integer.parseInt(aRefG[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, 1);
+                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1,"agente", 1);
                         oDB.insertProyectoGaleria(idGaleria, idDisp, idProyecto, idDisp, FechaAlta, numeroHabitaciones, txtArea,
                                 txtAncho, txtAlto, txtCopete, txtProyecciones, txtFijacion, txtComentarios, nombreProyecto, "IMAGEN",
                                 idFormato, FechaAlta, 1, 1, 1, 1);

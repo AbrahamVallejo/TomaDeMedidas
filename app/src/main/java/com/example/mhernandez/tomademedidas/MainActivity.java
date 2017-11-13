@@ -125,8 +125,23 @@ public class MainActivity extends AppCompatActivity
 
     public void onSaveClickProyectos(View view){
         Spinner cliente = (Spinner) this.findViewById(R.id.spinner_cliente);
+        String[] Clientes = new String[2];
+        if(cliente.getSelectedItemPosition() != 0){
+            String[] partsC = cliente.getSelectedItem().toString().split("-");
+            partsC[0] = partsC[0].replace(".","-");
+            Clientes = partsC[0].split("-");
+            Log.v("[spin]", Clientes[0] +" "+Clientes[1] );
+        }else {
+            Clientes[0] = "0";
+        }
+
+
         Spinner formato = (Spinner) this.findViewById(R.id.spinner_formato);
         Spinner agente = (Spinner) this.findViewById(R.id.spinner_agente);
+        String[] partsA = agente.getSelectedItem().toString().split("-");
+        Log.v("[spin]", partsA[1] );
+
+
         EditText proyecto = (EditText) this.findViewById(R.id.proyecto_nombre_proyecto);
         EditText AccMuro = (EditText) this.findViewById(R.id.proyecto_accesorios_muro);
         EditText AccTecho = (EditText) this.findViewById(R.id.proyecto_accesorios_techo);
@@ -145,64 +160,40 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        int formatoSelected;
+
+        Intent rIntent = new Intent();
+        rIntent.putExtra("id_cliente", Clientes[0] );
+        rIntent.putExtra("id_cliente_disp", Clientes[1] );
+        rIntent.putExtra("Agente", partsA[1] );
+        rIntent.putExtra("nombreProyecto", nombreProyecto);
+        rIntent.putExtra("accesoriosMuro", accesorioMuro);
+        rIntent.putExtra("accesoriosTecho", accesorioTecho);
+        rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
+        rIntent.putExtra("FechaAlta", FechaAlta);
+        rIntent.putExtra("PedidoSap", PS);
 
         if (selected.equals("Hoteleria")){
-            formatoSelected = 2;
-            Intent rIntent = new Intent(MainActivity.this, hoteleria.class);
-            rIntent.putExtra("idFormato", formatoSelected);
-            rIntent.putExtra("nombreProyecto", nombreProyecto);
-            rIntent.putExtra("accesoriosMuro", accesorioMuro);
-            rIntent.putExtra("accesoriosTecho", accesorioTecho);
-            rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
-            rIntent.putExtra("FechaAlta", FechaAlta);
-            rIntent.putExtra("PedidoSap", PS);
+            rIntent = new Intent(MainActivity.this, hoteleria.class);
+            rIntent.putExtra("idFormato", 2);
             startActivity(rIntent);
         }else if (selected.equals("Cama")){
-            formatoSelected = 4;
-            Intent rIntent = new Intent(MainActivity.this, cama.class);
-            rIntent.putExtra("idFormato", formatoSelected);
-            rIntent.putExtra("nombreProyecto", nombreProyecto);
-            rIntent.putExtra("accesoriosMuro", accesorioMuro);
-            rIntent.putExtra("accesoriosTecho", accesorioTecho);
-            rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
-            rIntent.putExtra("FechaAlta", FechaAlta);
-            rIntent.putExtra("PedidoSap", PS);
+            rIntent = new Intent(MainActivity.this, cama.class);
+            rIntent.putExtra("idFormato", 4);
             startActivity(rIntent);
         }else if (selected.equals("Residencial")){
-            formatoSelected = 1;
-            Intent rIntent = new Intent(MainActivity.this, residencial.class);
-            rIntent.putExtra("idFormato", formatoSelected);
-            rIntent.putExtra("nombreProyecto", nombreProyecto);
-            rIntent.putExtra("accesoriosMuro", accesorioMuro);
-            rIntent.putExtra("accesoriosTecho", accesorioTecho);
-            rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
-            rIntent.putExtra("FechaAlta", FechaAlta);
-            rIntent.putExtra("PedidoSap", PS);
+            rIntent = new Intent(MainActivity.this, residencial.class);
+            rIntent.putExtra("idFormato", 1);
             startActivity(rIntent);
         }else if (selected.equals("Galeria")){
-            formatoSelected = 3;
-            Intent rIntent = new Intent(MainActivity.this, galeria.class);
-            rIntent.putExtra("idFormato", formatoSelected);
-            rIntent.putExtra("nombreProyecto", nombreProyecto);
-            rIntent.putExtra("accesoriosMuro", accesorioMuro);
-            rIntent.putExtra("accesoriosTecho", accesorioTecho);
-            rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
-            rIntent.putExtra("FechaAlta", FechaAlta);
-            rIntent.putExtra("PedidoSap", PS);
+            rIntent = new Intent(MainActivity.this, galeria.class);
+            rIntent.putExtra("idFormato", 3);
             startActivity(rIntent);
         }else if(selected.equals("Especial")){
-            formatoSelected = 5;
-            Intent rIntent = new Intent(MainActivity.this, especial.class);
-            rIntent.putExtra("idFormato", formatoSelected);
-            rIntent.putExtra("nombreProyecto", nombreProyecto);
-            rIntent.putExtra("accesoriosMuro", accesorioMuro);
-            rIntent.putExtra("accesoriosTecho", accesorioTecho);
-            rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
-            rIntent.putExtra("FechaAlta", FechaAlta);
-            rIntent.putExtra("PedidoSap", PS);
+            rIntent = new Intent(MainActivity.this, especial.class);
+            rIntent.putExtra("idFormato", 5);
             startActivity(rIntent);
         }
+
     }
 
     @Override
@@ -728,14 +719,13 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
     public void SinProyecto(){
         String[][] aux1 = MainActivity.oDB.ObtenerProyectos("0",2);
         Log.v("[add]","Tengo: "+aux1.length );
 
         for (int i =0; i < aux1.length; i++) {
             if (Integer.valueOf(aux1[i][23]) == 1) {
-                Log.v("[add]","Entre al if Insert" );
+                Log.v("[add]","Entre al if Insertar" );
                 NetServices oNS = new NetServices(new OnTaskCompleted() {
                     @Override
                     public void OnTaskCompleted(Object freed) {
@@ -746,10 +736,38 @@ public class MainActivity extends AppCompatActivity
                         Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADDPROYECTO!", Toast.LENGTH_LONG).show();
                     }
                 });
-                oNS.execute("addproyecto", aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][3], aux1[i][4]);
+                oNS.execute("sincproyecto", "1",aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][3], aux1[i][4]);
+            }
+            else if (Integer.valueOf(aux1[i][23]) == 2) {
+                Log.v("[add]","Entre al if Modificar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADDPROYECTO!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincproyecto", "2",aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][3], aux1[i][4]);
+            }
+            else if (Integer.valueOf(aux1[i][23]) == 3) {
+                Log.v("[add]","Entre al if Modificar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADDPROYECTO!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincproyecto", "3",aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][3], aux1[i][4]);
             }
         }
-
+        Toast.makeText(this, "Proyectos Sincronizados", Toast.LENGTH_SHORT).show();
     }
 
     public void descargarWS(){

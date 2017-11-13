@@ -20,6 +20,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.GregorianCalendar;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -79,7 +81,6 @@ public class Fragment_listaProyecto extends Fragment {
                              final Bundle savedInstanceState) {
 
         vista = inflater.inflate(R.layout.list_activity, container, false);
-
         lista();
 
         ListView tlList = ((ListView) vista.findViewById(R.id.lista));
@@ -92,9 +93,18 @@ public class Fragment_listaProyecto extends Fragment {
                 customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 customDialog.setContentView(R.layout.menu_tabla_proyecto);
 
+
                 ((Button) customDialog.findViewById(R.id.btnCerrar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
+                        GregorianCalendar currentTime = new GregorianCalendar();
+                        String FechaCierre = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
+                        FechaCierre = FechaCierre +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
+
+                        MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 5, FechaCierre);
+                        Toast.makeText(getActivity(), "PROYECTO CERRADO", Toast.LENGTH_SHORT).show();
+                        lista();
                         customDialog.dismiss();
                     }
                 });
@@ -163,7 +173,7 @@ public class Fragment_listaProyecto extends Fragment {
                         }
                         if (Integer.parseInt(aRef[0][15]) != 1) {
                             MainActivity.oDB.updateProyecto(Integer.parseInt(idProyecto), Integer.parseInt(idDisp), 1, 1, 1,1,
-                                    "borrar", "borrar", "borrar", 1, "borrar", "borrar", "borrar",1,1, 3);
+                                    "borrar", "borrar", "borrar", 0, "borrar", "borrar", "borrar",1,1, 3);
                         }
                         Toast.makeText(getActivity(), "REGISTRO ELIMINADO", Toast.LENGTH_SHORT).show();
                         lista();
