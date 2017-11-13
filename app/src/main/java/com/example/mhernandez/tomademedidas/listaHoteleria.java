@@ -57,10 +57,15 @@ public class listaHoteleria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent rIntent = new Intent(listaHoteleria.this, medidaHoteleria.class);
-                        rIntent.putExtra("idProyecto", aDat[2]);
-                        rIntent.putExtra("idProyectoDisp", aDat[3]);
-                        startActivity(rIntent);
+                        if (Integer.parseInt(aDat[23]) !=1){
+                            Toast.makeText(listaHoteleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            Intent rIntent = new Intent(listaHoteleria.this, medidaHoteleria.class);
+                            rIntent.putExtra("idProyecto", aDat[2]);
+                            rIntent.putExtra("idProyectoDisp", aDat[3]);
+                            rIntent.putExtra("Nombre", aDat[12]);
+                            startActivity(rIntent);
+                        }
                         customDialog.dismiss();
                     }
                 });

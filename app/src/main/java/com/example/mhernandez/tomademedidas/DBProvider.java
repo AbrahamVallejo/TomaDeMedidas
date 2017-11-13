@@ -366,12 +366,10 @@ public class DBProvider {
 
     public void insertProyectoEspecial(int idEspecial, int idDisp, int idProyecto, int idProyectoDisp, String nombre,
                                        double alto, double ancho, double grosor, String observaciones, String AIMG,
-                                       String fecha, int formato, int idUserAlta, int idUserMod, String fechaAlta,
-                                       int estatus, int autorizado, int idUserAuto, String fechaAuto, int pagado,
-                                       String fechaPago, int idUserPago) {
+                                       String fecha, int formato, String fechaAlta, int estatus, int autorizado, int idUserAuto, int pagado) {
         Log.v("[obtenerPE]", "Insertar Especial");
         Object[] aData = {idEspecial, idDisp, idProyecto, idProyectoDisp, nombre, alto, ancho, grosor, observaciones, AIMG, fecha,
-                formato, idUserAlta, idUserMod, fechaAlta, estatus, autorizado, idUserAuto, fechaAuto, pagado, fechaPago, idUserPago};
+                formato, fechaAlta, estatus, autorizado, idUserAuto, pagado};
 
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " ("
                 + DBhelper.ID_ESPECIALES + ", " + DBhelper.ID_DISP + ", "
@@ -385,16 +383,11 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_AIMG + ", "
                 + DBhelper.COLUMN_NAME_FECHA + ", "
                 + DBhelper.COLUMN_NAME_FORMATO + ", "
-                + DBhelper.ID_USUARIO_ALTA + ", "
-                + DBhelper.ID_USUARIO_MOD + ", "
                 + DBhelper.COLUMN_NAME_FECHA_ALTA + ", "
                 + DBhelper.ID_ESTATUS + ", "
                 + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
                 + DBhelper.ID_USUARIOAUTORIZA + ", "
-                + DBhelper.COLUMN_NAME_FECHAAUTORIZA + ", "
-                + DBhelper.COLUMN_NAME_PAGADO + ", "
-                + DBhelper.COLUMN_NAME_FECHA_PAGO + ", "
-                + DBhelper.ID_USUARIO_PAGO + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+                + DBhelper.COLUMN_NAME_PAGADO + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
     }
 
     public void updateProyectoEspecial(int idEspecial, int idDisp, Double ancho, Double alto, Double grosor, String AIMG, String observaciones) {
@@ -444,19 +437,34 @@ public class DBProvider {
 
     public void insertProyectoGaleria(int idGaleria, int idDisp, int idProyecto, int idProyectoDisp, String fecha, String nHabitaciones, String area, double ancho, double alto,
                                       String copete, String proyecciones, String fijacion, String comentarios, String nombrePro, String AIMG,
-                                      int formato, String userAlta, String userMod, String fechaAl, int estatus, int autorizado,
-                                      String userAuto, String fechaAuto, String pagado, String fechaPago, String userPago) {
+                                      int formato, String fechaAl, int estatus, int autorizado,
+                                      int userAuto, int pagado) {
         Object[] aData = {idGaleria, idDisp, idProyecto, idProyectoDisp, fecha, nHabitaciones, area, ancho, alto, copete, proyecciones, fijacion, comentarios,
-                nombrePro, AIMG, formato, userAlta, userMod, fechaAl, estatus, autorizado, userAuto, fechaAuto, pagado, fechaPago, userPago};
+                nombrePro, AIMG, formato, fechaAl, estatus, autorizado, userAuto, pagado};
 
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " ("
-                + DBhelper.ID_GALERIA + ", " + DBhelper.ID_DISP + ", " + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_PROYECTO_DISP + ", " + DBhelper.COLUMN_NAME_FECHA + ", "
-                + DBhelper.COLUMN_NAME_N_HABITACION + ", " + DBhelper.COLUMN_NAME_AREA + ", " + DBhelper.COLUMN_NAME_ANCHO + ", " + DBhelper.COLUMN_NAME_ALTO + ", "
-                + DBhelper.COLUMN_NAME_COPETE + ", " + DBhelper.COLUMN_NAME_PROYECCIONES + ", " + DBhelper.COLUMN_NAME_FIJACION + ", " + DBhelper.COLUMN_NAME_COMENTARIOS + ", "
-                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", " + DBhelper.COLUMN_NAME_AIMG + ", " + DBhelper.COLUMN_NAME_FORMATO + ", " + DBhelper.ID_USUARIO_ALTA + ", "
-                + DBhelper.ID_USUARIO_MOD + ", " + DBhelper.COLUMN_NAME_FECHA_ALTA + ", " + DBhelper.ID_ESTATUS + ", " + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
-                + DBhelper.ID_USUARIOAUTORIZA + ", " + DBhelper.COLUMN_NAME_FECHAAUTORIZA + ", " + DBhelper.COLUMN_NAME_PAGADO + ", " + DBhelper.COLUMN_NAME_FECHA_PAGO + ", "
-                + DBhelper.ID_USUARIO_PAGO + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+                + DBhelper.ID_GALERIA + ", "
+                + DBhelper.ID_DISP + ", "
+                + DBhelper.ID_PROYECTO + ", "
+                + DBhelper.ID_PROYECTO_DISP + ", "
+                + DBhelper.COLUMN_NAME_FECHA + ", "
+                + DBhelper.COLUMN_NAME_N_HABITACION + ", "
+                + DBhelper.COLUMN_NAME_AREA + ", "
+                + DBhelper.COLUMN_NAME_ANCHO + ", "
+                + DBhelper.COLUMN_NAME_ALTO + ", "
+                + DBhelper.COLUMN_NAME_COPETE + ", "
+                + DBhelper.COLUMN_NAME_PROYECCIONES + ", "
+                + DBhelper.COLUMN_NAME_FIJACION + ", "
+                + DBhelper.COLUMN_NAME_COMENTARIOS + ", "
+                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", "
+                + DBhelper.COLUMN_NAME_AIMG + ", "
+                + DBhelper.COLUMN_NAME_FORMATO + ", "
+                + DBhelper.ID_ESTATUS + ", "
+                + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
+                + DBhelper.ID_USUARIOAUTORIZA + ", "
+                + DBhelper.COLUMN_NAME_FECHAAUTORIZA + ", "
+                + DBhelper.COLUMN_NAME_PAGADO
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
     }
 
     public void updateProyectoGaleria(int idGaleria, int idDisp, String nHabitaciones, String area, Double ancho, Double alto,
@@ -505,35 +513,42 @@ public class DBProvider {
         return aData;
     }
 
-    public void insertProyectoHoteleria(int idHoteleria, int idDisp, int idProyecto, int idProyectoDisp, String accMuro,
-                                        String accTecho, String habitacion, String area, Double ancho, Double alto,
+    public void insertProyectoHoteleria(int idHoteleria, int idDisp, int idProyecto, int idProyectoDisp, String habitacion, String area, Double ancho, Double alto,
                                         Double hojas, String observaciones, String nombrePro, String AIMG, String fecha,
                                         int formato, int piso, String edificio, String control, String fijacion,
-                                        String fechaAl, String userAl, String userMod, int estatus, String medidaSujerida,
-                                        int autorizado, String userAuto, String fechaAuto, int pagado, String userPago,
-                                        String corredera) {
+                                        String fechaAl, int estatus, String medidaSujerida,
+                                        int autorizado, int userAuto, int pagado, String corredera) {
         //Log.v("[ProH]","Voy a insertar Hoteleria " + nombrePro +" Piso: "+piso);
-        Object[] aData = { idHoteleria, idDisp, idProyecto, idProyectoDisp, accMuro, accTecho, habitacion, area, ancho, alto, hojas, observaciones, nombrePro,
-                            AIMG, fecha, formato, piso, edificio, control, fijacion, fechaAl, userAl, userMod, estatus, medidaSujerida,
-                            autorizado, userAuto, fechaAuto, pagado, userPago, corredera};
+        Object[] aData = { idHoteleria, idDisp, idProyecto, idProyectoDisp, habitacion, area, ancho, alto, hojas, observaciones, nombrePro,
+                            AIMG, fecha, formato, piso, edificio, control, fijacion, fechaAl, estatus, medidaSujerida,
+                            autorizado, userAuto, pagado, corredera};
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " ("
-                + DBhelper.ID_HOTELERIA + ", " + DBhelper.ID_DISP + ", "
-                + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_PROYECTO_DISP + ", "
-                + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + ", " + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + ", "
-                + DBhelper.COLUMN_NAME_HABITACION + ", " + DBhelper.COLUMN_NAME_AREA + ", "
-                + DBhelper.COLUMN_NAME_ANCHO + ", " + DBhelper.COLUMN_NAME_ALTO + ", "
-                + DBhelper.COLUMN_NAME_HOJAS + ", " + DBhelper.COLUMN_NAME_OBSERVACIONES + ", "
-                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", " + DBhelper.COLUMN_NAME_AIMG + ", "
-                + DBhelper.COLUMN_NAME_FECHA + ", " + DBhelper.COLUMN_NAME_FORMATO + ", "
-                + DBhelper.COLUMN_NAME_PISO + ", " + DBhelper.COLUMN_NAME_EDIFICIO + ", "
-                + DBhelper.COLUMN_NAME_CONTROL + ", " + DBhelper.COLUMN_NAME_FIJACION + ", "
-                + DBhelper.COLUMN_NAME_FECHA_ALTA + ", " + DBhelper.ID_USUARIO_ALTA + ", "
-                + DBhelper.ID_USUARIO_MOD + ", " + DBhelper.ID_ESTATUS + ", "
-                + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + ", " + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
-                + DBhelper.ID_USUARIOAUTORIZA + ", " + DBhelper.COLUMN_NAME_FECHAAUTORIZA + ", "
-                + DBhelper.COLUMN_NAME_PAGADO + ", " + DBhelper.ID_USUARIO_PAGO + ", "
+                + DBhelper.ID_HOTELERIA + ", "
+                + DBhelper.ID_DISP + ", "
+                + DBhelper.ID_PROYECTO + ", "
+                + DBhelper.ID_PROYECTO_DISP + ", "
+                + DBhelper.COLUMN_NAME_HABITACION + ", "
+                + DBhelper.COLUMN_NAME_AREA + ", "
+                + DBhelper.COLUMN_NAME_ANCHO + ", "
+                + DBhelper.COLUMN_NAME_ALTO + ", "
+                + DBhelper.COLUMN_NAME_HOJAS + ", "
+                + DBhelper.COLUMN_NAME_OBSERVACIONES + ", "
+                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", "
+                + DBhelper.COLUMN_NAME_AIMG + ", "
+                + DBhelper.COLUMN_NAME_FECHA + ", "
+                + DBhelper.COLUMN_NAME_FORMATO + ", "
+                + DBhelper.COLUMN_NAME_PISO + ", "
+                + DBhelper.COLUMN_NAME_EDIFICIO + ", "
+                + DBhelper.COLUMN_NAME_CONTROL + ", "
+                + DBhelper.COLUMN_NAME_FIJACION + ", "
+                + DBhelper.COLUMN_NAME_FECHA_ALTA + ", "
+                + DBhelper.ID_ESTATUS + ", "
+                + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + ", "
+                + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
+                + DBhelper.ID_USUARIOAUTORIZA + ", "
+                + DBhelper.COLUMN_NAME_PAGADO + ", "
                 + DBhelper.COLUMN_NAME_CORREDERA
-                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
     }
 
     public void updateProyectoHoteleria(int idHoteleria, int idDisp, String habitacion, String area, Double ancho, Double alto,
@@ -587,34 +602,47 @@ public class DBProvider {
 
     public void insertProyectoResidencial(int idResidencial, int idDisp, int idProyecto, int idProyectoDisp, String ubicacion, double A, double B, double C, double D,
                                           double E, double F, double G, double H, double profMarco, double profJaladera,
-                                          String control, String AGPTO, String medidaSujerida, String observaciones, String AIMG, String instalador,
-                                          String nombre, String fecha, int formato, String userAl, String userMod, String fechaAl, int estatus,
-                                          String fijacion, String piso, String autorizado, String userAuto, String fechaAuto, String pagado, String fechaPago,
-                                          String userPago, String corredera) {
+                                          String control, String AGPTO, String medidaSujerida, String observaciones, String AIMG,
+                                          String nombre, String fecha, int formato, String fechaAl, int estatus,
+                                          String fijacion, String piso, int autorizado, int userAuto, int pagado,
+                                          String corredera) {
         Object[] aData = {idResidencial, idDisp, idProyecto, idProyectoDisp, ubicacion, A, B, C, D, E, F, G, H, profMarco, profJaladera,
-                control, AGPTO, medidaSujerida, observaciones, AIMG, instalador, nombre, fecha, formato, userAl, userMod, fechaAl, estatus, fijacion,
-                piso, autorizado, userAuto, fechaAuto, pagado, fechaPago, userPago,corredera};
+                control, AGPTO, medidaSujerida, observaciones, AIMG, nombre, fecha, formato, fechaAl, estatus, fijacion,
+                piso, autorizado, userAuto, pagado,corredera};
 
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " ("
-                + DBhelper.ID_RESIDENCIAL + ", " + DBhelper.ID_DISP + ", "
-                + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_PROYECTO_DISP + ", "
-                + DBhelper.COLUMN_NAME_UBICACION + ", " + DBhelper.COLUMN_NAME_A + ", "
-                + DBhelper.COLUMN_NAME_B + ", " + DBhelper.COLUMN_NAME_C + ", "
-                + DBhelper.COLUMN_NAME_D + ", " + DBhelper.COLUMN_NAME_E + ", "
-                + DBhelper.COLUMN_NAME_F + ", " + DBhelper.COLUMN_NAME_G + ", " + DBhelper.COLUMN_NAME_H + ", "
-                + DBhelper.COLUMN_NAME_PROF_MARCO + ", " + DBhelper.COLUMN_NAME_PROF_JALADERA + ", "
-                + DBhelper.COLUMN_NAME_CONTROL + ", " + DBhelper.COLUMN_NAME_AGPTO + ", "
-                + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + ", " + DBhelper.COLUMN_NAME_OBSERVACIONES + ", "
-                + DBhelper.COLUMN_NAME_AIMG + ", " + DBhelper.COLUMN_NAME_INSTALADOR + ", "
-                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", " + DBhelper.COLUMN_NAME_FECHA + ", "
-                + DBhelper.COLUMN_NAME_FORMATO + ", " + DBhelper.ID_USUARIO_ALTA + ", "
-                + DBhelper.ID_USUARIO_MOD + ", " + DBhelper.COLUMN_NAME_FECHA_ALTA + ", "
-                + DBhelper.ID_ESTATUS + ", " + DBhelper.COLUMN_NAME_FIJACION + ", "
-                + DBhelper.COLUMN_NAME_PISO + ", " + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
-                + DBhelper.ID_USUARIOAUTORIZA + ", " + DBhelper.COLUMN_NAME_FECHAAUTORIZA + ", "
-                + DBhelper.COLUMN_NAME_PAGADO + ", " + DBhelper.COLUMN_NAME_FECHA_PAGO + ", "
-                + DBhelper.ID_USUARIO_PAGO + ", " + DBhelper.COLUMN_NAME_CORREDERA
-                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?)", aData);
+                + DBhelper.ID_RESIDENCIAL + ", "
+                + DBhelper.ID_DISP + ", "
+                + DBhelper.ID_PROYECTO + ", "
+                + DBhelper.ID_PROYECTO_DISP + ", "
+                + DBhelper.COLUMN_NAME_UBICACION + ", "
+                + DBhelper.COLUMN_NAME_A + ", "
+                + DBhelper.COLUMN_NAME_B + ", "
+                + DBhelper.COLUMN_NAME_C + ", "
+                + DBhelper.COLUMN_NAME_D + ", "
+                + DBhelper.COLUMN_NAME_E + ", "
+                + DBhelper.COLUMN_NAME_F + ", "
+                + DBhelper.COLUMN_NAME_G + ", "
+                + DBhelper.COLUMN_NAME_H + ", "
+                + DBhelper.COLUMN_NAME_PROF_MARCO + ", "
+                + DBhelper.COLUMN_NAME_PROF_JALADERA + ", "
+                + DBhelper.COLUMN_NAME_CONTROL + ", "
+                + DBhelper.COLUMN_NAME_AGPTO + ", "
+                + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + ", "
+                + DBhelper.COLUMN_NAME_OBSERVACIONES + ", "
+                + DBhelper.COLUMN_NAME_AIMG + ", "
+                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", "
+                + DBhelper.COLUMN_NAME_FECHA + ", "
+                + DBhelper.COLUMN_NAME_FORMATO + ", "
+                + DBhelper.COLUMN_NAME_FECHA_ALTA + ", "
+                + DBhelper.ID_ESTATUS + ", "
+                + DBhelper.COLUMN_NAME_FIJACION + ", "
+                + DBhelper.COLUMN_NAME_PISO + ", "
+                + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
+                + DBhelper.ID_USUARIOAUTORIZA + ", "
+                + DBhelper.COLUMN_NAME_PAGADO + ", "
+                + DBhelper.COLUMN_NAME_CORREDERA
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
     }
 
     public void updateProyectoResidencial(int idResidencial, int idDisp, String ubicacion, Double A, Double B, Double C, Double D,

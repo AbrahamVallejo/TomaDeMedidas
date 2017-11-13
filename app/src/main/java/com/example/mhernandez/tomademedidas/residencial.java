@@ -86,8 +86,8 @@ public class residencial extends AppCompatActivity {
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, 0);
                         oDB.insertProyectoResidencial(idResidencial, idDisp, idProyecto, idDisp, txtUbicacion, txtA, txtB, txtC, txtD,
                                 txtE, txtF, txtG, txtH, txtProfMarco, txtProfJaladera, txtControl, txtAgpto, txtMedidaSugeria, txtObservaciones,
-                                "IMAGEN", "Instalador", "Nombre", FechaAlta, idFormato, "userAl", "userMod", "FechaAlta", 1, txtFijacion, txtPiso, "Autorizado",
-                                "UserAuto", "fechaAuto", "pagado", "fechaPago", "UserPago", txtCorredera);
+                                "IMAGEN", nombreProyecto, FechaAlta, idFormato, FechaAlta, 1, txtFijacion, txtPiso, 1,
+                                1, 1, txtCorredera);
                         finish();
                     }
                 }

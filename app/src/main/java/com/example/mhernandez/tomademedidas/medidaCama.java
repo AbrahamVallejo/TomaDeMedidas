@@ -28,6 +28,7 @@ public class medidaCama extends AppCompatActivity {
         final Bundle oExt = this.getIntent().getExtras();
         final int idProyecto = oExt.getInt("idProyecto");
         final int idProyectoDisp = oExt.getInt("idProyectoDisp");
+        final String Nombre = oExt.getString("Nombre");
         final EditText NHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
         final EditText A = (EditText) this.findViewById(R.id.txt_A);
         final EditText B = (EditText) this.findViewById(R.id.txt_B);
@@ -57,7 +58,7 @@ public class medidaCama extends AppCompatActivity {
                 int idDisp = Integer.parseInt(aRefD[(0)][0]);
                 int idCama = Integer.parseInt(aRefC[(0)][0]) + 1;
                 oDB.insertProyectoCama(idCama, idDisp, idProyecto, idProyectoDisp, numeroHabitacion, txtA, txtB, txtC, txtD, txtE,
-                        txtF, txtG, FechaAlta, "Nombre Proyecto", 4, OBS, 0, 1, 1, 1);
+                        txtF, txtG, FechaAlta, Nombre, 4, OBS, 0, 1, 1, 1);
                 finish();
             }
         });

@@ -33,6 +33,7 @@ public class medidaResidencial extends AppCompatActivity {
         final Bundle oExt = getIntent().getExtras();
         final int idProyecto = oExt.getInt("idProyecto");
         final int idProyectoDisp = oExt.getInt("idProyectoDisp");
+        final String Nombre = oExt.getString("Nombre");
         final Spinner Ubicacion = (Spinner) this.findViewById(R.id.spinner_ubicacion);
         final EditText Piso = (EditText) this.findViewById(R.id.txtPiso);
         final EditText A = (EditText) this.findViewById(R.id.txtA);
@@ -89,8 +90,8 @@ public class medidaResidencial extends AppCompatActivity {
                 int idDisp = Integer.parseInt(aRefD[(0)][0]);
                 oDB.insertProyectoResidencial(idResidencial, idDisp, idProyecto, idDisp, txtUbicacion, txtA, txtB, txtC, txtD,
                         txtE, txtF, txtG, txtH, txtProfMarco, txtProfJaladera, txtControl, txtAgpto, txtMedidasSugerida, txtObservaciones,
-                        "IMAGEN", "Instalador", "Nombre", FechaAlta, 1, "userAl", "userMod", "FechaAlta", 1, txtFijacion, txtPiso, "Autorizado",
-                        "UserAuto", "fechaAuto", "pagado", "fechaPago", "UserPago", txtCorredera);
+                        "IMAGEN", Nombre, FechaAlta, 1, FechaAlta, 1, txtFijacion, txtPiso, 1,
+                        1, 1, txtCorredera);
                 finish();
             }
         });
