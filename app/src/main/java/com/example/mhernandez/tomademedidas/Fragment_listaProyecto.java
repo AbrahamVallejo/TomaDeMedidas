@@ -299,7 +299,7 @@ public class Fragment_listaProyecto extends Fragment {
 
     public void lista(){
         Log.v("[obtener]","Voy por datos");
-        String[][] aRef = MainActivity.oDB.ObtenerProyectos("0", 1);
+        String[][] aRef = MainActivity.oDB.ObtenerProyectos("0", 3);
         String[][] aDataFolio = null;
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
