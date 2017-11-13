@@ -1431,6 +1431,11 @@ public class DBProvider {
                     "AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 0", aFils);
 
         }
+        else if (tipo == 3) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " <> ? " +
+                    "AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 4", aFils);
+
+        }
         else {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aFils);
         }
