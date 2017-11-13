@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,8 +91,7 @@ public class Fragment_proyecto extends Fragment {
         ImageView oImg = (ImageView) vista.findViewById(R.id.imgFoto);
 
         //Llenar los Spinners
-        spinnerCliente();   spinnerAgente();
-        //spinnerFormato();
+        spinnerCliente();   spinnerAgente();    spinnerFormato();
 
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");
@@ -148,7 +148,8 @@ public class Fragment_proyecto extends Fragment {
         String[][] aRes= MainActivity.oDB.ObtenerFormato("0",1);
         spFormato= ( vista.findViewById(R.id.spinner_formato));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione un agente de venta...";
+        Log.v("[spin]", "Formatos: "+aRes.length );
+        aData[0]="Seleccione un formato de medidas...";
         for(int i = 0; i < aRes.length; i++){
             String inde = String.valueOf(aRes[i][0]);
             aData[i+1] = (inde+" - "+aRes[i][1]);

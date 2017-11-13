@@ -182,34 +182,31 @@ public class MainActivity extends AppCompatActivity
         String FechaAlta = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
         //FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
 
-        String selected = formato.getSelectedItem().toString();
-            if (selected.equals("Hoteleria")){
+        int selected = formato.getSelectedItemPosition();
+        Log.v("[spin]", "Sel: "+selected );
+            if (selected == 2){
                 rIntent = new Intent(MainActivity.this, hoteleria.class);
-                rIntent.putExtra("idFormato", 2);
-            }else if (selected.equals("Cama")){
+            }else if (selected == 4){
                 rIntent = new Intent(MainActivity.this, cama.class);
-                rIntent.putExtra("idFormato", 4);
-            }else if (selected.equals("Residencial")){
+            }else if (selected ==1){
                 rIntent = new Intent(MainActivity.this, residencial.class);
-                rIntent.putExtra("idFormato", 1);
-            }else if (selected.equals("Galeria")){
+            }else if (selected == 3){
                 rIntent = new Intent(MainActivity.this, galeria.class);
-                rIntent.putExtra("idFormato", 3);
-            }else if(selected.equals("Especial")){
+            }else if(selected ==5){
                 rIntent = new Intent(MainActivity.this, especial.class);
-                rIntent.putExtra("idFormato", 5);
             }
+        rIntent.putExtra("idFormato", selected);
         rIntent.putExtra("nombreProyecto", nombreProyecto);
         rIntent.putExtra("accesoriosMuro", accesorioMuro);
         rIntent.putExtra("accesoriosTecho", accesorioTecho);
         rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
         rIntent.putExtra("FechaAlta", FechaAlta);
         rIntent.putExtra("PedidoSap", PS);
-        if (Validar ==0){
-            startActivity(rIntent);
-        }else {
-            Toast.makeText(this, "Llene Todos Los Campos", Toast.LENGTH_SHORT).show();
-        }
+            if (Validar ==0){
+                startActivity(rIntent);
+            }else {
+                Toast.makeText(this, "Llene Todos Los Campos", Toast.LENGTH_SHORT).show();
+            }
 
     }
 
