@@ -197,43 +197,53 @@ public class DBProvider {
                 + DBhelper.ID_ESTATUS + ", " + DBhelper.ID_USUARIO_VENTA + ", " + DBhelper.COLUMN_NAME_AGENTE_VENTA + ", "
                 + DBhelper.COLUMN_NAME_SINCRONIZAR
                 + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
-    //Log.v("[obtener]", nombreProyecto);
+    Log.v("[obtener]", nombreProyecto);
     }
 
     public String[][] buscarProyecto(int idProyecto, int idDisp) {
         int iCnt = 0;
         String[][] aData = null;
         String[] aFils= {(String.valueOf(idProyecto)), (String.valueOf(idDisp)) };
-        Cursor Ars; Log.v("[obtener", "Voy a buscar tu Proyecto "+idProyecto+" "+idDisp);                               //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
-        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " = ? AND "
+        Cursor aRS; Log.v("[obtener", "Voy a buscar tu Proyecto "+idProyecto+" "+idDisp);                               //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
+        aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " = ? AND "
                 +DBhelper.ID_DISP +" = ?" , aFils);
-        Log.v("[obtener", "Encontre tu Proyecto "+ Ars.getCount() );
-        if (Ars.getCount() > 0) {
-            aData = new String[Ars.getCount()][16];
-            while (Ars.moveToNext()) {                                                              //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP)) );
-                aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_PROYECTO));               //Log.v("[obtener", aData[0][0] );
-                aData[iCnt][1] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP));
-                aData[iCnt][2] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_CLIENTE));
-                aData[iCnt][3] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_CLIENTE_DISP));
-                aData[iCnt][4] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_FORMATO));
-                aData[iCnt][5] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_USER));
-                aData[iCnt][6] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE_PROYECTO));
-                aData[iCnt][7] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_PEDIDO_SAP));
-                aData[iCnt][8] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_FECHA));
-                aData[iCnt][9] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_AUTORIZADO));
-                aData[iCnt][10] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_ACCESORIOS_TECHO));
-                aData[iCnt][11] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_ACCESORIOS_MURO));
-                aData[iCnt][12] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_ACCESORIOS_ESPECIALES));
-                aData[iCnt][13] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_ESTATUS));
-                aData[iCnt][14] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_USUARIO_VENTA));
-                aData[iCnt][15] = Ars.getString(Ars.getColumnIndex(DBhelper.COLUMN_NAME_SINCRONIZAR));
+        Log.v("[obtener", "Encontre tu Proyecto "+ aRS.getCount() );
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][16];
+            while (aRS.moveToNext()) {                                                              //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP)) );
+                aData[iCnt] = new String[24];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP));
+                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_CLIENTE));
+                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_CLIENTE_DISP));
+                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_FORMATO));
+                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USER));
+                aData[iCnt][6] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE_PROYECTO));
+                aData[iCnt][7] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PEDIDO_SAP));
+                aData[iCnt][8] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA));
+                aData[iCnt][9] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AUTORIZADO));
+                aData[iCnt][10] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ACCESORIOS_TECHO));
+                aData[iCnt][11] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ACCESORIOS_MURO));
+                aData[iCnt][12] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ACCESORIOS_ESPECIALES));
+                aData[iCnt][13] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_ESTATUS));
+                aData[iCnt][14] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_VENTA));
+                aData[iCnt][15] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_SINCRONIZAR));
+                aData[iCnt][16] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AGENTE_VENTA));
+                aData[iCnt][17] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIOAUTORIZA));
+                aData[iCnt][18] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USER_MOD));
+                aData[iCnt][19] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHAAUTORIZA));
+                aData[iCnt][20] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_MODIFICA));
+                aData[iCnt][21] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_CIERRA));
+                aData[iCnt][22] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_CIERRA));
+                aData[iCnt][23] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_IDS_CLIENTE));
+
                 iCnt++; }
         }
         else{
             aData = new String[1][1];
             aData[0][0]= "0";
         }
-        Ars.close();
+        aRS.close();
         CloseDB();  Log.v("[obtener", "Voy de regreso");
         return (aData);
     }

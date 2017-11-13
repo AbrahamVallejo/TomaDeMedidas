@@ -509,22 +509,24 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         else if(urls[0] == "sincproyecto"){
             Log.v("[add]","Voy a Sincronizar en WS" );
             try{
+                String[][] aref = MainActivity.oDB.buscarProyecto(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]) );
                 JSONObject json = new JSONObject();
                 JSONObject proyecto = new JSONObject();
                 try {
-                    proyecto.put("id_proyecto", urls[2] );
-                    proyecto.put("id_disp", urls[3] );
-                    proyecto.put("id_cliente", 4 );
-                    proyecto.put("id_cliente_disp", 1 );
-                    proyecto.put("id_formato", "1");
+                    proyecto.put("id_proyecto", aref[0][0] );
+                    proyecto.put("id_disp", aref[0][1] );
+                    proyecto.put("id_cliente", aref[0][2] );
+                    proyecto.put("id_cliente_disp", aref[0][3] );
+                    proyecto.put("id_formato", aref[0][4]);
                     proyecto.put("id_user", "5");
                     proyecto.put("nombre_proyecto", "PruebaDeProyecto");
                     proyecto.put("pedido_sap", "S/P");
                     proyecto.put("fecha", "/Date(1506871200000)/");
                     proyecto.put("autorizado", "0");
-                    proyecto.put("accesorios_techo", "Cosas Techadas");
-                    proyecto.put("accesorios_muro", "Cosas Murosadas");
-                    proyecto.put("id_estatus", "2");
+                    proyecto.put("accesorios_techo", aref[0][19] );
+                    proyecto.put("accesorios_muro", aref[0][20] );
+                    proyecto.put("accesorios_especiales", aref[0][21] );
+                    proyecto.put("id_estatus", aref[0][10] );
                     proyecto.put("id_usuario_venta", "10");
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
@@ -538,7 +540,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     if (sResp.length() == 6){
                         Log.v("[add]","Retorno nulo" );
                     }else{
-                        String[][] aref = MainActivity.oDB.buscarProyecto(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]) );
                         MainActivity.oDB.updateProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][2]),
                                 Integer.parseInt(aref[0][3]), Integer.parseInt(aref[0][4]), Integer.parseInt(aref[0][5]), aref[0][6], aref[0][7], aref[0][8],
                                 Integer.parseInt(aref[0][9]), aref[0][10], aref[0][11], aref[0][12], Integer.parseInt(aref[0][13]), Integer.parseInt(aref[0][14]), 0);
@@ -549,7 +550,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     if (sResp.length() == 6){
                         Log.v("[add]","Retorno nulo" );
                     }else{
-                        String[][] aref = MainActivity.oDB.buscarProyecto(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]) );
                         MainActivity.oDB.updateProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][2]),
                                 Integer.parseInt(aref[0][3]), Integer.parseInt(aref[0][4]), Integer.parseInt(aref[0][5]), aref[0][6], aref[0][7], aref[0][8],
                                 Integer.parseInt(aref[0][9]), aref[0][10], aref[0][11], aref[0][12], Integer.parseInt(aref[0][13]), Integer.parseInt(aref[0][14]), 0);
@@ -796,18 +796,15 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("fecha_pago");
                     aFujs[i] = joFuj.getString("id_usuario_pago");
                     Log.v("PRUEBA","Residencial: "+ joFuj.getString("ubicacion"));
-                    MainActivity.oDB.insertProyectoResidencial(joFuj.getString("id_residencial"),
-                            joFuj.getString("id_disp"), joFuj.getString("id_proyecto"),joFuj.getString("id_proyecto_disp"),
-                            joFuj.getString("ubicacion"), joFuj.getString("a"), joFuj.getString("b"), joFuj.getString("c"),
-                            joFuj.getString("d"),joFuj.getString("e"), joFuj.getString("f"), joFuj.getString("g"), joFuj.getString("h"),
-                            joFuj.getString("prof_marco"), joFuj.getString("prof_jaladera"), joFuj.getString("control"), joFuj.getString("agpto"),
-                            joFuj.getString("medida_sujerida"), joFuj.getString("observaciones"), " ", " ",
-                            joFuj.getString("nombre_proyecto"), joFuj.getString("fecha"),
-                            joFuj.getString("formato"), joFuj.getString("id_usuario_alta"), joFuj.getString("id_usuario_mod"), " ",
-                            joFuj.getString("id_estatus"), joFuj.getString("fijacion"), joFuj.getString("piso"), joFuj.getString("autorizado"),
-                            " ", " ", joFuj.getString("pagado"), joFuj.getString("fecha_pago"),
-                            joFuj.getString("id_usuario_pago"), "");
-
+                    MainActivity.oDB.insertProyectoResidencial(Integer.parseInt(joFuj.getString("id_residencial")), Integer.parseInt(joFuj.getString("id_disp")),
+                            Integer.parseInt(joFuj.getString("id_proyecto")), Integer.parseInt(joFuj.getString("id_proyecto_disp")), joFuj.getString("ubicacion"),
+                            Double.parseDouble(joFuj.getString("a")), Double.parseDouble(joFuj.getString("b")), Double.parseDouble(joFuj.getString("c")),
+                            Double.parseDouble(joFuj.getString("d")), Double.parseDouble(joFuj.getString("e")), Double.parseDouble(joFuj.getString("f")),
+                            Double.parseDouble(joFuj.getString("g")), Double.parseDouble(joFuj.getString("h")), Double.parseDouble(joFuj.getString("prof_marco")),
+                            Double.parseDouble(joFuj.getString("prof_jaladera")), joFuj.getString("control"), joFuj.getString("agpto"), joFuj.getString("medida_sujerida"), joFuj.getString("observaciones"), " ",
+                            joFuj.getString("nombre_proyecto"), joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("formato")),
+                            joFuj.getString("id_usuario_alta"), Integer.parseInt(joFuj.getString("id_estatus")), joFuj.getString("fijacion"),
+                            joFuj.getString("piso"), Integer.parseInt(joFuj.getString("autorizado")), 0, Integer.parseInt(joFuj.getString("pagado")), " " );
                 }
             }catch (Exception e){
                 exception = e;
@@ -845,16 +842,13 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("autorizado");
                     aFujs[i] = joFuj.getString("pagado");
                     Log.v("PRUEBA","Hoteleria:  " +joFuj.getString("id_hoteleria"));
-                    MainActivity.oDB.insertProyectoHoteleria(joFuj.getString("id_hoteleria"), joFuj.getString("id_disp"),
-                            joFuj.getString("id_proyecto"), joFuj.getString("id_proyecto_disp"), " "," ",
-                            joFuj.getString("habitacion"), joFuj.getString("area"),
-                            joFuj.getString("ancho"), joFuj.getString("alto"),
-                            joFuj.getString("hojas"), joFuj.getString("observaciones"),
-                            joFuj.getString("nombre_proyecto")," ", joFuj.getString("fecha"),
-                            joFuj.getString("formato"), joFuj.getString("piso"), joFuj.getString("edificio"), joFuj.getString("control"), " ",
-                            " ", joFuj.getString("id_usuario_alta"), " ", joFuj.getString("id_estatus"),
-                            joFuj.getString("medida_sujerida"), joFuj.getString("autorizado"),
-                            " ", " ", joFuj.getString("pagado"), " ", " ");
+                    MainActivity.oDB.insertProyectoHoteleria(Integer.parseInt(joFuj.getString("id_hoteleria")), Integer.parseInt(joFuj.getString("id_disp")),
+                            Integer.parseInt(joFuj.getString("id_proyecto")), Integer.parseInt(joFuj.getString("id_proyecto_disp")), joFuj.getString("habitacion"),
+                            joFuj.getString("area"), Double.parseDouble(joFuj.getString("ancho")), Double.parseDouble(joFuj.getString("alto")),
+                            Double.parseDouble(joFuj.getString("hojas")), joFuj.getString("observaciones"), joFuj.getString("nombre_proyecto")," ",
+                            joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("formato")), Integer.parseInt(joFuj.getString("piso")),
+                            joFuj.getString("edificio"), joFuj.getString("control"), "", " ", Integer.parseInt(joFuj.getString("id_estatus")),
+                            joFuj.getString("medida_sujerida"), Integer.parseInt(joFuj.getString("autorizado")), 0, Integer.parseInt(joFuj.getString("pagado")), " ");
                 }
             }catch (Exception e){
                 exception = e;
@@ -890,12 +884,9 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     MainActivity.oDB.insertProyectoEspecial(Integer.parseInt(joFuj.getString("id_especiales")),
                             Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_proyecto")),
                             Integer.parseInt(joFuj.getString("id_proyecto_disp")), joFuj.getString("nombre_proyecto"),
-                            joFuj.getString("alto"), joFuj.getString("ancho"), joFuj.getString("grosor"),
-                            joFuj.getString("observaciones"),   joFuj.getString("aImg"),    joFuj.getString("fecha"),
-                            Integer.parseInt(joFuj.getString("formato")), Integer.parseInt(joFuj.getString("id_usuario_alta")),
-                            Integer.parseInt(joFuj.getString("id_usuario_mod")), joFuj.getString("fecha"),
-                            Integer.parseInt(joFuj.getString("id_estatus")), Integer.parseInt(joFuj.getString("autorizado")),
-                            1, joFuj.getString("fecha"), 1, joFuj.getString("fecha"),0 );
+                            Double.parseDouble(joFuj.getString("alto")), Double.parseDouble(joFuj.getString("ancho")), Double.parseDouble(joFuj.getString("grosor")),
+                            joFuj.getString("observaciones"), joFuj.getString("aImg"), joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("formato")),
+                            joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("id_estatus")), Integer.parseInt(joFuj.getString("autorizado")),0,0);
                 }
             }catch (Exception e){
                 exception = e;
@@ -958,15 +949,12 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("fecha_pago");
                     aFujs[i] = joFuj.getString("id_usuario_pago");
                     Log.v("PRUEBA","Galeria: "+ joFuj.getString("nombre_proyecto"));
-                    MainActivity.oDB.insertProyectoGaleria( joFuj.getString("id_galeria"), joFuj.getString("id_disp"),
-                            joFuj.getString("id_proyecto"), joFuj.getString("id_proyecto_disp"),
-                            joFuj.getString("fecha"), joFuj.getString("n_habitacion"), joFuj.getString("area"),
-                            joFuj.getString("ancho"), joFuj.getString("alto"), joFuj.getString("copete"),
-                            joFuj.getString("proyecciones"), joFuj.getString("fijacion"),
-                            joFuj.getString("comentarios"), joFuj.getString("nombre_proyecto"),
-                            " ", joFuj.getString("formato"), joFuj.getString("id_usuario_alta"), joFuj.getString("id_usuario_mod"),
-                            " ", joFuj.getString("id_estatus"), joFuj.getString("autorizado"), " ", " ", joFuj.getString("pagado"),
-                            joFuj.getString("fecha_pago"), joFuj.getString("id_usuario_pago"));
+                    MainActivity.oDB.insertProyectoGaleria(Integer.parseInt(joFuj.getString("id_galeria")),
+                            Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_proyecto")), Integer.parseInt(joFuj.getString("id_proyecto_disp")),
+                            joFuj.getString("fecha"), joFuj.getString("n_habitacion"), joFuj.getString("area"), Double.parseDouble(joFuj.getString("ancho")),
+                            Double.parseDouble(joFuj.getString("alto")), joFuj.getString("copete"), joFuj.getString("proyecciones"), joFuj.getString("fijacion"),
+                            joFuj.getString("comentarios"), joFuj.getString("nombre_proyecto"), " ", Integer.parseInt(joFuj.getString("formato")),
+                            " ", Integer.parseInt(joFuj.getString("id_estatus")), Integer.parseInt(joFuj.getString("autorizado")),0, Integer.parseInt(joFuj.getString("pagado")));
                 }
             }catch (Exception e){
                 exception = e;

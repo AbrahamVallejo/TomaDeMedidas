@@ -124,22 +124,31 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onSaveClickProyectos(View view){
-        Spinner cliente = (Spinner) this.findViewById(R.id.spinner_cliente);
-        String[] Clientes = new String[2];
-        if(cliente.getSelectedItemPosition() != 0){
-            String[] partsC = cliente.getSelectedItem().toString().split("-");
-            partsC[0] = partsC[0].replace(".","-");
-            Clientes = partsC[0].split("-");
-            Log.v("[spin]", Clientes[0] +" "+Clientes[1] );
-        }else {
-            Clientes[0] = "0";
-        }
-
-
+        int Validar=0;  Intent rIntent = new Intent();
+        Spinner cliente = (Spinner) this.findViewById(R.id.spinner_cliente);    String[] Clientes = new String[2];
+            if(cliente.getSelectedItemPosition() != 0){
+                String[] partsC = cliente.getSelectedItem().toString().split("-");
+                partsC[0] = partsC[0].replace(".","-");
+                Clientes = partsC[0].split("-");
+                Log.v("[spin]", Clientes[0] +" "+Clientes[1] );
+                rIntent.putExtra("id_cliente", Integer.parseInt(Clientes[0]) );
+                rIntent.putExtra("id_cliente_disp", Integer.valueOf(Clientes[1].trim()) );
+            }else {
+                Validar++;
+            }
         Spinner formato = (Spinner) this.findViewById(R.id.spinner_formato);
-        Spinner agente = (Spinner) this.findViewById(R.id.spinner_agente);
-        String[] partsA = agente.getSelectedItem().toString().split("-");
-        Log.v("[spin]", partsA[1] );
+            if (formato.getSelectedItemPosition()==0){
+                Validar++;
+            }
+        Spinner agente = (Spinner) this.findViewById(R.id.spinner_agente);      String[] partsA = new String[2];
+            if(agente.getSelectedItemPosition() != 0){
+                partsA = agente.getSelectedItem().toString().split("-");
+                Log.v("[spin]", partsA[1] );
+                rIntent.putExtra("Agente", partsA[1] );
+            }else {
+                Validar++;
+            }
+
 
 
         EditText proyecto = (EditText) this.findViewById(R.id.proyecto_nombre_proyecto);
@@ -148,51 +157,56 @@ public class MainActivity extends AppCompatActivity
         EditText AccEspecial = (EditText) this.findViewById(R.id.proyecto_accesorios_especiales);
         EditText PedidoSap = (EditText) this.findViewById(R.id.proyecto_pedido_sap);
 
-        String selected = formato.getSelectedItem().toString();
         String nombreProyecto = proyecto.getText().toString();
+            String part1 = nombreProyecto.replace(" ","");
+            if (part1.length() ==0){
+                Validar++;
+            }
         String accesorioMuro = AccMuro.getText().toString();
+            String part2 = accesorioMuro.replace(" ","");
+            if (part2.length() ==0){
+                Validar++;
+            }
         String accesorioTecho = AccTecho.getText().toString();
+            String part3 = accesorioTecho.replace(" ","");
+            if (part3.length() ==0){
+                Validar++;
+            }
         String accesorioEspecial = AccEspecial.getText().toString();
+            String part4 = accesorioEspecial.replace(" ","");
+            if (part4.length() ==0){
+                Validar++;
+            }
         String PS = PedidoSap.getText().toString();
         GregorianCalendar currentTime = new GregorianCalendar();
         String FechaAlta = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
-        FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
+        //FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
 
-
-
-
-        Intent rIntent = new Intent();
-        rIntent.putExtra("id_cliente", Clientes[0] );
-        rIntent.putExtra("id_cliente_disp", Clientes[1] );
-        rIntent.putExtra("Agente", partsA[1] );
+        int selected = formato.getSelectedItemPosition();
+        Log.v("[spin]", "Sel: "+selected );
+            if (selected == 2){
+                rIntent = new Intent(MainActivity.this, hoteleria.class);
+            }else if (selected == 4){
+                rIntent = new Intent(MainActivity.this, cama.class);
+            }else if (selected ==1){
+                rIntent = new Intent(MainActivity.this, residencial.class);
+            }else if (selected == 3){
+                rIntent = new Intent(MainActivity.this, galeria.class);
+            }else if(selected ==5){
+                rIntent = new Intent(MainActivity.this, especial.class);
+            }
+        rIntent.putExtra("idFormato", selected);
         rIntent.putExtra("nombreProyecto", nombreProyecto);
         rIntent.putExtra("accesoriosMuro", accesorioMuro);
         rIntent.putExtra("accesoriosTecho", accesorioTecho);
         rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
         rIntent.putExtra("FechaAlta", FechaAlta);
         rIntent.putExtra("PedidoSap", PS);
-
-        if (selected.equals("Hoteleria")){
-            rIntent = new Intent(MainActivity.this, hoteleria.class);
-            rIntent.putExtra("idFormato", 2);
-            startActivity(rIntent);
-        }else if (selected.equals("Cama")){
-            rIntent = new Intent(MainActivity.this, cama.class);
-            rIntent.putExtra("idFormato", 4);
-            startActivity(rIntent);
-        }else if (selected.equals("Residencial")){
-            rIntent = new Intent(MainActivity.this, residencial.class);
-            rIntent.putExtra("idFormato", 1);
-            startActivity(rIntent);
-        }else if (selected.equals("Galeria")){
-            rIntent = new Intent(MainActivity.this, galeria.class);
-            rIntent.putExtra("idFormato", 3);
-            startActivity(rIntent);
-        }else if(selected.equals("Especial")){
-            rIntent = new Intent(MainActivity.this, especial.class);
-            rIntent.putExtra("idFormato", 5);
-            startActivity(rIntent);
-        }
+            if (Validar ==0){
+                startActivity(rIntent);
+            }else {
+                Toast.makeText(this, "Llene Todos Los Campos", Toast.LENGTH_SHORT).show();
+            }
 
     }
 
@@ -736,7 +750,7 @@ public class MainActivity extends AppCompatActivity
                         Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADDPROYECTO!", Toast.LENGTH_LONG).show();
                     }
                 });
-                oNS.execute("sincproyecto", "1",aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][3], aux1[i][4]);
+                oNS.execute("sincproyecto", "1", aux1[i][0], aux1[i][1] );
             }
             else if (Integer.valueOf(aux1[i][23]) == 2) {
                 Log.v("[add]","Entre al if Modificar" );
@@ -750,7 +764,7 @@ public class MainActivity extends AppCompatActivity
                         Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADDPROYECTO!", Toast.LENGTH_LONG).show();
                     }
                 });
-                oNS.execute("sincproyecto", "2",aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][3], aux1[i][4]);
+                oNS.execute("sincproyecto", "2", aux1[i][0], aux1[i][1] );
             }
             else if (Integer.valueOf(aux1[i][23]) == 3) {
                 Log.v("[add]","Entre al if Modificar" );
@@ -764,7 +778,7 @@ public class MainActivity extends AppCompatActivity
                         Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADDPROYECTO!", Toast.LENGTH_LONG).show();
                     }
                 });
-                oNS.execute("sincproyecto", "3",aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][3], aux1[i][4]);
+                oNS.execute("sincproyecto", "3", aux1[i][0], aux1[i][1] );
             }
         }
         Toast.makeText(this, "Proyectos Sincronizados", Toast.LENGTH_SHORT).show();
