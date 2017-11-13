@@ -22,6 +22,10 @@ public class especial extends AppCompatActivity {
         setContentView(R.layout.crear_medida_especial);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
+        final int idCliente = oExt.getInt("id_cliente");
+        final int idclienteDisp = oExt.getInt("id_cliente_disp");
+        final String Agente = oExt.getString("Agente");
+
         final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
         final String accesoriosMuro = oExt.getString("accesoriosMuro");
@@ -47,8 +51,8 @@ public class especial extends AppCompatActivity {
                         int idProyecto = Integer.parseInt(aRefP[(0)][0]) + 1;
                         int idEspecial = Integer.parseInt(aRefE[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                        oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1,"Agente", 1);
+                        oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
+                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, Agente, 1);
                         oDB.insertProyectoEspecial(idEspecial, idDisp, idProyecto, idDisp, nombreProyecto, txtAlto, txtAncho, txtGrosor,
                         OBS, "IMAGEN", FechaAlta, idFormato, FechaAlta, 1, 1, 1, 1);
 
