@@ -247,11 +247,17 @@ public class Fragment_listaProyecto extends Fragment {
             TextView txtIDFormato = (TextView) rowView.findViewById(R.id.IDFormato);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
-            String[] parts = _text[position][7].split("T");
+            Log.v("[AQUIANDO", _text[position][7]);
+            if ( _text[position][7].toString().contains("T") == true){
+                String[] parts = _text[position][7].split("T");
+                txtFecha.setText(parts[0]);
+            }else {
+                txtFecha.setText(_text[position][7]);
+            }
+
 
             txtNombre.setText(_text[position][6]);
             txtFecha.setText(_text[position][7]);
-            txtFecha.setText(parts[0]);
             txtPedidoSap.setText(_text[position][8]);
             txtAutorizado.setText(_text[position][12]);
             txtATecho.setText(_text[position][19].toLowerCase());
@@ -293,7 +299,7 @@ public class Fragment_listaProyecto extends Fragment {
 
     public void lista(){
         Log.v("[obtener]","Voy por datos");
-        String[][] aRef = MainActivity.oDB.ObtenerProyectos("0", 1);
+        String[][] aRef = MainActivity.oDB.ObtenerProyectos("0", 3);
         String[][] aDataFolio = null;
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
