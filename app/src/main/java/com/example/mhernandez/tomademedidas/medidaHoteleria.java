@@ -33,6 +33,7 @@ public class medidaHoteleria extends AppCompatActivity {
         spinnerArea(); spinnerControl(); spinnerFijacion(); spinnerCorredera();
         final int idProyecto = oExt.getInt("idProyecto");
         final int idProyectoDisp = oExt.getInt("idProyectoDisp");
+        final String Nombre = oExt.getString("Nombre");
         final EditText Edificio = (EditText) this.findViewById(R.id.txtEdificio);
         final EditText Piso = (EditText) this.findViewById(R.id.txtPiso);
         final EditText Habitacion = (EditText) this.findViewById(R.id.txtHabitacion);
@@ -50,7 +51,7 @@ public class medidaHoteleria extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent rIntent = new Intent(medidaHoteleria.this, crearArea.class);
-                //startActivity(rIntent);
+                startActivity(rIntent);
             }
         });
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
@@ -71,8 +72,13 @@ public class medidaHoteleria extends AppCompatActivity {
                 String txtCorredera = Corredera.getSelectedItem().toString();
                 String txtMedidaSugerida = MedidaSugerida.getText().toString();
                 String OBS = Observaciones.getText().toString();
-//                oDB.insertProyectoHoteleria();
-                finish();
+                String[][] aRefD = MainActivity.oDB.lastDispositivo();
+                String[][] aRefH = MainActivity.oDB.lastHoteleria();
+                int idHoteleria = Integer.parseInt(aRefH[(0)][0]) + 1;
+                int idDisp = Integer.parseInt(aRefD[(0)][0]);
+                oDB.insertProyectoHoteleria(idHoteleria, idDisp, idProyecto, idDisp, txtHabitacion,
+                        txtArea, txtAncho, txtAlto, txtHojas, OBS, Nombre, "Nombre Proyecto", FechaAlta, 2,
+                        txtPiso, txtEdificio, txtControl, txtFijacion, FechaAlta, 1, txtMedidaSugerida, 1, 1, 1, txtCorredera);                finish();
             }
         });
     }

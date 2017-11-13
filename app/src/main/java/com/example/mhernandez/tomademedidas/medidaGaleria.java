@@ -35,6 +35,7 @@ public class medidaGaleria extends AppCompatActivity {
 
         final int idProyecto = oExt.getInt("idProyecto");
         final int idProyectoDisp = oExt.getInt("idProyectoDisp");
+        final String Nombre = oExt.getString("Nombre");
         final EditText NHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
         final Spinner Area = (Spinner) this.findViewById(R.id.spinner_area);
         final EditText Ancho = (EditText) this.findViewById(R.id.txt_ancho);
@@ -65,7 +66,13 @@ public class medidaGaleria extends AppCompatActivity {
                 String txtProyecciones = Proyecciones.getSelectedItem().toString();
                 String txtFijacion = Fijacion.getSelectedItem().toString();
                 String OBS = Comentarios.getText().toString();
-//                oDB.insertProyectoGaleria();
+                String[][] aRefD = MainActivity.oDB.lastDispositivo();
+                String[][] aRefG = MainActivity.oDB.lastGaleria();
+                int idGaleria = Integer.parseInt(aRefG[(0)][0]) + 1;
+                int idDisp = Integer.parseInt(aRefD[(0)][0]);
+                oDB.insertProyectoGaleria(idGaleria, idDisp, idProyecto, idDisp, FechaAlta, numeroHabitaciones, txtArea,
+                        txtAncho, txtAlto, txtCopete, txtProyecciones, txtFijacion, OBS, Nombre, "IMAGEN",
+                        3, FechaAlta, 1, 1, 1, 1);
                 finish();
             }
         });

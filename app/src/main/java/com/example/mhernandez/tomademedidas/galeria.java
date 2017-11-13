@@ -23,7 +23,7 @@ public class galeria extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.crear_galeria);
+        setContentView(R.layout.crear_medida_galeria);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle oExt = this.getIntent().getExtras();
         //Llenar los spinner
@@ -42,6 +42,7 @@ public class galeria extends AppCompatActivity {
         final Spinner Copete = (Spinner) this.findViewById(R.id.spinner_copete);
         final Spinner Proyecciones = (Spinner) this.findViewById(R.id.spinner_proyecciones);
         final Spinner Fijacion = (Spinner) this.findViewById(R.id.spinner_fijacion);
+        final Spinner Area = (Spinner) this.findViewById(R.id.spinner_area);
         final EditText Comentarios = (EditText) this.findViewById(R.id.txt_comentarios);
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(
@@ -49,8 +50,9 @@ public class galeria extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         String numeroHabitaciones = NHabitaciones.getText().toString();
-                        String txtAncho = Ancho.getText().toString();
-                        String txtAlto = Alto.getText().toString();
+                        String txtArea = Area.getSelectedItem().toString();
+                        Double txtAncho = Double.parseDouble(Ancho.getText().toString());
+                        Double txtAlto = Double.parseDouble(Alto.getText().toString());
                         String txtCopete = Copete.getSelectedItem().toString();
                         String txtProyecciones = Proyecciones.getSelectedItem().toString();
                         String txtFijacion = Fijacion.getSelectedItem().toString();
@@ -62,9 +64,10 @@ public class galeria extends AppCompatActivity {
                         int idGaleria = Integer.parseInt(aRefG[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1,"agente", 1);
-                        //oDB.insertProyectoGaleria(numeroHabitaciones, "a", txtAncho, txtAlto, txtCopete,
-                        //        txtProyecciones, txtFijacion, "IMAGEN", txtComentarios);
+                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1,"agente", 1);
+                        oDB.insertProyectoGaleria(idGaleria, idDisp, idProyecto, idDisp, FechaAlta, numeroHabitaciones, txtArea,
+                                txtAncho, txtAlto, txtCopete, txtProyecciones, txtFijacion, txtComentarios, nombreProyecto, "IMAGEN",
+                                idFormato, FechaAlta, 1, 1, 1, 1);
                         finish();
                     }
                 }

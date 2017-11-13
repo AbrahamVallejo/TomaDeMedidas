@@ -22,7 +22,7 @@ public class hoteleria extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.crear_hoteleria);
+        setContentView(R.layout.crear_medida_hoteleria);
         //Llenar los spinner
         spinnerArea(); spinnerControl(); spinnerFijacion(); spinnerCorredera();
 
@@ -36,34 +36,34 @@ public class hoteleria extends AppCompatActivity {
         final String PedidoSap = oExt.getString("PedidoSap");
         final String FechaAlta = oExt.getString("FechaAlta");
         final EditText Habitacion = (EditText) this.findViewById(R.id.txtHabitacion);
-        //final EditText Area = (EditText) this.findViewById(R.id.txtArea);
+        final Spinner Area = (Spinner) this.findViewById(R.id.spinner_area);
         final EditText Ancho = (EditText) this.findViewById(R.id.txtAncho);
         final EditText Alto = (EditText) this.findViewById(R.id.txtAlto);
         final EditText Hojas = (EditText) this.findViewById(R.id.txtHojas);
         final EditText Observaciones = (EditText) this.findViewById(R.id.txtObservaciones);
         final EditText Piso = (EditText) this.findViewById(R.id.txtPiso);
         final EditText Edificio = (EditText) this.findViewById(R.id.txtEdificio);
-        //final EditText Control = (EditText) this.findViewById(R.id.txtControl);
-        //final EditText Fijacion = (EditText) this.findViewById(R.id.txtFijacion);
+        final Spinner Control = (Spinner) this.findViewById(R.id.spinner_control);
+        final Spinner Fijacion = (Spinner) this.findViewById(R.id.spinner_fijacion);
         final EditText MedidaSugerida = (EditText) this.findViewById(R.id.txtMedidaSugerida);
-        //final EditText Corredera = (EditText) this.findViewById(R.id.txtCorredera);
+        final Spinner Corredera = (Spinner) this.findViewById(R.id.spinner_corredera);
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String txtHabitacion = Habitacion.getText().toString();
-                        //String txtArea = Area.getText().toString();
-                        String txtAncho = Ancho.getText().toString();
-                        String txtAlto = Alto.getText().toString();
-                        String txtHojas = Hojas.getText().toString();
+                        String txtArea = Area.getSelectedItem().toString();
+                        Double txtAncho = Double.parseDouble(Ancho.getText().toString());
+                        Double txtAlto = Double.parseDouble(Alto.getText().toString());
+                        Double txtHojas = Double.parseDouble(Hojas.getText().toString());
                         String txtObservaciones = Observaciones.getText().toString();
-                        String txtPiso = Piso.getText().toString();
+                        Integer txtPiso = Integer.parseInt(Piso.getText().toString());
                         String txtEdificio = Edificio.getText().toString();
-                        //String txtControl = Control.getText().toString();
-                        //String txtFijacion = Fijacion.getText().toString();
+                        String txtControl = Control.getSelectedItem().toString();
+                        String txtFijacion = Fijacion.getSelectedItem().toString();
                         String txtMedidaSugerida = MedidaSugerida.getText().toString();
-                        //String txtCorredera = Corredera.getText().toString();
+                        String txtCorredera = Corredera.getSelectedItem().toString();
                         String[][] aRefD = MainActivity.oDB.lastDispositivo();
                         String[][] aRefP = MainActivity.oDB.lastProyecto();
                         String[][] aRefH = MainActivity.oDB.lastHoteleria();
@@ -71,10 +71,10 @@ public class hoteleria extends AppCompatActivity {
                         int idHoteleria = Integer.parseInt(aRefH[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1,"agente", 1);
-                        /*oDB.insertProyectoHoteleria(txtHabitacion, txtArea, txtAncho, txtAlto, txtHojas,
-                                "IMAGEN", txtObservaciones, txtPiso, txtEdificio, txtControl, txtFijacion,
-                                txtMedidaSugerida, txtCorredera);*/
+                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1,"agente", 1);
+                        oDB.insertProyectoHoteleria(idHoteleria, idDisp, idProyecto, idDisp, txtHabitacion,
+                                txtArea, txtAncho, txtAlto, txtHojas, txtObservaciones, nombreProyecto, "Nombre Proyecto", FechaAlta, idFormato,
+                                txtPiso, txtEdificio, txtControl, txtFijacion, FechaAlta, 1, txtMedidaSugerida, 1, 1, 1, txtCorredera);
                         finish();
                     }
                 }

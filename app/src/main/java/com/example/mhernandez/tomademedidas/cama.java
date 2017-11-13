@@ -21,7 +21,7 @@ public class cama extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.crear_cama);
+        setContentView(R.layout.crear_medida_cama);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
         final int idCliente = oExt.getInt("id_cliente"); Log.v("[AQUIANDO", idCliente+"");
