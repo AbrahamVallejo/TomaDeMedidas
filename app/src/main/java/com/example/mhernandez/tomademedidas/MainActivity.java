@@ -157,17 +157,32 @@ public class MainActivity extends AppCompatActivity
         EditText AccEspecial = (EditText) this.findViewById(R.id.proyecto_accesorios_especiales);
         EditText PedidoSap = (EditText) this.findViewById(R.id.proyecto_pedido_sap);
 
-        String selected = formato.getSelectedItem().toString();
         String nombreProyecto = proyecto.getText().toString();
+            String part1 = nombreProyecto.replace(" ","");
+            if (part1.length() ==0){
+                Validar++;
+            }
         String accesorioMuro = AccMuro.getText().toString();
+            String part2 = accesorioMuro.replace(" ","");
+            if (part2.length() ==0){
+                Validar++;
+            }
         String accesorioTecho = AccTecho.getText().toString();
+            String part3 = accesorioTecho.replace(" ","");
+            if (part3.length() ==0){
+                Validar++;
+            }
         String accesorioEspecial = AccEspecial.getText().toString();
+            String part4 = accesorioEspecial.replace(" ","");
+            if (part4.length() ==0){
+                Validar++;
+            }
         String PS = PedidoSap.getText().toString();
         GregorianCalendar currentTime = new GregorianCalendar();
         String FechaAlta = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
         //FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
 
-
+        String selected = formato.getSelectedItem().toString();
             if (selected.equals("Hoteleria")){
                 rIntent = new Intent(MainActivity.this, hoteleria.class);
                 rIntent.putExtra("idFormato", 2);
