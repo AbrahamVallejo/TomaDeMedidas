@@ -500,20 +500,20 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                                 Integer.parseInt(joFuj.getString("id_user")), joFuj.getString("nombre_proyecto"), joFuj.getString("pedido_sap"),
                                 joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("autorizado")), joFuj.getString("accesorios_techo"),
                                 joFuj.getString("accesorios_muro"),"0", Integer.parseInt(joFuj.getString("id_estatus")),
-                                Integer.parseInt(joFuj.getString("id_usuario_venta")), 0 );
+                                Integer.parseInt(joFuj.getString("id_usuario_venta")),"agente", 0 );
                 }
             }catch (Exception e){
                 exception = e;
             }
         }
-        else if(urls[0] == "addproyecto"){
-            Log.v("[add]","Voy a insertar en WS" );
+        else if(urls[0] == "sincproyecto"){
+            Log.v("[add]","Voy a Sincronizar en WS" );
             try{
                 JSONObject json = new JSONObject();
                 JSONObject proyecto = new JSONObject();
                 try {
-                    proyecto.put("id_proyecto", urls[1] );
-                    proyecto.put("id_disp", urls[2] );
+                    proyecto.put("id_proyecto", urls[2] );
+                    proyecto.put("id_disp", urls[3] );
                     proyecto.put("id_cliente", 4 );
                     proyecto.put("id_cliente_disp", 1 );
                     proyecto.put("id_formato", "1");
@@ -529,21 +529,42 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-                }//Log.v("[add]","1: "+proyecto.toString() );
-                json.put("proyecto",proyecto);
-                Log.v("[add]","2: "+json.toString() );
-                sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto.svc/"+ urls[0],json.toString());
-                Log.v("[add]",sResp);Log.v("[add]","Tam: "+sResp.length());
-                if (sResp.length() == 6){
-                    Log.v("[add]","Retorno nulo" );
-                }else{
-                    String[][] aref = MainActivity.oDB.buscarProyecto(Integer.parseInt(urls[1]), Integer.parseInt(urls[2]) );
-                    MainActivity.oDB.updateProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][2]),
-                            Integer.parseInt(aref[0][3]), Integer.parseInt(aref[0][4]),
-                            Integer.parseInt(aref[0][5]), aref[0][6], aref[0][7], aref[0][8],
-                            Integer.parseInt(aref[0][9]), aref[0][10], aref[0][11],
-                            aref[0][12], Integer.parseInt(aref[0][13]), Integer.parseInt(aref[0][14]), 0);
                 }
+                json.put("proyecto",proyecto);  Log.v("[add]","2: "+json.toString() );
+
+                if (Integer.parseInt(urls[1]) ==1){
+                    sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto.svc/addproyecto",json.toString());
+                    Log.v("[add]","Tam: "+sResp.length() +" Ca: "+sResp);
+                    if (sResp.length() == 6){
+                        Log.v("[add]","Retorno nulo" );
+                    }else{
+                        String[][] aref = MainActivity.oDB.buscarProyecto(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]) );
+                        MainActivity.oDB.updateProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][2]),
+                                Integer.parseInt(aref[0][3]), Integer.parseInt(aref[0][4]), Integer.parseInt(aref[0][5]), aref[0][6], aref[0][7], aref[0][8],
+                                Integer.parseInt(aref[0][9]), aref[0][10], aref[0][11], aref[0][12], Integer.parseInt(aref[0][13]), Integer.parseInt(aref[0][14]), 0);
+                    }
+                }else if (Integer.parseInt(urls[1]) == 2){
+                    sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto.svc/modifyproyecto",json.toString());
+                    Log.v("[add]","Tam: "+sResp.length() +" Ca: "+sResp);
+                    if (sResp.length() == 6){
+                        Log.v("[add]","Retorno nulo" );
+                    }else{
+                        String[][] aref = MainActivity.oDB.buscarProyecto(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]) );
+                        MainActivity.oDB.updateProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][2]),
+                                Integer.parseInt(aref[0][3]), Integer.parseInt(aref[0][4]), Integer.parseInt(aref[0][5]), aref[0][6], aref[0][7], aref[0][8],
+                                Integer.parseInt(aref[0][9]), aref[0][10], aref[0][11], aref[0][12], Integer.parseInt(aref[0][13]), Integer.parseInt(aref[0][14]), 0);
+                    }
+                }
+                else if (Integer.parseInt(urls[1]) == 3){
+                    sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto.svc/deleteproyecto",json.toString());
+                    Log.v("[add]","Tam: "+sResp.length() +" Ca: "+sResp);
+                    if (sResp.length() == 6){
+                        Log.v("[add]","Retorno nulo" );
+                    }else {
+                        MainActivity.oDB.deleteProyecto( urls[2], urls[3] );
+                    }
+                }
+
             }catch (Exception e){
                 exception = e;
             }

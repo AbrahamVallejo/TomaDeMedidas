@@ -48,7 +48,7 @@ public class especial extends AppCompatActivity {
                         int idEspecial = Integer.parseInt(aRefE[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, 1);
+                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1,"Agente", 1);
                         //oDB.insertProyectoEspecial(txtAncho, txtAlto, txtGrosor, "IMAGEN", OBS);
                         finish();
                     }
