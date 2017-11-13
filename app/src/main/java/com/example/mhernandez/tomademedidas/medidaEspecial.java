@@ -28,6 +28,7 @@ public class medidaEspecial extends AppCompatActivity {
         final Bundle oExt = this.getIntent().getExtras();
         final int idProyecto = oExt.getInt("idProyecto");
         final int idProyectoDisp = oExt.getInt("idProyectoDisp");
+        final String Nombre = oExt.getString("Nombre");
         final EditText Ancho = (EditText) this.findViewById(R.id.txtAncho);
         final EditText Alto = (EditText) this.findViewById(R.id.txtAlto);
         final EditText Grosor = (EditText) this.findViewById(R.id.txtGrosor);
@@ -46,8 +47,8 @@ public class medidaEspecial extends AppCompatActivity {
                 String[][] aRefE = MainActivity.oDB.lastEspecial();
                 int idEspecial = Integer.parseInt(aRefE[(0)][0]) + 1;
                 int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                oDB.insertProyectoEspecial(idEspecial, idDisp, idProyecto, idProyectoDisp, "Nombre Proyecto", txtAlto, txtAncho, txtGrosor,
-                        OBS, "IMAGEN", FechaAlta, 5, 1, 1, "Fecha Alta", 1, 1, 1, "Fecha Auto", 1, "Fecha Pago", 1);
+                oDB.insertProyectoEspecial(idEspecial, idDisp, idProyecto, idDisp, Nombre, txtAlto, txtAncho, txtGrosor,
+                        OBS, "IMAGEN", FechaAlta, 5, FechaAlta, 1, 1, 1, 1);
                 finish();
             }
         });

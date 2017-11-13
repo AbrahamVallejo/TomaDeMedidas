@@ -33,6 +33,7 @@ public class medidaHoteleria extends AppCompatActivity {
         spinnerArea(); spinnerControl(); spinnerFijacion(); spinnerCorredera();
         final int idProyecto = oExt.getInt("idProyecto");
         final int idProyectoDisp = oExt.getInt("idProyectoDisp");
+        final String Nombre = oExt.getString("Nombre");
         final EditText Edificio = (EditText) this.findViewById(R.id.txtEdificio);
         final EditText Piso = (EditText) this.findViewById(R.id.txtPiso);
         final EditText Habitacion = (EditText) this.findViewById(R.id.txtHabitacion);
@@ -75,11 +76,9 @@ public class medidaHoteleria extends AppCompatActivity {
                 String[][] aRefH = MainActivity.oDB.lastHoteleria();
                 int idHoteleria = Integer.parseInt(aRefH[(0)][0]) + 1;
                 int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                oDB.insertProyectoHoteleria(idHoteleria, idDisp, idProyecto, idDisp, "AccMuro", "AccTecho", txtHabitacion,
-                        txtArea, txtAncho, txtAlto, txtHojas, OBS, "NombreProyecto", "Nombre Proyecto", FechaAlta, 2,
-                        txtPiso, txtEdificio, txtControl, txtFijacion, "Fecha Alta", "Usuario Alto", "Usuario Mod", 1, txtMedidaSugerida, 1,
-                        "User Auto", "Fecha Auto", 1, "User Pagado", txtCorredera);
-                finish();
+                oDB.insertProyectoHoteleria(idHoteleria, idDisp, idProyecto, idDisp, txtHabitacion,
+                        txtArea, txtAncho, txtAlto, txtHojas, OBS, Nombre, "Nombre Proyecto", FechaAlta, 2,
+                        txtPiso, txtEdificio, txtControl, txtFijacion, FechaAlta, 1, txtMedidaSugerida, 1, 1, 1, txtCorredera);                finish();
             }
         });
     }

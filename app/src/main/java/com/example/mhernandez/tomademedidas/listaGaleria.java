@@ -59,12 +59,17 @@ public class listaGaleria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(listaGaleria.this, medidaGaleria.class);
-                        intent.putExtra("idProyecto", aDat[2]);
-                        intent.putExtra("idProyectoDisp", aDat[3]);
-                        startActivity(intent);
-                      
+                        if (Integer.parseInt(aDat[19]) !=1){
+                            Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            Intent intent = new Intent(listaGaleria.this, medidaGaleria.class);
+                            intent.putExtra("idProyecto", aDat[2]);
+                            intent.putExtra("idProyectoDisp", aDat[3]);
+                            intent.putExtra("Nombre", aDat[13]);
+                            startActivity(intent);
+                        }
                         customDialog.dismiss();
+
                     }
                 });
 

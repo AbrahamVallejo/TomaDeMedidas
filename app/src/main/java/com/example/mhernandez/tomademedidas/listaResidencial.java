@@ -61,10 +61,15 @@ public class listaResidencial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent rIntent = new Intent(listaResidencial.this, medidaResidencial.class);
-                        rIntent.putExtra("idProyecto", aDat[2]);
-                        rIntent.putExtra("idProyectoDisp", aDat[3]);
-                        startActivity(rIntent);
+                        if (Integer.parseInt(aDat[27]) !=1){
+                            Toast.makeText(listaResidencial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            Intent rIntent = new Intent(listaResidencial.this, medidaResidencial.class);
+                            rIntent.putExtra("idProyecto", aDat[2]);
+                            rIntent.putExtra("idProyectoDisp", aDat[3]);
+                            rIntent.putExtra("Nombre", aDat[21]);
+                            startActivity(rIntent);
+                        }
                         customDialog.dismiss();
                     }
                 });

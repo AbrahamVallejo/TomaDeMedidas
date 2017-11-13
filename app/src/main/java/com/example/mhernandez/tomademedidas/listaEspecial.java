@@ -55,10 +55,15 @@ public class listaEspecial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent rIntent = new Intent(listaEspecial.this, medidaEspecial.class);
-                        rIntent.putExtra("idProyecto", aDat[2]);
-                        rIntent.putExtra("idProyectoDisp", aDat[3]);
-                        startActivity(rIntent);
+                        if (Integer.parseInt(aDat[15]) != 1){
+                            Toast.makeText(listaEspecial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            Intent rIntent = new Intent(listaEspecial.this, medidaEspecial.class);
+                            rIntent.putExtra("idProyecto", aDat[2]);
+                            rIntent.putExtra("idProyectoDisp", aDat[3]);
+                            rIntent.putExtra("Nombre", aDat[4]);
+                            startActivity(rIntent);
+                        }
                         customDialog.dismiss();
                     }
                 });

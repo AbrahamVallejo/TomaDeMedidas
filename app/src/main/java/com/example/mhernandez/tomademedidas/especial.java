@@ -50,7 +50,7 @@ public class especial extends AppCompatActivity {
                         oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, 1);
                         oDB.insertProyectoEspecial(idEspecial, idDisp, idProyecto, idDisp, nombreProyecto, txtAlto, txtAncho, txtGrosor,
-                        OBS, "IMAGEN", FechaAlta, idFormato, 1, 1, FechaAlta, 1, 1, 1, "FECHA AUTO", 1, "FECHA PAGO", 1);
+                        OBS, "IMAGEN", FechaAlta, idFormato, FechaAlta, 1, 1, 1, 1);
                         finish();
                     }
                 }

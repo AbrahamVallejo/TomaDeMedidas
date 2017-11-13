@@ -66,8 +66,8 @@ public class galeria extends AppCompatActivity {
                         oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, 1);
                         oDB.insertProyectoGaleria(idGaleria, idDisp, idProyecto, idDisp, FechaAlta, numeroHabitaciones, txtArea,
-                                txtAncho, txtAlto, txtCopete, txtProyecciones, txtFijacion, txtComentarios, "Nombre Proyecto", "IMAGEN",
-                                idFormato, "Usuario Alta", "Usuario Mod", "Fecha Alta", 1, 1, "User Auto", "Fecha Auto", "Pagado", "Fecha Pago", "User Pago");
+                                txtAncho, txtAlto, txtCopete, txtProyecciones, txtFijacion, txtComentarios, nombreProyecto, "IMAGEN",
+                                idFormato, FechaAlta, 1, 1, 1, 1);
                         finish();
                     }
                 }

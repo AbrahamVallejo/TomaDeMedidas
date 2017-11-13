@@ -56,10 +56,15 @@ public class listaCama extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent rIntent = new Intent(listaCama.this, medidaCama.class);
-                        rIntent.putExtra("idProyecto", aDat[2]);
-                        rIntent.putExtra("idProyectoDisp", aDat[3]);
-                        startActivity(rIntent);
+                        if (Integer.parseInt(aDat[20]) !=1){
+                            Toast.makeText(listaCama.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            Intent rIntent = new Intent(listaCama.this, medidaCama.class);
+                            rIntent.putExtra("idProyecto", aDat[2]);
+                            rIntent.putExtra("idProyectoDisp", aDat[3]);
+                            rIntent.putExtra("idNombre", aDat[12]);
+                            startActivity(rIntent);
+                        }
                         customDialog.dismiss();
                     }
                 });
@@ -75,21 +80,24 @@ public class listaCama extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent rIntent = new Intent(listaCama.this, modificarCama.class);
-                        rIntent.putExtra("idCama", aDat[0]);
-                        rIntent.putExtra("idDisp", aDat[1]);
-                        rIntent.putExtra("idProyecto", aDat[2]);
-                        rIntent.putExtra("idProyectoDisp", aDat[3]);
-                        rIntent.putExtra("NHabitaciones", aDat[4]);
-                        rIntent.putExtra("A", aDat[5]);
-                        rIntent.putExtra("B", aDat[6]);
-                        rIntent.putExtra("C", aDat[7]);
-                        rIntent.putExtra("D", aDat[8]);
-                        rIntent.putExtra("E", aDat[9]);
-                        rIntent.putExtra("F", aDat[10]);
-                        rIntent.putExtra("G", aDat[15]);
-                        rIntent.putExtra("Observaciones", aDat[16]);
-                        startActivity(rIntent);
+                        if (Integer.parseInt(aDat[20]) !=1){
+                            Toast.makeText(listaCama.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            Intent rIntent = new Intent(listaCama.this, modificarCama.class);
+                            rIntent.putExtra("idCama", aDat[0]);
+                            rIntent.putExtra("idDisp", aDat[1]);
+                            rIntent.putExtra("idProyecto", aDat[2]);
+                            rIntent.putExtra("idProyectoDisp", aDat[3]);
+                            rIntent.putExtra("NHabitaciones", aDat[4]);
+                            rIntent.putExtra("A", aDat[5]);
+                            rIntent.putExtra("B", aDat[6]);
+                            rIntent.putExtra("C", aDat[7]);
+                            rIntent.putExtra("D", aDat[8]);
+                            rIntent.putExtra("E", aDat[9]);
+                            rIntent.putExtra("F", aDat[10]);
+                            rIntent.putExtra("G", aDat[15]);
+                            rIntent.putExtra("Observaciones", aDat[16]);
+                            startActivity(rIntent);}
                         customDialog.dismiss();
                     }
                 });

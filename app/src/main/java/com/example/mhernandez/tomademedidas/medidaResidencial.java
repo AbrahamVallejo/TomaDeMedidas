@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by mhernandez on 06/11/2017.
@@ -16,6 +20,7 @@ import android.widget.Spinner;
 
 public class medidaResidencial extends AppCompatActivity {
 
+    private Spinner spUbicacionR, spFijacionR, spControlR, spCorrederaR, spAgptoR;
     public static DBProvider oDB;
     public medidaResidencial() {oDB = new DBProvider(this);}
 
@@ -24,9 +29,11 @@ public class medidaResidencial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crear_medida_residencial);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        spinnerUbicacion(); spinnerControl(); spinnerFijacion(); spinnerCorredera(); spinnerAgpto();
         final Bundle oExt = getIntent().getExtras();
         final int idProyecto = oExt.getInt("idProyecto");
         final int idProyectoDisp = oExt.getInt("idProyectoDisp");
+        final String Nombre = oExt.getString("Nombre");
         final Spinner Ubicacion = (Spinner) this.findViewById(R.id.spinner_ubicacion);
         final EditText Piso = (EditText) this.findViewById(R.id.txtPiso);
         final EditText A = (EditText) this.findViewById(R.id.txtA);
@@ -57,6 +64,8 @@ public class medidaResidencial extends AppCompatActivity {
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Date currentTime = Calendar.getInstance().getTime();
+                String FechaAlta = currentTime.toString();
                 String txtUbicacion = Ubicacion.getSelectedItem().toString();
                 String txtPiso = Piso.getText().toString();
                 Double txtA = Double.parseDouble(A.getText().toString());
@@ -75,7 +84,14 @@ public class medidaResidencial extends AppCompatActivity {
                 String txtCorredera = Corredera.getSelectedItem().toString();
                 String txtMedidasSugerida = MedidaSugerida.getText().toString();
                 String txtObservaciones = Observaciones.getText().toString();
-//                oDB.insertProyectoResidencial();
+                String[][] aRefD = MainActivity.oDB.lastDispositivo();
+                String[][] aRefR = MainActivity.oDB.lastResidencial();
+                int idResidencial = Integer.parseInt(aRefR[(0)][0]) + 1;
+                int idDisp = Integer.parseInt(aRefD[(0)][0]);
+                oDB.insertProyectoResidencial(idResidencial, idDisp, idProyecto, idDisp, txtUbicacion, txtA, txtB, txtC, txtD,
+                        txtE, txtF, txtG, txtH, txtProfMarco, txtProfJaladera, txtControl, txtAgpto, txtMedidasSugerida, txtObservaciones,
+                        "IMAGEN", Nombre, FechaAlta, 1, FechaAlta, 1, txtFijacion, txtPiso, 1,
+                        1, 1, txtCorredera);
                 finish();
             }
         });
@@ -90,4 +106,65 @@ public class medidaResidencial extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void spinnerUbicacion(){
+        String[][] aRes= residencial.oDB.ObtenerUbicacion("0",1);
+        spUbicacionR= (Spinner)( findViewById(R.id.spinner_ubicacionR));
+        final String[] aData = new String[aRes.length+1];
+        aData[0]="Seleccione una ubicación...";
+        for(int i = 0; i < aRes.length; i++){
+            aData[i+1] = (aRes[i][2]);
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
+        spUbicacionR.setAdapter(adapter);
+    }
+
+    public void spinnerControl(){
+        String[][] aRes= residencial.oDB.ObtenerControl("0",1);
+        spControlR= (Spinner)( findViewById(R.id.spinner_controlR));
+        final String[] aData = new String[aRes.length+1];
+        aData[0]="Seleccione un valor...";
+        for(int i = 0; i < aRes.length; i++){
+            aData[i+1] = (aRes[i][1]);
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
+        spControlR.setAdapter(adapter);
+    }
+
+    public void spinnerFijacion(){
+        String[][] aRes= residencial.oDB.ObtenerFijacion("0",1);
+        spFijacionR= (Spinner)( findViewById(R.id.spinner_fijacionR));
+        final String[] aData = new String[aRes.length+1];
+        aData[0]="Seleccione un lado...";
+        for(int i = 0; i < aRes.length; i++){
+            aData[i+1] = (aRes[i][1]);
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
+        spFijacionR.setAdapter(adapter);
+    }
+
+    public void spinnerCorredera(){
+        String[][] aRes= residencial.oDB.ObtenerCorredera("0",1);
+        spCorrederaR= (Spinner)( findViewById(R.id.spinner_correderaR));
+        final String[] aData = new String[aRes.length+1];
+        aData[0]="Seleccione uno...";
+        for(int i = 0; i < aRes.length; i++){
+            aData[i+1] = (aRes[i][1]);  //aData[i+1] = ("Valor " +i);
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
+        spCorrederaR.setAdapter(adapter);
+    }
+
+    public void spinnerAgpto(){
+        String[][] aRes= residencial.oDB.ObtenerControl("0",1);
+        spAgptoR= (Spinner)( findViewById(R.id.spinner_agptoR));
+        final String[] aData = new String[aRes.length+1];
+        aData[0]="Seleccione un lado...";
+        for(int i = 0; i < aRes.length; i++){
+            aData[i+1] = (aRes[i][1]);
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
+        spAgptoR.setAdapter(adapter);
+    }
+
 }
