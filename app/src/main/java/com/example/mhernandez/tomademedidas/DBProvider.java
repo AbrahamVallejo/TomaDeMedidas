@@ -584,14 +584,14 @@ public class DBProvider {
         Log.v("[obtener", "Voy de regreso");
         return aData;
     }
-  
-    public void insertProyectoResidencial(String id, String idDisp, String idPro,String idProDisp,String ubicacion, String A, String B, String C, String D,
-                                          String E, String F, String G, String H, String profMarco, String profJaladera,
+
+    public void insertProyectoResidencial(int idResidencial, int idDisp, int idProyecto, int idProyectoDisp, String ubicacion, double A, double B, double C, double D,
+                                          double E, double F, double G, double H, double profMarco, double profJaladera,
                                           String control, String AGPTO, String medidaSujerida, String observaciones, String AIMG, String instalador,
-                                          String nombre, String fecha, String formato, String userAl, String userMod, String fechaAl, String estatus,
+                                          String nombre, String fecha, int formato, String userAl, String userMod, String fechaAl, int estatus,
                                           String fijacion, String piso, String autorizado, String userAuto, String fechaAuto, String pagado, String fechaPago,
                                           String userPago, String corredera) {
-        Object[] aData = {id, idDisp, idPro, idProDisp, ubicacion, A, B, C, D, E, F, G, H, profMarco, profJaladera,
+        Object[] aData = {idResidencial, idDisp, idProyecto, idProyectoDisp, ubicacion, A, B, C, D, E, F, G, H, profMarco, profJaladera,
                 control, AGPTO, medidaSujerida, observaciones, AIMG, instalador, nombre, fecha, formato, userAl, userMod, fechaAl, estatus, fijacion,
                 piso, autorizado, userAuto, fechaAuto, pagado, fechaPago, userPago,corredera};
 

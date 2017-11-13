@@ -22,7 +22,7 @@ public class residencial extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.crear_residencial);
+        setContentView(R.layout.crear_medida_residencial);
         //Llenar los spinner
         spinnerUbicacion(); spinnerControl(); spinnerFijacion(); spinnerCorredera(); spinnerAgpto();
 
@@ -35,7 +35,7 @@ public class residencial extends AppCompatActivity {
         final String accesoriosEspecial = oExt.getString("accesoriosEspecial");
         final String PedidoSap = oExt.getString("PedidoSap");
         final String FechaAlta = oExt.getString("FechaAlta");
-        //final EditText Ubicacion = (EditText) this.findViewById(R.id.txtUbicacion);
+        final Spinner Ubicacion = (Spinner) this.findViewById(R.id.spinner_ubicacion);
         final EditText A = (EditText) this.findViewById(R.id.txtA);
         final EditText B = (EditText) this.findViewById(R.id.txtB);
         final EditText C = (EditText) this.findViewById(R.id.txtC);
@@ -46,34 +46,36 @@ public class residencial extends AppCompatActivity {
         final EditText H = (EditText) this.findViewById(R.id.txtH);
         final EditText ProfMarco = (EditText) this.findViewById(R.id.txtProfMarco);
         final EditText ProfJaladera = (EditText) this.findViewById(R.id.txtProfJaladera);
-        //final EditText Control = (EditText) this.findViewById(R.id.txtControl);
+        final Spinner Control = (Spinner) this.findViewById(R.id.spinner_control);
         final EditText MedidaSugerida = (EditText) this.findViewById(R.id.txtMedidaSugerida);
         final EditText Observaciones = (EditText) this.findViewById(R.id.txtObservaciones);
-        //final EditText Fijacion = (EditText) this.findViewById(R.id.txtFijacion);
+        final Spinner Fijacion = (Spinner) this.findViewById(R.id.spinner_fijacion);
         final EditText Piso = (EditText) this.findViewById(R.id.txtPiso);
-        //final EditText Corredera = (EditText) this.findViewById(R.id.txtCorredera);
+        final Spinner Corredera = (Spinner) this.findViewById(R.id.spinner_corredera);
+        final Spinner Agpto = (Spinner) this.findViewById(R.id.spinner_agpto);
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //String txtUbicacion = Ubicacion.getText().toString();
-                        String txtA = A.getText().toString();
-                        String txtB = B.getText().toString();
-                        String txtC = C.getText().toString();
-                        String txtD = D.getText().toString();
-                        String txtE = E.getText().toString();
-                        String txtF = F.getText().toString();
-                        String txtG = G.getText().toString();
-                        String txtH = H.getText().toString();
-                        String txtProfMarco = ProfMarco.getText().toString();
-                        String txtProfJaladera = ProfJaladera.getText().toString();
-                        //String txtControl = Control.getText().toString();
+                        String txtUbicacion = Ubicacion.getSelectedItem().toString();
+                        Double txtA = Double.parseDouble(A.getText().toString());
+                        Double txtB = Double.parseDouble(B.getText().toString());
+                        Double txtC = Double.parseDouble(C.getText().toString());
+                        Double txtD = Double.parseDouble(D.getText().toString());
+                        Double txtE = Double.parseDouble(E.getText().toString());
+                        Double txtF = Double.parseDouble(F.getText().toString());
+                        Double txtG = Double.parseDouble(G.getText().toString());
+                        Double txtH = Double.parseDouble(H.getText().toString());
+                        Double txtProfMarco = Double.parseDouble(ProfMarco.getText().toString());
+                        Double txtProfJaladera = Double.parseDouble(ProfJaladera.getText().toString());
+                        String txtControl = Control.getSelectedItem().toString();
                         String txtMedidaSugeria = MedidaSugerida.getText().toString();
                         String txtObservaciones = Observaciones.getText().toString();
-                        //String txtFijacion = Fijacion.getText().toString();
+                        String txtFijacion = Fijacion.getSelectedItem().toString();
                         String txtPiso = Piso.getText().toString();
-                        //String txtCorredera = Corredera.getText().toString();
+                        String txtCorredera = Corredera.getSelectedItem().toString();
+                        String txtAgpto = Agpto.getSelectedItem().toString();
                         String[][] aRefD = MainActivity.oDB.lastDispositivo();
                         String[][] aRefP = MainActivity.oDB.lastProyecto();
                         String[][] aRefR = MainActivity.oDB.lastResidencial();
@@ -82,7 +84,10 @@ public class residencial extends AppCompatActivity {
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, 3, 4, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, 0);
-                        //oDB.insertProyectoResidencial(txtUbicacion, txtA, txtB, txtC, txtD, txtE, txtF, txtG, txtH, txtProfMarco, txtProfJaladera, txtControl, txtMedidaSugeria, "IMAGEN", txtObservaciones, txtFijacion, txtPiso, txtCorredera);
+                        oDB.insertProyectoResidencial(idResidencial, idDisp, idProyecto, idDisp, txtUbicacion, txtA, txtB, txtC, txtD,
+                                txtE, txtF, txtG, txtH, txtProfMarco, txtProfJaladera, txtControl, txtAgpto, txtMedidaSugeria, txtObservaciones,
+                                "IMAGEN", "Instalador", "Nombre", FechaAlta, idFormato, "userAl", "userMod", "FechaAlta", 1, txtFijacion, txtPiso, "Autorizado",
+                                "UserAuto", "fechaAuto", "pagado", "fechaPago", "UserPago", txtCorredera);
                         finish();
                     }
                 }
