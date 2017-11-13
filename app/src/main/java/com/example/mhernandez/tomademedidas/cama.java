@@ -24,7 +24,7 @@ public class cama extends AppCompatActivity{
         setContentView(R.layout.crear_medida_cama);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
-        final int idCliente = oExt.getInt("id_cliente"); Log.v("[AQUIANDO", idCliente+"");
+        final int idCliente = oExt.getInt("id_cliente");
         final int idclienteDisp = oExt.getInt("id_cliente_disp");
         final String Agente = oExt.getString("Agente");
         final int idFormato = oExt.getInt("idFormato");

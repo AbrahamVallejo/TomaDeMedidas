@@ -124,22 +124,31 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onSaveClickProyectos(View view){
-        Spinner cliente = (Spinner) this.findViewById(R.id.spinner_cliente);
-        String[] Clientes = new String[2];
-        if(cliente.getSelectedItemPosition() != 0){
-            String[] partsC = cliente.getSelectedItem().toString().split("-");
-            partsC[0] = partsC[0].replace(".","-");
-            Clientes = partsC[0].split("-");
-            Log.v("[spin]", Clientes[0] +" "+Clientes[1] );
-        }else {
-            Clientes[0] = "0";
-        }
-
-
+        int Validar=0;  Intent rIntent = new Intent();
+        Spinner cliente = (Spinner) this.findViewById(R.id.spinner_cliente);    String[] Clientes = new String[2];
+            if(cliente.getSelectedItemPosition() != 0){
+                String[] partsC = cliente.getSelectedItem().toString().split("-");
+                partsC[0] = partsC[0].replace(".","-");
+                Clientes = partsC[0].split("-");
+                Log.v("[spin]", Clientes[0] +" "+Clientes[1] );
+                rIntent.putExtra("id_cliente", Integer.parseInt(Clientes[0]) );
+                rIntent.putExtra("id_cliente_disp", Integer.valueOf(Clientes[1].trim()) );
+            }else {
+                Validar++;
+            }
         Spinner formato = (Spinner) this.findViewById(R.id.spinner_formato);
-        Spinner agente = (Spinner) this.findViewById(R.id.spinner_agente);
-        String[] partsA = agente.getSelectedItem().toString().split("-");
-        Log.v("[spin]", partsA[1] );
+            if (formato.getSelectedItemPosition()==0){
+                Validar++;
+            }
+        Spinner agente = (Spinner) this.findViewById(R.id.spinner_agente);      String[] partsA = new String[2];
+            if(agente.getSelectedItemPosition() != 0){
+                partsA = agente.getSelectedItem().toString().split("-");
+                Log.v("[spin]", partsA[1] );
+                rIntent.putExtra("Agente", partsA[1] );
+            }else {
+                Validar++;
+            }
+
 
 
         EditText proyecto = (EditText) this.findViewById(R.id.proyecto_nombre_proyecto);
@@ -157,36 +166,36 @@ public class MainActivity extends AppCompatActivity
         GregorianCalendar currentTime = new GregorianCalendar();
         String FechaAlta = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
         //FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
-        Log.v("[AQUIANDO", FechaAlta);
 
-        Intent rIntent = new Intent();
-        if (selected.equals("Hoteleria")){
-            rIntent = new Intent(MainActivity.this, hoteleria.class);
-            rIntent.putExtra("idFormato", 2);
-        }else if (selected.equals("Cama")){
-            rIntent = new Intent(MainActivity.this, cama.class);
-            rIntent.putExtra("idFormato", 4);
-        }else if (selected.equals("Residencial")){
-            rIntent = new Intent(MainActivity.this, residencial.class);
-            rIntent.putExtra("idFormato", 1);
-        }else if (selected.equals("Galeria")){
-            rIntent = new Intent(MainActivity.this, galeria.class);
-            rIntent.putExtra("idFormato", 3);
-        }else if(selected.equals("Especial")){
-            rIntent = new Intent(MainActivity.this, especial.class);
-            rIntent.putExtra("idFormato", 5);
-        }
 
-        rIntent.putExtra("id_cliente", Integer.parseInt(Clientes[0]) );
-        rIntent.putExtra("id_cliente_disp", Integer.valueOf(Clientes[1].trim()) );
-        rIntent.putExtra("Agente", partsA[1] );
+            if (selected.equals("Hoteleria")){
+                rIntent = new Intent(MainActivity.this, hoteleria.class);
+                rIntent.putExtra("idFormato", 2);
+            }else if (selected.equals("Cama")){
+                rIntent = new Intent(MainActivity.this, cama.class);
+                rIntent.putExtra("idFormato", 4);
+            }else if (selected.equals("Residencial")){
+                rIntent = new Intent(MainActivity.this, residencial.class);
+                rIntent.putExtra("idFormato", 1);
+            }else if (selected.equals("Galeria")){
+                rIntent = new Intent(MainActivity.this, galeria.class);
+                rIntent.putExtra("idFormato", 3);
+            }else if(selected.equals("Especial")){
+                rIntent = new Intent(MainActivity.this, especial.class);
+                rIntent.putExtra("idFormato", 5);
+            }
         rIntent.putExtra("nombreProyecto", nombreProyecto);
         rIntent.putExtra("accesoriosMuro", accesorioMuro);
         rIntent.putExtra("accesoriosTecho", accesorioTecho);
         rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
         rIntent.putExtra("FechaAlta", FechaAlta);
         rIntent.putExtra("PedidoSap", PS);
-        startActivity(rIntent);
+        if (Validar ==0){
+            startActivity(rIntent);
+        }else {
+            Toast.makeText(this, "Llene Todos Los Campos", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
