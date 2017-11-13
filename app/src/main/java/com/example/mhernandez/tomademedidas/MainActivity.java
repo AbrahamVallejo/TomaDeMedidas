@@ -160,14 +160,29 @@ public class MainActivity extends AppCompatActivity
         String PS = PedidoSap.getText().toString();
         GregorianCalendar currentTime = new GregorianCalendar();
         String FechaAlta = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
-        FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
-
-
-
+        //FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
+        Log.v("[AQUIANDO", FechaAlta);
 
         Intent rIntent = new Intent();
-        rIntent.putExtra("id_cliente", Clientes[0] );
-        rIntent.putExtra("id_cliente_disp", Clientes[1] );
+        if (selected.equals("Hoteleria")){
+            rIntent = new Intent(MainActivity.this, hoteleria.class);
+            rIntent.putExtra("idFormato", 2);
+        }else if (selected.equals("Cama")){
+            rIntent = new Intent(MainActivity.this, cama.class);
+            rIntent.putExtra("idFormato", 4);
+        }else if (selected.equals("Residencial")){
+            rIntent = new Intent(MainActivity.this, residencial.class);
+            rIntent.putExtra("idFormato", 1);
+        }else if (selected.equals("Galeria")){
+            rIntent = new Intent(MainActivity.this, galeria.class);
+            rIntent.putExtra("idFormato", 3);
+        }else if(selected.equals("Especial")){
+            rIntent = new Intent(MainActivity.this, especial.class);
+            rIntent.putExtra("idFormato", 5);
+        }
+
+        rIntent.putExtra("id_cliente", Integer.parseInt(Clientes[0]) );
+        rIntent.putExtra("id_cliente_disp", Integer.valueOf(Clientes[1].trim()) );
         rIntent.putExtra("Agente", partsA[1] );
         rIntent.putExtra("nombreProyecto", nombreProyecto);
         rIntent.putExtra("accesoriosMuro", accesorioMuro);
@@ -175,29 +190,7 @@ public class MainActivity extends AppCompatActivity
         rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
         rIntent.putExtra("FechaAlta", FechaAlta);
         rIntent.putExtra("PedidoSap", PS);
-
-        if (selected.equals("Hoteleria")){
-            rIntent = new Intent(MainActivity.this, hoteleria.class);
-            rIntent.putExtra("idFormato", 2);
-            startActivity(rIntent);
-        }else if (selected.equals("Cama")){
-            rIntent = new Intent(MainActivity.this, cama.class);
-            rIntent.putExtra("idFormato", 4);
-            startActivity(rIntent);
-        }else if (selected.equals("Residencial")){
-            rIntent = new Intent(MainActivity.this, residencial.class);
-            rIntent.putExtra("idFormato", 1);
-            startActivity(rIntent);
-        }else if (selected.equals("Galeria")){
-            rIntent = new Intent(MainActivity.this, galeria.class);
-            rIntent.putExtra("idFormato", 3);
-            startActivity(rIntent);
-        }else if(selected.equals("Especial")){
-            rIntent = new Intent(MainActivity.this, especial.class);
-            rIntent.putExtra("idFormato", 5);
-            startActivity(rIntent);
-        }
-
+        startActivity(rIntent);
     }
 
     @Override
@@ -740,7 +733,7 @@ public class MainActivity extends AppCompatActivity
                         Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADDPROYECTO!", Toast.LENGTH_LONG).show();
                     }
                 });
-                oNS.execute("sincproyecto", "1",aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][3], aux1[i][4]);
+                oNS.execute("sincproyecto", "1", aux1[i][0], aux1[i][1] );
             }
             else if (Integer.valueOf(aux1[i][23]) == 2) {
                 Log.v("[add]","Entre al if Modificar" );
@@ -754,7 +747,7 @@ public class MainActivity extends AppCompatActivity
                         Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADDPROYECTO!", Toast.LENGTH_LONG).show();
                     }
                 });
-                oNS.execute("sincproyecto", "2",aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][3], aux1[i][4]);
+                oNS.execute("sincproyecto", "2", aux1[i][0], aux1[i][1] );
             }
             else if (Integer.valueOf(aux1[i][23]) == 3) {
                 Log.v("[add]","Entre al if Modificar" );
@@ -768,7 +761,7 @@ public class MainActivity extends AppCompatActivity
                         Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADDPROYECTO!", Toast.LENGTH_LONG).show();
                     }
                 });
-                oNS.execute("sincproyecto", "3",aux1[i][0], aux1[i][1], aux1[i][2], aux1[i][3], aux1[i][4]);
+                oNS.execute("sincproyecto", "3", aux1[i][0], aux1[i][1] );
             }
         }
         Toast.makeText(this, "Proyectos Sincronizados", Toast.LENGTH_SHORT).show();

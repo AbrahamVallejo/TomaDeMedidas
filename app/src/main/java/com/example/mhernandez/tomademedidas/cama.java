@@ -3,6 +3,7 @@ package com.example.mhernandez.tomademedidas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,17 +24,16 @@ public class cama extends AppCompatActivity{
         setContentView(R.layout.crear_cama);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
-        final int idCliente = oExt.getInt("id_cliente");
+        final int idCliente = oExt.getInt("id_cliente"); Log.v("[AQUIANDO", idCliente+"");
         final int idclienteDisp = oExt.getInt("id_cliente_disp");
         final String Agente = oExt.getString("Agente");
-
         final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
         final String accesoriosMuro = oExt.getString("accesoriosMuro");
         final String accesoriosTecho = oExt.getString("accesoriosTecho");
         final String accesoriosEspecial = oExt.getString("accesoriosEspecial");
         final String PedidoSap = oExt.getString("PedidoSap");
-        final String FechaAlta = oExt.getString("FechaAlta");
+        final String FechaAlta = oExt.getString("FechaAlta"); Log.v("[AQUIANDO", FechaAlta);
         final EditText NHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
         final EditText A = (EditText) this.findViewById(R.id.txt_A);
         final EditText B = (EditText) this.findViewById(R.id.txt_B);

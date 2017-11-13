@@ -509,22 +509,24 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         else if(urls[0] == "sincproyecto"){
             Log.v("[add]","Voy a Sincronizar en WS" );
             try{
+                String[][] aref = MainActivity.oDB.buscarProyecto(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]) );
                 JSONObject json = new JSONObject();
                 JSONObject proyecto = new JSONObject();
                 try {
-                    proyecto.put("id_proyecto", urls[2] );
-                    proyecto.put("id_disp", urls[3] );
-                    proyecto.put("id_cliente", 4 );
-                    proyecto.put("id_cliente_disp", 1 );
-                    proyecto.put("id_formato", "1");
+                    proyecto.put("id_proyecto", aref[0][0] );
+                    proyecto.put("id_disp", aref[0][1] );
+                    proyecto.put("id_cliente", aref[0][2] );
+                    proyecto.put("id_cliente_disp", aref[0][3] );
+                    proyecto.put("id_formato", aref[0][4]);
                     proyecto.put("id_user", "5");
                     proyecto.put("nombre_proyecto", "PruebaDeProyecto");
                     proyecto.put("pedido_sap", "S/P");
                     proyecto.put("fecha", "/Date(1506871200000)/");
                     proyecto.put("autorizado", "0");
-                    proyecto.put("accesorios_techo", "Cosas Techadas");
-                    proyecto.put("accesorios_muro", "Cosas Murosadas");
-                    proyecto.put("id_estatus", "2");
+                    proyecto.put("accesorios_techo", aref[0][19] );
+                    proyecto.put("accesorios_muro", aref[0][20] );
+                    proyecto.put("accesorios_especiales", aref[0][21] );
+                    proyecto.put("id_estatus", aref[0][10] );
                     proyecto.put("id_usuario_venta", "10");
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
@@ -538,7 +540,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     if (sResp.length() == 6){
                         Log.v("[add]","Retorno nulo" );
                     }else{
-                        String[][] aref = MainActivity.oDB.buscarProyecto(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]) );
                         MainActivity.oDB.updateProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][2]),
                                 Integer.parseInt(aref[0][3]), Integer.parseInt(aref[0][4]), Integer.parseInt(aref[0][5]), aref[0][6], aref[0][7], aref[0][8],
                                 Integer.parseInt(aref[0][9]), aref[0][10], aref[0][11], aref[0][12], Integer.parseInt(aref[0][13]), Integer.parseInt(aref[0][14]), 0);
@@ -549,7 +550,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     if (sResp.length() == 6){
                         Log.v("[add]","Retorno nulo" );
                     }else{
-                        String[][] aref = MainActivity.oDB.buscarProyecto(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]) );
                         MainActivity.oDB.updateProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][2]),
                                 Integer.parseInt(aref[0][3]), Integer.parseInt(aref[0][4]), Integer.parseInt(aref[0][5]), aref[0][6], aref[0][7], aref[0][8],
                                 Integer.parseInt(aref[0][9]), aref[0][10], aref[0][11], aref[0][12], Integer.parseInt(aref[0][13]), Integer.parseInt(aref[0][14]), 0);
