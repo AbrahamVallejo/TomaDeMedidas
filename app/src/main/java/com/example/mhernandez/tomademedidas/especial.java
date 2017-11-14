@@ -1,5 +1,6 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -55,8 +56,8 @@ public class especial extends AppCompatActivity {
                                            0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, Agente, 1);
                         oDB.insertProyectoEspecial(idEspecial, idDisp, idProyecto, idDisp, nombreProyecto, txtAlto, txtAncho, txtGrosor,
                         OBS, "IMAGEN", FechaAlta, idFormato, FechaAlta, 1, 1, 1, 1);
-
-                        finish();
+                        Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(rIntent);
                     }
                 }
         );

@@ -77,7 +77,7 @@ public class hoteleria extends AppCompatActivity {
                         oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
                                            0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, Agente, 1);
                         oDB.insertProyectoHoteleria(idHoteleria, idDisp, idProyecto, idDisp, txtHabitacion,
-                                txtArea, txtAncho, txtAlto, txtHojas, txtObservaciones, nombreProyecto, "Nombre Proyecto", FechaAlta, idFormato,
+                                txtArea, txtAncho, txtAlto, txtHojas, txtObservaciones, nombreProyecto, "IMAGEN", FechaAlta, idFormato,
                                 txtPiso, txtEdificio, txtControl, txtFijacion, FechaAlta, 1, txtMedidaSugerida, 1, 1, 1, txtCorredera);
                         finish();
                     }

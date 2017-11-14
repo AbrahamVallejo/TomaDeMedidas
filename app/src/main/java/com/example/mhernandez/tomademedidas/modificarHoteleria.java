@@ -26,7 +26,10 @@ public class modificarHoteleria extends AppCompatActivity {
         setContentView(R.layout.crear_medida_hoteleria);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle oExt = this.getIntent().getExtras();
-        spinnerArea(); spinnerControl(); spinnerFijacion(); spinnerCorredera();
+        spinnerArea();
+        spinnerControl();
+        spinnerFijacion();
+        spinnerCorredera();
         final int idHoteleria = Integer.parseInt(oExt.getString("idHoteleria"));
         final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
         int idProyecto = Integer.parseInt(oExt.getString("idProyecto"));

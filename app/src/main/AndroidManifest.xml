@@ -82,40 +82,29 @@
         </activity>
 
         <activity android:name=".listaCama"
-            android:label="Editar Cama">
+            android:label="Ver Proyecto Cama">
         </activity>
         <activity android:name=".listaEspecial"
-            android:label="Editar Especial">
+            android:label="Ver Proyecto Especial">
         </activity>
         <activity android:name=".listaGaleria"
-            android:label="Editar Galeria">
+            android:label="Ver Proyecto Galeria">
         </activity>
         <activity android:name=".listaHoteleria"
-            android:label="Editar Hoteleria">
+            android:label="Ver Proyecto Hoteleria">
         </activity>
         <activity android:name=".listaResidencial"
-            android:label="Editar Residencial">
-        </activity>
-
-        <activity android:name=".medidaCama"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Editar Residencial">
-        </activity>
-        <activity android:name=".medidaEspecial"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Editar Residencial">
+            android:label="Ver Proyecto Residencial">
         </activity>
         <activity android:name=".medidaGaleria"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Editar Residencial">
+            android:label="Crear Medida Residencial">
         </activity>
         <activity android:name=".medidaHoteleria"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Editar Residencial">
+            android:label="Crear Medida Hoteleria">
         </activity>
         <activity android:name=".medidaResidencial"
             android:screenOrientation="portrait"
@@ -123,16 +112,52 @@
             android:label="Editar Residencial">
         </activity>
 
+        <activity android:name=".medidaCama"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Crear Medida Cama">
+        </activity>
+
+        <activity android:name=".medidaEspecial"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Crear Medida Especial">
+        </activity>
 
         <activity android:name=".crearArea"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Editar Residencial">
+            android:label="Crear Area">
         </activity>
         <activity android:name=".crearGaleria"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Editar Residencial">
+            android:label="Crear Galeria">
+        </activity>
+
+        <activity android:name=".modificarCama"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Modificar Medida Cama">
+        </activity>
+
+        <activity android:name=".modificarEspecial"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Modificar Medida Especial">
+        </activity>
+
+        <activity android:name=".modificarGaleria"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Modificar Medida Galeria">
+        </activity>
+
+        <activity android:name=".modificarHoteleria"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Modificar Medida Hoteleria">
+        </activity>
+
+        <activity android:name=".modificarResidencial"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Modificar Medida Residencial">
         </activity>
     </application>
 

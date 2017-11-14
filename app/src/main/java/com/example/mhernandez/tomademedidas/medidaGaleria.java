@@ -70,7 +70,7 @@ public class medidaGaleria extends AppCompatActivity {
                 String[][] aRefG = MainActivity.oDB.lastGaleria();
                 int idGaleria = Integer.parseInt(aRefG[(0)][0]) + 1;
                 int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                oDB.insertProyectoGaleria(idGaleria, idDisp, idProyecto, idDisp, FechaAlta, numeroHabitaciones, txtArea,
+                oDB.insertProyectoGaleria(idGaleria, idDisp, idProyecto, idProyectoDisp, FechaAlta, numeroHabitaciones, txtArea,
                         txtAncho, txtAlto, txtCopete, txtProyecciones, txtFijacion, OBS, Nombre, "IMAGEN",
                         3, FechaAlta, 1, 1, 1, 1);
                 finish();

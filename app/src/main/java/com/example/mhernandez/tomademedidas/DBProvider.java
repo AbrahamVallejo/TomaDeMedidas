@@ -209,7 +209,7 @@ public class DBProvider {
                 +DBhelper.ID_DISP +" = ?" , aFils);
         Log.v("[obtener", "Encontre tu Proyecto "+ aRS.getCount() );
         if (aRS.getCount() > 0) {
-            aData = new String[aRS.getCount()][24];
+            aData = new String[aRS.getCount()][16];
             while (aRS.moveToNext()) {                                                              //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP)) );
                 aData[iCnt] = new String[24];
                 aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO));
@@ -266,8 +266,8 @@ public class DBProvider {
     }
 
 
-    public void cerrarProyecto(int idProyecto, int idDisp, int estatus, int userCierra, String fecha, int sinc) {
-        Object[] aData = {estatus, userCierra, fecha, sinc, idProyecto, idDisp};
+    public void cerrarProyecto(int idProyecto, int idDisp, int userCierra, String fecha) {
+        Object[] aData = {2, userCierra, fecha,2, idProyecto, idDisp};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO + " SET "
                 + DBhelper.ID_ESTATUS + " = ?, "
                 + DBhelper.ID_USUARIO_CIERRA + " = ?, "
@@ -483,7 +483,7 @@ public class DBProvider {
                 + DBhelper.ID_USUARIOAUTORIZA + ", "
                 + DBhelper.COLUMN_NAME_FECHAAUTORIZA + ", "
                 + DBhelper.COLUMN_NAME_PAGADO
-                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
     }
 
     public void updateProyectoGaleria(int idGaleria, int idDisp, String nHabitaciones, String area, Double ancho, Double alto,
@@ -537,7 +537,7 @@ public class DBProvider {
                                         int formato, int piso, String edificio, String control, String fijacion,
                                         String fechaAl, int estatus, String medidaSujerida,
                                         int autorizado, int userAuto, int pagado, String corredera) {
-        Log.v("[ProH]","Voy a insertar Hoteleria " + nombrePro +" Piso: "+piso);
+        //Log.v("[ProH]","Voy a insertar Hoteleria " + nombrePro +" Piso: "+piso);
         Object[] aData = { idHoteleria, idDisp, idProyecto, idProyectoDisp, habitacion, area, ancho, alto, hojas, observaciones, nombrePro,
                             AIMG, fecha, formato, piso, edificio, control, fijacion, fechaAl, estatus, medidaSujerida,
                             autorizado, userAuto, pagado, corredera};
@@ -567,18 +567,29 @@ public class DBProvider {
                 + DBhelper.ID_USUARIOAUTORIZA + ", "
                 + DBhelper.COLUMN_NAME_PAGADO + ", "
                 + DBhelper.COLUMN_NAME_CORREDERA
-                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
     }
 
     public void updateProyectoHoteleria(int idHoteleria, int idDisp, String habitacion, String area, Double ancho, Double alto,
                                         String hojas, String AIMG, String observaciones, String piso, String edificio, String control,
                                         String fijacion, String medidaSujerida, String corredera) {
         Object[] aData = {habitacion, area, ancho, alto, hojas, AIMG, observaciones, piso, edificio, control, fijacion, medidaSujerida, corredera, idHoteleria, idDisp};
-        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " SET " + DBhelper.COLUMN_NAME_HABITACION + " = ?, "
-                + DBhelper.COLUMN_NAME_AREA + " = ?, " + DBhelper.COLUMN_NAME_ANCHO + " = ?, " + DBhelper.COLUMN_NAME_ALTO + " = ?, "
-                + DBhelper.COLUMN_NAME_HOJAS + " = ?, " + DBhelper.COLUMN_NAME_AIMG + " = ?, " + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ?, " + DBhelper.COLUMN_NAME_PISO + " = ?, "
-                + DBhelper.COLUMN_NAME_EDIFICIO + " = ?, " + DBhelper.COLUMN_NAME_CONTROL + " = ?, " + DBhelper.COLUMN_NAME_FIJACION + " = ?, "
-                + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + " = ?, " + DBhelper.COLUMN_NAME_CORREDERA + " = ?, " + " WHERE " + DBhelper.ID_HOTELERIA + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " SET "
+                + DBhelper.COLUMN_NAME_HABITACION + " = ?, "
+                + DBhelper.COLUMN_NAME_AREA + " = ?, "
+                + DBhelper.COLUMN_NAME_ANCHO + " = ?, "
+                + DBhelper.COLUMN_NAME_ALTO + " = ?, "
+                + DBhelper.COLUMN_NAME_HOJAS + " = ?, "
+                + DBhelper.COLUMN_NAME_AIMG + " = ?, "
+                + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ?, "
+                + DBhelper.COLUMN_NAME_PISO + " = ?, "
+                + DBhelper.COLUMN_NAME_EDIFICIO + " = ?, "
+                + DBhelper.COLUMN_NAME_CONTROL + " = ?, "
+                + DBhelper.COLUMN_NAME_FIJACION + " = ?, "
+                + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + " = ?, "
+                + DBhelper.COLUMN_NAME_CORREDERA + " = ?, "
+                + " WHERE " + DBhelper.ID_HOTELERIA + " = ?"
+                + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public void deleteProyectoHoteleria(String idHoteleria) {
@@ -1428,10 +1439,12 @@ public class DBProvider {
         else if (tipo == 2) {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " <> ? " +
                     "AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 0", aFils);
+
         }
         else if (tipo == 3) {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " <> ? " +
-                    "AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 3", aFils);
+                    "AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 4", aFils);
+
         }
         else {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aFils);

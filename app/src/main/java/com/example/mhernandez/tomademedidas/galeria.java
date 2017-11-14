@@ -1,5 +1,6 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -72,8 +73,8 @@ public class galeria extends AppCompatActivity {
                         oDB.insertProyectoGaleria(idGaleria, idDisp, idProyecto, idDisp, FechaAlta, numeroHabitaciones, txtArea,
                                 txtAncho, txtAlto, txtCopete, txtProyecciones, txtFijacion, txtComentarios, nombreProyecto, "IMAGEN",
                                 idFormato, FechaAlta, 1, 1, 1, 1);
-                        finish();
-                    }
+                        Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(rIntent);                    }
                 }
         );
 

@@ -76,9 +76,10 @@ public class medidaHoteleria extends AppCompatActivity {
                 String[][] aRefH = MainActivity.oDB.lastHoteleria();
                 int idHoteleria = Integer.parseInt(aRefH[(0)][0]) + 1;
                 int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                oDB.insertProyectoHoteleria(idHoteleria, idDisp, idProyecto, idDisp, txtHabitacion,
-                        txtArea, txtAncho, txtAlto, txtHojas, OBS, Nombre, "Nombre Proyecto", FechaAlta, 2,
-                        txtPiso, txtEdificio, txtControl, txtFijacion, FechaAlta, 1, txtMedidaSugerida, 1, 1, 1, txtCorredera);                finish();
+                oDB.insertProyectoHoteleria(idHoteleria, idDisp, idProyecto, idProyectoDisp, txtHabitacion,
+                        txtArea, txtAncho, txtAlto, txtHojas, OBS, Nombre, "IMAGEN", FechaAlta, 2,
+                        txtPiso, txtEdificio, txtControl, txtFijacion, FechaAlta, 1, txtMedidaSugerida, 1, 1, 1, txtCorredera);
+                finish();
             }
         });
     }
