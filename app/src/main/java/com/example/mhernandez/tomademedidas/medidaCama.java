@@ -57,8 +57,8 @@ public class medidaCama extends AppCompatActivity {
                 String[][] aRefC = MainActivity.oDB.lastCama();
                 int idDisp = Integer.parseInt(aRefD[(0)][0]);
                 int idCama = Integer.parseInt(aRefC[(0)][0]) + 1;
-                oDB.insertProyectoCama(idCama, idDisp, idProyecto, idProyectoDisp, numeroHabitacion, txtA, txtB, txtC, txtD, txtE,
-                        txtF, txtG, FechaAlta, Nombre, 4, OBS, 0, 1, 1, 1);
+                oDB.insertProyectoCama(idCama, idDisp, idProyecto, idProyectoDisp, numeroHabitacion, txtA, txtB, txtC,
+                        txtD, txtE, txtF, txtG, FechaAlta, Nombre, 4, OBS, 0, 1, 1, 1);
                 finish();
             }
         });
