@@ -786,7 +786,7 @@ public class MainActivity extends AppCompatActivity
                 MainActivity.oDB.deleteAllProyectos("0","0");
                 MainActivity.oDB.deleteAllProyectosCama("0","0");
                 MainActivity.oDB.deleteAllProyectosEspecial("0","0");
-                //MainActivity.oDB.deleteAllHoteleria("0","0");
+                MainActivity.oDB.deleteAllHoteleria("0","0");
                 MainActivity.oDB.deleteAllProyectosGaleria("0","0");
                 MainActivity.oDB.deleteAllResidencial("0","0");
 
@@ -798,7 +798,7 @@ public class MainActivity extends AppCompatActivity
                                 getproyectoLista();
                                 getproyectoCamaLista();
                                 getproyectoEspecialLista();
-                                //getproyectoHoteleriaLista();
+                                getproyectoHoteleriaLista();
                                 getproyectoGaleriaLista();/* */
                                 getproyectoResidencialLista();
                         }catch (InterruptedException e){
