@@ -124,7 +124,7 @@ public class Fragment_listaClientes extends Fragment {
                             MainActivity.oDB.deleteCliente(idCliente, idDisp);
                         }
                         if (Integer.parseInt(aRef[0][5]) != 1) {
-                            MainActivity.oDB.updateCliente(idCliente, idDisp, "borrar", "000", "borrar", 3);
+                            MainActivity.oDB.updateCliente(idCliente, idDisp, aDat[2], aDat[3], aDat[4], 3);
                         }
                         Toast.makeText(getActivity(), "REGISTRO ELIMINADO", Toast.LENGTH_SHORT).show();
                         lista();

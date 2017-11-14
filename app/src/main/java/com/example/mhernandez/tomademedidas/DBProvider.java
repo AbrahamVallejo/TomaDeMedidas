@@ -457,10 +457,9 @@ public class DBProvider {
 
     public void insertProyectoGaleria(int idGaleria, int idDisp, int idProyecto, int idProyectoDisp, String fecha, String nHabitaciones, String area, double ancho, double alto,
                                       String copete, String proyecciones, String fijacion, String comentarios, String nombrePro, String AIMG,
-                                      int formato, String fechaAl, int estatus, int autorizado,
-                                      int userAuto, int pagado) {
-        Object[] aData = {idGaleria, idDisp, idProyecto, idProyectoDisp, fecha, nHabitaciones, area, ancho, alto, copete, proyecciones, fijacion, comentarios,
-                nombrePro, AIMG, formato, fechaAl, estatus, autorizado, userAuto, pagado};
+                                      int formato, String fechaAl, int estatus, int autorizado, int userAuto, int pagado) {
+        Object[] aData = {idGaleria, idDisp, idProyecto, idProyectoDisp, fecha, nHabitaciones, area, ancho, alto, copete, proyecciones,
+                fijacion, comentarios, nombrePro, AIMG, formato, estatus, autorizado, userAuto, "", pagado};
 
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " ("
                 + DBhelper.ID_GALERIA + ", "

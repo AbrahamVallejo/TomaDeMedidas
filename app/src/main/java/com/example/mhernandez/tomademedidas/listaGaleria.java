@@ -109,7 +109,9 @@ public class listaGaleria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnCerrar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        if (Integer.parseInt(aDat[19]) !=1){
+                            Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }
                         customDialog.dismiss();
                     }
                 });
