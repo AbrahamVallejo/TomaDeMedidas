@@ -750,7 +750,7 @@ public class MainActivity extends AppCompatActivity
                 oNS.execute("sincproyecto", "2", aux1[i][0], aux1[i][1] );
             }
             else if (Integer.valueOf(aux1[i][23]) == 3) {
-                Log.v("[add]","Entre al if Modificar" );
+                Log.v("[add]","Entre al if Eliminar" );
                 NetServices oNS = new NetServices(new OnTaskCompleted() {
                     @Override
                     public void OnTaskCompleted(Object freed) {
@@ -769,20 +769,24 @@ public class MainActivity extends AppCompatActivity
 
     public void descargarWS(){
         String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
+        String[][] aux2 = MainActivity.oDB.ObtenerProyectos("0",2);
+        int var = aux2.length;
 
         if(aux1.length >= 1){
-            Toast.makeText(this, "Sincronización Requerida", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Sincronización Clientes Requerida", Toast.LENGTH_LONG).show();
+        }
+        else if(var >= 1) {
+            Toast.makeText(this, "Sincronización Proyectos Requerida", Toast.LENGTH_LONG).show();
         }else{
             boolean aux = isOnlineNet();
-            if (aux != false) {
-                //customDialog.setContentView(R.layout.activity_cargando);
+            if (aux != false) {         //customDialog.setContentView(R.layout.activity_cargando);
                 setContentView(R.layout.activity_cargando);
 
                 MainActivity.oDB.deleteAllCliente("0","0");
                 MainActivity.oDB.deleteAllProyectos("0","0");
                 MainActivity.oDB.deleteAllProyectosCama("0","0");
                 MainActivity.oDB.deleteAllProyectosEspecial("0","0");
-                MainActivity.oDB.deleteAllHoteleria("0","0");
+                //MainActivity.oDB.deleteAllHoteleria("0","0");
                 MainActivity.oDB.deleteAllProyectosGaleria("0","0");
                 MainActivity.oDB.deleteAllResidencial("0","0");
 
@@ -790,16 +794,15 @@ public class MainActivity extends AppCompatActivity
                     public void run(){
                         try {
                             sleep(1000);
-                                getclienteLista();/*
+                                getclienteLista();
                                 getproyectoLista();
                                 getproyectoCamaLista();
                                 getproyectoEspecialLista();
-                                getproyectoHoteleriaLista();
-                                getproyectoGaleriaLista();*/
+                                //getproyectoHoteleriaLista();
+                                getproyectoGaleriaLista();/* */
                                 getproyectoResidencialLista();
                         }catch (InterruptedException e){
-                            e.printStackTrace();
-                        }
+                            e.printStackTrace();       }
                     }
                 };
                 timerThread.start();
@@ -813,15 +816,13 @@ public class MainActivity extends AppCompatActivity
                             getubicacionLista();    getcontrolLista();
                             getcorrederaLista();    getusuarioLista();
                         }catch (InterruptedException e){
-                            e.printStackTrace();
-                        }
+                            e.printStackTrace();       }
                     }
                 };
                 timerThreadDos.start();
 
             }else {
-                Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
-            }
+                Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();       }
         }
     }
 
