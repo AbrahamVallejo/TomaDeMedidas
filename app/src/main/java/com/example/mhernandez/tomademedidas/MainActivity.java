@@ -164,6 +164,7 @@ public class MainActivity extends AppCompatActivity
             String part4 = accesorioEspecial.replace(" ","");
             if (part4.length() ==0) { Validar++; }
         String PS = PedidoSap.getText().toString();
+        if (PS.length()==0){PS ="S/P";}
         GregorianCalendar currentTime = new GregorianCalendar();
         String FechaAlta = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
         //FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
@@ -786,7 +787,7 @@ public class MainActivity extends AppCompatActivity
                 MainActivity.oDB.deleteAllProyectos("0","0");
                 MainActivity.oDB.deleteAllProyectosCama("0","0");
                 MainActivity.oDB.deleteAllProyectosEspecial("0","0");
-                MainActivity.oDB.deleteAllHoteleria("0","0");
+                //MainActivity.oDB.deleteAllHoteleria("0","0");
                 MainActivity.oDB.deleteAllProyectosGaleria("0","0");
                 MainActivity.oDB.deleteAllResidencial("0","0");
 
@@ -798,7 +799,7 @@ public class MainActivity extends AppCompatActivity
                                 getproyectoLista();
                                 getproyectoCamaLista();
                                 getproyectoEspecialLista();
-                                getproyectoHoteleriaLista();
+                                //getproyectoHoteleriaLista();
                                 getproyectoGaleriaLista();/* */
                                 getproyectoResidencialLista();
                         }catch (InterruptedException e){
@@ -819,7 +820,7 @@ public class MainActivity extends AppCompatActivity
                             e.printStackTrace();       }
                     }
                 };
-                timerThreadDos.start();
+                //timerThreadDos.start();
 
             }else {
                 Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();       }
