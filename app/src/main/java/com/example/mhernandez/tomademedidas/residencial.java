@@ -1,5 +1,6 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -92,8 +93,8 @@ public class residencial extends AppCompatActivity {
                                 txtE, txtF, txtG, txtH, txtProfMarco, txtProfJaladera, txtControl, txtAgpto, txtMedidaSugeria, txtObservaciones,
                                 "IMAGEN", nombreProyecto, FechaAlta, idFormato, FechaAlta, 1, txtFijacion, txtPiso, 1,
                                 1, 1, txtCorredera);
-                        finish();
-                    }
+                        Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(rIntent);                    }
                 }
         );
     }

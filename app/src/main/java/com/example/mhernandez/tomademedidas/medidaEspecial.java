@@ -47,7 +47,7 @@ public class medidaEspecial extends AppCompatActivity {
                 String[][] aRefE = MainActivity.oDB.lastEspecial();
                 int idEspecial = Integer.parseInt(aRefE[(0)][0]) + 1;
                 int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                oDB.insertProyectoEspecial(idEspecial, idDisp, idProyecto, idDisp, Nombre, txtAlto, txtAncho, txtGrosor,
+                oDB.insertProyectoEspecial(idEspecial, idDisp, idProyecto, idProyectoDisp, Nombre, txtAlto, txtAncho, txtGrosor,
                         OBS, "IMAGEN", FechaAlta, 5, FechaAlta, 1, 1, 1, 1);
                 finish();
             }

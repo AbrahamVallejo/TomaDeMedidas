@@ -88,7 +88,7 @@ public class medidaResidencial extends AppCompatActivity {
                 String[][] aRefR = MainActivity.oDB.lastResidencial();
                 int idResidencial = Integer.parseInt(aRefR[(0)][0]) + 1;
                 int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                oDB.insertProyectoResidencial(idResidencial, idDisp, idProyecto, idDisp, txtUbicacion, txtA, txtB, txtC, txtD,
+                oDB.insertProyectoResidencial(idResidencial, idDisp, idProyecto, idProyectoDisp, txtUbicacion, txtA, txtB, txtC, txtD,
                         txtE, txtF, txtG, txtH, txtProfMarco, txtProfJaladera, txtControl, txtAgpto, txtMedidasSugerida, txtObservaciones,
                         "IMAGEN", Nombre, FechaAlta, 1, FechaAlta, 1, txtFijacion, txtPiso, 1,
                         1, 1, txtCorredera);
