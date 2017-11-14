@@ -164,6 +164,7 @@ public class MainActivity extends AppCompatActivity
             String part4 = accesorioEspecial.replace(" ","");
             if (part4.length() ==0) { Validar++; }
         String PS = PedidoSap.getText().toString();
+        if (PS.length()==0){PS ="S/P";}
         GregorianCalendar currentTime = new GregorianCalendar();
         String FechaAlta = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
         //FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
