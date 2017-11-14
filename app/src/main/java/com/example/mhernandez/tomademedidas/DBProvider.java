@@ -393,14 +393,10 @@ public class DBProvider {
 
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " ("
                 + DBhelper.ID_ESPECIALES + ", " + DBhelper.ID_DISP + ", "
-                + DBhelper.ID_PROYECTO + ", "
-                + DBhelper.ID_PROYECTO_DISP + ", "
-                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", "
-                + DBhelper.COLUMN_NAME_ALTO + ", "
-                + DBhelper.COLUMN_NAME_ANCHOESP + ", "
-                + DBhelper.COLUMN_NAME_GROSOR + ", "
-                + DBhelper.COLUMN_NAME_OBSERVACIONES + ", "
-                + DBhelper.COLUMN_NAME_AIMG + ", "
+                + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_PROYECTO_DISP + ", "
+                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", " + DBhelper.COLUMN_NAME_ALTO + ", "
+                + DBhelper.COLUMN_NAME_ANCHOESP + ", " + DBhelper.COLUMN_NAME_GROSOR + ", "
+                + DBhelper.COLUMN_NAME_OBSERVACIONES + ", " + DBhelper.COLUMN_NAME_AIMG + ", "
                 + DBhelper.COLUMN_NAME_FECHA + ", "
                 + DBhelper.COLUMN_NAME_FORMATO + ", "
                 + DBhelper.COLUMN_NAME_FECHA_ALTA + ", "
@@ -443,14 +439,12 @@ public class DBProvider {
                 if (aRs.getString(aRs.getColumnIndex(DBhelper.ID_ESPECIALES)) == null){
                     aData[iCnt][0] = "0";
                 }else {
-                    aData[iCnt][0] = aRs.getString(aRs.getColumnIndex(DBhelper.ID_ESPECIALES));
-                }
+                    aData[iCnt][0] = aRs.getString(aRs.getColumnIndex(DBhelper.ID_ESPECIALES));}
                 iCnt++;
             }
         }
         aRs.close();
-        CloseDB();
-        Log.v("[obtener", "Voy de regreso");
+        CloseDB();  Log.v("[obtener", "Voy de regreso");
         return aData;
     }
 
@@ -462,26 +456,16 @@ public class DBProvider {
                 fijacion, comentarios, nombrePro, AIMG, formato, estatus, autorizado, userAuto, "", pagado};
 
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " ("
-                + DBhelper.ID_GALERIA + ", "
-                + DBhelper.ID_DISP + ", "
-                + DBhelper.ID_PROYECTO + ", "
-                + DBhelper.ID_PROYECTO_DISP + ", "
-                + DBhelper.COLUMN_NAME_FECHA + ", "
-                + DBhelper.COLUMN_NAME_N_HABITACION + ", "
-                + DBhelper.COLUMN_NAME_AREA + ", "
-                + DBhelper.COLUMN_NAME_ANCHO + ", "
-                + DBhelper.COLUMN_NAME_ALTO + ", "
-                + DBhelper.COLUMN_NAME_COPETE + ", "
-                + DBhelper.COLUMN_NAME_PROYECCIONES + ", "
-                + DBhelper.COLUMN_NAME_FIJACION + ", "
-                + DBhelper.COLUMN_NAME_COMENTARIOS + ", "
-                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", "
-                + DBhelper.COLUMN_NAME_AIMG + ", "
-                + DBhelper.COLUMN_NAME_FORMATO + ", "
-                + DBhelper.ID_ESTATUS + ", "
-                + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
-                + DBhelper.ID_USUARIOAUTORIZA + ", "
-                + DBhelper.COLUMN_NAME_FECHAAUTORIZA + ", "
+                + DBhelper.ID_GALERIA + ", " + DBhelper.ID_DISP + ", "
+                + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_PROYECTO_DISP + ", "
+                + DBhelper.COLUMN_NAME_FECHA + ", " + DBhelper.COLUMN_NAME_N_HABITACION + ", "
+                + DBhelper.COLUMN_NAME_AREA + ", " + DBhelper.COLUMN_NAME_ANCHO + ", "
+                + DBhelper.COLUMN_NAME_ALTO + ", " + DBhelper.COLUMN_NAME_COPETE + ", "
+                + DBhelper.COLUMN_NAME_PROYECCIONES + ", " + DBhelper.COLUMN_NAME_FIJACION + ", "
+                + DBhelper.COLUMN_NAME_COMENTARIOS + ", " + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", "
+                + DBhelper.COLUMN_NAME_AIMG + ", " + DBhelper.COLUMN_NAME_FORMATO + ", "
+                + DBhelper.ID_ESTATUS + ", " + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
+                + DBhelper.ID_USUARIOAUTORIZA + ", " + DBhelper.COLUMN_NAME_FECHAAUTORIZA + ", "
                 + DBhelper.COLUMN_NAME_PAGADO
                 + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
     }
