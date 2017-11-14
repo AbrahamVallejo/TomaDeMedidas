@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity
 
     public void onSaveClickProyectos(View view){
         int Validar=0;  Intent rIntent = new Intent();
+
         Spinner cliente = (Spinner) this.findViewById(R.id.spinner_cliente);    String[] Clientes = new String[2];
             if(cliente.getSelectedItemPosition() != 0){
                 String[] partsC = cliente.getSelectedItem().toString().split("-");
@@ -133,23 +134,16 @@ public class MainActivity extends AppCompatActivity
                 Log.v("[spin]", Clientes[0] +" "+Clientes[1] );
                 rIntent.putExtra("id_cliente", Integer.parseInt(Clientes[0]) );
                 rIntent.putExtra("id_cliente_disp", Integer.valueOf(Clientes[1].trim()) );
-            }else {
-                Validar++;
-            }
+            }else { Validar++; }
+
         Spinner formato = (Spinner) this.findViewById(R.id.spinner_formato);
-            if (formato.getSelectedItemPosition()==0){
-                Validar++;
-            }
+            if (formato.getSelectedItemPosition()==0) { Validar++; }
+
         Spinner agente = (Spinner) this.findViewById(R.id.spinner_agente);      String[] partsA = new String[2];
             if(agente.getSelectedItemPosition() != 0){
-                partsA = agente.getSelectedItem().toString().split("-");
-                Log.v("[spin]", partsA[1] );
+                partsA = agente.getSelectedItem().toString().split("-"); Log.v("[spin]", partsA[1] );
                 rIntent.putExtra("Agente", partsA[1] );
-            }else {
-                Validar++;
-            }
-
-
+            }else { Validar++; }
 
         EditText proyecto = (EditText) this.findViewById(R.id.proyecto_nombre_proyecto);
         EditText AccMuro = (EditText) this.findViewById(R.id.proyecto_accesorios_muro);
@@ -159,31 +153,22 @@ public class MainActivity extends AppCompatActivity
 
         String nombreProyecto = proyecto.getText().toString();
             String part1 = nombreProyecto.replace(" ","");
-            if (part1.length() ==0){
-                Validar++;
-            }
+            if (part1.length() ==0) { Validar++; }
         String accesorioMuro = AccMuro.getText().toString();
             String part2 = accesorioMuro.replace(" ","");
-            if (part2.length() ==0){
-                Validar++;
-            }
+            if (part2.length() ==0) { Validar++; }
         String accesorioTecho = AccTecho.getText().toString();
             String part3 = accesorioTecho.replace(" ","");
-            if (part3.length() ==0){
-                Validar++;
-            }
+            if (part3.length() ==0) { Validar++; }
         String accesorioEspecial = AccEspecial.getText().toString();
             String part4 = accesorioEspecial.replace(" ","");
-            if (part4.length() ==0){
-                Validar++;
-            }
+            if (part4.length() ==0) { Validar++; }
         String PS = PedidoSap.getText().toString();
         GregorianCalendar currentTime = new GregorianCalendar();
         String FechaAlta = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
         //FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
 
-        int selected = formato.getSelectedItemPosition();
-        Log.v("[spin]", "Sel: "+selected );
+        int selected = formato.getSelectedItemPosition(); Log.v("[spin]", "Sel: "+selected );
             if (selected == 2){
                 rIntent = new Intent(MainActivity.this, hoteleria.class);
             }else if (selected == 4){
@@ -193,8 +178,7 @@ public class MainActivity extends AppCompatActivity
             }else if (selected == 3){
                 rIntent = new Intent(MainActivity.this, galeria.class);
             }else if(selected ==5){
-                rIntent = new Intent(MainActivity.this, especial.class);
-            }
+                rIntent = new Intent(MainActivity.this, especial.class); }
         rIntent.putExtra("idFormato", selected);
         rIntent.putExtra("nombreProyecto", nombreProyecto);
         rIntent.putExtra("accesoriosMuro", accesorioMuro);
@@ -205,8 +189,7 @@ public class MainActivity extends AppCompatActivity
             if (Validar ==0){
                 startActivity(rIntent);
             }else {
-                Toast.makeText(this, "Llene Todos Los Campos", Toast.LENGTH_SHORT).show();
-            }
+                Toast.makeText(this, "Llene Todos Los Campos", Toast.LENGTH_SHORT).show(); }
 
     }
 
@@ -767,7 +750,7 @@ public class MainActivity extends AppCompatActivity
                 oNS.execute("sincproyecto", "2", aux1[i][0], aux1[i][1] );
             }
             else if (Integer.valueOf(aux1[i][23]) == 3) {
-                Log.v("[add]","Entre al if Modificar" );
+                Log.v("[add]","Entre al if Eliminar" );
                 NetServices oNS = new NetServices(new OnTaskCompleted() {
                     @Override
                     public void OnTaskCompleted(Object freed) {
@@ -786,13 +769,17 @@ public class MainActivity extends AppCompatActivity
 
     public void descargarWS(){
         String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
+        String[][] aux2 = MainActivity.oDB.ObtenerProyectos("0",2);
+        int var = aux2.length;
 
         if(aux1.length >= 1){
-            Toast.makeText(this, "Sincronización Requerida", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Sincronización Clientes Requerida", Toast.LENGTH_LONG).show();
+        }
+        else if(var >= 1) {
+            Toast.makeText(this, "Sincronización Proyectos Requerida", Toast.LENGTH_LONG).show();
         }else{
             boolean aux = isOnlineNet();
-            if (aux != false) {
-                //customDialog.setContentView(R.layout.activity_cargando);
+            if (aux != false) {         //customDialog.setContentView(R.layout.activity_cargando);
                 setContentView(R.layout.activity_cargando);
 
                 MainActivity.oDB.deleteAllCliente("0","0");
@@ -807,16 +794,15 @@ public class MainActivity extends AppCompatActivity
                     public void run(){
                         try {
                             sleep(1000);
-                                getclienteLista();/*
+                                getclienteLista();
                                 getproyectoLista();
                                 getproyectoCamaLista();
                                 getproyectoEspecialLista();
                                 getproyectoHoteleriaLista();
-                                getproyectoGaleriaLista();*/
+                                getproyectoGaleriaLista();/* */
                                 getproyectoResidencialLista();
                         }catch (InterruptedException e){
-                            e.printStackTrace();
-                        }
+                            e.printStackTrace();       }
                     }
                 };
                 timerThread.start();
@@ -830,15 +816,13 @@ public class MainActivity extends AppCompatActivity
                             getubicacionLista();    getcontrolLista();
                             getcorrederaLista();    getusuarioLista();
                         }catch (InterruptedException e){
-                            e.printStackTrace();
-                        }
+                            e.printStackTrace();       }
                     }
                 };
                 timerThreadDos.start();
 
             }else {
-                Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
-            }
+                Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();       }
         }
     }
 

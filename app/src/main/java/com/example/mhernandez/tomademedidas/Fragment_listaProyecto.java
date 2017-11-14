@@ -101,10 +101,11 @@ public class Fragment_listaProyecto extends Fragment {
                         GregorianCalendar currentTime = new GregorianCalendar();
                         String FechaCierre = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
                         FechaCierre = FechaCierre +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
-
-                        MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 5, FechaCierre);
+                        if ( Integer.parseInt(aDat[10]) ==1){
+                            MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2, 5, FechaCierre, 2);
+                            lista();
+                        }
                         Toast.makeText(getActivity(), "PROYECTO CERRADO", Toast.LENGTH_SHORT).show();
-                        lista();
                         customDialog.dismiss();
                     }
                 });
@@ -172,8 +173,8 @@ public class Fragment_listaProyecto extends Fragment {
                             MainActivity.oDB.deleteProyecto(idProyecto, idDisp);
                         }
                         if (Integer.parseInt(aRef[0][15]) != 1) {
-                            MainActivity.oDB.updateProyecto(Integer.parseInt(idProyecto), Integer.parseInt(idDisp), 1, 1, 1,1,
-                                    "borrar", "borrar", "borrar", 0, "borrar", "borrar", "borrar",1,1, 3);
+                            MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]),
+                                    Integer.parseInt(aDat[10]), 5, " ", 3);
                         }
                         Toast.makeText(getActivity(), "REGISTRO ELIMINADO", Toast.LENGTH_SHORT).show();
                         lista();
@@ -248,16 +249,15 @@ public class Fragment_listaProyecto extends Fragment {
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
             Log.v("[AQUIANDO", _text[position][7]);
-            if ( _text[position][7].toString().contains("T") == true){
-                String[] parts = _text[position][7].split("T");
-                txtFecha.setText(parts[0]);
+            Log.v("[AQUIANDO","H"+ _text[position][7].indexOf("T"));
+            if ( _text[position][7].indexOf("T") != 10){
+                txtFecha.setText( _text[position][7] );
             }else {
-                txtFecha.setText(_text[position][7]);
-            }
+            String[] parts = _text[position][7].split("T");
+            txtFecha.setText(parts[0]);}
 
 
             txtNombre.setText(_text[position][6]);
-            txtFecha.setText(_text[position][7]);
             txtPedidoSap.setText(_text[position][8]);
             txtAutorizado.setText(_text[position][12]);
             txtATecho.setText(_text[position][19].toLowerCase());
