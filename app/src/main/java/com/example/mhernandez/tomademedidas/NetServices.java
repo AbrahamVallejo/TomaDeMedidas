@@ -457,7 +457,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 sResp = NetServices.connectPost3(URL_WS1 + "wscliente.svc/" + urls[0], json.toString());
                 Log.v("[add]", "T: "+sResp.length() +" "+sResp);
                 if (sResp.length() == 6){
-                    Log.v("[add]","Retorno nulo" );
+                    MainActivity.oDB.updateCliente(urls[1], urls[2], urls[3], urls[5], urls[4], 0);
                 }
                 else{
                     Log.v("[add]","Eliminar en Local" );
@@ -955,7 +955,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                             joFuj.getString("fecha"), joFuj.getString("n_habitacion"), joFuj.getString("area"), Double.parseDouble(joFuj.getString("ancho")),
                             Double.parseDouble(joFuj.getString("alto")), joFuj.getString("copete"), joFuj.getString("proyecciones"), joFuj.getString("fijacion"),
                             joFuj.getString("comentarios"), joFuj.getString("nombre_proyecto"), " ", Integer.parseInt(joFuj.getString("formato")),
-                            " ", Integer.parseInt(joFuj.getString("id_estatus")), Integer.parseInt(joFuj.getString("autorizado")),0, Integer.parseInt(joFuj.getString("pagado")));
+                            " ", Integer.parseInt(joFuj.getString("id_estatus")), Integer.parseInt(joFuj.getString("autorizado")), 0, Integer.parseInt(joFuj.getString("pagado")));
                 }
             }catch (Exception e){
                 exception = e;
