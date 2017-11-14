@@ -507,7 +507,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
             }
         }
         else if(urls[0] == "sincproyecto"){
-            Log.v("[add]","Voy a Sincronizar en WS" );
+            Log.v("[add]","Voy a Sincronizar en WS "+urls[1] );
             try{
                 String[][] aref = MainActivity.oDB.buscarProyecto(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]) );
                 JSONObject json = new JSONObject();
@@ -542,7 +542,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     }else{
                         MainActivity.oDB.updateProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][2]),
                                 Integer.parseInt(aref[0][3]), Integer.parseInt(aref[0][4]), Integer.parseInt(aref[0][5]), aref[0][6], aref[0][7], aref[0][8],
-                                Integer.parseInt(aref[0][9]), aref[0][10], aref[0][11], aref[0][12], Integer.parseInt(aref[0][13]), Integer.parseInt(aref[0][14]), 0);
+                                Integer.parseInt(aref[0][9]), aref[0][10], aref[0][11], aref[0][12], Integer.parseInt(aref[0][13]), Integer.parseInt(aref[0][14]),0);
                     }
                 }else if (Integer.parseInt(urls[1]) == 2){
                     sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto.svc/modifyproyecto",json.toString());
@@ -558,8 +558,9 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 else if (Integer.parseInt(urls[1]) == 3){
                     sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto.svc/deleteproyecto",json.toString());
                     Log.v("[add]","Tam: "+sResp.length() +" Ca: "+sResp);
-                    if (sResp.length() == 6){
+                    if (sResp.length() == 0){
                         Log.v("[add]","Retorno nulo" );
+                        MainActivity.oDB.cerrarProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][13]), 0, " ", 0);
                     }else {
                         MainActivity.oDB.deleteProyecto( urls[2], urls[3] );
                     }

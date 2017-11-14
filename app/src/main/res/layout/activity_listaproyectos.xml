@@ -227,7 +227,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="50"
             android:textSize="11dp"
-            android:paddingBottom="5dp"
             android:textStyle="bold"/>
     </LinearLayout>
 
