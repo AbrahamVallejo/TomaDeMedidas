@@ -597,9 +597,9 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_CONTROL + " = ?, "
                 + DBhelper.COLUMN_NAME_FIJACION + " = ?, "
                 + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + " = ?, "
-                + DBhelper.COLUMN_NAME_CORREDERA + " = ?, "
-                + " WHERE " + DBhelper.ID_HOTELERIA + " = ?"
-                + " AND " + DBhelper.ID_DISP + " = ?", aData);
+                + DBhelper.COLUMN_NAME_CORREDERA + " = ? "
+                + " WHERE " + DBhelper.ID_HOTELERIA + " = ? "
+                + " AND " + DBhelper.ID_DISP + " = ? ", aData);
     }
 
     public void deleteProyectoHoteleria(String idHoteleria) {
