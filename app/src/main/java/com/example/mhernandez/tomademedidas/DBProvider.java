@@ -667,12 +667,12 @@ public class DBProvider {
 
     public void updateProyectoResidencial(int idResidencial, int idDisp, String ubicacion, Double A, Double B, Double C, Double D,
                                           Double E, Double F, Double G, Double H, Double profMarco, Double profJaladera, String control,
-                                          String medidaSujerida, String AIMG, String observaciones, String fijacion, String piso, String corredera) {
-        Object[] aData = {ubicacion, A, B, C, D, E, F, G, H, profMarco, profJaladera, control, medidaSujerida, AIMG, observaciones, fijacion, piso, corredera, idResidencial, idDisp};
+                                          String Agpto, String medidaSujerida, String AIMG, String observaciones, String fijacion, String piso, String corredera) {
+        Object[] aData = {ubicacion, A, B, C, D, E, F, G, H, profMarco, profJaladera, control, Agpto, medidaSujerida, AIMG, observaciones, fijacion, piso, corredera, idResidencial, idDisp};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " SET " + DBhelper.COLUMN_NAME_UBICACION + " = ?, " + DBhelper.COLUMN_NAME_A + " = ?, "
                 + DBhelper.COLUMN_NAME_B + " = ?, " + DBhelper.COLUMN_NAME_C + " = ?, " + DBhelper.COLUMN_NAME_D + " = ?, " + DBhelper.COLUMN_NAME_E + " = ?, "
                 + DBhelper.COLUMN_NAME_F + " = ?, " + DBhelper.COLUMN_NAME_G + " = ?, " + DBhelper.COLUMN_NAME_H + " = ?, " + DBhelper.COLUMN_NAME_PROF_MARCO + " = ?, "
-                + DBhelper.COLUMN_NAME_PROF_JALADERA + " = ?, " + DBhelper.COLUMN_NAME_CONTROL + " = ?, " + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + " = ?, "
+                + DBhelper.COLUMN_NAME_PROF_JALADERA + " = ?, " + DBhelper.COLUMN_NAME_CONTROL + " = ?, " + DBhelper.COLUMN_NAME_AGPTO + " = ?," + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + " = ?, "
                 + DBhelper.COLUMN_NAME_AIMG + " = ?, " + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ?, " + DBhelper.COLUMN_NAME_FIJACION + " = ?, " + DBhelper.COLUMN_NAME_PISO + " = ?, "
                 + DBhelper.COLUMN_NAME_CORREDERA + " = ?, " + " WHERE " + DBhelper.ID_RESIDENCIAL + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
