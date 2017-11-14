@@ -819,7 +819,7 @@ public class MainActivity extends AppCompatActivity
                             e.printStackTrace();       }
                     }
                 };
-                timerThreadDos.start();
+                //timerThreadDos.start();
 
             }else {
                 Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();       }

@@ -567,7 +567,7 @@ public class DBProvider {
                 + DBhelper.ID_USUARIOAUTORIZA + ", "
                 + DBhelper.COLUMN_NAME_PAGADO + ", "
                 + DBhelper.COLUMN_NAME_CORREDERA
-                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
     }
 
     public void updateProyectoHoteleria(int idHoteleria, int idDisp, String habitacion, String area, Double ancho, Double alto,
