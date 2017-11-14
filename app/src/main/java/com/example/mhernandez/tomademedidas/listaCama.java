@@ -159,7 +159,7 @@ public class listaCama extends AppCompatActivity {
             txtIDProyecto.setText(_text[position][2]);
             txtIDProyectoDisp.setText(_text[position][3]);
             txtIDEstatus.setText(_text[position][20]);
-            txtNombre.setText(_text[position][12]);
+            txtNombre.setText(_text[position][11]);
             txtNHabitacion.setText(_text[position][4]);
             txtObservaciones.setText(_text[position][16]);
             txtA.setText(_text[position][5]);
