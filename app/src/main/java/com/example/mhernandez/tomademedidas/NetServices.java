@@ -298,8 +298,8 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("verificacion"); //Log.v("PRUEBA", joFuj.getString("id"));Log.v("PRUEBA","...");
                     //Log.v("[obtener]",aRef[0][0]);
                         entrada_inicio.oDB.insertUser(Integer.parseInt(joFuj.getString("id")),joFuj.getString("username"),
-                                joFuj.getString("password_hash"), joFuj.getString("email"), Integer.parseInt(joFuj.getString("status")),
-                                joFuj.getString("nombre"), joFuj.getString("apellido"), Integer.parseInt(joFuj.getString("verificacion")) );
+                                joFuj.getString("password_hash"), joFuj.getString("email"), 0,
+                                joFuj.getString("nombre"), joFuj.getString("apellido"), 0 );
                 }
             }catch (Exception e){
                 exception = e;

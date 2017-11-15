@@ -36,17 +36,22 @@ public class entrada_inicio extends AppCompatActivity {
                             //String[][] aRef = entrada_inicio.oDB.lastDispositivo();   //Log.v("[obtener]", "Aqui voy ");//Log.v("[obtener]", "Traigo un: "+ aux1.length);
                             boolean aux = isOnlineNet();        //Log.v("[obtener]", "Conexion: "+ aux);
                             if (aux != false){
-                                entrada_inicio.oDB.deleteAllUser();
-                                getuserLista();
                                 sleep(500);
                                 if (aux1.length == 0){
                                     Intent intent = new Intent(entrada_inicio.this, registrar_Dispositivo.class);
                                     intent.putExtra("internet", 0);
                                     startActivity(intent);
                                 }else {
-                                    //Intent intent = new Intent(entrada_inicio.this, log_in.class);
-                                    Intent intent = new Intent(entrada_inicio.this, MainActivity.class);
-                                    startActivity(intent);
+                                    String[][] users = entrada_inicio.oDB.ObtenerUser("0",2);
+                                    if (users.length !=1){
+                                        entrada_inicio.oDB.deleteAllUser();
+                                        getuserLista();
+                                        Intent intent = new Intent(entrada_inicio.this, log_in.class);
+                                        startActivity(intent);
+                                    }else {
+                                        Intent intent = new Intent(entrada_inicio.this, MainActivity.class);
+                                        startActivity(intent);
+                                    }
                                 }
                             }else{
                                 if (aux1.length ==0 ){

@@ -230,6 +230,11 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.descargar) {
             descargarWS();
         }
+        else if (id == R.id.cerrarSesion) {
+            String[][] users = MainActivity.oDB.ObtenerUser("0",3);
+            MainActivity.oDB.recordarUser(Integer.parseInt(users[0][0]), 0, 0);
+            finish();
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -619,13 +624,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
-                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
-                miProgreso++;
             }
         });
         oNS.execute("getproyecto_galeriaLista");
@@ -636,17 +639,16 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "WEB SERVICES PROYECTO-CAMA!", Toast.LENGTH_LONG).show();
-                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-CAMA!", Toast.LENGTH_LONG).show();
-                miProgreso++;
             }
         });
         oNS.execute("getproyecto_camaLista");
     }
+
 
     public void Sincronizar(){
         Fragment fragment;
