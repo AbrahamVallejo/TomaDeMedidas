@@ -519,15 +519,15 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     proyecto.put("id_cliente_disp", aref[0][3] );
                     proyecto.put("id_formato", aref[0][4]);
                     proyecto.put("id_user", "5");
-                    proyecto.put("nombre_proyecto", "PruebaDeProyecto");
-                    proyecto.put("pedido_sap", "S/P");
-                    proyecto.put("fecha", "/Date(1506871200000)/");
-                    proyecto.put("autorizado", "0");
-                    proyecto.put("accesorios_techo", aref[0][19] );
-                    proyecto.put("accesorios_muro", aref[0][20] );
-                    proyecto.put("accesorios_especiales", aref[0][21] );
-                    proyecto.put("id_estatus", aref[0][10] );
-                    proyecto.put("id_usuario_venta", "10");
+                    proyecto.put("nombre_proyecto", aref[0][6] );
+                    proyecto.put("pedido_sap", aref[0][7] );
+                    proyecto.put("fecha", aref[0][8] );
+                    proyecto.put("autorizado", aref[0][9] );
+                    proyecto.put("accesorios_techo", aref[0][10] );
+                    proyecto.put("accesorios_muro", aref[0][11] );
+                    proyecto.put("accesorios_especiales", aref[0][12] );
+                    proyecto.put("id_estatus", aref[0][13] );
+                    proyecto.put("id_usuario_venta", aref[0][14]);
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
