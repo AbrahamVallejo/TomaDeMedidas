@@ -560,7 +560,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     Log.v("[add]","Tam: "+sResp.length() +" Ca: "+sResp);
                     if (sResp.length() == 0){
                         Log.v("[add]","Retorno nulo" );
-                        MainActivity.oDB.cerrarProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][13]), " "  );
+                        MainActivity.oDB.cerrarProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][13]), 0, " ", 0);
                     }else {
                         MainActivity.oDB.deleteProyecto( urls[2], urls[3] );
                     }
