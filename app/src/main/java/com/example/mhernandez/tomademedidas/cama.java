@@ -25,7 +25,7 @@ public class cama extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
         final int idCliente = oExt.getInt("id_cliente");
-        final int idclienteDisp = oExt.getInt("id_cliente_disp");
+        final int idclienteDisp = oExt.getInt("id_cliente_disp");   Log.v("[spiner]", idCliente +" "+idclienteDisp );
         final String Agente = oExt.getString("Agente");
         final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");

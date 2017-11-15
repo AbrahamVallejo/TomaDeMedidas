@@ -251,7 +251,7 @@ public class Fragment_listaProyecto extends Fragment {
             Log.v("[AQUIANDO", _text[position][7]);
             Log.v("[AQUIANDO","H"+ _text[position][7].indexOf("T"));
             if ( _text[position][7].indexOf("T") != 10){
-                txtFecha.setText( _text[position][7] );
+                txtFecha.setText("no disponible" );
             }else {
             String[] parts = _text[position][7].split("T");
             txtFecha.setText(parts[0]);}
