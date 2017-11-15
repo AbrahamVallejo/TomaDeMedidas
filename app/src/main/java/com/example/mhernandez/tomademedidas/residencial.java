@@ -94,7 +94,8 @@ public class residencial extends AppCompatActivity {
                                 "IMAGEN", nombreProyecto, FechaAlta, idFormato, FechaAlta, 1, txtFijacion, txtPiso, 1,
                                 1, 1, txtCorredera);
                         Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(rIntent);                    }
+                        startActivity(rIntent);
+                    }
                 }
         );
     }

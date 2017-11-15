@@ -62,7 +62,7 @@ public class listaCama extends AppCompatActivity {
                             Intent rIntent = new Intent(listaCama.this, medidaCama.class);
                             rIntent.putExtra("idProyecto", aDat[2]);
                             rIntent.putExtra("idProyectoDisp", aDat[3]);
-                            rIntent.putExtra("idNombre", aDat[12]);
+                            rIntent.putExtra("Nombre", aDat[12]);
                             startActivity(rIntent);
                         }
                         customDialog.dismiss();

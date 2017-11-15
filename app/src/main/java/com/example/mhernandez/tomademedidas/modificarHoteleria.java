@@ -84,6 +84,7 @@ public class modificarHoteleria extends AppCompatActivity {
                 String Observaciones = txtObservaciones.getText().toString();
                 oDB.updateProyectoHoteleria(idHoteleria, idDisp, Habitacion, Area, Ancho, Alto, Hojas, "IMAGEN",
                         Observaciones, Piso, Edificio, Control, Fijacion, MedidaSugerida, Corredera);
+                finish();
             }
         });
     }

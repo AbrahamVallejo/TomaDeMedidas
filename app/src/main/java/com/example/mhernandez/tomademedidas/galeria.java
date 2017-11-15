@@ -74,7 +74,8 @@ public class galeria extends AppCompatActivity {
                                 txtAncho, txtAlto, txtCopete, txtProyecciones, txtFijacion, txtComentarios, nombreProyecto, "IMAGEN",
                                 idFormato, FechaAlta, 1, 1, 1, 1);
                         Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(rIntent);                    }
+                        startActivity(rIntent);
+                    }
                 }
         );
 
