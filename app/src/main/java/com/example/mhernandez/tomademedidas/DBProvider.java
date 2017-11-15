@@ -817,6 +817,14 @@ public class DBProvider {
         Log.v("[obtener]", "Insert User: "+String.valueOf(id));
     }
 
+    public void recordarUser(int id, int veri,int status) {
+        Object[] aData = {status, veri, id};
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_USER + " SET "
+                + DBhelper.COLUMN_NAME_STATUS + " = ?, "
+                + DBhelper.COLUMN_NAME_VERIFICACION + " = ? "
+                + " WHERE " + DBhelper._ID + " = ? ", aData);
+    }
+
     public String[][] buscarUser(int Disp) {
         int iCnt = 0;
         String[][] aData = null;
@@ -889,14 +897,18 @@ public class DBProvider {
         Cursor aRS;             Log.v("[obtener]", "Estoy en Obtener User");
         if (tipo == 1) {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USER + " WHERE " + DBhelper._ID + " <> ?", aFils);
-        } else {
-            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USER + " WHERE " + DBhelper.COLUMN_NAME_USERNAME + " = ?", aFils);
+        } else if(tipo ==2){
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USER + " WHERE " + DBhelper.COLUMN_NAME_STATUS + " <> ?", aFils);
+        } else if(tipo ==3) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USER + " WHERE " + DBhelper.COLUMN_NAME_VERIFICACION + " <> ?", aFils);
+        }else{
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USER + " WHERE " + DBhelper._ID + " = ?", aFils);
         }
 
         if (aRS.getCount() > 0) {
             aData = new String[aRS.getCount()][];
             while (aRS.moveToNext()) {
-                aData[iCnt] = new String[5];
+                aData[iCnt] = new String[8];
                 aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper._ID));
                 aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_USERNAME ));
                 aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PASSWORD_HASH ));
