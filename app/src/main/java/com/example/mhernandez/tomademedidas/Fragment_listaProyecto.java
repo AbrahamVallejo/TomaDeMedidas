@@ -102,7 +102,7 @@ public class Fragment_listaProyecto extends Fragment {
                         String FechaCierre = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
                         FechaCierre = FechaCierre +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
                         if ( Integer.parseInt(aDat[10]) ==1){
-                            MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2, 5, FechaCierre, 2);
+                            MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2, FechaCierre);
                             lista();
                         }
                         Toast.makeText(getActivity(), "PROYECTO CERRADO", Toast.LENGTH_SHORT).show();
@@ -174,7 +174,7 @@ public class Fragment_listaProyecto extends Fragment {
                         }
                         if (Integer.parseInt(aRef[0][15]) != 1) {
                             MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]),
-                                    Integer.parseInt(aDat[10]), 5, " ", 3);
+                                    Integer.parseInt(aDat[10]), "FECHA");
                         }
                         Toast.makeText(getActivity(), "REGISTRO ELIMINADO", Toast.LENGTH_SHORT).show();
                         lista();

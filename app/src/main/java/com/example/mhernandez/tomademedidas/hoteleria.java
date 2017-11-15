@@ -1,5 +1,6 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -79,7 +80,8 @@ public class hoteleria extends AppCompatActivity {
                         oDB.insertProyectoHoteleria(idHoteleria, idDisp, idProyecto, idDisp, txtHabitacion,
                                 txtArea, txtAncho, txtAlto, txtHojas, txtObservaciones, nombreProyecto, "IMAGEN", FechaAlta, idFormato,
                                 txtPiso, txtEdificio, txtControl, txtFijacion, FechaAlta, 1, txtMedidaSugerida, 1, 1, 1, txtCorredera);
-                        finish();
+                        Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(rIntent);
                     }
                 }
         );

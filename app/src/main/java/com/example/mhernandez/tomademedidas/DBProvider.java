@@ -340,10 +340,19 @@ public class DBProvider {
     public void updateProyectoCama(int idCama, int idDisp, String nHabitaciones, Double A, Double B, Double C, Double D,
                                    Double E, Double F, Double G, String AIMG, String Observaciones) {
         Object[] aData = {nHabitaciones, A, B, C, D, E, F, G, AIMG, Observaciones, idCama, idDisp};
-        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " SET " + DBhelper.COLUMN_NAME_N_HABITACION + " = ?, "
-                + DBhelper.COLUMN_NAME_A + " = ?, " + DBhelper.COLUMN_NAME_B + " = ?, " + DBhelper.COLUMN_NAME_C + " = ?, "
-                + DBhelper.COLUMN_NAME_E + " = ?, " + DBhelper.COLUMN_NAME_F + " = ?, " + DBhelper.COLUMN_NAME_G + " = ?, "
-                + DBhelper.COLUMN_NAME_AIMG + " = ?, " + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ?, " + " WHERE " + DBhelper.ID_CAMA + " = ?" + "AND " + DBhelper.ID_DISP + " = ?", aData);
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " SET "
+                + DBhelper.COLUMN_NAME_N_HABITACION + " = ?, "
+                + DBhelper.COLUMN_NAME_A + " = ?, "
+                + DBhelper.COLUMN_NAME_B + " = ?, "
+                + DBhelper.COLUMN_NAME_C + " = ?, "
+                + DBhelper.COLUMN_NAME_D + " = ?, "
+                + DBhelper.COLUMN_NAME_E + " = ?, "
+                + DBhelper.COLUMN_NAME_F + " = ?, "
+                + DBhelper.COLUMN_NAME_G + " = ?, "
+                + DBhelper.COLUMN_NAME_AIMG + " = ?, "
+                + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ? "
+                + " WHERE " + DBhelper.ID_CAMA + " = ? "
+                + " AND " + DBhelper.ID_DISP + " = ? ", aData);
     }
 
     public void deleteProyectoCama(String idCama) {
@@ -408,9 +417,14 @@ public class DBProvider {
 
     public void updateProyectoEspecial(int idEspecial, int idDisp, Double ancho, Double alto, Double grosor, String AIMG, String observaciones) {
         Object[] aData = {ancho, alto, grosor, AIMG, observaciones, idEspecial, idDisp};
-        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " SET " + DBhelper.COLUMN_NAME_ANCHOESP + " = ?, "
-                + DBhelper.COLUMN_NAME_ALTO + " = ?, " + DBhelper.COLUMN_NAME_GROSOR + " = ?, " + DBhelper.COLUMN_NAME_AIMG + " = ?, " + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ?, "
-                + " WHERE " + DBhelper.ID_ESPECIALES + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " SET "
+                + DBhelper.COLUMN_NAME_ANCHOESP + " = ?, "
+                + DBhelper.COLUMN_NAME_ALTO + " = ?, "
+                + DBhelper.COLUMN_NAME_GROSOR + " = ?, "
+                + DBhelper.COLUMN_NAME_AIMG + " = ?, "
+                + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ? "
+                + " WHERE " + DBhelper.ID_ESPECIALES + " = ?"
+                + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public void deleteProyectoEspecial(String idEspecial) {
@@ -473,10 +487,18 @@ public class DBProvider {
     public void updateProyectoGaleria(int idGaleria, int idDisp, String nHabitaciones, String area, Double ancho, Double alto,
                                       String copete, String proyecciones, String fijacion, String AIMG, String comentarios) {
         Object[] aData = {nHabitaciones, area, ancho, alto, copete, proyecciones, fijacion, AIMG, comentarios, idGaleria, idDisp};
-        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " SET " + DBhelper.COLUMN_NAME_N_HABITACION + " = ?, "
-                + DBhelper.COLUMN_NAME_AREA + " = ?, " + DBhelper.COLUMN_NAME_ANCHO + " ?, " + DBhelper.COLUMN_NAME_ALTO + " = ?, "
-                + DBhelper.COLUMN_NAME_COPETE + " = ?, " + DBhelper.COLUMN_NAME_PROYECCIONES + " = ?, " + DBhelper.COLUMN_NAME_FIJACION + " = ?, "
-                + DBhelper.COLUMN_NAME_AIMG + " = ?, " + DBhelper.COLUMN_NAME_COMENTARIOS + " = ?, " + " WHERE " + DBhelper.ID_GALERIA + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " SET "
+                + DBhelper.COLUMN_NAME_N_HABITACION + " = ?, "
+                + DBhelper.COLUMN_NAME_AREA + " = ?, "
+                + DBhelper.COLUMN_NAME_ANCHO + " ?, "
+                + DBhelper.COLUMN_NAME_ALTO + " = ?, "
+                + DBhelper.COLUMN_NAME_COPETE + " = ?, "
+                + DBhelper.COLUMN_NAME_PROYECCIONES + " = ?, "
+                + DBhelper.COLUMN_NAME_FIJACION + " = ?, "
+                + DBhelper.COLUMN_NAME_AIMG + " = ?, "
+                + DBhelper.COLUMN_NAME_COMENTARIOS + " = ? "
+                + " WHERE " + DBhelper.ID_GALERIA + " = ?"
+                + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public void deleteProyectoGaleria(String idGaleria) {
@@ -571,9 +593,9 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_CONTROL + " = ?, "
                 + DBhelper.COLUMN_NAME_FIJACION + " = ?, "
                 + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + " = ?, "
-                + DBhelper.COLUMN_NAME_CORREDERA + " = ?, "
-                + " WHERE " + DBhelper.ID_HOTELERIA + " = ?"
-                + " AND " + DBhelper.ID_DISP + " = ?", aData);
+                + DBhelper.COLUMN_NAME_CORREDERA + " = ? "
+                + " WHERE " + DBhelper.ID_HOTELERIA + " = ? "
+                + " AND " + DBhelper.ID_DISP + " = ? ", aData);
     }
 
     public void deleteProyectoHoteleria(String idHoteleria) {
@@ -663,12 +685,28 @@ public class DBProvider {
                                           Double E, Double F, Double G, Double H, Double profMarco, Double profJaladera, String control,
                                           String Agpto, String medidaSujerida, String AIMG, String observaciones, String fijacion, String piso, String corredera) {
         Object[] aData = {ubicacion, A, B, C, D, E, F, G, H, profMarco, profJaladera, control, Agpto, medidaSujerida, AIMG, observaciones, fijacion, piso, corredera, idResidencial, idDisp};
-        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " SET " + DBhelper.COLUMN_NAME_UBICACION + " = ?, " + DBhelper.COLUMN_NAME_A + " = ?, "
-                + DBhelper.COLUMN_NAME_B + " = ?, " + DBhelper.COLUMN_NAME_C + " = ?, " + DBhelper.COLUMN_NAME_D + " = ?, " + DBhelper.COLUMN_NAME_E + " = ?, "
-                + DBhelper.COLUMN_NAME_F + " = ?, " + DBhelper.COLUMN_NAME_G + " = ?, " + DBhelper.COLUMN_NAME_H + " = ?, " + DBhelper.COLUMN_NAME_PROF_MARCO + " = ?, "
-                + DBhelper.COLUMN_NAME_PROF_JALADERA + " = ?, " + DBhelper.COLUMN_NAME_CONTROL + " = ?, " + DBhelper.COLUMN_NAME_AGPTO + " = ?," + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + " = ?, "
-                + DBhelper.COLUMN_NAME_AIMG + " = ?, " + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ?, " + DBhelper.COLUMN_NAME_FIJACION + " = ?, " + DBhelper.COLUMN_NAME_PISO + " = ?, "
-                + DBhelper.COLUMN_NAME_CORREDERA + " = ?, " + " WHERE " + DBhelper.ID_RESIDENCIAL + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " SET "
+                + DBhelper.COLUMN_NAME_UBICACION + " = ?, "
+                + DBhelper.COLUMN_NAME_A + " = ?, "
+                + DBhelper.COLUMN_NAME_B + " = ?, "
+                + DBhelper.COLUMN_NAME_C + " = ?, "
+                + DBhelper.COLUMN_NAME_D + " = ?, "
+                + DBhelper.COLUMN_NAME_E + " = ?, "
+                + DBhelper.COLUMN_NAME_F + " = ?, "
+                + DBhelper.COLUMN_NAME_G + " = ?, "
+                + DBhelper.COLUMN_NAME_H + " = ?, "
+                + DBhelper.COLUMN_NAME_PROF_MARCO + " = ?, "
+                + DBhelper.COLUMN_NAME_PROF_JALADERA + " = ?, "
+                + DBhelper.COLUMN_NAME_CONTROL + " = ?, "
+                + DBhelper.COLUMN_NAME_AGPTO + " = ?,"
+                + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + " = ?, "
+                + DBhelper.COLUMN_NAME_AIMG + " = ?, "
+                + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ?, "
+                + DBhelper.COLUMN_NAME_FIJACION + " = ?, "
+                + DBhelper.COLUMN_NAME_PISO + " = ?, "
+                + DBhelper.COLUMN_NAME_CORREDERA + " = ? "
+                + " WHERE " + DBhelper.ID_RESIDENCIAL + " = ?"
+                + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public void deleteProyectoResidencial(String idResidencial) {
