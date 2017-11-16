@@ -31,8 +31,8 @@ public class medidaHoteleria extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
         spinnerArea(); spinnerControl(); spinnerFijacion(); spinnerCorredera();
-        final int idProyecto = oExt.getInt("idProyecto");
-        final int idProyectoDisp = oExt.getInt("idProyectoDisp");
+        final int idProyecto = Integer.parseInt(oExt.getString("idProyecto"));
+        final int idProyectoDisp = Integer.parseInt(oExt.getString("idProyectoDisp"));
         final String Nombre = oExt.getString("Nombre");
         final EditText Edificio = (EditText) this.findViewById(R.id.txtEdificio);
         final EditText Piso = (EditText) this.findViewById(R.id.txtPiso);

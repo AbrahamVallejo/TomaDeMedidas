@@ -801,11 +801,11 @@ public class MainActivity extends AppCompatActivity
                         try {
                             sleep(1000);
                                 getclienteLista();
-                                getproyectoLista();
-                                getproyectoCamaLista();/*
+//                                getproyectoLista();
+                                getproyectoCamaLista();
                                 getproyectoEspecialLista();
                                 getproyectoHoteleriaLista();
-                                getproyectoGaleriaLista(); */
+                                getproyectoGaleriaLista();
                                 getproyectoResidencialLista();
                         }catch (InterruptedException e){
                             e.printStackTrace();       }
