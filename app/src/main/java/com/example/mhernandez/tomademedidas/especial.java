@@ -25,6 +25,7 @@ public class especial extends AppCompatActivity {
         final Bundle oExt = this.getIntent().getExtras();
         final int idCliente = oExt.getInt("id_cliente");
         final int idclienteDisp = oExt.getInt("id_cliente_disp");
+        final int idUsuarioVenta = oExt.getInt("idUsuarioVenta");
         final String Agente = oExt.getString("Agente");
         final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
@@ -54,7 +55,7 @@ public class especial extends AppCompatActivity {
                         int idEspecial = Integer.parseInt(aRefE[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
-                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 0, Agente, 1);
+                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, idUsuarioVenta, Agente, 1);
                         oDB.insertProyectoEspecial(idEspecial, idDisp, idProyecto, idDisp, nombreProyecto, txtAlto, txtAncho, txtGrosor,
                         OBS, "IMAGEN", FechaAlta, idFormato, FechaAlta, 1, 0, 0, 0);
                         Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);

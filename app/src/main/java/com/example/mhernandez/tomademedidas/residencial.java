@@ -32,6 +32,7 @@ public class residencial extends AppCompatActivity {
         Bundle oExt = this.getIntent().getExtras();
         final int idCliente = oExt.getInt("id_cliente");
         final int idclienteDisp = oExt.getInt("id_cliente_disp");
+        final int idUsuarioVenta = oExt.getInt("idUsuarioVenta");
         final String Agente = oExt.getString("Agente");
         final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
@@ -91,7 +92,7 @@ public class residencial extends AppCompatActivity {
                         int idResidencial = Integer.parseInt(aRefR[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
-                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 0, Agente, 1);
+                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, idUsuarioVenta, Agente, 1);
                         oDB.insertProyectoResidencial(idResidencial, idDisp, idProyecto, idDisp, txtUbicacion, txtA, txtB, txtC, txtD,
                                 txtE, txtF, txtG, txtH, txtProfMarco, txtProfJaladera, txtControl, txtAgpto, txtMedidaSugeria, txtObservaciones,
                                 "IMAGEN", nombreProyecto, FechaAlta, idFormato, FechaAlta, 1, txtFijacion, txtPiso, 1,

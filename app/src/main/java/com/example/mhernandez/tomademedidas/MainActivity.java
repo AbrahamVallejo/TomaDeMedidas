@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity
                 partsC[0] = partsC[0].replace(".","-");
                 String[] Clientes = partsC[0].split("-");    Clientes[1]= Clientes[1].trim();
                 idC = Integer.parseInt(Clientes[0].toString()); idCD = Integer.parseInt(Clientes[1].toString());
-                Log.v("[spin]", idC +" "+idCD );
             }else { Validar++; }
 
         Spinner formato = (Spinner) this.findViewById(R.id.spinner_formato);
@@ -143,7 +142,7 @@ public class MainActivity extends AppCompatActivity
 
         Spinner agente = (Spinner) this.findViewById(R.id.spinner_agente);      String[] partsA = new String[2];
             if(agente.getSelectedItemPosition() != 0){
-                partsA = agente.getSelectedItem().toString().split("-"); Log.v("[spin]", partsA[1] );
+                partsA = agente.getSelectedItem().toString().split("-");
             }else { Validar++; }
 
         EditText proyecto = (EditText) this.findViewById(R.id.proyecto_nombre_proyecto);
@@ -164,10 +163,7 @@ public class MainActivity extends AppCompatActivity
             String part4 = accesorioEspecial.replace(" ","");
             if (part4.length() ==0) { Validar++; }
         String PS = PedidoSap.getText().toString();
-        if (PS.length()==0){PS ="S/P";}
-        //GregorianCalendar currentTime = new GregorianCalendar();
-        //String FechaAlta = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
-        //FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
+            if (PS.length()==0){PS ="S/P";}
         Date FechaAlta = new Date();  Log.v("[spin]","/Date("+FechaAlta.getTime()+")/");
 
         int selected = formato.getSelectedItemPosition(); Log.v("[spin]", "Sel: "+selected );
@@ -192,6 +188,7 @@ public class MainActivity extends AppCompatActivity
         rIntent.putExtra("Agente", partsA[1] );
         rIntent.putExtra("id_cliente", idC );
         rIntent.putExtra("id_cliente_disp", idCD );
+        rIntent.putExtra("idUsuarioVenta",Integer.parseInt(partsA[1]) );
             if (Validar ==0){
                 startActivity(rIntent);
             }else {
@@ -909,3 +906,7 @@ public class MainActivity extends AppCompatActivity
             }
         }*/
 }
+
+//GregorianCalendar currentTime = new GregorianCalendar();
+//String FechaAlta = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
+//FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
