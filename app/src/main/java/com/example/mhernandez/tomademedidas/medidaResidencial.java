@@ -109,7 +109,7 @@ public class medidaResidencial extends AppCompatActivity {
 
     public void spinnerUbicacion(){
         String[][] aRes= residencial.oDB.ObtenerUbicacion("0",1);
-        spUbicacionR= (Spinner)( findViewById(R.id.spinner_ubicacionR));
+        spUbicacionR= (Spinner)( findViewById(R.id.spinner_ubicacion));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione una ubicación...";
         for(int i = 0; i < aRes.length; i++){
@@ -121,7 +121,7 @@ public class medidaResidencial extends AppCompatActivity {
 
     public void spinnerControl(){
         String[][] aRes= residencial.oDB.ObtenerControl("0",1);
-        spControlR= (Spinner)( findViewById(R.id.spinner_controlR));
+        spControlR= (Spinner)( findViewById(R.id.spinner_control));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un valor...";
         for(int i = 0; i < aRes.length; i++){
@@ -133,7 +133,7 @@ public class medidaResidencial extends AppCompatActivity {
 
     public void spinnerFijacion(){
         String[][] aRes= residencial.oDB.ObtenerFijacion("0",1);
-        spFijacionR= (Spinner)( findViewById(R.id.spinner_fijacionR));
+        spFijacionR= (Spinner)( findViewById(R.id.spinner_fijacion));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un lado...";
         for(int i = 0; i < aRes.length; i++){
@@ -145,7 +145,7 @@ public class medidaResidencial extends AppCompatActivity {
 
     public void spinnerCorredera(){
         String[][] aRes= residencial.oDB.ObtenerCorredera("0",1);
-        spCorrederaR= (Spinner)( findViewById(R.id.spinner_correderaR));
+        spCorrederaR= (Spinner)( findViewById(R.id.spinner_corredera));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione uno...";
         for(int i = 0; i < aRes.length; i++){
@@ -157,7 +157,7 @@ public class medidaResidencial extends AppCompatActivity {
 
     public void spinnerAgpto(){
         String[][] aRes= residencial.oDB.ObtenerControl("0",1);
-        spAgptoR= (Spinner)( findViewById(R.id.spinner_agptoR));
+        spAgptoR= (Spinner)( findViewById(R.id.spinner_agpto));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un lado...";
         for(int i = 0; i < aRes.length; i++){
