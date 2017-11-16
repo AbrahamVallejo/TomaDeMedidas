@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -92,17 +93,14 @@ public class Fragment_listaProyecto extends Fragment {
                 customDialog = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
                 customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 customDialog.setContentView(R.layout.menu_tabla_proyecto);
-
+                final Date FechaCierre = new Date();  Log.v("[spin]","/Date("+FechaCierre.getTime()+")/");
 
                 ((Button) customDialog.findViewById(R.id.btnCerrar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
-                        GregorianCalendar currentTime = new GregorianCalendar();
-                        String FechaCierre = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
-                        FechaCierre = FechaCierre +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
                         if ( Integer.parseInt(aDat[10]) ==1){
-                            MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2, FechaCierre);
+                            MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2, 5, "/Date("+FechaCierre.getTime()+")/", 2);
                             lista();
                         }
                         Toast.makeText(getActivity(), "PROYECTO CERRADO", Toast.LENGTH_SHORT).show();
@@ -173,8 +171,7 @@ public class Fragment_listaProyecto extends Fragment {
                             MainActivity.oDB.deleteProyecto(idProyecto, idDisp);
                         }
                         if (Integer.parseInt(aRef[0][15]) != 1) {
-                            MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]),
-                                    Integer.parseInt(aDat[10]), "FECHA");
+                            MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2, 5,"/Date("+FechaCierre.getTime()+")/", 2);
                         }
                         Toast.makeText(getActivity(), "REGISTRO ELIMINADO", Toast.LENGTH_SHORT).show();
                         lista();
@@ -251,7 +248,7 @@ public class Fragment_listaProyecto extends Fragment {
             Log.v("[AQUIANDO", _text[position][7]);
             Log.v("[AQUIANDO","H"+ _text[position][7].indexOf("T"));
             if ( _text[position][7].indexOf("T") != 10){
-                txtFecha.setText( _text[position][7] );
+                txtFecha.setText("no disponible" );
             }else {
             String[] parts = _text[position][7].split("T");
             txtFecha.setText(parts[0]);}

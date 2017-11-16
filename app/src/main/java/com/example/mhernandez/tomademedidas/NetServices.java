@@ -298,8 +298,8 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("verificacion"); //Log.v("PRUEBA", joFuj.getString("id"));Log.v("PRUEBA","...");
                     //Log.v("[obtener]",aRef[0][0]);
                         entrada_inicio.oDB.insertUser(Integer.parseInt(joFuj.getString("id")),joFuj.getString("username"),
-                                joFuj.getString("password_hash"), joFuj.getString("email"), Integer.parseInt(joFuj.getString("status")),
-                                joFuj.getString("nombre"), joFuj.getString("apellido"), Integer.parseInt(joFuj.getString("verificacion")) );
+                                joFuj.getString("password_hash"), joFuj.getString("email"), 0,
+                                joFuj.getString("nombre"), joFuj.getString("apellido"), 0 );
                 }
             }catch (Exception e){
                 exception = e;
@@ -519,15 +519,15 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     proyecto.put("id_cliente_disp", aref[0][3] );
                     proyecto.put("id_formato", aref[0][4]);
                     proyecto.put("id_user", "5");
-                    proyecto.put("nombre_proyecto", "PruebaDeProyecto");
-                    proyecto.put("pedido_sap", "S/P");
-                    proyecto.put("fecha", "/Date(1506871200000)/");
-                    proyecto.put("autorizado", "0");
-                    proyecto.put("accesorios_techo", aref[0][19] );
-                    proyecto.put("accesorios_muro", aref[0][20] );
-                    proyecto.put("accesorios_especiales", aref[0][21] );
-                    proyecto.put("id_estatus", aref[0][10] );
-                    proyecto.put("id_usuario_venta", "10");
+                    proyecto.put("nombre_proyecto", aref[0][6] );
+                    proyecto.put("pedido_sap", aref[0][7] );
+                    proyecto.put("fecha", aref[0][8] );
+                    proyecto.put("autorizado", aref[0][9] );
+                    proyecto.put("accesorios_techo", aref[0][10] );
+                    proyecto.put("accesorios_muro", aref[0][11] );
+                    proyecto.put("accesorios_especiales", aref[0][12] );
+                    proyecto.put("id_estatus", aref[0][13] );
+                    proyecto.put("id_usuario_venta", aref[0][14]);
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -560,7 +560,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     Log.v("[add]","Tam: "+sResp.length() +" Ca: "+sResp);
                     if (sResp.length() == 0){
                         Log.v("[add]","Retorno nulo" );
-                        MainActivity.oDB.cerrarProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][13]), " "  );
+                        MainActivity.oDB.cerrarProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][13]), 0, " ", 0);
                     }else {
                         MainActivity.oDB.deleteProyecto( urls[2], urls[3] );
                     }

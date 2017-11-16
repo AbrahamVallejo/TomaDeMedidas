@@ -3,6 +3,7 @@ package com.example.mhernandez.tomademedidas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -25,7 +26,7 @@ public class residencial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crear_medida_residencial);
         //Llenar los spinner
-        spinnerUbicacion(); spinnerControl(); spinnerFijacion(); spinnerCorredera(); spinnerAgpto();
+        spinnerCorredera(); spinnerControl();   spinnerFijacion();  spinnerAgpto(); spinnerUbicacion();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle oExt = this.getIntent().getExtras();
@@ -111,6 +112,18 @@ public class residencial extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void spinnerCorredera(){
+        String[][] aRes= residencial.oDB.ObtenerCorredera("0",1);
+        spCorrederaR= (Spinner)( findViewById(R.id.spinner_corredera));
+        final String[] aData = new String[aRes.length+1];
+        aData[0]="Seleccione uno...";
+        for(int i = 0; i < aRes.length; i++){
+            aData[i+1] = (aRes[i][1]);
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
+        spCorrederaR.setAdapter(adapter);
+    }
+
     public void spinnerUbicacion(){
         String[][] aRes= residencial.oDB.ObtenerUbicacion("0",1);
         spUbicacionR= (Spinner)( findViewById(R.id.spinner_ubicacion));
@@ -145,18 +158,6 @@ public class residencial extends AppCompatActivity {
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spFijacionR.setAdapter(adapter);
-    }
-
-    public void spinnerCorredera(){
-        String[][] aRes= residencial.oDB.ObtenerCorredera("0",1);
-        spCorrederaR= (Spinner)( findViewById(R.id.spinner_corredera));
-        final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione uno...";
-        for(int i = 0; i < aRes.length; i++){
-            aData[i+1] = (aRes[i][1]);  //aData[i+1] = ("Valor " +i);
-        }
-        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
-        spCorrederaR.setAdapter(adapter);
     }
 
     public void spinnerAgpto(){

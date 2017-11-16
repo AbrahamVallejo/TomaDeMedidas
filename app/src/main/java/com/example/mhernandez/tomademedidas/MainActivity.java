@@ -22,6 +22,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -124,16 +126,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onSaveClickProyectos(View view){
-        int Validar=0;  Intent rIntent = new Intent();
-
-        Spinner cliente = (Spinner) this.findViewById(R.id.spinner_cliente);    String[] Clientes = new String[2];
+        int Validar=0; int idC=0; int idCD = 0;
+        Spinner cliente = (Spinner) this.findViewById(R.id.spinner_cliente);
             if(cliente.getSelectedItemPosition() != 0){
                 String[] partsC = cliente.getSelectedItem().toString().split("-");
                 partsC[0] = partsC[0].replace(".","-");
-                Clientes = partsC[0].split("-");
-                Log.v("[spin]", Clientes[0] +" "+Clientes[1] );
-                rIntent.putExtra("id_cliente", Integer.parseInt(Clientes[0]) );
-                rIntent.putExtra("id_cliente_disp", Integer.valueOf(Clientes[1].trim()) );
+                String[] Clientes = partsC[0].split("-");    Clientes[1]= Clientes[1].trim();
+                idC = Integer.parseInt(Clientes[0].toString()); idCD = Integer.parseInt(Clientes[1].toString());
+                Log.v("[spin]", idC +" "+idCD );
             }else { Validar++; }
 
         Spinner formato = (Spinner) this.findViewById(R.id.spinner_formato);
@@ -142,7 +142,6 @@ public class MainActivity extends AppCompatActivity
         Spinner agente = (Spinner) this.findViewById(R.id.spinner_agente);      String[] partsA = new String[2];
             if(agente.getSelectedItemPosition() != 0){
                 partsA = agente.getSelectedItem().toString().split("-"); Log.v("[spin]", partsA[1] );
-                rIntent.putExtra("Agente", partsA[1] );
             }else { Validar++; }
 
         EditText proyecto = (EditText) this.findViewById(R.id.proyecto_nombre_proyecto);
@@ -150,7 +149,6 @@ public class MainActivity extends AppCompatActivity
         EditText AccTecho = (EditText) this.findViewById(R.id.proyecto_accesorios_techo);
         EditText AccEspecial = (EditText) this.findViewById(R.id.proyecto_accesorios_especiales);
         EditText PedidoSap = (EditText) this.findViewById(R.id.proyecto_pedido_sap);
-
         String nombreProyecto = proyecto.getText().toString();
             String part1 = nombreProyecto.replace(" ","");
             if (part1.length() ==0) { Validar++; }
@@ -165,11 +163,13 @@ public class MainActivity extends AppCompatActivity
             if (part4.length() ==0) { Validar++; }
         String PS = PedidoSap.getText().toString();
         if (PS.length()==0){PS ="S/P";}
-        GregorianCalendar currentTime = new GregorianCalendar();
-        String FechaAlta = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
+        //GregorianCalendar currentTime = new GregorianCalendar();
+        //String FechaAlta = currentTime.get(GregorianCalendar.YEAR) +"-"+ (currentTime.get(GregorianCalendar.MONTH)+1) +"-"+currentTime.get(GregorianCalendar.DAY_OF_MONTH);
         //FechaAlta = FechaAlta +" "+ currentTime.get(GregorianCalendar.HOUR_OF_DAY) +":"+ currentTime.get(GregorianCalendar.MINUTE) +":"+ currentTime.get(GregorianCalendar.SECOND);
+        Date FechaAlta = new Date();  Log.v("[spin]","/Date("+FechaAlta.getTime()+")/");
 
         int selected = formato.getSelectedItemPosition(); Log.v("[spin]", "Sel: "+selected );
+        Intent rIntent = new Intent();
             if (selected == 2){
                 rIntent = new Intent(MainActivity.this, hoteleria.class);
             }else if (selected == 4){
@@ -185,8 +185,11 @@ public class MainActivity extends AppCompatActivity
         rIntent.putExtra("accesoriosMuro", accesorioMuro);
         rIntent.putExtra("accesoriosTecho", accesorioTecho);
         rIntent.putExtra("accesoriosEspecial", accesorioEspecial);
-        rIntent.putExtra("FechaAlta", FechaAlta);
+        rIntent.putExtra("FechaAlta", "/Date("+FechaAlta.getTime()+")/");
         rIntent.putExtra("PedidoSap", PS);
+        rIntent.putExtra("Agente", partsA[1] );
+        rIntent.putExtra("id_cliente", idC );
+        rIntent.putExtra("id_cliente_disp", idCD );
             if (Validar ==0){
                 startActivity(rIntent);
             }else {
@@ -226,6 +229,11 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.descargar) {
             descargarWS();
+        }
+        else if (id == R.id.cerrarSesion) {
+            String[][] users = MainActivity.oDB.ObtenerUser("0",3);
+            MainActivity.oDB.recordarUser(Integer.parseInt(users[0][0]), 0, 0);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -616,13 +624,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
-                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
-                miProgreso++;
             }
         });
         oNS.execute("getproyecto_galeriaLista");
@@ -633,17 +639,16 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "WEB SERVICES PROYECTO-CAMA!", Toast.LENGTH_LONG).show();
-                miProgreso++;
             }
 
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-CAMA!", Toast.LENGTH_LONG).show();
-                miProgreso++;
             }
         });
         oNS.execute("getproyecto_camaLista");
     }
+
 
     public void Sincronizar(){
         Fragment fragment;
@@ -787,7 +792,7 @@ public class MainActivity extends AppCompatActivity
                 MainActivity.oDB.deleteAllProyectos("0","0");
                 MainActivity.oDB.deleteAllProyectosCama("0","0");
                 MainActivity.oDB.deleteAllProyectosEspecial("0","0");
-                //MainActivity.oDB.deleteAllHoteleria("0","0");
+                MainActivity.oDB.deleteAllHoteleria("0","0");
                 MainActivity.oDB.deleteAllProyectosGaleria("0","0");
                 MainActivity.oDB.deleteAllResidencial("0","0");
 
@@ -797,10 +802,10 @@ public class MainActivity extends AppCompatActivity
                             sleep(1000);
                                 getclienteLista();
                                 getproyectoLista();
-                                getproyectoCamaLista();
+                                getproyectoCamaLista();/*
                                 getproyectoEspecialLista();
-                                //getproyectoHoteleriaLista();
-                                getproyectoGaleriaLista();/* */
+                                getproyectoHoteleriaLista();
+                                getproyectoGaleriaLista(); */
                                 getproyectoResidencialLista();
                         }catch (InterruptedException e){
                             e.printStackTrace();       }
@@ -820,7 +825,7 @@ public class MainActivity extends AppCompatActivity
                             e.printStackTrace();       }
                     }
                 };
-                //timerThreadDos.start();
+                timerThreadDos.start();
 
             }else {
                 Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();       }
