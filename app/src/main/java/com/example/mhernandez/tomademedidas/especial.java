@@ -25,8 +25,8 @@ public class especial extends AppCompatActivity {
         final Bundle oExt = this.getIntent().getExtras();
         final int idCliente = oExt.getInt("id_cliente");
         final int idclienteDisp = oExt.getInt("id_cliente_disp");
+        final int idUsuarioVenta = oExt.getInt("idUsuarioVenta");
         final String Agente = oExt.getString("Agente");
-
         final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
         final String accesoriosMuro = oExt.getString("accesoriosMuro");
@@ -34,6 +34,8 @@ public class especial extends AppCompatActivity {
         final String accesoriosEspecial = oExt.getString("accesoriosEspecial");
         final String PedidoSap = oExt.getString("PedidoSap");
         final String FechaAlta = oExt.getString("FechaAlta");
+        String[][] users = MainActivity.oDB.ObtenerUser("0",3);
+        final int usuario = Integer.parseInt(users[0][0]);
         final EditText Ancho = (EditText) this.findViewById(R.id.txtAncho);
         final EditText Alto = (EditText) this.findViewById(R.id.txtAlto);
         final EditText Grosor = (EditText) this.findViewById(R.id.txtGrosor);
@@ -52,10 +54,10 @@ public class especial extends AppCompatActivity {
                         int idProyecto = Integer.parseInt(aRefP[(0)][0]) + 1;
                         int idEspecial = Integer.parseInt(aRefE[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                        oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, Agente, 1);
+                        oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
+                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, idUsuarioVenta, Agente, 1);
                         oDB.insertProyectoEspecial(idEspecial, idDisp, idProyecto, idDisp, nombreProyecto, txtAlto, txtAncho, txtGrosor,
-                        OBS, "IMAGEN", FechaAlta, idFormato, FechaAlta, 1, 1, 1, 1);
+                        OBS, "IMAGEN", FechaAlta, idFormato, FechaAlta, 1, 0, 0, 0);
                         Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(rIntent);
                     }

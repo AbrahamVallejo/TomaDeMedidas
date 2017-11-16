@@ -25,7 +25,8 @@ public class cama extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
         final int idCliente = oExt.getInt("id_cliente");
-        final int idclienteDisp = oExt.getInt("id_cliente_disp");   Log.v("[spiner]", idCliente +" "+idclienteDisp );
+        final int idclienteDisp = oExt.getInt("id_cliente_disp");
+        final int idUsuarioVenta = oExt.getInt("idUsuarioVenta");
         final String Agente = oExt.getString("Agente");
         final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
@@ -33,7 +34,9 @@ public class cama extends AppCompatActivity{
         final String accesoriosTecho = oExt.getString("accesoriosTecho");
         final String accesoriosEspecial = oExt.getString("accesoriosEspecial");
         final String PedidoSap = oExt.getString("PedidoSap");
-        final String FechaAlta = oExt.getString("FechaAlta"); Log.v("[AQUIANDO", FechaAlta);
+        final String FechaAlta = oExt.getString("FechaAlta");
+        String[][] users = MainActivity.oDB.ObtenerUser("0",3);
+        final int usuario = Integer.parseInt(users[0][0]);
         final EditText NHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
         final EditText A = (EditText) this.findViewById(R.id.txt_A);
         final EditText B = (EditText) this.findViewById(R.id.txt_B);
@@ -62,10 +65,10 @@ public class cama extends AppCompatActivity{
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         int idCama = Integer.parseInt(aRefC[(0)][0]) + 1;
                         String OBS = Observaciones.getText().toString();
-                        oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, Agente,1);
+                        oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
+                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, idUsuarioVenta, Agente,1);
                         oDB.insertProyectoCama(idCama, idDisp, idProyecto, idDisp, numeroHabitaciones, txtA, txtB, txtC,
-                                txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, idFormato, OBS, 0, 1, 1, 1);
+                                txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, idFormato, OBS, usuario, 0, 1, 0);
                         Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(rIntent);
                     }

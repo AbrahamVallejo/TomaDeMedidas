@@ -32,8 +32,8 @@ public class residencial extends AppCompatActivity {
         Bundle oExt = this.getIntent().getExtras();
         final int idCliente = oExt.getInt("id_cliente");
         final int idclienteDisp = oExt.getInt("id_cliente_disp");
+        final int idUsuarioVenta = oExt.getInt("idUsuarioVenta");
         final String Agente = oExt.getString("Agente");
-
         final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
         final String accesoriosMuro = oExt.getString("accesoriosMuro");
@@ -41,6 +41,9 @@ public class residencial extends AppCompatActivity {
         final String accesoriosEspecial = oExt.getString("accesoriosEspecial");
         final String PedidoSap = oExt.getString("PedidoSap");
         final String FechaAlta = oExt.getString("FechaAlta");
+        String[][] users = MainActivity.oDB.ObtenerUser("0",3);
+        final int usuario = Integer.parseInt(users[0][0]);
+
         final Spinner Ubicacion = (Spinner) this.findViewById(R.id.spinner_ubicacion);
         final EditText A = (EditText) this.findViewById(R.id.txtA);
         final EditText B = (EditText) this.findViewById(R.id.txtB);
@@ -88,8 +91,8 @@ public class residencial extends AppCompatActivity {
                         int idProyecto = Integer.parseInt(aRefP[(0)][0]) + 1;
                         int idResidencial = Integer.parseInt(aRefR[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                        oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, Agente, 1);
+                        oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
+                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, idUsuarioVenta, Agente, 1);
                         oDB.insertProyectoResidencial(idResidencial, idDisp, idProyecto, idDisp, txtUbicacion, txtA, txtB, txtC, txtD,
                                 txtE, txtF, txtG, txtH, txtProfMarco, txtProfJaladera, txtControl, txtAgpto, txtMedidaSugeria, txtObservaciones,
                                 "IMAGEN", nombreProyecto, FechaAlta, idFormato, FechaAlta, 1, txtFijacion, txtPiso, 1,
