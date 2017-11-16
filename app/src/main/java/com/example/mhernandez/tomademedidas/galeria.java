@@ -41,6 +41,8 @@ public class galeria extends AppCompatActivity {
         final String accesoriosEspecial = oExt.getString("accesoriosEspecial");
         final String PedidoSap = oExt.getString("PedidoSap");
         final String FechaAlta = oExt.getString("FechaAlta");
+        String[][] users = MainActivity.oDB.ObtenerUser("0",3);
+        final int usuario = Integer.parseInt(users[0][0]);
         final EditText NHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
         final EditText Ancho = (EditText) this.findViewById(R.id.txt_ancho);
         final EditText Alto = (EditText) this.findViewById(R.id.txt_alto);
@@ -68,8 +70,8 @@ public class galeria extends AppCompatActivity {
                         int idProyecto = Integer.parseInt(aRefP[(0)][0]) + 1;
                         int idGaleria = Integer.parseInt(aRefG[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                        oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, Agente, 1);
+                        oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
+                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 0, Agente, 1);
                         oDB.insertProyectoGaleria(idGaleria, idDisp, idProyecto, idDisp, FechaAlta, numeroHabitaciones, txtArea,
                                 txtAncho, txtAlto, txtCopete, txtProyecciones, txtFijacion, txtComentarios, nombreProyecto, "IMAGEN",
                                 idFormato, FechaAlta, 1, 1, 1, 1);

@@ -32,7 +32,6 @@ public class hoteleria extends AppCompatActivity {
         final int idCliente = oExt.getInt("id_cliente");
         final int idclienteDisp = oExt.getInt("id_cliente_disp");
         final String Agente = oExt.getString("Agente");
-
         final int idFormato = oExt.getInt("idFormato");
         final String nombreProyecto = oExt.getString("nombreProyecto");
         final String accesoriosMuro = oExt.getString("accesoriosMuro");
@@ -40,6 +39,9 @@ public class hoteleria extends AppCompatActivity {
         final String accesoriosEspecial = oExt.getString("accesoriosEspecial");
         final String PedidoSap = oExt.getString("PedidoSap");
         final String FechaAlta = oExt.getString("FechaAlta");
+        String[][] users = MainActivity.oDB.ObtenerUser("0",3);
+        final int usuario = Integer.parseInt(users[0][0]);
+
         final EditText Habitacion = (EditText) this.findViewById(R.id.txtHabitacion);
         final Spinner Area = (Spinner) this.findViewById(R.id.spinner_area);
         final EditText Ancho = (EditText) this.findViewById(R.id.txtAncho);
@@ -75,8 +77,8 @@ public class hoteleria extends AppCompatActivity {
                         int idProyecto = Integer.parseInt(aRefP[(0)][0]) + 1;
                         int idHoteleria = Integer.parseInt(aRefH[(0)][0]) + 1;
                         int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                        oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, 5, nombreProyecto, PedidoSap, FechaAlta,
-                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 1, Agente, 1);
+                        oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
+                                           0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, 0, Agente, 1);
                         oDB.insertProyectoHoteleria(idHoteleria, idDisp, idProyecto, idDisp, txtHabitacion,
                                 txtArea, txtAncho, txtAlto, txtHojas, txtObservaciones, nombreProyecto, "IMAGEN", FechaAlta, idFormato,
                                 txtPiso, txtEdificio, txtControl, txtFijacion, FechaAlta, 1, txtMedidaSugerida, 1, 1, 1, txtCorredera);
