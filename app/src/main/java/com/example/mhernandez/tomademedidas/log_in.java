@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import javax.crypto.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 /**
@@ -60,16 +62,13 @@ public class log_in extends AppCompatActivity {
         if(part2.length()==0){
             aux++; nUser.setText(""); nUser.setHint("Campo Vacío");
         }
-        if(aux==0){//if (!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !direccion.getText().toString().isEmpty()){
-            String password = npass.getText().toString();
-
+        if(aux==0){
             String[][] aRef = entrada_inicio.oDB.iniciarUser(nUser.getText().toString(),npass.getText().toString());
-            Log.v("[obtener]", "Traigo un user: "+ aRef.length);
             if(aRef[0][0].toString() == "0"){
                 Toast.makeText(this, "Usuario o Contraseña Incorrectos", Toast.LENGTH_LONG).show();
             }else {
                 if (nRecordar.isChecked() == true){
-                    entrada_inicio.oDB.recordarUser(Integer.parseInt(aRef[0][0]),1, 1); //id, verificacion, estatus
+                    entrada_inicio.oDB.recordarUser(Integer.parseInt(aRef[0][0]),1, 1); //id, verificacion(saber quien es), estatus(recordarlo)
                 }else {
                     entrada_inicio.oDB.recordarUser(Integer.parseInt(aRef[0][0]),1, 0); //id, verificacion, estatus
                 }

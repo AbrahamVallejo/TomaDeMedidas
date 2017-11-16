@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity
 
         MainActivity.oDB.ObtenerCorredera("0",1);
         //MainActivity.oDB.ObtenerProyectosEspecial("0",1);
+
+
     }
 
 
@@ -233,7 +235,9 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.cerrarSesion) {
             String[][] users = MainActivity.oDB.ObtenerUser("0",3);
             MainActivity.oDB.recordarUser(Integer.parseInt(users[0][0]), 0, 0);
+            Intent rIntent = new Intent(this, log_in.class);
             finish();
+            startActivity(rIntent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -551,6 +555,7 @@ public class MainActivity extends AppCompatActivity
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
                 Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
+                finish();
                 startActivity(rIntent);
                 Toast.makeText(getApplicationContext(), "Descarga Completa", Toast.LENGTH_SHORT).show();
             }
@@ -559,6 +564,7 @@ public class MainActivity extends AppCompatActivity
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-Residencial!", Toast.LENGTH_LONG).show();
                 Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
+                finish();
                 startActivity(rIntent);
                 Toast.makeText(getApplicationContext(), "Descarga Completa", Toast.LENGTH_SHORT).show();
             }
