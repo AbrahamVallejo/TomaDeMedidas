@@ -30,8 +30,6 @@ public class modificarGaleria extends AppCompatActivity {
         spinnerArea(); spinnerCopete(); spinnerFijacion(); spinnerProyecciones();
         final int idGaleria = Integer.parseInt(oExt.getString("idGaleria"));
         final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
-        int idProyecto = Integer.parseInt(oExt.getString("idProyecto"));
-        int idProyectoDisp = Integer.parseInt(oExt.getString("idProyectoDisp"));
         String NHabitaciones = oExt.getString("NHabitaciones");
         String Area = oExt.getString("Area");
         String Ancho = oExt.getString("Ancho");
@@ -82,7 +80,7 @@ public class modificarGaleria extends AppCompatActivity {
     }
 
     public void spinnerArea(){
-        String[][] aRes= galeria.oDB.ObtenerUbicacion("0",1);
+        String[][] aRes= modificarGaleria.oDB.ObtenerUbicacion("0",1);
         spArea= (Spinner)( findViewById(R.id.spinner_area));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione una ubicación...";
@@ -95,7 +93,7 @@ public class modificarGaleria extends AppCompatActivity {
     }
 
     public void spinnerCopete(){
-        String[][] aRes= galeria.oDB.ObtenerCopete("0",1);
+        String[][] aRes= modificarGaleria.oDB.ObtenerCopete("0",1);
         spCopete= (Spinner)( findViewById(R.id.spinner_copete));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un valor...";
@@ -108,7 +106,7 @@ public class modificarGaleria extends AppCompatActivity {
     }
 
     public void spinnerFijacion(){
-        String[][] aRes= galeria.oDB.ObtenerFijacion("0",1);
+        String[][] aRes= modificarGaleria.oDB.ObtenerFijacion("0",1);
         spFijacion= (Spinner)( findViewById(R.id.spinner_fijacion));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un lado...";
@@ -121,7 +119,7 @@ public class modificarGaleria extends AppCompatActivity {
     }
 
     public void spinnerProyecciones(){
-        String[][] aRes= galeria.oDB.ObtenerProyeccion("0",1);
+        String[][] aRes= modificarGaleria.oDB.ObtenerProyeccion("0",1);
         spProye= (Spinner)( findViewById(R.id.spinner_proyecciones));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un valor...";
