@@ -82,7 +82,7 @@ public class hoteleria extends AppCompatActivity {
                                            0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, idUsuarioVenta, Agente, 1);
                         oDB.insertProyectoHoteleria(idHoteleria, idDisp, idProyecto, idDisp, txtHabitacion,
                                 txtArea, txtAncho, txtAlto, txtHojas, txtObservaciones, nombreProyecto, "IMAGEN", FechaAlta, idFormato,
-                                txtPiso, txtEdificio, txtControl, txtFijacion, FechaAlta, 1, txtMedidaSugerida, 1, 1, 1, txtCorredera);
+                                txtPiso, txtEdificio, txtControl, txtFijacion, FechaAlta, 1, txtMedidaSugerida, 0, 0, 0, txtCorredera);
                         Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(rIntent);
                     }
