@@ -25,8 +25,6 @@ public class modificarEspecial extends AppCompatActivity {
         Bundle oExt = this.getIntent().getExtras();
         final int idEspecial = Integer.parseInt(oExt.getString("idEspecial"));
         final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
-        int idProyecto = Integer.parseInt(oExt.getString("idProyecto"));
-        int idProyectoDisp = Integer.parseInt(oExt.getString("idProyectoDisp"));
         String Alto = oExt.getString("Alto");
         String Ancho = oExt.getString("Ancho");
         String Grosor = oExt.getString("Grosor");

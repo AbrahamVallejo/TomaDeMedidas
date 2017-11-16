@@ -29,8 +29,6 @@ public class modificarResidencial extends AppCompatActivity {
         Bundle oExt = getIntent().getExtras();
         final int idResidencial = Integer.parseInt(oExt.getString("idResidencial"));
         final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
-        int idProyecto = Integer.parseInt("idProyecto");
-        int idProyectoDisp = Integer.parseInt(oExt.getString("idProyectoDisp"));
         String Ubicacion = oExt.getString("Ubicacion");
         String Piso = oExt.getString("Piso");
         String MedidaSugerida = oExt.getString("MedidaSugerida");
@@ -48,25 +46,25 @@ public class modificarResidencial extends AppCompatActivity {
         String F = oExt.getString("F");
         String G = oExt.getString("G");
         String H = oExt.getString("H");
-        final Spinner txtUbicacion = (Spinner) findViewById(R.id.spinner_ubicacion);
-        final EditText txtPiso = (EditText) findViewById(R.id.txtPiso);
-        final EditText txtA = (EditText) findViewById(R.id.txtA);
-        final EditText txtB = (EditText) findViewById(R.id.txtB);
-        final EditText txtC = (EditText) findViewById(R.id.txtC);
-        final EditText txtD = (EditText) findViewById(R.id.txtD);
-        final EditText txtE = (EditText) findViewById(R.id.txtE);
-        final EditText txtF = (EditText) findViewById(R.id.txtF);
-        final EditText txtG = (EditText) findViewById(R.id.txtG);
-        final EditText txtH = (EditText) findViewById(R.id.txtH);
-        final EditText txtProfMarco = (EditText) findViewById(R.id.txtProfMarco);
-        final EditText txtProfJaladera = (EditText) findViewById(R.id.txtProfJaladera);
-        final Spinner txtControl = (Spinner) findViewById(R.id.spinner_control);
-        final Spinner txtAgpto = (Spinner) findViewById(R.id.spinner_agpto);
-        final Spinner txtFijacion = (Spinner) findViewById(R.id.spinner_fijacion);
-        final Spinner txtCorredera = (Spinner) findViewById(R.id.spinner_corredera);
-        final EditText txtMedidaSugerida = (EditText) findViewById(R.id.txtMedidaSugerida);
-        final EditText txtObservaciones = (EditText) findViewById(R.id.txtObservaciones);
-        Button Guardar = (Button) findViewById(R.id.Guardar);
+        final Spinner txtUbicacion = (Spinner) this.findViewById(R.id.spinner_ubicacion);
+        final EditText txtPiso = (EditText) this.findViewById(R.id.txtPiso);
+        final EditText txtA = (EditText) this.findViewById(R.id.txtA);
+        final EditText txtB = (EditText) this.findViewById(R.id.txtB);
+        final EditText txtC = (EditText) this.findViewById(R.id.txtC);
+        final EditText txtD = (EditText) this.findViewById(R.id.txtD);
+        final EditText txtE = (EditText) this.findViewById(R.id.txtE);
+        final EditText txtF = (EditText) this.findViewById(R.id.txtF);
+        final EditText txtG = (EditText) this.findViewById(R.id.txtG);
+        final EditText txtH = (EditText) this.findViewById(R.id.txtH);
+        final EditText txtProfMarco = (EditText) this.findViewById(R.id.txtProfMarco);
+        final EditText txtProfJaladera = (EditText) this.findViewById(R.id.txtProfJaladera);
+        final Spinner txtControl = (Spinner) this.findViewById(R.id.spinner_control);
+        final Spinner txtAgpto = (Spinner) this.findViewById(R.id.spinner_agpto);
+        final Spinner txtFijacion = (Spinner) this.findViewById(R.id.spinner_fijacion);
+        final Spinner txtCorredera = (Spinner) this.findViewById(R.id.spinner_corredera);
+        final EditText txtMedidaSugerida = (EditText) this.findViewById(R.id.txtMedidaSugerida);
+        final EditText txtObservaciones = (EditText) this.findViewById(R.id.txtObservaciones);
+        Button Guardar = (Button) this.findViewById(R.id.Guardar);
         txtPiso.setText(Piso.trim());
         txtA.setText(A.trim());
         txtB.setText(B.trim());
@@ -121,8 +119,8 @@ public class modificarResidencial extends AppCompatActivity {
     }
 
     public void spinnerUbicacion(){
-        String[][] aRes= residencial.oDB.ObtenerUbicacion("0",1);
-        spUbicacionR= (Spinner)( findViewById(R.id.spinner_ubicacionR));
+        String[][] aRes= modificarResidencial.oDB.ObtenerUbicacion("0",1);
+        spUbicacionR= (Spinner)( findViewById(R.id.spinner_ubicacion));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione una ubicación...";
         for(int i = 0; i < aRes.length; i++){
@@ -133,8 +131,8 @@ public class modificarResidencial extends AppCompatActivity {
     }
 
     public void spinnerControl(){
-        String[][] aRes= residencial.oDB.ObtenerControl("0",1);
-        spControlR= (Spinner)( findViewById(R.id.spinner_controlR));
+        String[][] aRes= modificarResidencial.oDB.ObtenerControl("0",1);
+        spControlR= (Spinner)( findViewById(R.id.spinner_control));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un valor...";
         for(int i = 0; i < aRes.length; i++){
@@ -145,8 +143,8 @@ public class modificarResidencial extends AppCompatActivity {
     }
 
     public void spinnerFijacion(){
-        String[][] aRes= residencial.oDB.ObtenerFijacion("0",1);
-        spFijacionR= (Spinner)( findViewById(R.id.spinner_fijacionR));
+        String[][] aRes= modificarResidencial.oDB.ObtenerFijacion("0",1);
+        spFijacionR= (Spinner)( findViewById(R.id.spinner_fijacion));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un lado...";
         for(int i = 0; i < aRes.length; i++){
@@ -157,8 +155,8 @@ public class modificarResidencial extends AppCompatActivity {
     }
 
     public void spinnerCorredera(){
-        String[][] aRes= residencial.oDB.ObtenerCorredera("0",1);
-        spCorrederaR= (Spinner)( findViewById(R.id.spinner_correderaR));
+        String[][] aRes= modificarResidencial.oDB.ObtenerCorredera("0",1);
+        spCorrederaR= (Spinner)( findViewById(R.id.spinner_corredera));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione uno...";
         for(int i = 0; i < aRes.length; i++){
@@ -169,8 +167,8 @@ public class modificarResidencial extends AppCompatActivity {
     }
 
     public void spinnerAgpto(){
-        String[][] aRes= residencial.oDB.ObtenerControl("0",1);
-        spAgptoR= (Spinner)( findViewById(R.id.spinner_agptoR));
+        String[][] aRes= modificarResidencial.oDB.ObtenerControl("0",1);
+        spAgptoR= (Spinner)( findViewById(R.id.spinner_agpto));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un lado...";
         for(int i = 0; i < aRes.length; i++){

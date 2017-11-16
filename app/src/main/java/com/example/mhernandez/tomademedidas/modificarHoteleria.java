@@ -32,8 +32,6 @@ public class modificarHoteleria extends AppCompatActivity {
         spinnerCorredera();
         final int idHoteleria = Integer.parseInt(oExt.getString("idHoteleria"));
         final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
-        int idProyecto = Integer.parseInt(oExt.getString("idProyecto"));
-        int idProyectoDisp = Integer.parseInt(oExt.getString("idProyectoDisp"));
         String Edificio = oExt.getString("Edificio");
         String Piso = oExt.getString("Piso");
         String Habitacion = oExt.getString("Habitacion");
@@ -100,7 +98,7 @@ public class modificarHoteleria extends AppCompatActivity {
     }
 
     public void spinnerArea(){
-        String[][] aRes= hoteleria.oDB.ObtenerUbicacion("0",1);
+        String[][] aRes= modificarHoteleria.oDB.ObtenerUbicacion("0",1);
         spAreaH= (Spinner)( findViewById(R.id.spinner_area));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione una ubicación...";
@@ -112,7 +110,7 @@ public class modificarHoteleria extends AppCompatActivity {
     }
 
     public void spinnerControl(){
-        String[][] aRes= hoteleria.oDB.ObtenerControl("0",1);
+        String[][] aRes= modificarHoteleria.oDB.ObtenerControl("0",1);
         spControlH= (Spinner)( findViewById(R.id.spinner_control));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un valor...";
@@ -124,7 +122,7 @@ public class modificarHoteleria extends AppCompatActivity {
     }
 
     public void spinnerFijacion(){
-        String[][] aRes= hoteleria.oDB.ObtenerFijacion("0",1);
+        String[][] aRes= modificarHoteleria.oDB.ObtenerFijacion("0",1);
         spFijacionH= (Spinner)( findViewById(R.id.spinner_fijacion));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un lado...";
@@ -136,7 +134,7 @@ public class modificarHoteleria extends AppCompatActivity {
     }
 
     public void spinnerCorredera(){
-        String[][] aRes= hoteleria.oDB.ObtenerCorredera("0",1);
+        String[][] aRes= modificarHoteleria.oDB.ObtenerCorredera("0",1);
         spCorrederaH= (Spinner)( findViewById(R.id.spinner_corredera));
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione uno...";

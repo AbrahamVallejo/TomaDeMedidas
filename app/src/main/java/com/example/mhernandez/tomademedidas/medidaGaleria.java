@@ -33,8 +33,8 @@ public class medidaGaleria extends AppCompatActivity {
         final Bundle oExt = getIntent().getExtras();
         spinnerArea(); spinnerCopete(); spinnerFijacion(); spinnerProyecciones();
 
-        final int idProyecto = oExt.getInt("idProyecto");
-        final int idProyectoDisp = oExt.getInt("idProyectoDisp");
+        final int idProyecto = Integer.parseInt(oExt.getString("idProyecto"));
+        final int idProyectoDisp = Integer.parseInt(oExt.getString("idProyectoDisp"));
         final String Nombre = oExt.getString("Nombre");
         final EditText NHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
         final Spinner Area = (Spinner) this.findViewById(R.id.spinner_area);

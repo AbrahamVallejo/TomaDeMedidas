@@ -25,8 +25,7 @@ public class modificarCama extends AppCompatActivity {
         Bundle oExt = this.getIntent().getExtras();
         final int idCama =  Integer.parseInt(oExt.getString("idCama"));
         final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
-        int idProyecto = Integer.parseInt(oExt.getString("idProyecto"));
-        int idProyectoDisp = Integer.parseInt(oExt.getString("idProyectoDisp"));
+
         String NHabitaciones = oExt.getString("NHabitaciones");
         String A = oExt.getString("A");
         String B = oExt.getString("B");
