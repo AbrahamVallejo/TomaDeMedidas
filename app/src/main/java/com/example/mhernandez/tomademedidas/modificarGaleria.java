@@ -16,8 +16,7 @@ import android.widget.Spinner;
 
 public class modificarGaleria extends AppCompatActivity {
 
-    private Spinner spArea, spFijacion, spCopete, spProye;
-
+    public Spinner spArea, spFijacion, spCopete, spProye;
     public static DBProvider oDB;
     public modificarGaleria() {oDB = new DBProvider(this);}
 
@@ -31,12 +30,8 @@ public class modificarGaleria extends AppCompatActivity {
         final int idGaleria = Integer.parseInt(oExt.getString("idGaleria"));
         final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
         String NHabitaciones = oExt.getString("NHabitaciones");
-        String Area = oExt.getString("Area");
         String Ancho = oExt.getString("Ancho");
         String Alto = oExt.getString("Alto");
-        String Copete = oExt.getString("Copete");
-        String Proyecciones = oExt.getString("Proyecciones");
-        String Fijacion = oExt.getString("Fijacion");
         String Comentarios = oExt.getString("Comentarios");
         final EditText txtNHabitaciones = (EditText) findViewById(R.id.txt_numero_habitaciones);
         final Spinner txtArea = (Spinner) findViewById(R.id.spinner_area);
@@ -80,10 +75,12 @@ public class modificarGaleria extends AppCompatActivity {
     }
 
     public void spinnerArea(){
+        Bundle oExt = getIntent().getExtras();
+        String Area = oExt.getString("Area");
         String[][] aRes= modificarGaleria.oDB.ObtenerUbicacion("0",1);
         spArea= (Spinner)( findViewById(R.id.spinner_area));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione una ubicación...";
+        aData[0]=Area;
         for(int i = 0; i < aRes.length; i++){
             String inde = String.valueOf(aRes[i][0]);
             aData[i+1] = (inde+" - "+aRes[i][2]);
@@ -93,10 +90,12 @@ public class modificarGaleria extends AppCompatActivity {
     }
 
     public void spinnerCopete(){
+        Bundle oExt = getIntent().getExtras();
+        String Copete = oExt.getString("Copete");
         String[][] aRes= modificarGaleria.oDB.ObtenerCopete("0",1);
         spCopete= (Spinner)( findViewById(R.id.spinner_copete));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione un valor...";
+        aData[0]= Copete;
         for(int i = 0; i < aRes.length; i++){
             String inde = String.valueOf(aRes[i][0]);
             aData[i+1] = (inde+" - "+aRes[i][1]);
@@ -106,10 +105,12 @@ public class modificarGaleria extends AppCompatActivity {
     }
 
     public void spinnerFijacion(){
+        Bundle oExt = getIntent().getExtras();
+        String Fijacion = oExt.getString("Fijacion");
         String[][] aRes= modificarGaleria.oDB.ObtenerFijacion("0",1);
         spFijacion= (Spinner)( findViewById(R.id.spinner_fijacion));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione un lado...";
+        aData[0]=Fijacion;
         for(int i = 0; i < aRes.length; i++){
             String inde = String.valueOf(aRes[i][0]);
             aData[i+1] = (inde+" - "+aRes[i][1]);
@@ -119,10 +120,12 @@ public class modificarGaleria extends AppCompatActivity {
     }
 
     public void spinnerProyecciones(){
+        Bundle oExt = getIntent().getExtras();
+        String Proyecciones = oExt.getString("Proyecciones");
         String[][] aRes= modificarGaleria.oDB.ObtenerProyeccion("0",1);
         spProye= (Spinner)( findViewById(R.id.spinner_proyecciones));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione un valor...";
+        aData[0]=Proyecciones;
         for(int i = 0; i < aRes.length; i++){
             String inde = String.valueOf(aRes[i][0]);
             aData[i+1] = (inde+" - "+aRes[i][1]);

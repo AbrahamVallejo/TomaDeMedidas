@@ -16,7 +16,7 @@ import android.widget.Spinner;
 
 public class modificarHoteleria extends AppCompatActivity {
 
-    private Spinner spAreaH, spFijacionH, spControlH, spCorrederaH;
+    public Spinner spAreaH, spFijacionH, spControlH, spCorrederaH;
     public static DBProvider oDB;
     public modificarHoteleria() {oDB = new DBProvider(this);}
 
@@ -35,13 +35,9 @@ public class modificarHoteleria extends AppCompatActivity {
         String Edificio = oExt.getString("Edificio");
         String Piso = oExt.getString("Piso");
         String Habitacion = oExt.getString("Habitacion");
-        String Area = oExt.getString("Area");
         String Ancho = oExt.getString("Ancho");
         String Alto = oExt.getString("Alto");
         String Hojas = oExt.getString("Hojas");
-        String Control = oExt.getString("Control");
-        String Fijacion = oExt.getString("Fijacion");
-        String Corredera = oExt.getString("Corredera");
         String MedidaSugerida = oExt.getString("MedidaSugerida");
         String Observaciones = oExt.getString("Observaciones");
         final EditText txtEdificio = (EditText) findViewById(R.id.txtEdificio);
@@ -98,10 +94,12 @@ public class modificarHoteleria extends AppCompatActivity {
     }
 
     public void spinnerArea(){
+        Bundle oExt = this.getIntent().getExtras();
+        String Area = oExt.getString("Area");
         String[][] aRes= modificarHoteleria.oDB.ObtenerUbicacion("0",1);
         spAreaH= (Spinner)( findViewById(R.id.spinner_area));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione una ubicación...";
+        aData[0]=Area;
         for(int i = 0; i < aRes.length; i++){
             aData[i+1] = (aRes[i][2]);
         }
@@ -110,10 +108,12 @@ public class modificarHoteleria extends AppCompatActivity {
     }
 
     public void spinnerControl(){
+        Bundle oExt = this.getIntent().getExtras();
+        String Control = oExt.getString("Control");
         String[][] aRes= modificarHoteleria.oDB.ObtenerControl("0",1);
         spControlH= (Spinner)( findViewById(R.id.spinner_control));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione un valor...";
+        aData[0]=Control;
         for(int i = 0; i < aRes.length; i++){
             aData[i+1] = (aRes[i][1]);
         }
@@ -122,10 +122,12 @@ public class modificarHoteleria extends AppCompatActivity {
     }
 
     public void spinnerFijacion(){
+        Bundle oExt = this.getIntent().getExtras();
+        String Fijacion = oExt.getString("Fijacion");
         String[][] aRes= modificarHoteleria.oDB.ObtenerFijacion("0",1);
         spFijacionH= (Spinner)( findViewById(R.id.spinner_fijacion));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione un lado...";
+        aData[0]=Fijacion;
         for(int i = 0; i < aRes.length; i++){
             aData[i+1] = (aRes[i][1]);
         }
@@ -134,10 +136,12 @@ public class modificarHoteleria extends AppCompatActivity {
     }
 
     public void spinnerCorredera(){
+        Bundle oExt = this.getIntent().getExtras();
+        String Corredera = oExt.getString("Corredera");
         String[][] aRes= modificarHoteleria.oDB.ObtenerCorredera("0",1);
         spCorrederaH= (Spinner)( findViewById(R.id.spinner_corredera));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione uno...";
+        aData[0]=Corredera;
         for(int i = 0; i < aRes.length; i++){
             aData[i+1] = (aRes[i][1]);   //aData[i+1] = ("Valor " +i);
         }

@@ -101,6 +101,7 @@ public class listaResidencial extends AppCompatActivity {
                             rIntent.putExtra("Agpto", aDat[16]);
                             rIntent.putExtra("Corredera", aDat[36]);
                             rIntent.putExtra("Observaciones", aDat[18]);
+                            rIntent.putExtra("Fijacion", aDat[28]);
                             rIntent.putExtra("A", aDat[5]);
                             rIntent.putExtra("B", aDat[6]);
                             rIntent.putExtra("C", aDat[7]);
@@ -165,6 +166,7 @@ public class listaResidencial extends AppCompatActivity {
             TextView txtControl = (TextView) rowView.findViewById(R.id.Control);
             TextView txtAgpto = (TextView) rowView.findViewById(R.id.Agpto);
             TextView txtCorredera = (TextView) rowView.findViewById(R.id.Corredera);
+            TextView txtFijacion = (TextView) rowView.findViewById(R.id.Fijacion);
             TextView txtObservaciones = (TextView) rowView.findViewById(R.id.Observaciones);
             TextView txtA = (TextView) rowView.findViewById(R.id.A);
             TextView txtB = (TextView) rowView.findViewById(R.id.B);
@@ -189,6 +191,7 @@ public class listaResidencial extends AppCompatActivity {
             txtControl.setText(_text[position][15]);
             txtAgpto.setText(_text[position][16]);
             txtCorredera.setText(_text[position][36]);
+            txtFijacion.setText(_text[position][28]);
             txtObservaciones.setText(_text[position][18]);
 
             txtA.setText(_text[position][5]);

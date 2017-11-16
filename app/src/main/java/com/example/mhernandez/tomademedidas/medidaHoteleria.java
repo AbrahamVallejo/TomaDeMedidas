@@ -20,7 +20,7 @@ import java.util.Date;
 
 public class medidaHoteleria extends AppCompatActivity {
 
-    private Spinner spAreaH, spFijacionH, spControlH, spCorrederaH;
+    public Spinner spAreaH, spFijacionH, spControlH, spCorrederaH;
     public static DBProvider oDB;
     public medidaHoteleria() {oDB = new DBProvider(this);}
 

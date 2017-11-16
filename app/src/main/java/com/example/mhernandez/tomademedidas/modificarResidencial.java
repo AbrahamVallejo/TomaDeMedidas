@@ -16,7 +16,7 @@ import android.widget.Spinner;
 
 public class modificarResidencial extends AppCompatActivity {
 
-    private Spinner spUbicacionR, spFijacionR, spControlR, spCorrederaR, spAgptoR;
+    public Spinner spUbicacionR, spFijacionR, spControlR, spCorrederaR, spAgptoR;
     public static DBProvider oDB;
     public modificarResidencial() {oDB = new DBProvider(this);}
 
@@ -29,14 +29,10 @@ public class modificarResidencial extends AppCompatActivity {
         Bundle oExt = getIntent().getExtras();
         final int idResidencial = Integer.parseInt(oExt.getString("idResidencial"));
         final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
-        String Ubicacion = oExt.getString("Ubicacion");
         String Piso = oExt.getString("Piso");
         String MedidaSugerida = oExt.getString("MedidaSugerida");
         String ProfMarco = oExt.getString("ProfMarco");
         String ProfJaladera = oExt.getString("ProfJaladera");
-        String Control = oExt.getString("Control");
-        String Agpto = oExt.getString("Agpto");
-        String Corredera = oExt.getString("Corredera");
         String Observaciones = oExt.getString("Observaciones");
         String A = oExt.getString("A");
         String B = oExt.getString("B");
@@ -119,10 +115,12 @@ public class modificarResidencial extends AppCompatActivity {
     }
 
     public void spinnerUbicacion(){
+        Bundle oExt = getIntent().getExtras();
+        String Ubicacion = oExt.getString("Ubicacion");
         String[][] aRes= modificarResidencial.oDB.ObtenerUbicacion("0",1);
         spUbicacionR= (Spinner)( findViewById(R.id.spinner_ubicacion));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione una ubicación...";
+        aData[0]=Ubicacion;
         for(int i = 0; i < aRes.length; i++){
             aData[i+1] = (aRes[i][2]);
         }
@@ -131,10 +129,12 @@ public class modificarResidencial extends AppCompatActivity {
     }
 
     public void spinnerControl(){
+        Bundle oExt = getIntent().getExtras();
+        String Control = oExt.getString("Control");
         String[][] aRes= modificarResidencial.oDB.ObtenerControl("0",1);
         spControlR= (Spinner)( findViewById(R.id.spinner_control));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione un valor...";
+        aData[0]=Control;
         for(int i = 0; i < aRes.length; i++){
             aData[i+1] = (aRes[i][1]);
         }
@@ -143,10 +143,12 @@ public class modificarResidencial extends AppCompatActivity {
     }
 
     public void spinnerFijacion(){
+        Bundle oExt = getIntent().getExtras();
+        String Fijacion = oExt.getString("Fijacion");
         String[][] aRes= modificarResidencial.oDB.ObtenerFijacion("0",1);
         spFijacionR= (Spinner)( findViewById(R.id.spinner_fijacion));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione un lado...";
+        aData[0]=Fijacion;
         for(int i = 0; i < aRes.length; i++){
             aData[i+1] = (aRes[i][1]);
         }
@@ -155,10 +157,12 @@ public class modificarResidencial extends AppCompatActivity {
     }
 
     public void spinnerCorredera(){
+        Bundle oExt = getIntent().getExtras();
+        String Corredera = oExt.getString("Corredera");
         String[][] aRes= modificarResidencial.oDB.ObtenerCorredera("0",1);
         spCorrederaR= (Spinner)( findViewById(R.id.spinner_corredera));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione uno...";
+        aData[0]=Corredera;
         for(int i = 0; i < aRes.length; i++){
             aData[i+1] = (aRes[i][1]);  //aData[i+1] = ("Valor " +i);
         }
@@ -167,10 +171,12 @@ public class modificarResidencial extends AppCompatActivity {
     }
 
     public void spinnerAgpto(){
+        Bundle oExt = getIntent().getExtras();
+        String Agpto = oExt.getString("Agpto");
         String[][] aRes= modificarResidencial.oDB.ObtenerControl("0",1);
         spAgptoR= (Spinner)( findViewById(R.id.spinner_agpto));
         final String[] aData = new String[aRes.length+1];
-        aData[0]="Seleccione un lado...";
+        aData[0]=Agpto;
         for(int i = 0; i < aRes.length; i++){
             aData[i+1] = (aRes[i][1]);
         }

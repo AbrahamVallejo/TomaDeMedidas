@@ -20,7 +20,7 @@ import java.util.Date;
 
 public class medidaGaleria extends AppCompatActivity {
 
-    private Spinner spArea, spFijacion, spCopete, spProye;
+    public Spinner spArea, spFijacion, spCopete, spProye;
 
     public static DBProvider oDB;
     public medidaGaleria() {oDB = new DBProvider(this);}
@@ -32,7 +32,6 @@ public class medidaGaleria extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = getIntent().getExtras();
         spinnerArea(); spinnerCopete(); spinnerFijacion(); spinnerProyecciones();
-
         final int idProyecto = Integer.parseInt(oExt.getString("idProyecto"));
         final int idProyectoDisp = Integer.parseInt(oExt.getString("idProyectoDisp"));
         final String Nombre = oExt.getString("Nombre");
