@@ -403,6 +403,28 @@
                     android:textStyle="normal"
                     android:typeface="sans"/>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Fijacion: "
+                    android:paddingLeft="5dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:textStyle="normal"
+                    android:typeface="sans"/>
+                <TextView
+                    android:id="@+id/Fijacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Fijacion"
+                    android:textColor="@android:color/black"
+                    android:textStyle="normal"
+                    android:typeface="sans"/>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"

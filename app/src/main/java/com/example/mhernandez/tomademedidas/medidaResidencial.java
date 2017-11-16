@@ -20,7 +20,7 @@ import java.util.Date;
 
 public class medidaResidencial extends AppCompatActivity {
 
-    private Spinner spUbicacionR, spFijacionR, spControlR, spCorrederaR, spAgptoR;
+    public Spinner spUbicacionR, spFijacionR, spControlR, spCorrederaR, spAgptoR;
     public static DBProvider oDB;
     public medidaResidencial() {oDB = new DBProvider(this);}
 

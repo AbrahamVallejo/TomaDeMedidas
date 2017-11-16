@@ -490,15 +490,15 @@ public class DBProvider {
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " SET "
                 + DBhelper.COLUMN_NAME_N_HABITACION + " = ?, "
                 + DBhelper.COLUMN_NAME_AREA + " = ?, "
-                + DBhelper.COLUMN_NAME_ANCHO + " ?, "
+                + DBhelper.COLUMN_NAME_ANCHO + " = ?, "
                 + DBhelper.COLUMN_NAME_ALTO + " = ?, "
                 + DBhelper.COLUMN_NAME_COPETE + " = ?, "
                 + DBhelper.COLUMN_NAME_PROYECCIONES + " = ?, "
                 + DBhelper.COLUMN_NAME_FIJACION + " = ?, "
                 + DBhelper.COLUMN_NAME_AIMG + " = ?, "
                 + DBhelper.COLUMN_NAME_COMENTARIOS + " = ? "
-                + " WHERE " + DBhelper.ID_GALERIA + " = ?"
-                + " AND " + DBhelper.ID_DISP + " = ?", aData);
+                + " WHERE " + DBhelper.ID_GALERIA + " = ? "
+                + " AND " + DBhelper.ID_DISP + " = ? ", aData);
     }
 
     public void deleteProyectoGaleria(String idGaleria) {
