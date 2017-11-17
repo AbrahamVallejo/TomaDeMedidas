@@ -123,6 +123,7 @@ public class listaGaleria extends AppCompatActivity {
                             Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
                             oDB.deleteProyectoGaleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
+                            lista();
                         }
                         customDialog.dismiss();
                     }

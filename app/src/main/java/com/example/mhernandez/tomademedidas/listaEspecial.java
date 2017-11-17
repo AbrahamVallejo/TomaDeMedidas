@@ -114,6 +114,7 @@ public class listaEspecial extends AppCompatActivity {
                             Toast.makeText(listaEspecial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
                             oDB.deleteProyectoEspecial(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
+                            lista();
                         }
                         customDialog.dismiss();
                     }

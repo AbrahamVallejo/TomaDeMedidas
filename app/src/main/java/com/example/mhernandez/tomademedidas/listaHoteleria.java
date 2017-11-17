@@ -47,7 +47,7 @@ public class listaHoteleria extends AppCompatActivity {
         tlList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
 
             @Override
-            public boolean onItemLongClick(final AdapterView<?> aList, View vItem,final int iPosition, long l) {
+            public boolean onItemLongClick(final AdapterView<?> aList, View vItem, final int iPosition, final long l) {
                 customDialog = new Dialog(listaHoteleria.this, R.style.Theme_Dialog_Translucent);
                 customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 customDialog.setContentView(R.layout.menu_tabla_medida);
@@ -124,6 +124,7 @@ public class listaHoteleria extends AppCompatActivity {
                             Toast.makeText(listaHoteleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
                             oDB.deleteProyectoHoteleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
+                            lista();
                         }
                         customDialog.dismiss();
                     }

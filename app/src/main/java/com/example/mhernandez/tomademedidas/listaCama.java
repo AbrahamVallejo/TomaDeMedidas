@@ -119,6 +119,7 @@ public class listaCama extends AppCompatActivity {
                             Toast.makeText(listaCama.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
                             oDB.deleteProyectoCama(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
+                            lista();
                         }
                         customDialog.dismiss();
                     }
