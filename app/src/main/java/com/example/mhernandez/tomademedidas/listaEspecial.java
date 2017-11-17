@@ -27,6 +27,7 @@ public class listaEspecial extends AppCompatActivity {
     public static DBProvider oDB;
     public listaEspecial() { oDB = new DBProvider(this);}
     Dialog customDialog = null;
+    public int EstatusProyecto;
     public int idProyecto=0;
 
     @Override
@@ -37,6 +38,7 @@ public class listaEspecial extends AppCompatActivity {
 
         final Bundle oExt = this.getIntent().getExtras();
         idProyecto = oExt.getInt("idProyecto");
+        EstatusProyecto = oExt.getInt("Estatus");
         Log.v("[FRAGMENT]", "ID "+idProyecto);
 
         ListView tlList = ((ListView) this.findViewById(R.id.lista));
@@ -55,7 +57,7 @@ public class listaEspecial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (Integer.parseInt(aDat[15]) != 1){
+                        if (EstatusProyecto != 1){
                             Toast.makeText(listaEspecial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
                             Intent rIntent = new Intent(listaEspecial.this, medidaEspecial.class);
@@ -80,7 +82,7 @@ public class listaEspecial extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (Integer.parseInt(aDat[15]) !=1){
-                            Toast.makeText(listaEspecial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                            Toast.makeText(listaEspecial.this, "Medida Cerrada", Toast.LENGTH_LONG).show();
                         }else{
                         Intent rIntent = new Intent(listaEspecial.this, modificarEspecial.class);
                         rIntent.putExtra("idEspecial", aDat[0]);

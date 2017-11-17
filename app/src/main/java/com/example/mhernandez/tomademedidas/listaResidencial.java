@@ -29,6 +29,7 @@ public class listaResidencial extends AppCompatActivity {
     public listaResidencial() { oDB = new DBProvider(this);}
     Dialog customDialog = null;
     public int idProyecto=0;
+    public int EstatusProyecto;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -41,6 +42,7 @@ public class listaResidencial extends AppCompatActivity {
 
         Bundle oExt = this.getIntent().getExtras();
         idProyecto = oExt.getInt("idProyecto");
+        EstatusProyecto = oExt.getInt("Estatus");
         Log.v("[FRAGMENT]", "ID "+idProyecto);
 
         lista();
@@ -61,7 +63,7 @@ public class listaResidencial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (Integer.parseInt(aDat[27]) !=1){
+                        if (EstatusProyecto !=1){
                             Toast.makeText(listaResidencial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
                             Intent rIntent = new Intent(listaResidencial.this, medidaResidencial.class);
@@ -85,7 +87,7 @@ public class listaResidencial extends AppCompatActivity {
                     @Override
                     public void onClick(View v){
                         if (Integer.parseInt(aDat[27]) !=1){
-                            Toast.makeText(listaResidencial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                            Toast.makeText(listaResidencial.this, "Medida Cerrada", Toast.LENGTH_LONG).show();
                         }else {
                             Intent rIntent = new Intent(listaResidencial.this, modificarResidencial.class);
                             rIntent.putExtra("idResidencial", aDat[0]);
