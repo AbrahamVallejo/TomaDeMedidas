@@ -43,7 +43,7 @@ public class entrada_inicio extends AppCompatActivity {
                                     startActivity(intent);
                                 }else {
                                     String[][] users = entrada_inicio.oDB.ObtenerUser("0",2);
-                                    if (users.length !=1){
+                                    if (users.length == 0){
                                         entrada_inicio.oDB.deleteAllUser();
                                         getuserLista();
                                         Intent intent = new Intent(entrada_inicio.this, log_in.class);

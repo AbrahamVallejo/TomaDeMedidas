@@ -820,12 +820,12 @@ public class DBProvider {
                 + " WHERE " + DBhelper._ID + " = ? ", aData);
     }
 
-    public String[][] buscarUser(int Disp) {
+    public String[][] buscarUser(String user) {
         int iCnt = 0;
         String[][] aData = null;
-        String[] aFils= {( String.valueOf(Disp) )};
+        String[] aFils= {(user)};
         Cursor Ars;                //Log.v("[obtener", "Voy a buscar tu Dispositivo");              //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
-        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USER + " WHERE " + DBhelper._ID + " = ?", aFils);  //Log.v("[obtener", "Encontre tu Dispositivo");
+        Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_USER + " WHERE " + DBhelper.COLUMN_NAME_USERNAME + " = ?", aFils);  //Log.v("[obtener", "Encontre tu Dispositivo");
         if (Ars.getCount() > 0) {
             aData = new String[Ars.getCount()][8];
             while (Ars.moveToNext()) {                                                              //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP)) );
@@ -879,7 +879,6 @@ public class DBProvider {
 
     public void  deleteAllUser(){
         int idC = 0;
-
         Object[] aData = {idC};
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_USER + " WHERE " + DBhelper._ID + " <> ?", aData);
         Log.v("[DELETE]", "All User Eliminado");
