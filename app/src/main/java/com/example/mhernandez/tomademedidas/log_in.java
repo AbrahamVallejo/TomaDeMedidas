@@ -9,11 +9,9 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.util.Base64;
 
-import javax.crypto.*;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * Created by mhernandez on 11/09/2017.
@@ -63,18 +61,34 @@ public class log_in extends AppCompatActivity {
             aux++; nUser.setText(""); nUser.setHint("Campo Vacío");
         }
         if(aux==0){
-            String[][] aRef = entrada_inicio.oDB.iniciarUser(nUser.getText().toString(),npass.getText().toString());
-            if(aRef[0][0].toString() == "0"){
-                Toast.makeText(this, "Usuario o Contraseña Incorrectos", Toast.LENGTH_LONG).show();
-            }else {
-                if (nRecordar.isChecked() == true){
-                    entrada_inicio.oDB.recordarUser(Integer.parseInt(aRef[0][0]),1, 1); //id, verificacion(saber quien es), estatus(recordarlo)
-                }else {
-                    entrada_inicio.oDB.recordarUser(Integer.parseInt(aRef[0][0]),1, 0); //id, verificacion, estatus
+            String text = npass.getText().toString();
+            Boolean val = false;
+
+            String[][] aRef = entrada_inicio.oDB.buscarUser(nUser.getText().toString());
+            Log.v("[ob"," "+aRef[0][0]);
+            if (Integer.parseInt(aRef[0][0]) == 0){
+                Toast.makeText(this, "Usuario Incorrecto", Toast.LENGTH_LONG).show();
+            }else{
+                for (int x=0; x< aRef.length; x++){
+                    String var = aRef[x][2].toString();
+                    val = BCrypt.checkpw(text,var);
+                    if (val ==true){
+                        break;
+                    }
                 }
-            finish();
-            Intent intent = new Intent(log_in.this, MainActivity.class);
-            startActivity(intent);}
+
+                if (val == false){
+                    Toast.makeText(this, "Contraseña Incorrecta", Toast.LENGTH_LONG).show();
+                }else {
+                    if (nRecordar.isChecked() == true){
+                        entrada_inicio.oDB.recordarUser(Integer.parseInt(aRef[0][0]),1, 1); //id, verificacion(saber quien es), estatus(recordarlo)
+                    }else {
+                        entrada_inicio.oDB.recordarUser(Integer.parseInt(aRef[0][0]),1, 0); //id, verificacion, estatus
+                    }
+                    finish();
+                    Intent intent = new Intent(log_in.this, MainActivity.class);
+                    startActivity(intent);}
+            }
         }else {
             Toast.makeText(this, "VERIFIQUE SU CAPTURA", Toast.LENGTH_SHORT).show(); }
     }
