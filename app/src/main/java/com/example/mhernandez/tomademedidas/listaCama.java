@@ -46,7 +46,7 @@ public class listaCama extends AppCompatActivity {
         tlList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
 
             @Override
-            public boolean onItemLongClick(final AdapterView<?> aList, View vItem,final int iPosition, long l) {
+            public boolean onItemLongClick(final AdapterView<?> aList, View vItem, final int iPosition, final long l) {
                 customDialog = new Dialog(listaCama.this, R.style.Theme_Dialog_Translucent);
                 customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 customDialog.setContentView(R.layout.menu_tabla_medida);
@@ -107,6 +107,9 @@ public class listaCama extends AppCompatActivity {
                     public void onClick(View v) {
                         if (Integer.parseInt(aDat[20]) !=1){
                             Toast.makeText(listaCama.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            oDB.cerrarProyectoCama(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2);
+                            lista();
                         }
                         customDialog.dismiss();
                     }

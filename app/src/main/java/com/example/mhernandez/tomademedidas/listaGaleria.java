@@ -111,6 +111,9 @@ public class listaGaleria extends AppCompatActivity {
                     public void onClick(View v) {
                         if (Integer.parseInt(aDat[19]) !=1){
                             Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            oDB.cerrarProyectoGaleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2);
+                            lista();
                         }
                         customDialog.dismiss();
                     }

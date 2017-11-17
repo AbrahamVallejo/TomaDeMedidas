@@ -364,6 +364,13 @@ public class DBProvider {
         Log.v("[DELETE]", "All Proyecto Cama Eliminado");
     }
 
+    public void cerrarProyectoCama(int idCama, int idDisp, int estatus){
+        Object[] aData = {estatus, idCama, idDisp};
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " SET "
+                    + DBhelper.ID_ESTATUS + " = ? "
+                    + " WHERE " + DBhelper.ID_CAMA + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
+    }
+
     public String[][] lastCama(){
         int iCnt = 0;
         String[][] aData = null;
@@ -434,6 +441,13 @@ public class DBProvider {
         Object[] aData = {idC, idD};
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " WHERE " + DBhelper.ID_ESPECIALES + " <> ?" + " AND " + DBhelper.ID_DISP + " <> ?", aData);
         Log.v("[DELETE]", "All Proyecto Especial Eliminado");
+    }
+
+    public void cerrarProyectoEspecial(int idEspecial, int idDisp, int estatus){
+        Object[] aData = {estatus, idEspecial, idDisp};
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " SET "
+                + DBhelper.ID_ESTATUS + " = ? "
+                + " WHERE " + DBhelper.ID_ESPECIALES + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public String[][] lastEspecial(){
@@ -508,6 +522,13 @@ public class DBProvider {
         Object[] aData = {idC, idD};
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " WHERE " + DBhelper.ID_GALERIA + " <> ?" + " AND " + DBhelper.ID_DISP + " <> ?", aData);
         Log.v("[DELETE]", "All Proyecto Galeria Eliminado");
+    }
+
+    public void cerrarProyectoGaleria(int idGaleria, int idDisp, int estatus){
+        Object[] aData = {estatus, idGaleria, idDisp};
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " SET "
+                + DBhelper.ID_ESTATUS + " = ? "
+                + " WHERE " + DBhelper.ID_GALERIA + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public String[][] lastGaleria(){
@@ -607,6 +628,12 @@ public class DBProvider {
         Log.v("[DELETE]", "All Proyecto Hoteleria Eliminado");
     }
 
+    public void cerrarProyectoHoteleria(int idHoteleria, int idDisp, int estatus){
+        Object[] aData = {estatus, idHoteleria, idDisp};
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " SET "
+                + DBhelper.ID_ESTATUS + " = ? "
+                + " WHERE " + DBhelper.ID_HOTELERIA + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
+    }
 
     public String[][] lastHoteleria(){
         int iCnt = 0;
@@ -707,6 +734,13 @@ public class DBProvider {
     public void deleteProyectoResidencial(int idResidencial, int idDisp) {
         Object[] aData = {idResidencial, idDisp};
         executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " WHERE " + DBhelper.ID_RESIDENCIAL + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
+    }
+
+    public void cerrarProyectoResidencial(int idResidencial, int idDisp, int estatus){
+        Object[] aData = {estatus, idResidencial, idDisp};
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " SET "
+                + DBhelper.ID_ESTATUS + " = ? "
+                + " WHERE " + DBhelper.ID_RESIDENCIAL + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public String[][] lastResidencial(){
