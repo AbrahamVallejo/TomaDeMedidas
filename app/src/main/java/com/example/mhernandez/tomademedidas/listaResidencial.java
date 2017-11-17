@@ -129,7 +129,11 @@ public class listaResidencial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnBorrar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        if (Integer.parseInt(aDat[27]) !=1){
+                            Toast.makeText(listaResidencial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            oDB.deleteProyectoResidencial(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
+                        }
                         customDialog.dismiss();
                     }
                 });

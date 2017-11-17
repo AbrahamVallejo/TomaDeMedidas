@@ -120,7 +120,11 @@ public class listaHoteleria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnBorrar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        if (Integer.parseInt(aDat[23]) !=1){
+                            Toast.makeText(listaHoteleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            oDB.deleteProyectoHoteleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
+                        }
                         customDialog.dismiss();
                     }
                 });

@@ -22,11 +22,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import org.json.JSONObject;
-
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 
 public class MainActivity extends AppCompatActivity
@@ -828,7 +824,7 @@ public class MainActivity extends AppCompatActivity
                             e.printStackTrace();       }
                     }
                 };
-                //timerThreadDos.start();
+                timerThreadDos.start();
 
             }else {
                 Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();       }
