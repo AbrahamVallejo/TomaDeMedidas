@@ -35,7 +35,7 @@ public class listaEspecial extends AppCompatActivity {
         setContentView(R.layout.list_activity);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Bundle oExt = this.getIntent().getExtras();
+        final Bundle oExt = this.getIntent().getExtras();
         idProyecto = oExt.getInt("idProyecto");
         Log.v("[FRAGMENT]", "ID "+idProyecto);
 
@@ -110,7 +110,12 @@ public class listaEspecial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnBorrar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        if (Integer.parseInt(aDat[15]) !=1){
+                            Toast.makeText(listaEspecial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            oDB.deleteProyectoEspecial(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
+                            lista();
+                        }
                         customDialog.dismiss();
                     }
                 });

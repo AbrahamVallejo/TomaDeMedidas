@@ -115,7 +115,12 @@ public class listaCama extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnBorrar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        if (Integer.parseInt(aDat[20]) != 1) {
+                            Toast.makeText(listaCama.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            oDB.deleteProyectoCama(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
+                            lista();
+                        }
                         customDialog.dismiss();
                     }
                 });

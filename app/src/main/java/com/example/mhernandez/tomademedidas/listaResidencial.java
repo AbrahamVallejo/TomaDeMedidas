@@ -51,7 +51,7 @@ public class listaResidencial extends AppCompatActivity {
         tlList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
 
             @Override
-            public boolean onItemLongClick(final AdapterView<?> aList, View vItem,final int iPosition, long l) {
+            public boolean onItemLongClick(final AdapterView<?> aList, View vItem, final int iPosition, final long l) {
                 customDialog = new Dialog(listaResidencial.this, R.style.Theme_Dialog_Translucent);
                 customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 customDialog.setContentView(R.layout.menu_tabla_medida);
@@ -129,7 +129,12 @@ public class listaResidencial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnBorrar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        if (Integer.parseInt(aDat[27]) !=1){
+                            Toast.makeText(listaResidencial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            oDB.deleteProyectoResidencial(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
+                            lista();
+                        }
                         customDialog.dismiss();
                     }
                 });

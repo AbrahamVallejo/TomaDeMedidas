@@ -21,7 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * A simple {@link Fragment} subclass.

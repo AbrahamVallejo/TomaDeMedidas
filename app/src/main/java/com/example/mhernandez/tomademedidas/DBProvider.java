@@ -315,11 +315,6 @@ public class DBProvider {
     }
 
 
-
-
-
-
-
     public void insertProyectoCama(int idCama,int idDisp,int idProyecto, int idProyectoDisp, String nHabitaciones, double A,
                                    double B, double C, double D, double E, double F, double G, String fecha, String nombreP, int formato,
                                    String Observaciones, int idUsuarioA, int autorizado, int idEstatud, int pagado) {
@@ -355,9 +350,9 @@ public class DBProvider {
                 + " AND " + DBhelper.ID_DISP + " = ? ", aData);
     }
 
-    public void deleteProyectoCama(String idCama) {
-        Object[] aData = {idCama};
-        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_CAMA + " = ?", aData);
+    public void deleteProyectoCama(int idCama, int idDisp) {
+        Object[] aData = {idCama, idDisp};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_CAMA + " = ?" + " AND " + DBhelper.ID_DISP + "= ?", aData);
     }
 
     public void deleteAllProyectosCama(String id, String idDisp) {
@@ -427,9 +422,9 @@ public class DBProvider {
                 + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
-    public void deleteProyectoEspecial(String idEspecial) {
-        Object[] aData = {idEspecial};
-        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " WHERE " + DBhelper.ID_ESPECIALES + " = ?", aData);
+    public void deleteProyectoEspecial(int idEspecial, int idDisp) {
+        Object[] aData = {idEspecial, idDisp};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " WHERE " + DBhelper.ID_ESPECIALES + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public void deleteAllProyectosEspecial(String id, String idDisp) {
@@ -501,9 +496,9 @@ public class DBProvider {
                 + " AND " + DBhelper.ID_DISP + " = ? ", aData);
     }
 
-    public void deleteProyectoGaleria(String idGaleria) {
-        Object[] aData = {idGaleria};
-        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " WHERE " + DBhelper.ID_GALERIA + " = ?", aData);
+    public void deleteProyectoGaleria(int idGaleria, int idDisp) {
+        Object[] aData = {idGaleria, idDisp};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_GALERIA + " WHERE " + DBhelper.ID_GALERIA + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public void deleteAllProyectosGaleria(String id, String idDisp) {
@@ -598,9 +593,9 @@ public class DBProvider {
                 + " AND " + DBhelper.ID_DISP + " = ? ", aData);
     }
 
-    public void deleteProyectoHoteleria(String idHoteleria) {
-        Object[] aData = {idHoteleria};
-        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_HOTELERIA + " = ?", aData);
+    public void deleteProyectoHoteleria(int idHoteleria, int idDisp) {
+        Object[] aData = {idHoteleria, idDisp};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_HOTELERIA + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public void deleteAllHoteleria(String id, String idDisp) {
@@ -709,9 +704,9 @@ public class DBProvider {
                 + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
-    public void deleteProyectoResidencial(String idResidencial) {
-        Object[] aData = {idResidencial};
-        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " WHERE " + DBhelper.ID_RESIDENCIAL + " = ?", aData);
+    public void deleteProyectoResidencial(int idResidencial, int idDisp) {
+        Object[] aData = {idResidencial, idDisp};
+        executeSQL("DELETE FROM " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " WHERE " + DBhelper.ID_RESIDENCIAL + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
     public String[][] lastResidencial(){

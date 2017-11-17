@@ -119,7 +119,12 @@ public class listaGaleria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnBorrar)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        if (Integer.parseInt(aDat[19]) !=1){
+                            Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            oDB.deleteProyectoGaleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
+                            lista();
+                        }
                         customDialog.dismiss();
                     }
                 });
