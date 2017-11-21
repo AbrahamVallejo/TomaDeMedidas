@@ -134,7 +134,7 @@ public class registrar_Dispositivo extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES FIJACIÓN!", Toast.LENGTH_LONG).show();
             }
         });
-        oNS.execute("getfijacionLista");
+        oNS.execute("getfijacionLista", "2");
     }
 
     public void getproyeccionLista(){
@@ -143,13 +143,12 @@ public class registrar_Dispositivo extends AppCompatActivity {
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
             }
-
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PROYECCIÓN!", Toast.LENGTH_LONG).show();
             }
         });
-        oNS.execute("getproyeccionLista");
+        oNS.execute("getproyeccionLista", "2");
     }
 
     public void getcopeteLista(){
@@ -158,13 +157,12 @@ public class registrar_Dispositivo extends AppCompatActivity {
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
             }
-
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES COPETE!", Toast.LENGTH_LONG).show();
             }
         });
-        oNS.execute("getcopeteLista");
+        oNS.execute("getcopeteLista", "2");
     }
 
     public void getcontrolLista(){
@@ -173,13 +171,12 @@ public class registrar_Dispositivo extends AppCompatActivity {
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
             }
-
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES CONTROL!", Toast.LENGTH_LONG).show();
             }
         });
-        oNS.execute("getcontrolLista");
+        oNS.execute("getcontrolLista", "2");
     }
 
     public void getcorrederaLista(){
@@ -188,13 +185,12 @@ public class registrar_Dispositivo extends AppCompatActivity {
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
             }
-
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES CORREDERA!", Toast.LENGTH_LONG).show();
             }
         });
-        oNS.execute("getcorrederaLista");
+        oNS.execute("getcorrederaLista", "2");
     }
 
     public void getformatoLista(){
@@ -203,7 +199,6 @@ public class registrar_Dispositivo extends AppCompatActivity {
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
             }
-
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES FORMATO!", Toast.LENGTH_LONG).show();
@@ -218,13 +213,12 @@ public class registrar_Dispositivo extends AppCompatActivity {
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
             }
-
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES UBICACIÓN!", Toast.LENGTH_LONG).show();
             }
         });
-        oNS.execute("getubicacionLista");
+        oNS.execute("getubicacionLista", "2");
     }
 
     public Boolean isOnlineNet() {

@@ -55,10 +55,10 @@ public class DBProvider {
         int iCnt = 0;
         String[][] aData = null;
         String[] aFils= {(String.valueOf(client)), (String.valueOf(Disp)) };
-        Cursor Ars; Log.v("[obtener]", "Voy a buscar tu Cliente");                               //SELECT *FROM registromedidas.dispositivos WHERE id_disp =1;
+        Cursor Ars; //Log.v("[obtener]", "Voy a buscar tu Cliente");
         Ars = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_CLIENTE + " WHERE " + DBhelper.ID_CLIENTE + " = ? AND "
                 +DBhelper.ID_DISP +" = ?" , aFils);
-        Log.v("[obtener]", "Encontre tu Cliente " );
+        //Log.v("[obtener]", "Encontre tu Cliente " );
         if (Ars.getCount() > 0) {
             aData = new String[Ars.getCount()][6];
             while (Ars.moveToNext()) {                                                              //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_DISP)) );
@@ -75,7 +75,7 @@ public class DBProvider {
             aData[0][0]= "0";
         }
         Ars.close();
-        CloseDB();  Log.v("[obtener]", "Voy de regreso");
+        CloseDB();  //Log.v("[obtener]", "Voy de regreso");
         return (aData);
     }
 
@@ -954,7 +954,7 @@ public class DBProvider {
             aData[0][0]= "0";
         }
         Ars.close();
-        CloseDB();  Log.v("[obtenerA", "Vuelvo de Buscar Agente");
+        CloseDB();  //Log.v("[obtenerA", "Vuelvo de Buscar Agente");
         return (aData);
     }
 
@@ -1073,7 +1073,7 @@ public class DBProvider {
             aData[0][0]= "0";
         }
         Ars.close();
-        CloseDB();  Log.v("[obtenerF", "Vuelvo de Buscar Fijación");
+        CloseDB();  //Log.v("[obtenerF", "Vuelvo de Buscar Fijación");
         return (aData);
     }
 
@@ -1191,7 +1191,7 @@ public class DBProvider {
             aData[0][0]= "0";
         }
         Ars.close();
-        CloseDB();  Log.v("[obtenerU", "Vuelvo de Buscar Ubicación");
+        CloseDB();  //Log.v("[obtenerU", "Vuelvo de Buscar Ubicación");
         return (aData);
     }
 
