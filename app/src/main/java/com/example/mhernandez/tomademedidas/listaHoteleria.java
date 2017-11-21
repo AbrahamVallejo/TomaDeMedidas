@@ -27,6 +27,7 @@ public class listaHoteleria extends AppCompatActivity {
     public static DBProvider oDB;
     public listaHoteleria() { oDB = new DBProvider(this);}
     Dialog customDialog = null;
+    public int EstatusProyecto;
     public int idProyecto=0;
 
     @Override
@@ -37,6 +38,7 @@ public class listaHoteleria extends AppCompatActivity {
 
         Bundle oExt = this.getIntent().getExtras();
         idProyecto = oExt.getInt("idProyecto");
+        EstatusProyecto = oExt.getInt("Estatus");
         Log.v("[FRAGMENT]", "ID "+idProyecto);
 
         lista();
@@ -57,7 +59,7 @@ public class listaHoteleria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (Integer.parseInt(aDat[23]) !=1){
+                        if (EstatusProyecto !=1){
                             Toast.makeText(listaHoteleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
                             Intent rIntent = new Intent(listaHoteleria.this, medidaHoteleria.class);
@@ -82,7 +84,7 @@ public class listaHoteleria extends AppCompatActivity {
                     @Override
                     public void onClick(View v){
                         if (Integer.parseInt(aDat[23]) !=1){
-                            Toast.makeText(listaHoteleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                            Toast.makeText(listaHoteleria.this, "Medida Cerrada", Toast.LENGTH_LONG).show();
                         }else{
                             Intent rIntent = new Intent(listaHoteleria.this, modificarHoteleria.class);
                             rIntent.putExtra("idHoteleria", aDat[0]);
@@ -112,6 +114,9 @@ public class listaHoteleria extends AppCompatActivity {
                     public void onClick(View v) {
                         if (Integer.parseInt(aDat[23]) !=1){
                             Toast.makeText(listaHoteleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            oDB.cerrarProyectoHoteleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2);
+                            lista();
                         }
                         customDialog.dismiss();
                     }

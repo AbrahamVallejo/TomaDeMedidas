@@ -28,6 +28,7 @@ public class listaGaleria extends AppCompatActivity {
     public static DBProvider oDB;
     public listaGaleria() { oDB = new DBProvider(this);}
     Dialog customDialog = null;
+    public int EstatusProyecto;
     public int idProyecto=0;
 
     @Override
@@ -40,6 +41,7 @@ public class listaGaleria extends AppCompatActivity {
 
         Bundle oExt = this.getIntent().getExtras();
         idProyecto = oExt.getInt("idProyecto");
+        EstatusProyecto = oExt.getInt("Estatus");
         Log.v("[FRAGMENT]", "ID "+idProyecto);
 
         lista();
@@ -59,7 +61,7 @@ public class listaGaleria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (Integer.parseInt(aDat[19]) !=1){
+                        if (EstatusProyecto !=1){
                             Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
                             Intent intent = new Intent(listaGaleria.this, medidaGaleria.class);
@@ -85,7 +87,7 @@ public class listaGaleria extends AppCompatActivity {
                     @Override
                     public void onClick(View v){
                         if (Integer.parseInt(aDat[19]) !=1){
-                            Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                            Toast.makeText(listaGaleria.this, "Medida Cerrada", Toast.LENGTH_LONG).show();
                         }else{
                             Intent rIntent = new Intent(listaGaleria.this, modificarGaleria.class);
                             rIntent.putExtra("idGaleria", aDat[0]);
@@ -111,6 +113,9 @@ public class listaGaleria extends AppCompatActivity {
                     public void onClick(View v) {
                         if (Integer.parseInt(aDat[19]) !=1){
                             Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            oDB.cerrarProyectoGaleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2);
+                            lista();
                         }
                         customDialog.dismiss();
                     }

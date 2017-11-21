@@ -27,6 +27,7 @@ public class listaCama extends AppCompatActivity {
     public static DBProvider oDB;
     public listaCama() { oDB = new DBProvider(this);}
     Dialog customDialog = null;
+    public int EstatusProyecto;
     public int idProyecto=0;
 
     @Override
@@ -37,6 +38,7 @@ public class listaCama extends AppCompatActivity {
 
         Bundle oExt = this.getIntent().getExtras();
         idProyecto = oExt.getInt("idProyecto");
+        EstatusProyecto = oExt.getInt("Estatus");
         Log.v("[FRAGMENT]", "ID "+idProyecto);
 
         lista();
@@ -46,7 +48,7 @@ public class listaCama extends AppCompatActivity {
         tlList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
 
             @Override
-            public boolean onItemLongClick(final AdapterView<?> aList, View vItem,final int iPosition, long l) {
+            public boolean onItemLongClick(final AdapterView<?> aList, View vItem, final int iPosition, final long l) {
                 customDialog = new Dialog(listaCama.this, R.style.Theme_Dialog_Translucent);
                 customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 customDialog.setContentView(R.layout.menu_tabla_medida);
@@ -56,7 +58,7 @@ public class listaCama extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (Integer.parseInt(aDat[20]) !=1){
+                        if (EstatusProyecto !=1){
                             Toast.makeText(listaCama.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
                             Intent rIntent = new Intent(listaCama.this, medidaCama.class);
@@ -81,7 +83,7 @@ public class listaCama extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (Integer.parseInt(aDat[20]) !=1){
-                            Toast.makeText(listaCama.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                            Toast.makeText(listaCama.this, "Medida Cerrada", Toast.LENGTH_LONG).show();
                         }else {
                             Intent rIntent = new Intent(listaCama.this, modificarCama.class);
                             rIntent.putExtra("idCama", aDat[0]);
@@ -107,6 +109,9 @@ public class listaCama extends AppCompatActivity {
                     public void onClick(View v) {
                         if (Integer.parseInt(aDat[20]) !=1){
                             Toast.makeText(listaCama.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+                        }else {
+                            oDB.cerrarProyectoCama(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2);
+                            lista();
                         }
                         customDialog.dismiss();
                     }
