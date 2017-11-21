@@ -1,6 +1,7 @@
 package com.example.mhernandez.tomademedidas;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,8 +26,13 @@ public class registrar_Dispositivo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //Quitar Barra de Notificaciones
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.crear_dispositivo);
+
+        String model = Build.MODEL;
+        EditText nDisp = (EditText) this.findViewById(R.id.nDispositivo);
+        nDisp.setEnabled(false);
+        nDisp.setText(model);
+
         Bundle oExt = this.getIntent().getExtras();
         internet = oExt.getInt("internet");
         if(internet == 1) {
@@ -44,8 +50,8 @@ public class registrar_Dispositivo extends AppCompatActivity {
                     try {
                         sleep(1000);
                         getclienteLista();      getformatoLista();      getusuarioLista();
-                        //getproyeccionLista();   getubicacionLista();    getcontrolLista();
-                        //getcorrederaLista();    getfijacionLista();     getcopeteLista();
+                        getproyeccionLista();   getubicacionLista();    getcontrolLista();
+                        getcorrederaLista();    getfijacionLista();     getcopeteLista();
                     }catch (InterruptedException e){
                         e.printStackTrace();       }
                 }
