@@ -31,7 +31,7 @@
         <item name="android:textColor">@color/buttonTextColor</item>
     </style>
 
-    <style name="TextView" parent="Base.TextAppearance.AppCompat.Widget.Button">
+    <style name="TextView" parent="Base.Widget.AppCompat.TextView.SpinnerItem">
         <item name="android:textStyle">bold</item>
         <item name="android:typeface">sans</item>
         <item name="android:textSize">14sp</item>
@@ -40,7 +40,7 @@
         <item name="android:layout_width">match_parent</item>
     </style>
 
-    <style name="EditText" parent="Base.TextAppearance.AppCompat.Widget.Button">
+    <style name="EditText" parent="Base.Widget.AppCompat.EditText">
         <item name="android:typeface">sans</item>
         <item name="android:textSize">14sp</item>
         <item name="android:ems">10</item>

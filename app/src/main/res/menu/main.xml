@@ -17,8 +17,4 @@
         android:orderInCategory="100"
         android:title="Descargar" />
 
-    <item
-        android:id="@+id/cerrarSesion"
-        android:orderInCategory="100"
-        android:title="Cerrar Sesión" />
 </menu>

@@ -28,6 +28,7 @@ public class log_in extends AppCompatActivity {
         //Barra de Notificaciones
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+
         Thread timerThreadDos = new Thread(){
             public void run(){
                 try {

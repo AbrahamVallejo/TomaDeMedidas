@@ -11,6 +11,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="2dp" android:paddingRight="2dp"
             android:orientation="vertical">
 
             <TextView
@@ -60,18 +61,16 @@
 
             <TextView
                 android:id="@+id/textView12"
-                android:paddingTop="5dp"
+                android:paddingTop="10dp"
                 android:paddingBottom="5dp"
                 style="@style/TextView"
                 android:text="@string/nombre_proyecto"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <EditText
-                android:id="@+id/proyecto_nombre_proyecto"
+                android:id="@+id/c_proyecto_nombre"
                 style="@style/EditText"
-                android:ems="10"
                 android:hint="@string/texto_ej_remodelacion"
-                android:inputType="text"
                 android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ
                 -/()1234567890."
                 android:maxLength="100"/>
@@ -133,7 +132,6 @@
             <EditText
                 android:id="@+id/proyecto_pedido_sap"
                 android:hint="@string/solicitar_al_area_de_ventas"
-                android:ems="10"
                 android:digits="1234567890-."
                 android:maxLength="50"
                 android:inputType="number"

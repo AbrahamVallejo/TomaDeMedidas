@@ -38,6 +38,7 @@ public class entrada_inicio extends AppCompatActivity {
                             if (aux != false){
                                 sleep(500);
                                 if (aux1.length == 0){
+                                    getuserLista();
                                     Intent intent = new Intent(entrada_inicio.this, registrar_Dispositivo.class);
                                     intent.putExtra("internet", 0);
                                     startActivity(intent);
@@ -82,15 +83,11 @@ public class entrada_inicio extends AppCompatActivity {
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
-                Log.v("WS","TODO PERFECTO EN EL WEB SERVICES UserLista!");
                 // Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!",Toast.LENGTH_LONG).show();
             }
-
             @Override
             public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(),
-                        "OCURRIO UN ERROR EN EL WEB SERVICES!",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES USER!", Toast.LENGTH_LONG).show();
             }
         });
         oNS.execute("getuserLista");

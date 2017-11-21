@@ -3,56 +3,67 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingLeft="2dp" android:paddingRight="2dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:paddingTop="20dp"
-        android:text="Nombre Dispositivo"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/nDispositivo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:maxLength="100"
-        android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ
-        -1234567890()"
-        android:paddingBottom="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="15dp"
+            android:text="Nombre Dispositivo"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:paddingTop="20dp"
-        android:text="Usuario Dispositivo"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp" />
+        <EditText
+            android:id="@+id/nDispositivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ej: Celular Android"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:maxLength="100"
+            android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ
+            -1234567890()"
+            android:paddingBottom="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
 
-    <EditText
-        android:id="@+id/nUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:maxLength="100"
-        android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
-        android:textAppearance="@style/TextAppearance.AppCompat" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="15dp"
+            android:text="Usuario Dispositivo"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="18sp" />
 
+        <EditText
+            android:id="@+id/nUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Ej: Mario López"
+            android:inputType="textPersonName"
+            android:maxLength="100"
+            android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
 
-    <Button
-        android:id="@+id/bRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        style="@style/ButtonStyle2"
-        android:onClick="onSaveClickDispositivo"
-        android:textStyle="bold"
-        android:text="Registrar Dispositivo" />
+        <Button
+            android:id="@+id/bRegistro"
+            style="@style/ButtonStyle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:onClick="onSaveClickDispositivo"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Registrar Dispositivo" />
 
-
+    </LinearLayout>
 </LinearLayout>
