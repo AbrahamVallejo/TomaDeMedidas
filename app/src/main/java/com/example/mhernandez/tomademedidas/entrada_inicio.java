@@ -38,6 +38,7 @@ public class entrada_inicio extends AppCompatActivity {
                             if (aux != false){
                                 sleep(500);
                                 if (aux1.length == 0){
+                                    getuserLista();
                                     Intent intent = new Intent(entrada_inicio.this, registrar_Dispositivo.class);
                                     intent.putExtra("internet", 0);
                                     startActivity(intent);

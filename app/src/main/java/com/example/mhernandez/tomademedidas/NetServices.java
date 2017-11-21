@@ -322,7 +322,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     Log.v("PRUEBA", joFuj.getString("id_disp"));
                     Log.v("PRUEBA", joFuj.getString("nombre")); Log.v("PRUEBA","...");
                     String[][] aRef = entrada_inicio.oDB.buscarDispositivo(Integer.parseInt(joFuj.getString("id_disp")));
-                    //Log.v("[obtener]",aRef[0][0]);
                     if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_disp"))) {
                         entrada_inicio.oDB.insertDispositivo(Integer.parseInt(joFuj.getString("id_disp")), joFuj.getString("nombre"),
                                 Integer.parseInt(joFuj.getString("activo")), joFuj.getString("USUARIO"), Integer.parseInt(joFuj.getString("fuera")));
@@ -364,7 +363,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 String[] aFujs = null;
                 JSONArray jaData = new JSONArray((sResp));
                 aFujs = new String[jaData.length()];
-                String var = "María Nuñez"; Log.v("[obtener]","Estoy en GetClienteLista");
+                    Log.v("[obtener]","Estoy en GetClienteLista");
                 for (int i = 0; i<jaData.length(); i++){
                     JSONObject joFuj = jaData.getJSONObject(i);
                     aFujs[i] = joFuj.getString("id_cliente");
@@ -373,8 +372,20 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("telefono");
                     aFujs[i] = joFuj.getString("direccion");
                     Log.v("PRUEBA", "Cliente: "+joFuj.getString("nombre"));
-                    MainActivity.oDB.insertCliente(Integer.parseInt(joFuj.getString("id_cliente")), Integer.parseInt(joFuj.getString("id_disp")),
-                            joFuj.getString("nombre"), joFuj.getString("telefono"), joFuj.getString("direccion"), 0);
+                    if (urls[1] == "1"){
+                        String[][] aRef = MainActivity.oDB.buscarCliente(Integer.parseInt(joFuj.getString("id_cliente")),Integer.parseInt(joFuj.getString("id_disp")));
+                        if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_cliente"))) {
+                            MainActivity.oDB.insertCliente(Integer.parseInt(joFuj.getString("id_cliente")), Integer.parseInt(joFuj.getString("id_disp")),
+                                    joFuj.getString("nombre"), joFuj.getString("telefono"), joFuj.getString("direccion"), 0);
+                        }
+                    }else{
+                        String[][] aRef = registrar_Dispositivo.oDB.buscarCliente(Integer.parseInt(joFuj.getString("id_cliente")),Integer.parseInt(joFuj.getString("id_disp")));
+                        if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_cliente"))) {
+                            registrar_Dispositivo.oDB.insertCliente(Integer.parseInt(joFuj.getString("id_cliente")), Integer.parseInt(joFuj.getString("id_disp")),
+                                    joFuj.getString("nombre"), joFuj.getString("telefono"), joFuj.getString("direccion"), 0);
+                        }
+                    }
+
                 }
             }catch (Exception e){
                 exception = e;
@@ -592,14 +603,25 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     Log.v("PRUEBA", joFuj.getString("nombre")); Log.v("PRUEBA","...");
                     if (joFuj.getString("estatus") == "true"){
                         Log.v("obtenerA","IdUser: "+joFuj.getString("id_usuario") );
-                        if (Integer.parseInt(joFuj.getString("id_tipousuario") )== 1){//Log.v("obtener2","Tipo: "+joFuj.getString("id_tipousuario") );
-                            String[][] aRef = MainActivity.oDB.buscarAgente(Integer.parseInt(joFuj.getString("id_usuario")) );
-                            Log.v("obtenerA",aRef[0][0]);
-                            if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_usuario"))) {
-                                MainActivity.oDB.insertAgentes(Integer.parseInt(joFuj.getString("id_usuario")),
-                                        joFuj.getString("nombre"), joFuj.getString("apellido"),
-                                        1, Integer.parseInt(joFuj.getString("id_tipousuario")) );
+                        if (Integer.parseInt(joFuj.getString("id_tipousuario") )== 1){
+                            if (urls[1] == "1"){
+                                String[][] aRef = MainActivity.oDB.buscarAgente(Integer.parseInt(joFuj.getString("id_usuario")) );
+                                Log.v("obtenerA",aRef[0][0]);
+                                if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_usuario"))) {
+                                    MainActivity.oDB.insertAgentes(Integer.parseInt(joFuj.getString("id_usuario")),
+                                            joFuj.getString("nombre"), joFuj.getString("apellido"),
+                                            1, Integer.parseInt(joFuj.getString("id_tipousuario")) );
+                                }
+                            }else{
+                                String[][] aRef = registrar_Dispositivo.oDB.buscarAgente(Integer.parseInt(joFuj.getString("id_usuario")) );
+                                Log.v("obtenerA",aRef[0][0]);
+                                if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_usuario"))) {
+                                    registrar_Dispositivo.oDB.insertAgentes(Integer.parseInt(joFuj.getString("id_usuario")),
+                                            joFuj.getString("nombre"), joFuj.getString("apellido"),
+                                            1, Integer.parseInt(joFuj.getString("id_tipousuario")) );
+                                }
                             }
+
                         }
                     }
                 }
@@ -645,10 +667,16 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("id_formato");
                     Log.v("PRUEBA", joFuj.getString("id_formato"));
                     Log.v("PRUEBA", joFuj.getString("formato1")); Log.v("PRUEBA","...");
-
-                    String[][] aRef = MainActivity.oDB.buscarFormato(Integer.parseInt(joFuj.getString("id_formato")));
-                    if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_formato"))) {
-                        MainActivity.oDB.insertFormato(Integer.parseInt(joFuj.getString("id_formato")), joFuj.getString("formato1"));
+                    if (urls[1] == "1"){
+                        String[][] aRef = MainActivity.oDB.buscarFormato(Integer.parseInt(joFuj.getString("id_formato")));
+                        if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_formato"))) {
+                            MainActivity.oDB.insertFormato(Integer.parseInt(joFuj.getString("id_formato")), joFuj.getString("formato1"));
+                        }
+                    }else{
+                        String[][] aRef = registrar_Dispositivo.oDB.buscarFormato(Integer.parseInt(joFuj.getString("id_formato")));
+                        if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_formato"))) {
+                            registrar_Dispositivo.oDB.insertFormato(Integer.parseInt(joFuj.getString("id_formato")), joFuj.getString("formato1"));
+                        }
                     }
                 }
             }catch (Exception e){

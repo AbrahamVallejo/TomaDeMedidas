@@ -26,5 +26,7 @@
                 android:title="Editar Proyecto" />
         </menu>
     </item>
-
+    <item
+        android:id="@+id/cerrarSesion"
+        android:title="Cerrar Sesión" />
 </menu>
