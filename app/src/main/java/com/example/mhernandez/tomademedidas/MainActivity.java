@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Date;
@@ -32,8 +33,7 @@ public class MainActivity extends AppCompatActivity
 
     public static DBProvider oDB;
     int UBICACION=0;
-    Dialog customDialog = null;
-    int miProgreso = 0;
+    TextView porcentaje;
 
     public MainActivity() { oDB = new DBProvider(this);}
     /*
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity
         Proyecto.setTitle(P);
         navigationView.setNavigationItemSelectedListener(this);
 
-        MainActivity.oDB.ObtenerCorredera("0",1);
+        //MainActivity.oDB.ObtenerCorredera("0",1);
         //MainActivity.oDB.ObtenerProyectosEspecial("0",1);
 
 
@@ -274,24 +274,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     /*  Funciones Net Services */
-    public void getproyectoLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                //Toast.makeText(getApplicationContext(), "WEB SERVICES PROYECTO!", Toast.LENGTH_LONG).show();
-                miProgreso++;
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PROYECTO!", Toast.LENGTH_LONG).show();
-                miProgreso++;
-            }
-        });
-        oNS.execute("getproyectoLista");
-    }
-
     public void getclienteLista(){
+        porcentaje.setText("5%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -306,92 +290,8 @@ public class MainActivity extends AppCompatActivity
         oNS.execute("getclienteLista", "1");
     }
 
-    public void getusuarioLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES USUARIO!", Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("getusuarioLista", "1");
-    }
-
-    public void getfijacionLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
-            }
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES FIJACIÓN!", Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("getfijacionLista", "1");
-    }
-
-    public void getproyeccionLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
-            }
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PROYECCIÓN!", Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("getproyeccionLista", "1");
-    }
-
-    public void getcopeteLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
-            }
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES COPETE!", Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("getcopeteLista", "1");
-    }
-
-    public void getcontrolLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
-            }
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES CONTROL!", Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("getcontrolLista", "1");
-    }
-
-    public void getcorrederaLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
-            }
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES CORREDERA!", Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("getcorrederaLista", "1");
-    }
-
     public void getformatoLista(){
+        porcentaje.setText("10%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -406,7 +306,39 @@ public class MainActivity extends AppCompatActivity
         oNS.execute("getformatoLista", "1");
     }
 
+    public void getusuarioLista(){
+        porcentaje.setText("15%");
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES USUARIO!", Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getusuarioLista", "1");
+    }
+
+    public void getproyeccionLista(){
+        porcentaje.setText("20%");
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PROYECCIÓN!", Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getproyeccionLista", "1");
+    }
+
     public void getubicacionLista(){
+        porcentaje.setText("25%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -419,6 +351,66 @@ public class MainActivity extends AppCompatActivity
             }
         });
         oNS.execute("getubicacionLista", "1");
+    }
+
+    public void getcontrolLista(){
+        porcentaje.setText("30%");
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES CONTROL!", Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getcontrolLista", "1");
+    }
+
+    public void getcorrederaLista(){
+        porcentaje.setText("35%");
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES CORREDERA!", Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getcorrederaLista", "1");
+    }
+
+    public void getfijacionLista(){
+        porcentaje.setText("40%");
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES FIJACIÓN!", Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getfijacionLista", "1");
+    }
+
+    public void getcopeteLista(){
+        porcentaje.setText("45%");
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES COPETE!", Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getcopeteLista", "1");
     }
 
     public void getestatusLista(){
@@ -459,8 +451,88 @@ public class MainActivity extends AppCompatActivity
         oNS.execute("gethojasLista");
     }
 
+    public void getproyectoLista(){
+        porcentaje.setText("50%");
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                //Toast.makeText(getApplicationContext(), "WEB SERVICES PROYECTO!", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PROYECTO!", Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getproyectoLista");
+    }
+
+    public void getproyectoCamaLista(){
+        porcentaje.setText("60%");
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                //Toast.makeText(getApplicationContext(), "WEB SERVICES PROYECTO-CAMA!", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-CAMA!", Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getproyecto_camaLista");
+    }
+
+    public void getproyectoEspecialLista(){
+        porcentaje.setText("70%");
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES PRO-ESP!", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-ESP!", Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getproyecto_especialLista");
+    }
+
+    public void getproyectoHoteleriaLista(){
+        porcentaje.setText("80%");
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES PRO-HOTEL!", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-HOTEL!", Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getproyecto_hoteleriaLista");
+    }
+
+    public void getproyectoGaleriaLista(){
+        porcentaje.setText("85%");
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
+            }
+        });
+        oNS.execute("getproyecto_galeriaLista");
+    }
 
     public void getproyectoResidencialLista(){
+        porcentaje.setText("95%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -481,70 +553,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
         oNS.execute("getproyecto_residencialLista");
-    }
-
-    public void getproyectoHoteleriaLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES PRO-HOTEL!", Toast.LENGTH_LONG).show();
-                miProgreso++;
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-HOTEL!", Toast.LENGTH_LONG).show();
-                miProgreso++;
-            }
-        });
-        oNS.execute("getproyecto_hoteleriaLista");
-    }
-
-    public void getproyectoEspecialLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES PRO-ESP!", Toast.LENGTH_LONG).show();
-                miProgreso++;
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-ESP!", Toast.LENGTH_LONG).show();
-                miProgreso++;
-            }
-        });
-        oNS.execute("getproyecto_especialLista");
-    }
-
-    public void getproyectoGaleriaLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-GALERIA!", Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("getproyecto_galeriaLista");
-    }
-
-    public void getproyectoCamaLista(){
-        NetServices oNS = new NetServices(new OnTaskCompleted() {
-            @Override
-            public void OnTaskCompleted(Object freed) {
-                //Toast.makeText(getApplicationContext(), "WEB SERVICES PROYECTO-CAMA!", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnTaskError(Object feed) {
-                Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES PRO-CAMA!", Toast.LENGTH_LONG).show();
-            }
-        });
-        oNS.execute("getproyecto_camaLista");
     }
 
     public void getproyectoImagenLista(){
@@ -623,7 +631,7 @@ public class MainActivity extends AppCompatActivity
         oNS.execute("getenviardatosLista");
     }
 
-
+    /* Funciones de Sincronización */
     public void Sincronizar(){
         Fragment fragment;
         boolean aux = isOnlineNet();
@@ -747,6 +755,7 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(this, "Proyectos Sincronizados", Toast.LENGTH_SHORT).show();
     }
 
+    /* Funcion Para Descargar Datos Del Web Services */
     public void descargarWS(){
         String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
         String[][] aux2 = MainActivity.oDB.ObtenerProyectos("0",2);
@@ -759,46 +768,38 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, "Sincronización Proyectos Requerida", Toast.LENGTH_LONG).show();
         }else{
             boolean aux = isOnlineNet();
-            if (aux != false) {         //customDialog.setContentView(R.layout.activity_cargando);
-                setContentView(R.layout.activity_cargando);
+            if (aux != false) {
+                setContentView(R.layout.activity_cargando); porcentaje = (TextView) this.findViewById(R.id.porcentaje);
 
-                MainActivity.oDB.deleteAllProyectos("0","0");
-                MainActivity.oDB.deleteAllProyectosCama("0","0");
-                MainActivity.oDB.deleteAllProyectosEspecial("0","0");
-                MainActivity.oDB.deleteAllHoteleria("0","0");
-                MainActivity.oDB.deleteAllProyectosGaleria("0","0");
-                MainActivity.oDB.deleteAllResidencial("0","0");
-
-                Thread timerThread = new Thread(){
-                    public void run(){
-                        try {
-                            sleep(1000);
-                                getclienteLista();
-                                getproyectoLista();
-                                getproyectoCamaLista();
-                                getproyectoEspecialLista();
-                                getproyectoHoteleriaLista();
-                                getproyectoGaleriaLista();
-                                getproyectoResidencialLista();
-                        }catch (InterruptedException e){
-                            e.printStackTrace();       }
-                    }
-                };
-                timerThread.start();
+                MainActivity.oDB.deleteAllProyectos("0","0");           MainActivity.oDB.deleteAllProyectosCama("0","0");
+                MainActivity.oDB.deleteAllProyectosEspecial("0","0");   MainActivity.oDB.deleteAllHoteleria("0","0");
+                MainActivity.oDB.deleteAllProyectosGaleria("0","0");    MainActivity.oDB.deleteAllResidencial("0","0");
 
                 Thread timerThreadDos = new Thread(){
                     public void run(){
                         try {
-                            sleep(1000);
-                            getcopeteLista();       getformatoLista();
-                            getfijacionLista();     getproyeccionLista();
-                            getubicacionLista();    getcontrolLista();
-                            getcorrederaLista();    getusuarioLista();
+                            sleep(1500);
+                            getclienteLista();      getformatoLista();      getusuarioLista();
+                            getproyeccionLista();   getubicacionLista();    getcontrolLista();
+                            getcorrederaLista();    getfijacionLista();     getcopeteLista();
                         }catch (InterruptedException e){
                             e.printStackTrace();       }
                     }
                 };
                 timerThreadDos.start();
+
+                Thread timerThread = new Thread(){
+                    public void run(){
+                        try {
+                            sleep(1500);
+                                getproyectoLista();             getproyectoCamaLista();
+                                getproyectoEspecialLista();     getproyectoHoteleriaLista();
+                                getproyectoGaleriaLista();      getproyectoResidencialLista();
+                        }catch (InterruptedException e){
+                            e.printStackTrace();       }
+                    }
+                };
+                timerThread.start();
 
             }else {
                 Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();       }

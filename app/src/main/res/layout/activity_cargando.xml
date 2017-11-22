@@ -21,6 +21,19 @@
             android:typeface="sans"
             android:textSize="20dp"/>
 
+        <TextView
+            android:id="@+id/porcentaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@android:color/black"
+            android:text="0%"
+            android:textStyle="bold"
+            android:typeface="sans"
+            android:textSize="20dp"/>
+
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
