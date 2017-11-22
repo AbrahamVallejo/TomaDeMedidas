@@ -62,6 +62,14 @@ public class residencial extends AppCompatActivity {
         final Spinner Corredera = (Spinner) this.findViewById(R.id.spinner_corredera);
         final Spinner Agpto = (Spinner) this.findViewById(R.id.spinner_agpto);
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
+        final Button crearUbicacion = (Button) this.findViewById(R.id.crearUbicacion);
+        crearUbicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent rIntent = new Intent(residencial.this, crearUbicacion.class);
+                startActivity(rIntent);
+            }
+        });
         Guardar.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

@@ -53,6 +53,14 @@ public class galeria extends AppCompatActivity {
         final Spinner Area = (Spinner) this.findViewById(R.id.spinner_area);
         final EditText Comentarios = (EditText) this.findViewById(R.id.txt_comentarios);
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
+        final Button crearArea = (Button) this.findViewById(R.id.crearArea);
+        crearArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent rIntent = new Intent(galeria.this, crearArea.class);
+                startActivity(rIntent);
+            }
+        });
         Guardar.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
