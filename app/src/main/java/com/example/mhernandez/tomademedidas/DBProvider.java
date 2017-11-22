@@ -1202,7 +1202,7 @@ public class DBProvider {
         String[] aFils = {(id)};
         Cursor aRS;
         if (tipo == 1) {
-            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_UBICACION + " WHERE " + DBhelper.ID_AREA + " <> ?", aFils);
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_UBICACION + " WHERE " + DBhelper.ID_AREA + " <> ? ORDER BY ("+ DBhelper.COLUMN_NAME_AREA_UBICACION +")", aFils);
         } else {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_UBICACION + " WHERE " + DBhelper.ID_AREA + " = ?", aFils);
         }
