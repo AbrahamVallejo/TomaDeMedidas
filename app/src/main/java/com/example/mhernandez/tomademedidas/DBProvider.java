@@ -1195,14 +1195,27 @@ public class DBProvider {
     }
 
     //Tabla para sacar Ubicacion
-    public void insertUbicacion(int idUbi, int idDisp, String ubi) {
-        Object[] aData = {idUbi, idDisp, ubi};
+    public void insertUbicacion(int idUbi, int idDisp, String ubi, int sinc) {
+        Object[] aData = {idUbi, idDisp, ubi, sinc};
         Log.v("obtenerU", "Voy a insertar: "+ubi);
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_UBICACION + " (" + DBhelper.ID_AREA + ", "
                 + DBhelper.ID_DISP + ", "
-                + DBhelper.COLUMN_NAME_AREA_UBICACION + ") VALUES(?, ?, ?)", aData);
-        Log.v("obtenerU", "Ubicación: "+ubi);
+                + DBhelper.COLUMN_NAME_AREA_UBICACION + ", "
+                + DBhelper.COLUMN_NAME_SINCRONIZAR
+                + ") VALUES(?, ?, ?, ?)", aData);
+        Log.v("obtenerU", "Ubicación: "+ubi); //
     }
+
+    public void updateUbicacion(String idUbi,String idDisp, String ubi, int sinc) {
+        int idC=Integer.parseInt(idUbi);
+        int idD= Integer.parseInt(idDisp);
+        Object[] aData = {ubi, sinc, idC, idD};
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_UBICACION + " SET " + DBhelper.COLUMN_NAME_AREA_UBICACION + " = ?, "
+                + DBhelper.COLUMN_NAME_SINCRONIZAR + " = ?"
+                + " WHERE " + DBhelper.ID_CLIENTE + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
+        Log.v("[obtener]", "Modificado");
+    }
+
 
     public String[][] buscarUbicacion(int idFijacion) {
         int iCnt = 0;
@@ -1235,16 +1248,19 @@ public class DBProvider {
         Cursor aRS;
         if (tipo == 1) {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_UBICACION + " WHERE " + DBhelper.ID_AREA + " <> ? ORDER BY ("+ DBhelper.COLUMN_NAME_AREA_UBICACION +")", aFils);
-        } else {
+        } else if (tipo == 2) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_UBICACION + " WHERE " + DBhelper.COLUMN_NAME_SINCRONIZAR + " <> ?", aFils);
+        }else {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_UBICACION + " WHERE " + DBhelper.ID_AREA + " = ?", aFils);
         }
         if (aRS.getCount() > 0) {
             aData = new String[aRS.getCount()][];
             while (aRS.moveToNext()) {
-                aData[iCnt] = new String[3];
+                aData[iCnt] = new String[4];
                 aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_AREA));
                 aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP ));
                 aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AREA_UBICACION ));
+                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_SINCRONIZAR ));
                 iCnt++;
             }
         } else {
@@ -2328,6 +2344,13 @@ public class DBProvider {
                     + "PRIMARY KEY (" + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_DISP + ")"
                     + ");");                                                                        Log.v("[obtener]","DB Proyecto  [lista]");
 
+            db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_UBICACION + " ("
+                    + DBhelper.ID_AREA + " INTEGER PRIMARY KEY,"
+                    + DBhelper.COLUMN_NAME_AREA_UBICACION + " TEXT,"
+                    + DBhelper.ID_DISP + " INTEGER,"
+                    + DBhelper.COLUMN_NAME_SINCRONIZAR + " INTEGER"
+                    + ");");                                                                        Log.v("[obtener]","DB Ubicación  [lista]");
+
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " ("
                     + DBhelper.ID_ESPECIALES + " INTEGER,"
                     + DBhelper.ID_DISP + " INTEGER,"
@@ -2584,12 +2607,6 @@ public class DBProvider {
                     + DBhelper.COLUMN_NAME_FECHA + " TEXT,"
                     + DBhelper.COLUMN_NAME_ESTATUS + " TINYINT"
                     + ");");                                                                        Log.v("[obtener]","DB Tipo Usuario  [lista]");
-
-            db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_UBICACION + " ("
-                    + DBhelper.ID_AREA + " INTEGER PRIMARY KEY,"
-                    + DBhelper.COLUMN_NAME_AREA_UBICACION + " TEXT,"
-                    + DBhelper.ID_DISP + " INTEGER"
-                    + ");");                                                                        Log.v("[obtener]","DB Ubicación  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_USER + " ("
                     + DBhelper._ID + " INTEGER PRIMARY KEY,"

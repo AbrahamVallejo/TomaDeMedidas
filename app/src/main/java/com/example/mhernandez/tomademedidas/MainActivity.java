@@ -82,8 +82,6 @@ public class MainActivity extends AppCompatActivity
 
         //MainActivity.oDB.ObtenerCorredera("0",1);
         //MainActivity.oDB.ObtenerProyectosEspecial("0",1);
-
-
     }
 
     public void onSaveClickClientes(View view){
@@ -638,6 +636,7 @@ public class MainActivity extends AppCompatActivity
         if (aux != false) {
             if(UBICACION==2 || UBICACION ==1){
                 Sincliente();
+                SinUbicacion();
                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -704,6 +703,30 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public void SinUbicacion(){
+        String[][] aux1 = MainActivity.oDB.ObtenerUbicacion("0",2);
+        for (int i =0; i < aux1.length; i++) {
+            if (Integer.valueOf(aux1[i][5]) == 1) {
+                Log.v("[add]","Entre al if Insert" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                        //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(),
+                                "ERROR EN EL WEB SERVICES AddCliente!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("addubicacion", aux1[i][0], aux1[i][1], aux1[i][2] );
+            }
+        }
+        Toast.makeText(this, "Ubicaciones Sincronizadas", Toast.LENGTH_SHORT).show();
+
+    }
+
+
     public void SinProyecto(){
         String[][] aux1 = MainActivity.oDB.ObtenerProyectos("0",2);
         Log.v("[add]","Tengo: "+aux1.length );
@@ -758,10 +781,11 @@ public class MainActivity extends AppCompatActivity
     /* Funcion Para Descargar Datos Del Web Services */
     public void descargarWS(){
         String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
+        String[][] aux3 = MainActivity.oDB.ObtenerUbicacion("0",2);
         String[][] aux2 = MainActivity.oDB.ObtenerProyectos("0",2);
         int var = aux2.length;
 
-        if(aux1.length >= 1){
+        if((aux1.length + aux3.length) >= 1){
             Toast.makeText(this, "Sincronización Clientes Requerida", Toast.LENGTH_LONG).show();
         }
         else if(var >= 1) {
@@ -786,7 +810,7 @@ public class MainActivity extends AppCompatActivity
                             e.printStackTrace();       }
                     }
                 };
-                timerThreadDos.start();
+                timerThreadDos.start(); porcentaje.setText("50%");
 
                 Thread timerThread = new Thread(){
                     public void run(){

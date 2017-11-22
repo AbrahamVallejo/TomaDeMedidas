@@ -33,7 +33,7 @@ public class crearArea extends AppCompatActivity {
                 String[][] aRefA = MainActivity.oDB.lastUbicacion();
                 int idArea = Integer.parseInt(aRefA[(0)][0]) + 1;
                 int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                oDB.insertUbicacion(idArea, idDisp, txtArea);
+                oDB.insertUbicacion(idArea, idDisp, txtArea, 1);
                 finish();
             }
         });
