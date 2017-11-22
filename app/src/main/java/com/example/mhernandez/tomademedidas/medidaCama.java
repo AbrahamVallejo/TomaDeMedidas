@@ -26,8 +26,8 @@ public class medidaCama extends AppCompatActivity {
         setContentView(R.layout.crear_medida_cama);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Bundle oExt = this.getIntent().getExtras();
-        final int idProyecto = Integer.parseInt(oExt.getString("idProyecto"));
-        final int idProyectoDisp = Integer.parseInt(oExt.getString("idProyectoDisp"));
+        final int idProyecto = oExt.getInt("idProyecto");
+        final int idProyectoDisp = oExt.getInt("idProyectoDisp");
         final String Nombre = oExt.getString("Nombre");
         final EditText NHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
         final EditText A = (EditText) this.findViewById(R.id.txt_A);

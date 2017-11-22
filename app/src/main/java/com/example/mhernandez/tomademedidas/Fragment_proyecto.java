@@ -87,7 +87,7 @@ public class Fragment_proyecto extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.crear_proyecto, container, false);
-        Button botonCamara = ((Button) vista.findViewById(R.id.TomarFoto));
+//        Button botonCamara = ((Button) vista.findViewById(R.id.TomarFoto));
         ImageView oImg = (ImageView) vista.findViewById(R.id.imgFoto);
 
         //Llenar los Spinners
@@ -100,7 +100,7 @@ public class Fragment_proyecto extends Fragment {
                 //oImg.setImageBitmap(bit_map);
             }
         }
-
+/*
         ((Button) botonCamara.findViewById(R.id.TomarFoto)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,7 +109,7 @@ public class Fragment_proyecto extends Fragment {
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
                 startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
             }
-        });
+        });*/
 
         return vista;
     }
