@@ -159,6 +159,12 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Modificar Medida Residencial">
         </activity>
+
+        <activity android:name=".crearUbicacion"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Crear Ubicacion">
+        </activity>
+
     </application>
 
 </manifest>
