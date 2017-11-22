@@ -117,6 +117,8 @@ public class Fragment_listaProyecto extends Fragment {
                             Log.v("[FRAGMENT]", Formato);
                             Intent rIntent = new Intent(vista.getContext(), listaHoteleria.class);
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
+                            rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
+                            rIntent.putExtra("Nombre", aDat[3]);
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
                             startActivity(rIntent);
                         }else if (Formato.equals("4")){
@@ -124,24 +126,32 @@ public class Fragment_listaProyecto extends Fragment {
                             Intent rIntent = new Intent(vista.getContext(), listaCama.class);
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
+                            rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
+                            rIntent.putExtra("Nombre", aDat[3]);
                             startActivity(rIntent);
                         }else if (Formato.equals("1")){
                             Log.v("[FRAGMENT]", Formato);
                             Intent rIntent = new Intent(vista.getContext(), listaResidencial.class);
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
+                            rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
+                            rIntent.putExtra("Nombre", aDat[3]);
                             startActivity(rIntent);
                         }else if (Formato.equals("3")){
                             Log.v("[FRAGMENT]", Formato);
                             Intent rIntent = new Intent(vista.getContext(), listaGaleria.class);
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
+                            rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
+                            rIntent.putExtra("Nombre", aDat[3]);
                             startActivity(rIntent);
                         }else if (Formato.equals("5")){
                             Log.v("[FRAGMENT]", Formato);
                             Intent rIntent = new Intent(vista.getContext(), listaEspecial.class);
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
+                            rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
+                            rIntent.putExtra("Nombre", aDat[3]);
                             startActivity(rIntent);
                         }
 

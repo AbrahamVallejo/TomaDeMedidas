@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ public class listaGaleria extends AppCompatActivity {
     Dialog customDialog = null;
     public int EstatusProyecto;
     public int idProyecto=0;
+    public int idProyectoDisp = 0;
+    public String NombreProyecto;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -42,6 +45,8 @@ public class listaGaleria extends AppCompatActivity {
         Bundle oExt = this.getIntent().getExtras();
         idProyecto = oExt.getInt("idProyecto");
         EstatusProyecto = oExt.getInt("Estatus");
+        idProyectoDisp = oExt.getInt("idProyectoDisp");
+        NombreProyecto = oExt.getString("Nombre");
         Log.v("[FRAGMENT]", "ID "+idProyecto);
 
         lista();
@@ -58,31 +63,6 @@ public class listaGaleria extends AppCompatActivity {
                 customDialog.setContentView(R.layout.menu_tabla_medida);
                 final String[] aDat = (String[]) aList.getItemAtPosition(iPosition);
 
-                ((Button) customDialog.findViewById(R.id.btnNuevaMedida)).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (EstatusProyecto !=1){
-                            Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
-                        }else {
-                            Intent intent = new Intent(listaGaleria.this, medidaGaleria.class);
-                            intent.putExtra("idProyecto", aDat[2]);
-                            intent.putExtra("idProyectoDisp", aDat[3]);
-                            intent.putExtra("Nombre", aDat[13]);
-                            startActivity(intent);
-                        }
-                        customDialog.dismiss();
-
-                    }
-                });
-
-              ((Button) customDialog.findViewById(R.id.btnNuevaGaleria)).setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v){
-
-                        customDialog.dismiss();
-                    }
-                });
-              
                 ((Button) customDialog.findViewById(R.id.btnModificar)).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
@@ -243,12 +223,30 @@ public class listaGaleria extends AppCompatActivity {
         }
     }
 
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_crear_medida_galeria, menu);
+        return true;
+    }
+
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
 
         if(id == android.R.id.home){
             finish();
             return true;
+        }
+        if (id == R.id.crearMedida){
+            if (EstatusProyecto != 1){
+                Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+            }else {
+                Intent rIntent = new Intent(listaGaleria.this, medidaGaleria.class);
+                rIntent.putExtra("idProyecto", idProyecto);
+                rIntent.putExtra("idProyectoDisp", idProyectoDisp);
+                rIntent.putExtra("Nombre", NombreProyecto);
+                startActivity(rIntent);
+            }
+        }else if (id == R.id.crearGaleria){
+
         }
         return super.onOptionsItemSelected(item);
     }
