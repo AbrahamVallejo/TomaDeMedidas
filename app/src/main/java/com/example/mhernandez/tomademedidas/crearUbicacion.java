@@ -33,7 +33,7 @@ public class crearUbicacion extends AppCompatActivity {
                 String[][] aRefA = MainActivity.oDB.lastUbicacion();
                 int idArea = Integer.parseInt(aRefA[(0)][0]) + 1;
                 int idDisp = Integer.parseInt(aRefD[(0)][0]);
-                oDB.insertUbicacion(idArea, idDisp, txtUbicacion);
+                oDB.insertUbicacion(idArea, idDisp, txtUbicacion, 1);
                 finish();
             }
         });

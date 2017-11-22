@@ -610,6 +610,62 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 exception = e;
             }
         }
+        else if(urls[0] == "getubicacionLista"){
+            try{
+                sResp = NetServices.connectPost2(URL_WS1 + "wsubicacion.svc/"+ urls[0]);
+                String[] aFujs = null;
+                JSONArray jaData = new JSONArray((sResp));
+                aFujs = new String[jaData.length()];
+                Log.v("PRUEBA", sResp);
+                for (int i = 0; i<jaData.length(); i++){
+                    JSONObject joFuj = jaData.getJSONObject(i);
+                    aFujs[i] = joFuj.getString("id_area");
+                    aFujs[i] = joFuj.getString("area_ubicacion");
+                    aFujs[i] = joFuj.getString("id_disp");
+                    Log.v("PRUEBA", joFuj.getString("area_ubicacion")); Log.v("PRUEBA","...");
+                    if (urls[1] == "1"){
+                        String[][] aRef = MainActivity.oDB.buscarUbicacion(Integer.parseInt(joFuj.getString("id_area")));
+                        if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_area"))) {   Log.v("obtenerU", "aRef:"+aRef[0][0] +" area:"+joFuj.getString("id_area") );
+                            MainActivity.oDB.insertUbicacion(Integer.parseInt(joFuj.getString("id_area")), Integer.parseInt(joFuj.getString("id_disp")), joFuj.getString("area_ubicacion"), 0);
+                        }
+                    }else{
+                        String[][] aRef = registrar_Dispositivo.oDB.buscarUbicacion(Integer.parseInt(joFuj.getString("id_area")));
+                        if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_area"))) {   Log.v("obtenerU", "aRef:"+aRef[0][0] +" area:"+joFuj.getString("id_area") );
+                            registrar_Dispositivo.oDB.insertUbicacion(Integer.parseInt(joFuj.getString("id_area")), Integer.parseInt(joFuj.getString("id_disp")), joFuj.getString("area_ubicacion"), 0);
+                        }
+                    }
+                }
+            }catch (Exception e){
+                exception = e;
+            }
+        }
+        else if(urls[0] == "addubicacion"){
+            Log.v("[add]","Voy a insertar en WS" );
+            try {
+                JSONObject json = new JSONObject();
+                JSONObject dipositivo = new JSONObject();
+                try {
+                    dipositivo.put("id_area", urls[1] );
+                    dipositivo.put("id_disp", urls[2] );
+                    dipositivo.put("area_ubicacion", urls[3] );
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                json.put("ubicacion", dipositivo);
+                sResp = NetServices.connectPost3(URL_WS1 + "wsubicacion.svc/" + urls[0], json.toString());
+                Log.v("[add]", "U: "+sResp.length() +" "+sResp);
+                if (sResp.length() == 6){
+                    Log.v("[add]","Retorno nulo" );
+                }
+                else{
+                    Log.v("[add]","Insertar en Local" );
+                    MainActivity.oDB.updateUbicacion(urls[1], urls[2], urls[3], 0);
+                }
+            } catch (Exception e) {
+                exception = e;
+            }
+        }
         else if(urls[0] == "getusuarioLista"){
             try{
                 sResp = NetServices.connectPost2(URL_WS1 + "wsusuario.svc/"+ urls[0]);
@@ -650,35 +706,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                                 }
                             }
 
-                        }
-                    }
-                }
-            }catch (Exception e){
-                exception = e;
-            }
-        }
-        else if(urls[0] == "getubicacionLista"){
-            try{
-                sResp = NetServices.connectPost2(URL_WS1 + "wsubicacion.svc/"+ urls[0]);
-                String[] aFujs = null;
-                JSONArray jaData = new JSONArray((sResp));
-                aFujs = new String[jaData.length()];
-                Log.v("PRUEBA", sResp);
-                for (int i = 0; i<jaData.length(); i++){
-                    JSONObject joFuj = jaData.getJSONObject(i);
-                    aFujs[i] = joFuj.getString("id_area");
-                    aFujs[i] = joFuj.getString("area_ubicacion");
-                    aFujs[i] = joFuj.getString("id_disp");
-                    Log.v("PRUEBA", joFuj.getString("area_ubicacion")); Log.v("PRUEBA","...");
-                    if (urls[1] == "1"){
-                        String[][] aRef = MainActivity.oDB.buscarUbicacion(Integer.parseInt(joFuj.getString("id_area")));
-                        if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_area"))) {   Log.v("obtenerU", "aRef:"+aRef[0][0] +" area:"+joFuj.getString("id_area") );
-                            MainActivity.oDB.insertUbicacion(Integer.parseInt(joFuj.getString("id_area")), Integer.parseInt(joFuj.getString("id_disp")), joFuj.getString("area_ubicacion"));
-                        }
-                    }else{
-                        String[][] aRef = registrar_Dispositivo.oDB.buscarUbicacion(Integer.parseInt(joFuj.getString("id_area")));
-                        if (Integer.parseInt(aRef[0][0]) != Integer.parseInt(joFuj.getString("id_area"))) {   Log.v("obtenerU", "aRef:"+aRef[0][0] +" area:"+joFuj.getString("id_area") );
-                            registrar_Dispositivo.oDB.insertUbicacion(Integer.parseInt(joFuj.getString("id_area")), Integer.parseInt(joFuj.getString("id_disp")), joFuj.getString("area_ubicacion"));
                         }
                     }
                 }
