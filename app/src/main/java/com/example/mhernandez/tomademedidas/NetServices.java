@@ -884,6 +884,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 String[] aFujs = null;
                 JSONArray jaData = new JSONArray((sResp));
                 aFujs = new String[jaData.length()];
+                Log.v("[PRUEBA","Hoteleria:  " +sResp);
                 for (int i = 0; i<jaData.length(); i++){
                     JSONObject joFuj = jaData.getJSONObject(i);
                     aFujs[i] = joFuj.getString("id_hoteleria");
@@ -909,7 +910,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     aFujs[i] = joFuj.getString("medida_sujerida");
                     aFujs[i] = joFuj.getString("autorizado");
                     aFujs[i] = joFuj.getString("pagado");
-                    Log.v("PRUEBA","Hoteleria:  " +joFuj.getString("id_hoteleria"));
                     MainActivity.oDB.insertProyectoHoteleria(Integer.parseInt(joFuj.getString("id_hoteleria")), Integer.parseInt(joFuj.getString("id_disp")),
                             Integer.parseInt(joFuj.getString("id_proyecto")), Integer.parseInt(joFuj.getString("id_proyecto_disp")), joFuj.getString("habitacion"),
                             joFuj.getString("area"), Double.parseDouble(joFuj.getString("ancho")), Double.parseDouble(joFuj.getString("alto")),

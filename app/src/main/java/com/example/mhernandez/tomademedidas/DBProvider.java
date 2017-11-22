@@ -555,10 +555,8 @@ public class DBProvider {
     }
 
     public void insertProyectoHoteleria(int idHoteleria, int idDisp, int idProyecto, int idProyectoDisp, String habitacion, String area, Double ancho, Double alto,
-                                        Double hojas, String observaciones, String nombrePro, String AIMG, String fecha,
-                                        int formato, int piso, String edificio, String control, String fijacion,
-                                        String fechaAl, int estatus, String medidaSujerida,
-                                        int autorizado, int userAuto, int pagado, String corredera) {
+                                        Double hojas, String observaciones, String nombrePro, String AIMG, String fecha, int formato, int piso, String edificio,
+                                        String control, String fijacion, String fechaAl, int estatus, String medidaSujerida, int autorizado, int userAuto, int pagado, String corredera) {
         //Log.v("[ProH]","Voy a insertar Hoteleria " + nombrePro +" Piso: "+piso);
         Object[] aData = { idHoteleria, idDisp, idProyecto, idProyectoDisp, habitacion, area, ancho, alto, hojas, observaciones, nombrePro,
                             AIMG, fecha, formato, piso, edificio, control, fijacion, fechaAl, estatus, medidaSujerida,
