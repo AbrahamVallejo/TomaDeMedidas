@@ -1,6 +1,5 @@
 package com.example.mhernandez.tomademedidas;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -47,6 +46,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        boolean FragmentTransaction = false;
+        Fragment fragment = null;
+        FragmentTransaction = true;
+        fragment = new Fragment_listaProyecto(); UBICACION=4;
+
+        if (FragmentTransaction){
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();
+        }
         //Quitar Barra de Notificaciones
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
