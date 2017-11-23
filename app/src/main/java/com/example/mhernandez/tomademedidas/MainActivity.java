@@ -713,7 +713,7 @@ public class MainActivity extends AppCompatActivity
     public void SinUbicacion(){
         String[][] aux1 = MainActivity.oDB.ObtenerUbicacion("0",2);
         for (int i =0; i < aux1.length; i++) {
-            if (Integer.valueOf(aux1[i][5]) == 1) {
+            if (Integer.valueOf(aux1[i][3]) == 1) {
                 Log.v("[add]","Entre al if Insert" );
                 NetServices oNS = new NetServices(new OnTaskCompleted() {
                     @Override

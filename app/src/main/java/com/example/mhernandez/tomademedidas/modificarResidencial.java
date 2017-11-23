@@ -1,5 +1,6 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -29,6 +30,7 @@ public class modificarResidencial extends AppCompatActivity {
         Bundle oExt = getIntent().getExtras();
         final int idResidencial = Integer.parseInt(oExt.getString("idResidencial"));
         final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
+        Button Guardar = (Button) this.findViewById(R.id.Guardar);
         String Piso = oExt.getString("Piso");
         String MedidaSugerida = oExt.getString("MedidaSugerida");
         String ProfMarco = oExt.getString("ProfMarco");
@@ -60,7 +62,7 @@ public class modificarResidencial extends AppCompatActivity {
         final Spinner txtCorredera = (Spinner) this.findViewById(R.id.spinner_corredera);
         final EditText txtMedidaSugerida = (EditText) this.findViewById(R.id.txtMedidaSugerida);
         final EditText txtObservaciones = (EditText) this.findViewById(R.id.txtObservaciones);
-        Button Guardar = (Button) this.findViewById(R.id.Guardar);
+        Button BtnUbicacion = (Button) this.findViewById(R.id.crearUbicacion);
         txtPiso.setText(Piso.trim());
         txtA.setText(A.trim());
         txtB.setText(B.trim());
@@ -98,6 +100,14 @@ public class modificarResidencial extends AppCompatActivity {
                 oDB.updateProyectoResidencial(idResidencial, idDisp, Ubicacion, A, B, C, D , E, F, G, H,
                         ProfMarco, ProfJaladera, Control, Agpto, MedidaSugerida, "IMAGEN", Observaciones, Fijacion, Piso, Corredera);
                 finish();
+            }
+        });
+
+        BtnUbicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent rIntent = new Intent(modificarResidencial.this, crearUbicacion.class);
+                startActivity(rIntent);
             }
         });
     }
