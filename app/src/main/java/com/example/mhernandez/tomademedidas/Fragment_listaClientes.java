@@ -205,7 +205,7 @@ public class Fragment_listaClientes extends Fragment {
 
             Log.v("checkbox",_text[position][5]);
             if( Integer.parseInt(_text[position][5]) == 0){
-                checkCliente.setTextColor(Color.BLACK);
+                checkCliente.setTextColor(Color.rgb(92, 184, 92));
                 checkCliente.setText("Sincronizado");
             }
             return rowView;

@@ -295,7 +295,7 @@ public class Fragment_listaProyecto extends Fragment {
                 txtEstatus.setText("Cerrado");
             }
             if( Integer.parseInt(_text[position][23]) == 0){
-                checkCliente.setTextColor(Color.BLACK);
+                checkCliente.setTextColor(Color.rgb(92, 184, 92));
                 checkCliente.setText("Sincronizado");
             }
 
