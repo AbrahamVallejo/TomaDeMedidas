@@ -1212,7 +1212,7 @@ public class DBProvider {
         Object[] aData = {ubi, sinc, idC, idD};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_UBICACION + " SET " + DBhelper.COLUMN_NAME_AREA_UBICACION + " = ?, "
                 + DBhelper.COLUMN_NAME_SINCRONIZAR + " = ?"
-                + " WHERE " + DBhelper.ID_CLIENTE + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
+                + " WHERE " + DBhelper.ID_AREA + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
         Log.v("[obtener]", "Modificado");
     }
 

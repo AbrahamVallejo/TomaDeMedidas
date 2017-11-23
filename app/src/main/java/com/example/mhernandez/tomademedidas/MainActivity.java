@@ -21,7 +21,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Date;
 
 
@@ -35,6 +34,8 @@ public class MainActivity extends AppCompatActivity
     TextView porcentaje;
 
     public MainActivity() { oDB = new DBProvider(this);}
+
+
     /*
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
@@ -638,21 +639,29 @@ public class MainActivity extends AppCompatActivity
 
     /* Funciones de Sincronización */
     public void Sincronizar(){
-        Fragment fragment;
         boolean aux = isOnlineNet();
         if (aux != false) {
             if(UBICACION==2 || UBICACION ==1){
-                Sincliente();
-                SinUbicacion();
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
+                String[][] aux2 = MainActivity.oDB.ObtenerUbicacion("0",2);
+                if (aux1.length >= 1){
+                    Sincliente();}
+                if (aux2.length >= 1){
+                    SinUbicacion();}
+                if((aux1.length + aux2.length)==0){
+                    Toast.makeText(this, "Sincronización Completa", Toast.LENGTH_LONG).show();}
+                Intent intent = new Intent(this, MainActivity.class); finish();
                 startActivity(intent);
             }
             if(UBICACION==4 || UBICACION ==3){
-                SinProyecto();
-                Intent intent = new Intent(this, MainActivity.class);
+                String[][] aux3 = MainActivity.oDB.ObtenerProyectos("0",2);
+                if (aux3.length >=1){
+                    SinProyecto();}
+                if (aux3.length ==0){
+                    Toast.makeText(this, "Sincronización Completa", Toast.LENGTH_LONG).show();}
+                Intent intent = new Intent(this, MainActivity.class); finish();
                 startActivity(intent);
             }
-
         }
         else {
             Toast.makeText(this, "Requiere Acceso a Internet", Toast.LENGTH_LONG).show();
@@ -707,7 +716,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
         Toast.makeText(this, "Clientes Sincronizados", Toast.LENGTH_SHORT).show();
-
     }
 
     public void SinUbicacion(){
