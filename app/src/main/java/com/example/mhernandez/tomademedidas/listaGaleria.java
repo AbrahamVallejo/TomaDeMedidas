@@ -223,11 +223,13 @@ public class listaGaleria extends AppCompatActivity {
         }
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_crear_medida_galeria, menu);
         return true;
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
 

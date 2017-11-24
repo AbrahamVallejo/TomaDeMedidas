@@ -1,10 +1,13 @@
 package com.example.mhernandez.tomademedidas;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +22,7 @@ public class hoteleria extends AppCompatActivity {
     private Spinner spAreaH, spFijacionH, spControlH, spCorrederaH;
     public static DBProvider oDB;
     public hoteleria() {oDB = new DBProvider(this);}
+    Dialog customDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -98,13 +102,26 @@ public class hoteleria extends AppCompatActivity {
         );
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_referencia_medida, menu);
+        return true;
+    }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
 
         if(id == android.R.id.home){
             finish();
             return true;
+        }
+
+        if (id == R.id.imagenReferencia){
+            customDialog = new Dialog(hoteleria.this, R.style.Theme_Dialog_Translucent);
+            customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            customDialog.setContentView(R.layout.referencia_medida_ventana);
+            customDialog.show();
         }
         return super.onOptionsItemSelected(item);
     }
