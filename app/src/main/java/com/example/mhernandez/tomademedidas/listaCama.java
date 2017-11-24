@@ -3,6 +3,7 @@ package com.example.mhernandez.tomademedidas;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -91,7 +92,7 @@ public class listaCama extends AppCompatActivity {
                         if (Integer.parseInt(aDat[20]) !=1){
                             Toast.makeText(listaCama.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
-                            oDB.cerrarProyectoCama(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2);
+                            oDB.cerrarProyectoCama(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2, 2);
                             lista();
                         }
                         customDialog.dismiss();
@@ -145,6 +146,8 @@ public class listaCama extends AppCompatActivity {
             TextView txtE = (TextView) rowView.findViewById(R.id.E);
             TextView txtF = (TextView) rowView.findViewById(R.id.F);
             TextView txtG = (TextView) rowView.findViewById(R.id.G);
+            TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
+            TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
             txtIDCama.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
@@ -160,6 +163,16 @@ public class listaCama extends AppCompatActivity {
             txtE.setText(_text[position][9]);
             txtF.setText(_text[position][10]);
             txtG.setText(_text[position][15]);
+
+            if (Integer.parseInt(_text[position][20]) == 1){
+                txtEstatus.setText("Activo");
+            }else{
+                txtEstatus.setText("Cerrado");
+            } Log.v("[ob","Sinc: "+_text[position][27]);
+            if( Integer.parseInt(_text[position][27]) == 0){
+                checkCliente.setTextColor(Color.rgb(92, 184, 92));
+                checkCliente.setText("Sincronizado");
+            }
 
             return rowView;
         }
@@ -177,7 +190,7 @@ public class listaCama extends AppCompatActivity {
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
             for (int iCnt = 0; iCnt < aRef.length; iCnt++){
-                aDataFolio[iCnt] = new String[27];
+                aDataFolio[iCnt] = new String[28];
                 aDataFolio[iCnt][0] = aRef[iCnt][0];
                 aDataFolio[iCnt][1] = aRef[iCnt][1];
                 aDataFolio[iCnt][2] = aRef[iCnt][2];
@@ -205,6 +218,7 @@ public class listaCama extends AppCompatActivity {
                 aDataFolio[iCnt][24] = aRef[iCnt][24];
                 aDataFolio[iCnt][25] = aRef[iCnt][25];
                 aDataFolio[iCnt][26] = aRef[iCnt][26];
+                aDataFolio[iCnt][27] = aRef[iCnt][27];
             }
             ListView list;
             list = (ListView) this.findViewById(R.id.lista);
