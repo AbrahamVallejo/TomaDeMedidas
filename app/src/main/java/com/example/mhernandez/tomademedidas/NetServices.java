@@ -640,7 +640,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
             }
         }
         else if(urls[0] == "addubicacion"){
-            Log.v("[add]","Voy a insertar en WS" );
+            Log.v("[add]","Voy a insertar en WS Ubicación" );
             try {
                 JSONObject json = new JSONObject();
                 JSONObject dipositivo = new JSONObject();
