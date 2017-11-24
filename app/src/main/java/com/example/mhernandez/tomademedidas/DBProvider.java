@@ -317,9 +317,9 @@ public class DBProvider {
 
     public void insertProyectoCama(int idCama,int idDisp,int idProyecto, int idProyectoDisp, String nHabitaciones, double A,
                                    double B, double C, double D, double E, double F, double G, String fecha, String nombreP, int formato,
-                                   String Observaciones, int idUsuarioA, int autorizado, int idEstatud, int pagado, int sinc) {
+                                   String Observaciones, int idUsuarioA, int autorizado, int idEstatud, int pagado, String AIMG, int sinc) {
         Object[] aData = {idCama, idDisp, idProyecto, idProyectoDisp, nHabitaciones, A, B, C, D, E, F, G, fecha,
-                         nombreP, formato, Observaciones, idUsuarioA, autorizado, idEstatud, pagado, sinc};
+                         nombreP, formato, Observaciones, idUsuarioA, autorizado, idEstatud, pagado, AIMG, sinc};
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " (" + DBhelper.ID_CAMA + ", "
                 + DBhelper.ID_DISP + ", " + DBhelper.ID_PROYECTO + ", " + DBhelper.ID_PROYECTO_DISP + ", "
                 + DBhelper.COLUMN_NAME_N_HABITACION + ", " + DBhelper.COLUMN_NAME_A + ", " + DBhelper.COLUMN_NAME_B + ", "
@@ -327,8 +327,8 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_F + ", " + DBhelper.COLUMN_NAME_G + ", " + DBhelper.COLUMN_NAME_FECHA + ", "
                 + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", " + DBhelper.COLUMN_NAME_FORMATO + ", " + DBhelper.COLUMN_NAME_OBSERVACIONES + ", "
                 + DBhelper.ID_USUARIOAUTORIZA + ", " + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
-                + DBhelper.ID_ESTATUS + ", " + DBhelper.COLUMN_NAME_PAGADO + ", " + DBhelper.COLUMN_NAME_SINCRONIZAR
-                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+                + DBhelper.ID_ESTATUS + ", " + DBhelper.COLUMN_NAME_PAGADO + ", " + DBhelper.COLUMN_NAME_AIMG + ", " + DBhelper.COLUMN_NAME_SINCRONIZAR
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
         //Log.v("[obtenerPC]", nombreP);
     }
 
@@ -345,7 +345,7 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_F + " = ?, "
                 + DBhelper.COLUMN_NAME_G + " = ?, "
                 + DBhelper.COLUMN_NAME_AIMG + " = ?, "
-                + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ? "
+                + DBhelper.COLUMN_NAME_OBSERVACIONES + " = ?, "
                 + DBhelper.COLUMN_NAME_SINCRONIZAR + " = ? "
                 + " WHERE " + DBhelper.ID_CAMA + " = ? "
                 + " AND " + DBhelper.ID_DISP + " = ? ", aData);
