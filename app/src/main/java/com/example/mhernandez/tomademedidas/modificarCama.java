@@ -70,7 +70,7 @@ public class modificarCama extends AppCompatActivity {
                 Double F = Double.parseDouble(txtF.getText().toString());
                 Double G = Double.parseDouble(txtG.getText().toString());
                 String Observaciones = txtObservaciones.getText().toString();
-                oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, "IMAGEN", Observaciones);
+                oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, "IMAGEN", Observaciones, 2);
                 finish();
             }
         });

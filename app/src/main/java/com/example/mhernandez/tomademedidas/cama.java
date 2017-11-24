@@ -11,11 +11,20 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
-/**
- * Created by mhernandez on 16/10/2017.
- */
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.widget.ImageView;
+import android.graphics.Bitmap;
+import java.io.File;
+
 
 public class cama extends AppCompatActivity{
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    private static final int MEDIA_TYPE_IMAGE = 1;
+    private static final String APP_PATH = "droidBH";
+    private Uri fileUri;
+    String sID;
 
     public static DBProvider oDB;
     public cama() {oDB = new DBProvider(this);}
@@ -71,12 +80,34 @@ public class cama extends AppCompatActivity{
                         oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, idUsuarioVenta, Agente, 1);
                         oDB.insertProyectoCama(idCama, idDisp, idProyecto, idDisp, numeroHabitaciones, txtA, txtB, txtC,
-                                txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, idFormato, OBS, usuario, 0, 1, 0);
+                                txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, idFormato, OBS, usuario, 0, 1, 0, 1);
                         Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(rIntent);
                     }
                 }
         );
+
+        Button botonCamara = ((Button) this.findViewById(R.id.TomarFoto));
+        ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
+
+        if(savedInstanceState != null){
+            fileUri = savedInstanceState.getParcelable("uri");
+            if(fileUri != null){
+                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(savedInstanceState.getString("foto"),200,200);
+                oImg.setImageBitmap(bit_map);
+            }
+        }
+
+        ((Button) botonCamara.findViewById(R.id.TomarFoto)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
     }
 
     @Override
@@ -102,5 +133,91 @@ public class cama extends AppCompatActivity{
         }
         return super.onOptionsItemSelected(item);
     }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        if (fileUri != null) {
+            savedInstanceState.putParcelable("uri", fileUri);
+            savedInstanceState.getString("foto", fileUri.getPath());
+        }
+        super.onSaveInstanceState(savedInstanceState);
+    }
+    /*
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }*/
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
+
+    private static Uri getOutputMediaFileUri(int type, String pID){
+        return Uri.fromFile(getOutputMediaFile(type,pID));
+    }
+
+    private static File getOutputMediaFile(int type, String pID){
+        File mediaStorageDir = new
+                File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),APP_PATH);
+        if (!mediaStorageDir.exists()){
+            if (!mediaStorageDir.mkdirs()){
+                return null;
+            }
+        }
+        File mediaFile;
+        if (type == MEDIA_TYPE_IMAGE){
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
+        }else {
+            return null;
+        }
+        return mediaFile;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
+        {
+            if (resultCode == RESULT_OK){
+                ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);//
+                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
+                oImg.setImageBitmap(bit_map);//
+            }else if(resultCode == RESULT_CANCELED){
+                // User cancelled the image capture
+            }else {
+                //Image capture failed, advise user
+            }
+        }
+    }
+
 }
 
