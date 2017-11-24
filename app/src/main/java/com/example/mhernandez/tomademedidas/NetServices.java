@@ -624,7 +624,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                             Integer.parseInt(joFuj.getString("id_proyecto_disp")), joFuj.getString("n_habitacion"), Double.parseDouble(joFuj.getString("a")), Double.parseDouble(joFuj.getString("b")),
                             Double.parseDouble(joFuj.getString("c")), Double.parseDouble(joFuj.getString("d")), Double.parseDouble(joFuj.getString("e")), Double.parseDouble(joFuj.getString("f")),
                             Double.parseDouble(joFuj.getString("g")), joFuj.getString("fecha"), joFuj.getString("nombre_proyecto"), Integer.parseInt(joFuj.getString("formato")),
-                            joFuj.getString("observaciones"), Integer.parseInt(joFuj.getString("id_usuario_alta")), Integer.parseInt(joFuj.getString("autorizado")), Integer.parseInt(joFuj.getString("id_estatus")), Integer.parseInt(joFuj.getString("pagado")), 0);
+                            joFuj.getString("observaciones"), Integer.parseInt(joFuj.getString("id_usuario_alta")), Integer.parseInt(joFuj.getString("autorizado")), Integer.parseInt(joFuj.getString("id_estatus")), Integer.parseInt(joFuj.getString("pagado")), "", 0);
                 }
             }catch (Exception e){
                 exception = e;
@@ -662,7 +662,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     }else{
                         MainActivity.oDB.updateProyectoCama( Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][4], Double.parseDouble(aref[0][5]),
                                 Double.parseDouble(aref[0][6]), Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), Double.parseDouble(aref[0][9]),
-                                Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][15]), aref[0][12], aref[0][16], 0);
+                                Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][15]), "", aref[0][16], 0);
                         }
                 }else if (Integer.parseInt(urls[1]) == 2){
                     sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_cama.svc/modifyproyecto",json.toString());
