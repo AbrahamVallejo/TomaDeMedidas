@@ -85,11 +85,11 @@ public class Fragment_proyecto extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.crear_proyecto, container, false);
-//        Button botonCamara = ((Button) vista.findViewById(R.id.TomarFoto));
-        ImageView oImg = (ImageView) vista.findViewById(R.id.imgFoto);
-
         //Llenar los Spinners
         spinnerCliente();   spinnerAgente();    spinnerFormato();
+
+//        Button botonCamara = ((Button) vista.findViewById(R.id.TomarFoto));
+        ImageView oImg = (ImageView) vista.findViewById(R.id.imgFoto);
 
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");

@@ -657,7 +657,10 @@ public class MainActivity extends AppCompatActivity
                 String[][] aux3 = MainActivity.oDB.ObtenerProyectos("0",2);
                 if (aux3.length >=1){
                     SinProyecto();}
-                if (aux3.length ==0){
+                String[][] aux4 = MainActivity.oDB.ObtenerProyectosCama("0","0", 2);
+                if (aux4.length >=1){
+                    SinProyectoCama();}
+                if ((aux3.length+ aux4.length) ==0){
                     Toast.makeText(this, "Sincronización Completa", Toast.LENGTH_LONG).show();}
                 Intent intent = new Intent(this, MainActivity.class); finish();
                 startActivity(intent);
@@ -741,14 +744,13 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
     public void SinProyecto(){
         String[][] aux1 = MainActivity.oDB.ObtenerProyectos("0",2);
         Log.v("[add]","Tengo: "+aux1.length );
 
         for (int i =0; i < aux1.length; i++) {
             if (Integer.valueOf(aux1[i][23]) == 1) {
-                Log.v("[add]","Entre al if Insertar" );
+                Log.v("[add]","Insertar Proyecto" );
                 NetServices oNS = new NetServices(new OnTaskCompleted() {
                     @Override
                     public void OnTaskCompleted(Object freed) {
@@ -756,7 +758,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     @Override
                     public void OnTaskError(Object feed) {
-                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADDPROYECTO!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADD-PROYECTO!", Toast.LENGTH_LONG).show();
                     }
                 });
                 oNS.execute("sincproyecto", "1", aux1[i][0], aux1[i][1] );
@@ -770,7 +772,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     @Override
                     public void OnTaskError(Object feed) {
-                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADDPROYECTO!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES MODIFY-PROYECTO!", Toast.LENGTH_LONG).show();
                     }
                 });
                 oNS.execute("sincproyecto", "2", aux1[i][0], aux1[i][1] );
@@ -784,7 +786,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     @Override
                     public void OnTaskError(Object feed) {
-                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADDPROYECTO!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES DELETE-PROYECTO!", Toast.LENGTH_LONG).show();
                     }
                 });
                 oNS.execute("sincproyecto", "3", aux1[i][0], aux1[i][1] );
@@ -792,6 +794,58 @@ public class MainActivity extends AppCompatActivity
         }
         Toast.makeText(this, "Proyectos Sincronizados", Toast.LENGTH_SHORT).show();
     }
+
+    public void SinProyectoCama(){
+        String[][] aux1 = MainActivity.oDB.ObtenerProyectosCama("0","0", 2);
+        Log.v("[add]","Tengo: "+aux1.length );
+
+        for (int i =0; i < aux1.length; i++) {
+            if (Integer.valueOf(aux1[i][27]) == 1) {
+                Log.v("[add]","Entre al if Insertar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADD-PROYECTO!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_cama", "1", aux1[i][0], aux1[i][1] );
+            }
+            else if (Integer.valueOf(aux1[i][27]) == 2) {
+                Log.v("[add]","Entre al if Modificar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES MODIFY-PROYECTO!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_cama", "2", aux1[i][0], aux1[i][1] );
+            }
+            else if (Integer.valueOf(aux1[i][27]) == 3) {
+                Log.v("[add]","Entre al if Eliminar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES DELETE-PROYECTO!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_cama", "3", aux1[i][0], aux1[i][1] );
+            }
+        }
+        Toast.makeText(this, "Proyectos Cama Sincronizados", Toast.LENGTH_SHORT).show();
+    }
+
 
     /* Funcion Para Descargar Datos Del Web Services */
     public void descargarWS(){
