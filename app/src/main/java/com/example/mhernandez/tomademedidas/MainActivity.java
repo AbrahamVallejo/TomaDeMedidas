@@ -820,7 +820,8 @@ public class MainActivity extends AppCompatActivity
                 NetServices oNS = new NetServices(new OnTaskCompleted() {
                     @Override
                     public void OnTaskCompleted(Object freed) {
-                    Toast.makeText(getApplicationContext(), "Fui al PHP", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Fui al PHP", Toast.LENGTH_LONG).show();
+                        //Log.v("imagen",freed.toString());
                     }
                     @Override
                     public void OnTaskError(Object feed) {
