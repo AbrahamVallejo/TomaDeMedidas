@@ -4,11 +4,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +15,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Date;
+
 
 
 public class NetServices extends AsyncTask<String, Void, Object> {
@@ -54,7 +52,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         return sb.toString();
     }
 
-    public static String connectPost(String pUrl, String uId, String uName) throws IOException{
+    public static String connectPost(String pUrl, String dispositivo) throws IOException{
         URL url = new URL(pUrl);
 
         URLConnection urlConnection = url.openConnection();
@@ -65,13 +63,8 @@ public class NetServices extends AsyncTask<String, Void, Object> {
             httpURLConnection.setRequestProperty("Content-Type", "application/json");
             httpURLConnection.setDoOutput(true);
             httpURLConnection.connect();
-
             OutputStreamWriter writer = new OutputStreamWriter(httpURLConnection.getOutputStream());
-            JSONObject jobject = new JSONObject();
-            jobject.put("idUsuario", uId);
-            jobject.put("nombreUsuario", uName);
-            String urlParameters = jobject.toString();
-            writer.write(urlParameters);
+            writer.write(dispositivo);
             writer.flush();
 
             if (httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK){
@@ -653,7 +646,11 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     e.printStackTrace();
                 }
                 json.put("proyectoCama",proyecto);  Log.v("[add]","2: "+json.toString() );
-
+                if (aref[0][12].length() > 50){
+                    JSONObject jFoto = new JSONObject();
+                    jFoto.put("imagen", aref[0][12]);
+                    sResp = NetServices.connectPost(URL_WS1 + "decodeImage.php",json.toString());
+                }
                 if (Integer.parseInt(urls[1]) ==1){
                     sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_cama.svc/addproyectoCama",json.toString());
                     Log.v("[add]","Tam: "+sResp.length() +" Ca: "+sResp);
