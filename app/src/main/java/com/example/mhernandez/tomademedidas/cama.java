@@ -17,8 +17,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.ImageView;
 import android.graphics.Bitmap;
-import android.widget.Toast;
-
+import android.widget.TextView;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
@@ -94,13 +93,14 @@ public class cama extends AppCompatActivity{
 
         Button botonCamara = ((Button) this.findViewById(R.id.TomarFoto));
         ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
+        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
 
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");
             if(fileUri != null){
                 Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(savedInstanceState.getString("foto"),200,200);
                 oImg.setImageBitmap(bit_map);
-                Toast.makeText(getApplicationContext(), imagen, Toast.LENGTH_LONG).show();
+                foto.setText(imagen);
             }
         }
 
@@ -217,6 +217,8 @@ public class cama extends AppCompatActivity{
                 ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);//
                 Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
                 imagen = convertToBase64(bit_map);
+                TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+                foto.setText(imagen);
                 oImg.setImageBitmap(bit_map);//
             }else if(resultCode == RESULT_CANCELED){
                 // User cancelled the image capture

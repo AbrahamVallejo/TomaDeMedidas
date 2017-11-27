@@ -36,7 +36,7 @@
         android:ems="10"
         android:digits="1234567890-."
         android:maxLength="20"
-        android:inputType="number" />
+        android:inputType="number"/>
 
     <TextView
         android:id="@+id/textView7"
