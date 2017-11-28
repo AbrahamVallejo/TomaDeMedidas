@@ -350,7 +350,6 @@ public class MainActivity extends AppCompatActivity
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
             }
-
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES UBICACIÓN!", Toast.LENGTH_LONG).show();
@@ -797,6 +796,8 @@ public class MainActivity extends AppCompatActivity
 
     public void SinProyectoCama(){
         String[][] aux1 = MainActivity.oDB.ObtenerProyectosCama("0","0", 2);
+        Toast.makeText(this, aux1[0][12], Toast.LENGTH_SHORT).show();
+
         Log.v("[add]","Tengo: "+aux1.length );
 
         for (int i =0; i < aux1.length; i++) {
@@ -805,11 +806,11 @@ public class MainActivity extends AppCompatActivity
                 NetServices oNS = new NetServices(new OnTaskCompleted() {
                     @Override
                     public void OnTaskCompleted(Object freed) {
-                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                        /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
                     }
                     @Override
                     public void OnTaskError(Object feed) {
-                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADD-PROYECTO!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADD-PROYECTO CAMA!", Toast.LENGTH_LONG).show();
                     }
                 });
                 oNS.execute("sincPro_cama", "1", aux1[i][0], aux1[i][1] );
@@ -819,11 +820,11 @@ public class MainActivity extends AppCompatActivity
                 NetServices oNS = new NetServices(new OnTaskCompleted() {
                     @Override
                     public void OnTaskCompleted(Object freed) {
-                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    Toast.makeText(getApplicationContext(), "Fui al PHP", Toast.LENGTH_LONG).show();
                     }
                     @Override
                     public void OnTaskError(Object feed) {
-                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES MODIFY-PROYECTO!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES MODIFY-PROYECTO CAMA!", Toast.LENGTH_LONG).show();
                     }
                 });
                 oNS.execute("sincPro_cama", "2", aux1[i][0], aux1[i][1] );
@@ -837,7 +838,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     @Override
                     public void OnTaskError(Object feed) {
-                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES DELETE-PROYECTO!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES DELETE-PROYECTO CAMA!", Toast.LENGTH_LONG).show();
                     }
                 });
                 oNS.execute("sincPro_cama", "3", aux1[i][0], aux1[i][1] );

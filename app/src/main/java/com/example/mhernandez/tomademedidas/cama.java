@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.ImageView;
 import android.graphics.Bitmap;
+import android.widget.TextView;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 
@@ -25,6 +28,7 @@ public class cama extends AppCompatActivity{
     private static final String APP_PATH = "droidBH";
     private Uri fileUri;
     String sID;
+    String imagen = "";
 
     public static DBProvider oDB;
     public cama() {oDB = new DBProvider(this);}
@@ -80,7 +84,7 @@ public class cama extends AppCompatActivity{
                         oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
                                 0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, idUsuarioVenta, Agente, 1);
                         oDB.insertProyectoCama(idCama, idDisp, idProyecto, idDisp, numeroHabitaciones, txtA, txtB, txtC,
-                                txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, idFormato, OBS, usuario, 0, 1, 0, 1);
+                                txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, idFormato, OBS, usuario, 0, 1, 0, imagen, 1);
                         Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(rIntent);
                     }
@@ -89,12 +93,14 @@ public class cama extends AppCompatActivity{
 
         Button botonCamara = ((Button) this.findViewById(R.id.TomarFoto));
         ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
+        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
 
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");
             if(fileUri != null){
                 Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(savedInstanceState.getString("foto"),200,200);
                 oImg.setImageBitmap(bit_map);
+                foto.setText(imagen);
             }
         }
 
@@ -210,6 +216,9 @@ public class cama extends AppCompatActivity{
             if (resultCode == RESULT_OK){
                 ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);//
                 Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
+                imagen = convertToBase64(bit_map);
+                TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+                foto.setText(imagen);
                 oImg.setImageBitmap(bit_map);//
             }else if(resultCode == RESULT_CANCELED){
                 // User cancelled the image capture
@@ -217,6 +226,14 @@ public class cama extends AppCompatActivity{
                 //Image capture failed, advise user
             }
         }
+    }
+
+    private String convertToBase64(Bitmap imagenMap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        imagenMap.compress(Bitmap.CompressFormat.JPEG, 45, baos);
+        byte[] byteArrayImage = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+        return encodedImage;
     }
 
 }
