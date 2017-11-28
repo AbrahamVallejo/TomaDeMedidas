@@ -20,6 +20,7 @@ import java.net.URLConnection;
 
 public class NetServices extends AsyncTask<String, Void, Object> {
     private static final String URL_WS1 = "http://192.168.1.47/wcfmedidas/";
+    private static final String URL_IMG = "http://192.168.1.20/imagenmedidas/";
     private OnTaskCompleted listener;
     private Exception exception;
 
@@ -52,7 +53,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         return sb.toString();
     }
 
-    public static String connectPost(String pUrl, String dispositivo) throws IOException{
+    public static String connectPost(String pUrl, String imagen) throws IOException{
         URL url = new URL(pUrl);
 
         URLConnection urlConnection = url.openConnection();
@@ -64,7 +65,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
             httpURLConnection.setDoOutput(true);
             httpURLConnection.connect();
             OutputStreamWriter writer = new OutputStreamWriter(httpURLConnection.getOutputStream());
-            writer.write(dispositivo);
+            writer.write(imagen);
             writer.flush();
 
             if (httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK){
@@ -649,7 +650,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 if (aref[0][12].length() > 50){
                     JSONObject jFoto = new JSONObject();
                     jFoto.put("imagen", aref[0][12]);
-                    sResp = NetServices.connectPost(URL_WS1 + "decodeImage.php",json.toString());
+                    sResp = NetServices.connectPost(URL_IMG + "decodeImage.php",json.toString());
                 }
                 if (Integer.parseInt(urls[1]) ==1){
                     sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_cama.svc/addproyectoCama",json.toString());
