@@ -281,7 +281,6 @@ public class MainActivity extends AppCompatActivity
 
     /*  Funciones Net Services */
     public void getclienteLista(){
-        porcentaje.setText("5%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -297,7 +296,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getformatoLista(){
-        porcentaje.setText("10%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -313,7 +311,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getusuarioLista(){
-        porcentaje.setText("15%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -329,7 +326,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getproyeccionLista(){
-        porcentaje.setText("20%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -344,7 +340,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getubicacionLista(){
-        porcentaje.setText("25%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -359,7 +354,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getcontrolLista(){
-        porcentaje.setText("30%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -374,7 +368,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getcorrederaLista(){
-        porcentaje.setText("35%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -389,7 +382,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getfijacionLista(){
-        porcentaje.setText("40%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -404,7 +396,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getcopeteLista(){
-        porcentaje.setText("45%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -457,7 +448,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getproyectoLista(){
-        porcentaje.setText("50%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -473,7 +463,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getproyectoCamaLista(){
-        porcentaje.setText("60%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -489,7 +478,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getproyectoEspecialLista(){
-        porcentaje.setText("70%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -505,7 +493,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getproyectoHoteleriaLista(){
-        porcentaje.setText("80%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -521,7 +508,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getproyectoGaleriaLista(){
-        porcentaje.setText("85%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -537,7 +523,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getproyectoResidencialLista(){
-        porcentaje.setText("95%");
         NetServices oNS = new NetServices(new OnTaskCompleted() {
             @Override
             public void OnTaskCompleted(Object freed) {
@@ -861,8 +846,7 @@ public class MainActivity extends AppCompatActivity
         }else{
             boolean aux = isOnlineNet();
             if (aux != false) {
-                setContentView(R.layout.activity_cargando); porcentaje = (TextView) this.findViewById(R.id.porcentaje);
-
+                setContentView(R.layout.activity_cargando);
                 Thread timerThreadDos = new Thread(){
                     public void run(){
                         try {
@@ -874,8 +858,9 @@ public class MainActivity extends AppCompatActivity
                             e.printStackTrace();       }
                     }
                 };
-                timerThreadDos.start();
+                porcentaje = (TextView) this.findViewById(R.id.porcentaje);
                 porcentaje.setText("50%");
+                timerThreadDos.start();
 
                 MainActivity.oDB.deleteAllProyectos("0","0");           MainActivity.oDB.deleteAllProyectosCama("0","0");
                 MainActivity.oDB.deleteAllProyectosEspecial("0","0");   MainActivity.oDB.deleteAllHoteleria("0","0");
@@ -892,6 +877,7 @@ public class MainActivity extends AppCompatActivity
                             e.printStackTrace();       }
                     }
                 };
+                porcentaje.setText("70%");
                 timerThread.start();
 
             }else {

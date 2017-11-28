@@ -114,7 +114,7 @@ public class modificarResidencial extends AppCompatActivity {
                 Double G = Double.parseDouble(txtG.getText().toString());
                 Double H = Double.parseDouble(txtH.getText().toString());
                 oDB.updateProyectoResidencial(idResidencial, idDisp, Ubicacion, A, B, C, D , E, F, G, H,
-                        ProfMarco, ProfJaladera, Control, Agpto, MedidaSugerida, "IMAGEN", Observaciones, Fijacion, Piso, Corredera);
+                        ProfMarco, ProfJaladera, Control, Agpto, MedidaSugerida, imagen, Observaciones, Fijacion, Piso, Corredera);
                 finish();
             }
         });
@@ -168,10 +168,15 @@ public class modificarResidencial extends AppCompatActivity {
         }
 
         if(id == R.id.imagenReferencia){
+            /*
             customDialog = new Dialog(modificarResidencial.this, R.style.Theme_Dialog_Translucent);
             customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             customDialog.setContentView(R.layout.referencia_medida_ventana);
             customDialog.show();
+             */
+            customDialog = new Dialog(modificarResidencial.this, R.style.Theme_Dialog_Translucent);
+            customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            customDialog.setContentView(R.layout.referencia_medida_ventana);
         }
         return super.onOptionsItemSelected(item);
     }
