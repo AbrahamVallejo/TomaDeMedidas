@@ -114,7 +114,7 @@ public class modificarResidencial extends AppCompatActivity {
                 Double G = Double.parseDouble(txtG.getText().toString());
                 Double H = Double.parseDouble(txtH.getText().toString());
                 oDB.updateProyectoResidencial(idResidencial, idDisp, Ubicacion, A, B, C, D , E, F, G, H,
-                        ProfMarco, ProfJaladera, Control, Agpto, MedidaSugerida, "IMAGEN", Observaciones, Fijacion, Piso, Corredera);
+                        ProfMarco, ProfJaladera, Control, Agpto, MedidaSugerida, imagen, Observaciones, Fijacion, Piso, Corredera);
                 finish();
             }
         });

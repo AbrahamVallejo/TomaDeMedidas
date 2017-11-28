@@ -367,9 +367,9 @@
                 android:paddingTop="5dp"
                 android:id="@+id/TV_Imagen"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                style="@style/TextView"
+                android:layout_height="55dp"
+                android:scrollHorizontally="true"
+                android:textSize="12sp"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <LinearLayout
@@ -414,6 +414,7 @@
 
                 </LinearLayout>
             </LinearLayout>
+
             <Button
                 android:id="@+id/Guardar"
                 style="@style/ButtonStyle2"
