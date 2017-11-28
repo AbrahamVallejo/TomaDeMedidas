@@ -168,10 +168,15 @@ public class modificarResidencial extends AppCompatActivity {
         }
 
         if(id == R.id.imagenReferencia){
+            /*
             customDialog = new Dialog(modificarResidencial.this, R.style.Theme_Dialog_Translucent);
             customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             customDialog.setContentView(R.layout.referencia_medida_ventana);
             customDialog.show();
+             */
+            customDialog = new Dialog(modificarResidencial.this, R.style.Theme_Dialog_Translucent);
+            customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            customDialog.setContentView(R.layout.referencia_medida_ventana);
         }
         return super.onOptionsItemSelected(item);
     }
