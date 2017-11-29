@@ -53,7 +53,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         return sb.toString();
     }
 
-    public static String connectPost(String pUrl, String imagen) throws IOException{
+    public static String connectPost(String pUrl, String imagen, String nombre) throws IOException{
         URL url = new URL(pUrl);
 
         URLConnection urlConnection = url.openConnection();
@@ -61,11 +61,16 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
             httpURLConnection.setRequestMethod("POST");
-            httpURLConnection.setRequestProperty("Content-Type", "application/json");
             httpURLConnection.setDoOutput(true);
             httpURLConnection.connect();
+
             OutputStreamWriter writer = new OutputStreamWriter(httpURLConnection.getOutputStream());
-            writer.write(imagen);
+            Uri.Builder foto = new Uri.Builder()
+                    .appendQueryParameter("imagen",imagen)
+                    .appendQueryParameter("nombre",nombre);
+            String UrlParameters = foto.build().getEncodedQuery();
+
+            writer.write(UrlParameters);
             writer.flush();
 
             if (httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK){
@@ -648,9 +653,9 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 }
                 json.put("proyectoCama",proyecto);  Log.v("[add]","2: "+json.toString() );
                 if (aref[0][12].length() > 50){
-                    JSONObject jFoto = new JSONObject();
-                    jFoto.put("imagen", aref[0][12]);
-                    sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php",json.toString());
+                    Log.v("imagen", aref[0][12]);
+                    sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][12], "IMG_Cama"+aref[0][0]+aref[0][1]);
+                    Log.v("imagen", sResp);
                 }
                 if (Integer.parseInt(urls[1]) ==1){
                     sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_cama.svc/addproyectoCama",json.toString());
