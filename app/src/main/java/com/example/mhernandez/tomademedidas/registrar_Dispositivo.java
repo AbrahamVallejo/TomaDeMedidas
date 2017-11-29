@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -45,18 +46,6 @@ public class registrar_Dispositivo extends AppCompatActivity {
     public void onSaveClickDispositivo(View view){
         Log.v("[obtener]", "Internet: " +internet +" Conexion="+aux1);
         if (aux1==true){
-            Thread timerThreadDos = new Thread(){
-                public void run(){
-                    try {
-                        sleep(1000);
-                        getclienteLista();      getformatoLista();      getusuarioLista();
-                        getproyeccionLista();   getubicacionLista();    getcontrolLista();
-                        getcorrederaLista();    getfijacionLista();     getcopeteLista();
-                    }catch (InterruptedException e){
-                        e.printStackTrace();       }
-                }
-            };
-            timerThreadDos.start();
 
             EditText nDisp = (EditText) this.findViewById(R.id.nDispositivo);
             EditText nUser = (EditText) this.findViewById(R.id.nUsuario);
@@ -71,11 +60,25 @@ public class registrar_Dispositivo extends AppCompatActivity {
                 aux++; nUser.setText(""); nUser.setHint("Campo Vacío");
             }
             if(aux==0){
-                    adddispositivos(nDisp.getText().toString(),nUser.getText().toString());
-                    finish();
-                    Intent intent = new Intent(registrar_Dispositivo.this, log_in.class);
-                    startActivity(intent);
+                adddispositivos(nDisp.getText().toString(),nUser.getText().toString());
+                setContentView(R.layout.activity_cargando);
+                TextView cargando = (TextView) this.findViewById(R.id.cargando);
+                cargando.setText("Registrando Dispositivo");
+                TextView porcentaje = (TextView) this.findViewById(R.id.porcentaje);
+                porcentaje.setText("");
+                Thread timerThreadDos = new Thread(){
+                    public void run(){
+                        try {
 
+                            sleep(1000);
+                            getclienteLista();      getformatoLista();      getusuarioLista();
+                            getproyeccionLista();   getubicacionLista();    getcontrolLista();
+                            getcorrederaLista();    getfijacionLista();     getcopeteLista();
+                        }catch (InterruptedException e){
+                            e.printStackTrace();       }
+                    }
+                };
+                timerThreadDos.start();
             }else {
                 Toast.makeText(this, "VERIFIQUE SU CAPTURA", Toast.LENGTH_SHORT).show(); }
         }else {
@@ -162,10 +165,17 @@ public class registrar_Dispositivo extends AppCompatActivity {
             @Override
             public void OnTaskCompleted(Object freed) {
                 //Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(registrar_Dispositivo.this, log_in.class);
+                finish();
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Registro Completo", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void OnTaskError(Object feed) {
                 Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES COPETE!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(registrar_Dispositivo.this, log_in.class);
+                finish();
+                startActivity(intent);
             }
         });
         oNS.execute("getcopeteLista", "2");
