@@ -287,7 +287,12 @@ public class listaResidencial extends AppCompatActivity {
                 startActivity(rIntent);
             }
         }else if (id == R.id.crearGaleria){
-
+            if (EstatusProyecto != 1){
+                Toast.makeText(listaResidencial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+            }else {
+                Intent rIntent = new Intent(listaResidencial.this, crearGaleriaImagenes.class);
+                startActivity(rIntent);
+            }
         }
 
         return super.onOptionsItemSelected(item);

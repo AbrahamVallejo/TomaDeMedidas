@@ -166,6 +166,11 @@
             android:label="Crear Ubicacion">
         </activity>
 
+        <activity android:name=".crearGaleriaImagenes"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Crear Galeria">
+        </activity>
+
     </application>
 
 </manifest>

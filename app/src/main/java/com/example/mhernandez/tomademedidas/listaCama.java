@@ -20,8 +20,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zhihu.matisse.Matisse;
-
 /**
  * Created by mhernandez on 30/10/2017.
  */
@@ -255,7 +253,12 @@ public class listaCama extends AppCompatActivity {
                 startActivity(rIntent);
             }
         }else if (id == R.id.crearGaleria){
-
+            if (EstatusProyecto != 1){
+                Toast.makeText(listaCama.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+            }else {
+                Intent rIntent = new Intent(listaCama.this, crearGaleriaImagenes.class);
+                startActivity(rIntent);
+            }
         }
         return super.onOptionsItemSelected(item);
     }

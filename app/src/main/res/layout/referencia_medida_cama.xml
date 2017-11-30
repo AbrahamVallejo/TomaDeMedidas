@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/contenedor"
     android:layout_height="match_parent">
 
-    <ImageView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="A, B y C pertenecen al colchon. D, E y F pertenecen al box, D se considera hasta el suelo, G se considera de suelo a la parte alta del colchon."
+        android:textColor="@android:color/black"
+        android:textSize="25dp"/>
+
+    <ImageView
+        android:layout_width="410dp"
+        android:layout_height="400dp"
+        android:contentDescription="Foto"
         android:src="@drawable/ic_cama"/>
 
 </LinearLayout>
