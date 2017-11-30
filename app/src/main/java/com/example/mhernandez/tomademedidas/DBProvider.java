@@ -1520,7 +1520,7 @@ public class DBProvider {
         }
         else if (tipo == 3) {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO + " WHERE " + DBhelper.ID_PROYECTO + " <> ? " +
-                    "AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 4", aFils);
+                    "AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 3", aFils);
 
         }
         else {
@@ -1576,6 +1576,10 @@ public class DBProvider {
         }else if (tipo == 2) {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_CAMA + " <> ? " +
                     " AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 0", aFils);
+        }else if (tipo == 3) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_CAMA + " <> ? " +
+                    "AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 3", aFils);
+
         } else {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE "
                     + DBhelper.ID_CAMA + " = ?" + " AND " + DBhelper.ID_DISP + " ="+idDisp , aFils);
