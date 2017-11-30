@@ -368,7 +368,7 @@ public class DBProvider {
     public void cerrarProyectoCama(int idCama, int idDisp, int estatus, int sinc){
         Object[] aData = {estatus, sinc, idCama, idDisp};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " SET "
-                    + DBhelper.ID_ESTATUS + " = ? " + DBhelper.COLUMN_NAME_SINCRONIZAR + " = ? "
+                    + DBhelper.ID_ESTATUS + " = ? ," + DBhelper.COLUMN_NAME_SINCRONIZAR + " = ? "
                     + " WHERE " + DBhelper.ID_CAMA + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
@@ -1893,6 +1893,9 @@ public class DBProvider {
         Cursor aRS;
         if (tipo == 1) {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_PROYECTO + " <> ?", aFils);
+        } else if (tipo == 3) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_PROYECTO + " = ? AND "
+                    +DBhelper.COLUMN_NAME_SINCRONIZAR +" <> 3 ", aFils);
         } else {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_CAMA + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aFils);
         }

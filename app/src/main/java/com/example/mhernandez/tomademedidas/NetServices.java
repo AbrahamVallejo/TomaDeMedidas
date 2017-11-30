@@ -631,25 +631,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 exception = e;
             }
         }
-        else if(urls[0] == "imagen_cama"){
-            try {
-                String[][] aref = MainActivity.oDB.ObtenerProyectosCama( urls[1], urls[2], 5);
-                String IMAGEN = RUTA_IMG+"IMG_Cama"+aref[0][0]+aref[0][1] ;
-                sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", urls[3], "IMG_Cama"+aref[0][0]+aref[0][1]);
-                sResp= sResp.trim(); Log.v("[add]", sResp + ":"+sResp.length() );
-                if (sResp.equalsIgnoreCase("OK")){ Log.v("[add]", "Entre aqui");
-                    MainActivity.oDB.updateProyectoCama( Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][4], Double.parseDouble(aref[0][5]),
-                            Double.parseDouble(aref[0][6]), Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), Double.parseDouble(aref[0][9]),
-                            Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][15]), IMAGEN, aref[0][16], 0);
-                }else{
-                    MainActivity.oDB.updateProyectoCama( Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][4], Double.parseDouble(aref[0][5]),
-                            Double.parseDouble(aref[0][6]), Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), Double.parseDouble(aref[0][9]),
-                            Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][15]), aref[0][12], aref[0][16], 2 );
-                }
-            }catch (Exception e){
-                exception = e;
-            }
-        }
         else if(urls[0] == "sincPro_cama"){
             Log.v("[add]","Voy a Sincronizar en WS "+urls[1] );
             try{
@@ -677,39 +658,43 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     e.printStackTrace();
                 }
                 json.put("proyectoCama",proyecto);  Log.v("[add]","2: "+json.toString() );
-
-                if (Integer.parseInt(urls[1]) ==1){
-                    sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_cama.svc/addproyectoCama",json.toString());
-                    Log.v("[add]","Tam: "+sResp.length() +" Ca: "+sResp);
-                    if (sResp.length() == 6){
-                        Log.v("[add]","Retorno nulo" );
-                    }else{
-                        MainActivity.oDB.updateProyectoCama( Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][4], Double.parseDouble(aref[0][5]),
-                                Double.parseDouble(aref[0][6]), Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), Double.parseDouble(aref[0][9]),
-                                Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][15]), IMAGEN, aref[0][16], 0);
+                if (aref[0][12].length() >60){
+                    sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][12], "IMG_Cama"+aref[0][0]+aref[0][1]);
+                }
+                sResp= sResp.trim(); Log.v("[add]", sResp + ":"+sResp.length() +" o img="+aref[0][12].length());
+                if (aref[0][12].length() < 50 || sResp.equalsIgnoreCase("OK")) {
+                    Log.v("[add]", "Entre aqui");
+                        if (Integer.parseInt(urls[1]) == 1) {
+                            sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_cama.svc/addproyectoCama", json.toString());
+                            Log.v("[add]", "Tam: " + sResp.length() + " Ca: " + sResp);
+                            if (sResp.length() == 6) {
+                                Log.v("[add]", "Retorno nulo");
+                            } else {
+                                MainActivity.oDB.updateProyectoCama(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][4], Double.parseDouble(aref[0][5]),
+                                        Double.parseDouble(aref[0][6]), Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), Double.parseDouble(aref[0][9]),
+                                        Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][15]), IMAGEN, aref[0][16], 0);
+                            }
+                        } else if (Integer.parseInt(urls[1]) == 2) {
+                            sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_cama.svc/modifyproyectoCama", json.toString());
+                            Log.v("[add]", "Tam: " + sResp.length() + " Ca: " + sResp);
+                            if (sResp.length() == 6) {
+                                Log.v("[add]", "Retorno nulo");
+                            } else {
+                                MainActivity.oDB.updateProyectoCama(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][4], Double.parseDouble(aref[0][5]),
+                                        Double.parseDouble(aref[0][6]), Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), Double.parseDouble(aref[0][9]),
+                                        Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][15]), IMAGEN, aref[0][16], 0);
+                            }
+                        } else if (Integer.parseInt(urls[1]) == 3) {
+                            sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_cama.svc/deleteproyectoCama", json.toString());
+                            Log.v("[add]", "Tam: " + sResp.length() + " Ca: " + sResp);
+                            if (sResp.length() == 0) {
+                                Log.v("[add]", "Retorno nulo");
+                                MainActivity.oDB.cerrarProyectoCama(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][20]), 0);
+                            } else {
+                                MainActivity.oDB.deleteProyectoCama(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]));
+                            }
                         }
-                }else if (Integer.parseInt(urls[1]) == 2){
-                    sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_cama.svc/modifyproyectoCama",json.toString());
-                    Log.v("[add]","Tam: "+sResp.length() +" Ca: "+sResp);
-                    if (sResp.length() == 6){
-                        Log.v("[add]","Retorno nulo" );
-                    }else{
-                        MainActivity.oDB.updateProyectoCama( Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][4], Double.parseDouble(aref[0][5]),
-                                Double.parseDouble(aref[0][6]), Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), Double.parseDouble(aref[0][9]),
-                                Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][15]), IMAGEN, aref[0][16], 0);
-                    }
                 }
-                else if (Integer.parseInt(urls[1]) == 3){
-                    sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_cama.svc/deleteproyectoCama",json.toString());
-                    Log.v("[add]","Tam: "+sResp.length() +" Ca: "+sResp);
-                    if (sResp.length() == 0){
-                        Log.v("[add]","Retorno nulo" );
-                        MainActivity.oDB.cerrarProyectoCama(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][20]), 0);
-                    }else {
-                        MainActivity.oDB.deleteProyectoCama( Integer.parseInt(urls[2]), Integer.parseInt(urls[3]));
-                    }
-                }
-
             }catch (Exception e){
                 exception = e;
             }

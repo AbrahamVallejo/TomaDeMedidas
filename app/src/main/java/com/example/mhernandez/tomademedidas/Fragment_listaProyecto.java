@@ -118,7 +118,7 @@ public class Fragment_listaProyecto extends Fragment {
                             Intent rIntent = new Intent(vista.getContext(), listaHoteleria.class);
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
-                            rIntent.putExtra("Nombre", aDat[3]);
+                            rIntent.putExtra("Nombre", aDat[6]);
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
                             startActivity(rIntent);
                         }else if (Formato.equals("4")){
@@ -127,7 +127,7 @@ public class Fragment_listaProyecto extends Fragment {
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
                             rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
-                            rIntent.putExtra("Nombre", aDat[3]);
+                            rIntent.putExtra("Nombre", aDat[6]);
                             startActivity(rIntent);
                         }else if (Formato.equals("1")){
                             Log.v("[FRAGMENT]", Formato);
@@ -135,7 +135,7 @@ public class Fragment_listaProyecto extends Fragment {
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
                             rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
-                            rIntent.putExtra("Nombre", aDat[3]);
+                            rIntent.putExtra("Nombre", aDat[6]);
                             startActivity(rIntent);
                         }else if (Formato.equals("3")){
                             Log.v("[FRAGMENT]", Formato);
@@ -143,7 +143,7 @@ public class Fragment_listaProyecto extends Fragment {
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
                             rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
-                            rIntent.putExtra("Nombre", aDat[3]);
+                            rIntent.putExtra("Nombre", aDat[6]);
                             startActivity(rIntent);
                         }else if (Formato.equals("5")){
                             Log.v("[FRAGMENT]", Formato);
@@ -151,7 +151,7 @@ public class Fragment_listaProyecto extends Fragment {
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
                             rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
-                            rIntent.putExtra("Nombre", aDat[3]);
+                            rIntent.putExtra("Nombre", aDat[6]);
                             startActivity(rIntent);
                         }
 
