@@ -218,7 +218,7 @@ public class cama extends AppCompatActivity{
         {
             if (resultCode == RESULT_OK){
                 ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);//
-                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
+                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
                 imagen = convertToBase64(bit_map);
                 TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
                 foto.setText(imagen);

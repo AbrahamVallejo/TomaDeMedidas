@@ -186,7 +186,7 @@ public class Fragment_listaProyecto extends Fragment {
                             Toast.makeText(getActivity(), "REGISTRO ELIMINADO", Toast.LENGTH_SHORT).show();
                         }
                         if (Integer.parseInt(aRef[0][15]) != 1) {
-                            MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2, 5,"/Date("+FechaCierre.getTime()+")/", 2);
+                            MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), Integer.parseInt(aDat[10]), 5,"/Date("+FechaCierre.getTime()+")/", 3);
                             Toast.makeText(getActivity(), "PROYECTO CERRADO", Toast.LENGTH_SHORT).show();
                         }
                         Toast.makeText(getActivity(), "PROYECTO CERRADO", Toast.LENGTH_SHORT).show();
