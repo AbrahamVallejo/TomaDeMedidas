@@ -218,7 +218,12 @@ public class listaEspecial extends AppCompatActivity {
                 startActivity(rIntent);
             }
         }else if (id == R.id.crearGaleria){
-
+            if (EstatusProyecto != 1){
+                Toast.makeText(listaEspecial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+            }else {
+                Intent rIntent = new Intent(listaEspecial.this, crearGaleriaImagenes.class);
+                startActivity(rIntent);
+            }
         }
         return super.onOptionsItemSelected(item);
     }
