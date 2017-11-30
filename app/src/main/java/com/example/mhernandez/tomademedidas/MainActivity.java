@@ -782,32 +782,6 @@ public class MainActivity extends AppCompatActivity
     public void SinProyectoCama(){
         final String[][] aux1 = MainActivity.oDB.ObtenerProyectosCama("0","0", 2);    //Toast.makeText(this, aux1[0][12], Toast.LENGTH_SHORT).show();
 
-        Thread timerThread = new Thread(){
-            public void run(){
-                try {
-                    sleep(1500);
-                    for (int i =0; i < aux1.length; i++) {
-                        if (Integer.valueOf(aux1[i][12].length()) > 60) {
-                            Log.v("[add]","Voy a subir una imagen");
-                            NetServices oNS = new NetServices(new OnTaskCompleted() {
-                                @Override
-                                public void OnTaskCompleted(Object freed) {
-                        /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
-                                }
-                                @Override
-                                public void OnTaskError(Object feed) {
-                                    Toast.makeText(getApplicationContext(), "ERROR AL CARGAR IMAGEN CAMA!", Toast.LENGTH_LONG).show();
-                                }
-                            });
-                            oNS.execute("imagen_cama", aux1[0][0], aux1[0][1], aux1[0][12]);
-                        }
-                    }
-                }catch (InterruptedException e){
-                    e.printStackTrace();       }
-            }
-        };
-        timerThread.start();
-
         Thread timerThreadDos = new Thread(){
             public void run(){
                 try {
