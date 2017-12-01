@@ -9,12 +9,13 @@
         android:layout_height="wrap_content"
         android:text="Medidas Para Galerias."
         android:textColor="@android:color/black"
-        android:textSize="25dp"/>
+        android:typeface="sans"
+        android:textSize="18dp"/>
 
     <ImageView
-        android:layout_width="410dp"
-        android:layout_height="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:contentDescription="Foto"
-        android:src="@drawable/ic_galeria"/>
+        android:src="@mipmap/ic_galeria"/>
 
 </LinearLayout>
