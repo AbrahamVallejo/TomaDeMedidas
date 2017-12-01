@@ -83,7 +83,12 @@ public class modificarCama extends AppCompatActivity {
                 Double F = Double.parseDouble(txtF.getText().toString());
                 Double G = Double.parseDouble(txtG.getText().toString());
                 String Observaciones = txtObservaciones.getText().toString();
-                oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, imagen, Observaciones, 2);
+                String[][] aRes = modificarCama.oDB.ObtenerProyectosHoteleria(String.valueOf(idCama), String.valueOf(idDisp), 4);
+                if (Integer.parseInt(aRes[0][27]) != 1){
+                    oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, imagen, Observaciones, 2);
+                }else{
+                    oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, imagen, Observaciones, 1);
+                }
                 finish();
             }
         });

@@ -1,8 +1,16 @@
 package com.example.mhernandez.tomademedidas;
 
 import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,7 +18,12 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 /**
  * Created by mhernandez on 08/11/2017.
@@ -18,6 +31,12 @@ import android.widget.Spinner;
 
 
 public class modificarHoteleria extends AppCompatActivity {
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    private static final int MEDIA_TYPE_IMAGE = 1;
+    private static final String APP_PATH = "TomaMedidas";
+    private Uri fileUri;
+    String nombreImagen="1";
+    String imagen = "";
 
     public Spinner spAreaH, spFijacionH, spControlH, spCorrederaH;
     public static DBProvider oDB;
@@ -65,6 +84,11 @@ public class modificarHoteleria extends AppCompatActivity {
         txtHojas.setText(Hojas.trim());
         txtMedidaSugerida.setText(MedidaSugerida.trim());
         txtObservaciones.setText(Observaciones.trim());
+        final String[][] aRes = modificarHoteleria.oDB.ObtenerProyectosHoteleria(String.valueOf(idHoteleria), String.valueOf(idDisp), 4);
+        if (aRes[0][13].length() >50){
+            crearImagen(aRes[0][13]);
+        }
+
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,9 +104,37 @@ public class modificarHoteleria extends AppCompatActivity {
                 String Corredera = txtCorredera.getSelectedItem().toString();
                 String MedidaSugerida = txtMedidaSugerida.getText().toString();
                 String Observaciones = txtObservaciones.getText().toString();
-                oDB.updateProyectoHoteleria(idHoteleria, idDisp, Habitacion, Area, Ancho, Alto, Hojas, "IMAGEN",
-                        Observaciones, Piso, Edificio, Control, Fijacion, MedidaSugerida, Corredera);
+                if (Integer.parseInt(aRes[0][31]) != 1){
+                oDB.updateProyectoHoteleria(idHoteleria, idDisp, Habitacion, Area, Ancho, Alto, Hojas, imagen,
+                        Observaciones, Piso, Edificio, Control, Fijacion, MedidaSugerida, Corredera, 2);}
+                else{
+                    oDB.updateProyectoHoteleria(idHoteleria, idDisp, Habitacion, Area, Ancho, Alto, Hojas, imagen,
+                            Observaciones, Piso, Edificio, Control, Fijacion, MedidaSugerida, Corredera, 1);}
                 finish();
+            }
+        });
+
+        nombreImagen=""+idHoteleria+idDisp;
+        Button botonCamara = ((Button) this.findViewById(R.id.TomarFoto));
+        ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
+        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+
+        if(savedInstanceState != null){
+            fileUri = savedInstanceState.getParcelable("uri");
+            if(fileUri != null){
+                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(savedInstanceState.getString("foto"),200,200);
+                oImg.setImageBitmap(bit_map);
+                foto.setText(imagen);
+            }
+        }
+
+        ((Button) botonCamara.findViewById(R.id.TomarFoto)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, nombreImagen);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
             }
         });
     }
@@ -165,5 +217,71 @@ public class modificarHoteleria extends AppCompatActivity {
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spCorrederaH.setAdapter(adapter);
+    }
+
+    //Funciones de Camara
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        if (fileUri != null) {
+            savedInstanceState.putParcelable("uri", fileUri);
+            savedInstanceState.getString("foto", fileUri.getPath());
+        }
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    private static Uri getOutputMediaFileUri(int type, String pID){
+        return Uri.fromFile(getOutputMediaFile(type,pID));
+    }
+
+    private static File getOutputMediaFile(int type, String pID){
+        File mediaStorageDir = new
+                File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),APP_PATH);
+        if (!mediaStorageDir.exists()){
+            if (!mediaStorageDir.mkdirs()){
+                return null;
+            }
+        }
+        File mediaFile;
+        if (type == MEDIA_TYPE_IMAGE){
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_Hoteleria" + pID + ".jpg");
+        }else {
+            return null;
+        }
+        return mediaFile;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
+        {
+            if (resultCode == RESULT_OK){
+                ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);//
+                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
+                imagen = convertToBase64(bit_map);
+                TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+                foto.setText(imagen);
+                oImg.setImageBitmap(bit_map);//
+            }else if(resultCode == RESULT_CANCELED){
+                // User cancelled the image capture
+            }else {
+                //Image capture failed, advise user
+            }
+        }
+    }
+
+    private String convertToBase64(Bitmap imagenMap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        imagenMap.compress(Bitmap.CompressFormat.JPEG, 45, baos);
+        byte[] byteArrayImage = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+    private void crearImagen(String IMG){
+        byte[] decodedString = Base64.decode(IMG, Base64.DEFAULT); Log.v("[imagen]", ""+decodedString);
+        Bitmap bit_map = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); Log.v("[imagen]", ""+bit_map);
+        ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
+        oImg.setImageBitmap(bit_map);
     }
 }
