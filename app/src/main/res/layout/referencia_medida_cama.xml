@@ -4,18 +4,19 @@
     android:background="@drawable/contenedor"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="A, B y C pertenecen al colchon. D, E y F pertenecen al box, D se considera hasta el suelo, G se considera de suelo a la parte alta del colchon."
-        android:textColor="@android:color/black"
-        android:typeface="sans"
-        android:textSize="18dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A, B y C pertenecen al colchon. D, E y F pertenecen al box, D se considera hasta el suelo, G se considera de suelo a la parte alta del colchon."
+            android:textColor="@android:color/black"
+            android:typeface="sans"
+            android:textSize="18dp"/>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:contentDescription="Foto"
-        android:src="@mipmap/ic_cama" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="Foto"
+            android:src="@mipmap/ic_cama" />
 
 </LinearLayout>
