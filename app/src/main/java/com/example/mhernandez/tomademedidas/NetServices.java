@@ -1032,7 +1032,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                             Double.parseDouble(joFuj.getString("hojas")), joFuj.getString("observaciones"), joFuj.getString("nombre_proyecto")," ",
                             joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("formato")), Integer.parseInt(joFuj.getString("piso")),
                             joFuj.getString("edificio"), joFuj.getString("control"), "", " ", Integer.parseInt(joFuj.getString("id_estatus")),
-                            joFuj.getString("medida_sujerida"), Integer.parseInt(joFuj.getString("autorizado")), 0, Integer.parseInt(joFuj.getString("pagado")), " ");
+                            joFuj.getString("medida_sujerida"), Integer.parseInt(joFuj.getString("autorizado")), 0, Integer.parseInt(joFuj.getString("pagado")), " ", 0);
                 }
             }catch (Exception e){
                 exception = e;

@@ -557,11 +557,10 @@ public class DBProvider {
 
     public void insertProyectoHoteleria(int idHoteleria, int idDisp, int idProyecto, int idProyectoDisp, String habitacion, String area, Double ancho, Double alto,
                                         Double hojas, String observaciones, String nombrePro, String AIMG, String fecha, int formato, int piso, String edificio,
-                                        String control, String fijacion, String fechaAl, int estatus, String medidaSujerida, int autorizado, int userAuto, int pagado, String corredera) {
-        //Log.v("[ProH]","Voy a insertar Hoteleria " + nombrePro +" Piso: "+piso);
-        Object[] aData = { idHoteleria, idDisp, idProyecto, idProyectoDisp, habitacion, area, ancho, alto, hojas, observaciones, nombrePro,
-                            AIMG, fecha, formato, piso, edificio, control, fijacion, fechaAl, estatus, medidaSujerida,
-                            autorizado, userAuto, pagado, corredera};
+                                        String control, String fijacion, String fechaAl, int estatus, String medidaSujerida, int autorizado,
+                                        int userAuto, int pagado, String corredera, int Sinc) {
+        Object[] aData = { idHoteleria, idDisp, idProyecto, idProyectoDisp, habitacion, area, ancho, alto, hojas, observaciones, nombrePro, AIMG, fecha, formato,
+                            piso, edificio, control, fijacion, fechaAl, estatus, medidaSujerida, autorizado, userAuto, pagado, corredera, Sinc};
         executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " ("
                 + DBhelper.ID_HOTELERIA + ", "
                 + DBhelper.ID_DISP + ", "
@@ -587,14 +586,15 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_AUTORIZADO + ", "
                 + DBhelper.ID_USUARIOAUTORIZA + ", "
                 + DBhelper.COLUMN_NAME_PAGADO + ", "
-                + DBhelper.COLUMN_NAME_CORREDERA
-                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+                + DBhelper.COLUMN_NAME_CORREDERA + ", "
+                + DBhelper.COLUMN_NAME_SINCRONIZAR
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
     }
 
     public void updateProyectoHoteleria(int idHoteleria, int idDisp, String habitacion, String area, Double ancho, Double alto,
                                         String hojas, String AIMG, String observaciones, String piso, String edificio, String control,
-                                        String fijacion, String medidaSujerida, String corredera) {
-        Object[] aData = {habitacion, area, ancho, alto, hojas, AIMG, observaciones, piso, edificio, control, fijacion, medidaSujerida, corredera, idHoteleria, idDisp};
+                                        String fijacion, String medidaSujerida, String corredera, int Sinc) {
+        Object[] aData = {habitacion, area, ancho, alto, hojas, AIMG, observaciones, piso, edificio, control, fijacion, medidaSujerida, corredera, Sinc, idHoteleria, idDisp};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " SET "
                 + DBhelper.COLUMN_NAME_HABITACION + " = ?, "
                 + DBhelper.COLUMN_NAME_AREA + " = ?, "
@@ -608,7 +608,8 @@ public class DBProvider {
                 + DBhelper.COLUMN_NAME_CONTROL + " = ?, "
                 + DBhelper.COLUMN_NAME_FIJACION + " = ?, "
                 + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + " = ?, "
-                + DBhelper.COLUMN_NAME_CORREDERA + " = ? "
+                + DBhelper.COLUMN_NAME_CORREDERA + " = ?, "
+                + DBhelper.COLUMN_NAME_SINCRONIZAR + " = ? "
                 + " WHERE " + DBhelper.ID_HOTELERIA + " = ? "
                 + " AND " + DBhelper.ID_DISP + " = ? ", aData);
     }
@@ -627,10 +628,10 @@ public class DBProvider {
         Log.v("[DELETE]", "All Proyecto Hoteleria Eliminado");
     }
 
-    public void cerrarProyectoHoteleria(int idHoteleria, int idDisp, int estatus){
-        Object[] aData = {estatus, idHoteleria, idDisp};
+    public void cerrarProyectoHoteleria(int idHoteleria, int idDisp, int estatus, int Sinc){
+        Object[] aData = {estatus, Sinc, idHoteleria, idDisp};
         executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " SET "
-                + DBhelper.ID_ESTATUS + " = ? "
+                + DBhelper.ID_ESTATUS + " = ?, " + DBhelper.COLUMN_NAME_SINCRONIZAR + " = ? "
                 + " WHERE " + DBhelper.ID_HOTELERIA + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
     }
 
@@ -1729,21 +1730,29 @@ public class DBProvider {
         return (aData);
     }
 
-    public String[][] ObtenerProyectosHoteleria(String id, int tipo) {
+    public String[][] ObtenerProyectosHoteleria(String id,String idDisp, int tipo) {
         int iCnt = 0;
         String[][] aData = null;
         String[] aFils = {(id)};
         Cursor aRS;
         if (tipo == 1) {
             aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_HOTELERIA + " <> ?", aFils);
-        } else {
-            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_HOTELERIA + " = ?", aFils);
+        }else if (tipo == 2) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_HOTELERIA + " <> ? " +
+                    " AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 0", aFils);
+        }else if (tipo == 3) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_HOTELERIA + " <> ? " +
+                    "AND "+ DBhelper.COLUMN_NAME_SINCRONIZAR + " <> 3", aFils);
+
+        }else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE "
+                    + DBhelper.ID_HOTELERIA + " = ?" + " AND " + DBhelper.ID_DISP + " ="+idDisp , aFils);
         }
 
         if (aRS.getCount() > 0) {
             aData = new String[aRS.getCount()][];
             while (aRS.moveToNext()) {
-                aData[iCnt] = new String[31];
+                aData[iCnt] = new String[32];
                 aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_HOTELERIA));
                 aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP));
                 aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO));
@@ -1775,6 +1784,7 @@ public class DBProvider {
                 aData[iCnt][28] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PAGADO));
                 aData[iCnt][29] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_PAGO));
                 aData[iCnt][30] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_CORREDERA));
+                aData[iCnt][31] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_SINCRONIZAR));
                 iCnt++;
             }
         } else {
@@ -1992,6 +2002,64 @@ public class DBProvider {
         return (aData);
     }
 
+    public String[][] ProyectoHoteleriaProyecto(String id, int tipo) {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = {(id)}; Log.v("[FRAGMENT]", "Vengo por Proyectos: "+id );
+        Cursor aRS;
+        if (tipo == 1) {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_PROYECTO + " <> ?", aFils);
+        } else {
+            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aFils);
+        }
+        Log.v("[FRAGMENT]", "Encontre : "+ aRS.getCount() );
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[iCnt] = new String[32];
+                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_HOTELERIA));
+                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP));
+                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO));
+                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO_DISP));
+                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ACCESORIOS_MURO));
+                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ACCESORIOS_TECHO));
+                aData[iCnt][6] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_HABITACION));
+                aData[iCnt][7] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AREA));
+                aData[iCnt][8] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ANCHO));
+                aData[iCnt][9] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ALTO));
+                aData[iCnt][10] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_HOJAS));
+                aData[iCnt][11] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_OBSERVACIONES));
+                aData[iCnt][12] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE_PROYECTO));
+                aData[iCnt][13] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AIMG));
+                aData[iCnt][14] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA));
+                aData[iCnt][15] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FORMATO));
+                aData[iCnt][16] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PISO)); Log.v("[FRAGMENT]", "PisoH: "+aData[iCnt][16]);
+                aData[iCnt][17] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_EDIFICIO));
+                aData[iCnt][18] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_CONTROL));
+                aData[iCnt][19] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FIJACION));
+                aData[iCnt][20] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_ALTA));
+                aData[iCnt][21] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_ALTA));
+                aData[iCnt][22] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_MOD));
+                aData[iCnt][23] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_ESTATUS));
+                aData[iCnt][24] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA));
+                aData[iCnt][25] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AUTORIZADO));
+                aData[iCnt][26] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIOAUTORIZA));
+                aData[iCnt][27] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHAAUTORIZA));
+                aData[iCnt][28] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PAGADO));
+                aData[iCnt][29] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_PAGO));
+                aData[iCnt][30] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_CORREDERA));
+                aData[iCnt][31] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_SINCRONIZAR));
+                iCnt++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+
+        aRS.close();
+        CloseDB();
+        return (aData);
+    }
+
     public String[][] ProyectosGaleriaProyecto(String id, int tipo) {
         int iCnt = 0;
         String[][] aData = null;
@@ -2033,63 +2101,6 @@ public class DBProvider {
                 aData[iCnt][23] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PAGADO));
                 aData[iCnt][24] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_PAGO));
                 aData[iCnt][25] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_PAGO));
-                iCnt++;
-            }
-        } else {
-            aData = new String[0][];
-        }
-
-        aRS.close();
-        CloseDB();
-        return (aData);
-    }
-
-    public String[][] ProyectoHoteleriaProyecto(String id, int tipo) {
-        int iCnt = 0;
-        String[][] aData = null;
-        String[] aFils = {(id)}; Log.v("[FRAGMENT]", "Vengo por Proyectos: "+id );
-        Cursor aRS;
-        if (tipo == 1) {
-            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_PROYECTO + " <> ?", aFils);
-        } else {
-            aRS = querySQL("SELECT * FROM " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " WHERE " + DBhelper.ID_PROYECTO + " = ?", aFils);
-        }
-        Log.v("[FRAGMENT]", "Encontre : "+ aRS.getCount() );
-        if (aRS.getCount() > 0) {
-            aData = new String[aRS.getCount()][];
-            while (aRS.moveToNext()) {
-                aData[iCnt] = new String[31];
-                aData[iCnt][0] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_HOTELERIA));
-                aData[iCnt][1] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_DISP));
-                aData[iCnt][2] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO));
-                aData[iCnt][3] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_PROYECTO_DISP));
-                aData[iCnt][4] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ACCESORIOS_MURO));
-                aData[iCnt][5] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ACCESORIOS_TECHO));
-                aData[iCnt][6] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_HABITACION));
-                aData[iCnt][7] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AREA));
-                aData[iCnt][8] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ANCHO));
-                aData[iCnt][9] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_ALTO));
-                aData[iCnt][10] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_HOJAS));
-                aData[iCnt][11] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_OBSERVACIONES));
-                aData[iCnt][12] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_NOMBRE_PROYECTO));
-                aData[iCnt][13] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AIMG));
-                aData[iCnt][14] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA));
-                aData[iCnt][15] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FORMATO));
-                aData[iCnt][16] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PISO)); Log.v("[FRAGMENT]", "PisoH: "+aData[iCnt][16]);
-                aData[iCnt][17] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_EDIFICIO));
-                aData[iCnt][18] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_CONTROL));
-                aData[iCnt][19] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FIJACION));
-                aData[iCnt][20] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHA_ALTA));
-                aData[iCnt][21] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_ALTA));
-                aData[iCnt][22] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_MOD));
-                aData[iCnt][23] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_ESTATUS));
-                aData[iCnt][24] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA));
-                aData[iCnt][25] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_AUTORIZADO));
-                aData[iCnt][26] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIOAUTORIZA));
-                aData[iCnt][27] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_FECHAAUTORIZA));
-                aData[iCnt][28] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_PAGADO));
-                aData[iCnt][29] = aRS.getString(aRS.getColumnIndex(DBhelper.ID_USUARIO_PAGO));
-                aData[iCnt][30] = aRS.getString(aRS.getColumnIndex(DBhelper.COLUMN_NAME_CORREDERA));
                 iCnt++;
             }
         } else {
@@ -2397,7 +2408,43 @@ public class DBProvider {
                     + "PRIMARY KEY (" + DBhelper.ID_CAMA + "," + DBhelper.ID_DISP + ")"
                     + ");");                                                                        Log.v("[obtener]","DB Proyecto Cama  [lista]");
 
+            db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " ("
+                    + DBhelper.ID_HOTELERIA + " INTEGER,"
+                    + DBhelper.ID_DISP + " INTEGER,"
+                    + DBhelper.ID_PROYECTO + " INTEGER KEY,"
+                    + DBhelper.ID_PROYECTO_DISP + " INTEGER KEY,"
+                    + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + " TEXT,"
+                    + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + " TEXT,"
+                    + DBhelper.COLUMN_NAME_HABITACION + " TEXT,"
+                    + DBhelper.COLUMN_NAME_AREA + " TEXT,"
+                    + DBhelper.COLUMN_NAME_ANCHO + " DOUBLE,"
+                    + DBhelper.COLUMN_NAME_ALTO + " DOUBLE,"
+                    + DBhelper.COLUMN_NAME_HOJAS + " DOUBLE,"
+                    + DBhelper.COLUMN_NAME_OBSERVACIONES + " TEXT,"
+                    + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + " TEXT,"
+                    + DBhelper.COLUMN_NAME_AIMG + " TEXT,"
+                    + DBhelper.COLUMN_NAME_FECHA + " TEXT,"
+                    + DBhelper.COLUMN_NAME_FORMATO + " INTEGER,"
+                    + DBhelper.COLUMN_NAME_PISO + " INTEGER,"
+                    + DBhelper.COLUMN_NAME_EDIFICIO + " TEXT,"
+                    + DBhelper.COLUMN_NAME_CONTROL + " TEXT,"
+                    + DBhelper.COLUMN_NAME_FIJACION + " TEXT,"
+                    + DBhelper.COLUMN_NAME_FECHA_ALTA + " TEXT,"
+                    + DBhelper.ID_USUARIO_ALTA + " INTEGER,"
+                    + DBhelper.ID_USUARIO_MOD + " INTEGER,"
+                    + DBhelper.ID_ESTATUS + " INTEGER,"
+                    + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + " TEXT,"
+                    + DBhelper.COLUMN_NAME_AUTORIZADO + " TINYINT,"
+                    + DBhelper.ID_USUARIOAUTORIZA + " INTEGER,"
+                    + DBhelper.COLUMN_NAME_FECHAAUTORIZA + " TEXT,"
+                    + DBhelper.COLUMN_NAME_PAGADO + " TINYINT,"
+                    + DBhelper.ID_USUARIO_PAGO + " INTEGER,"
+                    + DBhelper.COLUMN_NAME_CORREDERA + " TEXT,"
+                    + DBhelper.COLUMN_NAME_SINCRONIZAR + " INTEGER,"
+                    + "PRIMARY KEY (" + DBhelper.ID_HOTELERIA + "," + DBhelper.ID_DISP + ")"
+                    + ");");                                                                        Log.v("[obtener]","DB Proyecto Hoteleria  [lista]");
 
+            //Aun sin sincronizar
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO_ESPECIAL + " ("
                     + DBhelper.ID_ESPECIALES + " INTEGER,"
                     + DBhelper.ID_DISP + " INTEGER,"
@@ -2522,41 +2569,6 @@ public class DBProvider {
                     + DBhelper.ID_USUARIO_PAGO + " INTEGER,"
                     + "PRIMARY KEY (" + DBhelper.ID_GALERIA + "," + DBhelper.ID_DISP + ")"
                     + ");");                                                                        Log.v("[obtener]","DB Proyecto Galeria  [lista]");
-
-            db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO_HOTELERIA + " ("
-                    + DBhelper.ID_HOTELERIA + " INTEGER,"
-                    + DBhelper.ID_DISP + " INTEGER,"
-                    + DBhelper.ID_PROYECTO + " INTEGER KEY,"
-                    + DBhelper.ID_PROYECTO_DISP + " INTEGER KEY,"
-                    + DBhelper.COLUMN_NAME_ACCESORIOS_MURO + " TEXT,"
-                    + DBhelper.COLUMN_NAME_ACCESORIOS_TECHO + " TEXT,"
-                    + DBhelper.COLUMN_NAME_HABITACION + " TEXT,"
-                    + DBhelper.COLUMN_NAME_AREA + " TEXT,"
-                    + DBhelper.COLUMN_NAME_ANCHO + " DOUBLE,"
-                    + DBhelper.COLUMN_NAME_ALTO + " DOUBLE,"
-                    + DBhelper.COLUMN_NAME_HOJAS + " DOUBLE,"
-                    + DBhelper.COLUMN_NAME_OBSERVACIONES + " TEXT,"
-                    + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + " TEXT,"
-                    + DBhelper.COLUMN_NAME_AIMG + " TEXT,"
-                    + DBhelper.COLUMN_NAME_FECHA + " TEXT,"
-                    + DBhelper.COLUMN_NAME_FORMATO + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_PISO + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_EDIFICIO + " TEXT,"
-                    + DBhelper.COLUMN_NAME_CONTROL + " TEXT,"
-                    + DBhelper.COLUMN_NAME_FIJACION + " TEXT,"
-                    + DBhelper.COLUMN_NAME_FECHA_ALTA + " TEXT,"
-                    + DBhelper.ID_USUARIO_ALTA + " INTEGER,"
-                    + DBhelper.ID_USUARIO_MOD + " INTEGER,"
-                    + DBhelper.ID_ESTATUS + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_MEDIDA_SUJERIDA + " TEXT,"
-                    + DBhelper.COLUMN_NAME_AUTORIZADO + " TINYINT,"
-                    + DBhelper.ID_USUARIOAUTORIZA + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_FECHAAUTORIZA + " TEXT,"
-                    + DBhelper.COLUMN_NAME_PAGADO + " TINYINT,"
-                    + DBhelper.ID_USUARIO_PAGO + " INTEGER,"
-                    + DBhelper.COLUMN_NAME_CORREDERA + " TEXT,"
-                    + "PRIMARY KEY (" + DBhelper.ID_HOTELERIA + "," + DBhelper.ID_DISP + ")"
-                    + ");");                                                                        Log.v("[obtener]","DB Proyecto Hoteleria  [lista]");
 
             db.execSQL("CREATE TABLE " + DBhelper.TABLE_NAME_PROYECTO_IMAGEN + " ("
                     + DBhelper.ID_IMAGEN + " INTEGER,"
