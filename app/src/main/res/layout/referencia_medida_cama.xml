@@ -9,12 +9,13 @@
         android:layout_height="wrap_content"
         android:text="A, B y C pertenecen al colchon. D, E y F pertenecen al box, D se considera hasta el suelo, G se considera de suelo a la parte alta del colchon."
         android:textColor="@android:color/black"
-        android:textSize="25dp"/>
+        android:typeface="sans"
+        android:textSize="18dp"/>
 
     <ImageView
-        android:layout_width="410dp"
-        android:layout_height="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:contentDescription="Foto"
-        android:src="@drawable/ic_cama"/>
+        android:src="@mipmap/ic_cama" />
 
 </LinearLayout>
