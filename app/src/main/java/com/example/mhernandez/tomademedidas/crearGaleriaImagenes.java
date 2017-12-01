@@ -3,18 +3,17 @@ package com.example.mhernandez.tomademedidas;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
@@ -32,6 +31,7 @@ public class crearGaleriaImagenes extends AppCompatActivity {
     private static final String APP_PATH = "TomaMedidas";
     private Uri fileUri;
     int auxFoto=0;
+    int tipoImagen=0;
     String nombreImagen="1";
     String imagen = "";    public static DBProvider oDB;
     Dialog customDialog = null;
@@ -42,15 +42,22 @@ public class crearGaleriaImagenes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crear_galeria_fotos);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final Bundle oExt = this.getIntent().getExtras();
+        final int idProyecto = oExt.getInt("idProyecto");
+        final int idProyectoDisp = oExt.getInt("idProyectoDisp");
+        final String Nombre = oExt.getString("Nombre");
+        final int Formato = oExt.getInt("Formato");
         ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
         final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+        final Spinner Tipo = (Spinner) this.findViewById(R.id.TipoGaleria);
+        final TextView descripcion = (TextView) this.findViewById(R.id.Descripcion);
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Button Imagenes = (Button) this.findViewById(R.id.Imagenes);
         String[][] aRefD = MainActivity.oDB.lastDispositivo();
-        String[][] aRefP = MainActivity.oDB.lastProyecto();
-        final int idProyecto = Integer.parseInt(aRefP[(0)][0]) + 1;
+        String[][] aRefI = MainActivity.oDB.lastImagen();
+        final int idImagen = Integer.parseInt(aRefI[(0)][0]) + 1;
         final int idDisp = Integer.parseInt(aRefD[(0)][0]);
-        nombreImagen=""+idProyecto+idDisp;
+        nombreImagen=""+idImagen+idDisp;
 
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");
@@ -100,6 +107,16 @@ public class crearGaleriaImagenes extends AppCompatActivity {
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String tipoFoto = Tipo.getSelectedItem().toString();
+                String txtDescripcion = descripcion.getText().toString();
+                String txtFoto = foto.getText().toString();
+                if (tipoFoto == "Antes"){
+                    int tipoImagen = 1;
+                    oDB.insertProyectoImagen(idImagen, idDisp, idProyecto, idProyectoDisp, tipoImagen,txtDescripcion, Nombre, txtFoto, Formato);
+                }else if(tipoFoto == "Despues"){
+                    int tipoImagen = 2;
+                    oDB.insertProyectoImagen(idImagen, idDisp, idProyecto, idProyectoDisp, tipoImagen,txtDescripcion, Nombre, txtFoto, Formato);
+                }
             }
         });
 

@@ -658,6 +658,42 @@ public class DBProvider {
         return aData;
     }
 
+    public void insertProyectoImagen(int idImagen, int idDisp, int idProyecto, int idProyectoDisp, int TipoFoto, String Descripcion, String NombreProyecto, String Ruta, int Formato){
+        Object[] aData = {idImagen, idDisp, idProyecto, idProyectoDisp, TipoFoto, Descripcion, NombreProyecto, Ruta, Formato};
+        executeSQL("INSERT INTO " + DBhelper.TABLE_NAME_PROYECTO_IMAGEN + " ("
+                + DBhelper.ID_IMAGEN + ", "
+                + DBhelper.ID_DISP + ", "
+                + DBhelper.ID_PROYECTO + ", "
+                + DBhelper.ID_PROYECTO_DISP + ", "
+                + DBhelper.COLUMN_NAME_TIPO_FOTO + ", "
+                + DBhelper.COLUMN_NAME_DESCRIPCION + ", "
+                + DBhelper.COLUMN_NAME_NOMBRE_PROYECTO + ", "
+                + DBhelper.COLUMN_NAME_RUTA + ", "
+                + DBhelper.COLUMN_NAME_FORMATO
+                + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", aData);
+    }
+
+    public String[][] lastImagen() {
+        int iCnt = 0;
+        String[][] aData = null;
+        String[] aFils = null;
+        Cursor Ars; Log.v("[obtener", "Proyecto ID: ");
+        Ars = querySQL("SELECT MAX(" +DBhelper.ID_IMAGEN  +") AS "+DBhelper.ID_IMAGEN + " FROM " + DBhelper.TABLE_NAME_PROYECTO_IMAGEN, aFils); //Log.v("[obtener", "Datos:" +String.valueOf(Ars.getCount()) );
+        if (Ars.getCount() > 0) {
+            aData = new String[Ars.getCount()][1];
+            while (Ars.moveToNext()){                                               //Log.v("[obtener]","ID= " +Ars.getString(Ars.getColumnIndex(DBhelper.ID_CLIENTE)) );
+                if(Ars.getString(Ars.getColumnIndex(DBhelper.ID_IMAGEN))==null){   //Log.v("[obtener", "Entre al IF");
+                    aData[iCnt][0] = "0";
+                }else{                                                              //Log.v("[obtener", "Entre al Else");
+                    aData[iCnt][0] = Ars.getString(Ars.getColumnIndex(DBhelper.ID_IMAGEN) );}
+                iCnt++;
+            }
+        }
+        Ars.close();
+        CloseDB();  Log.v("[obtener", "Voy de regreso");
+        return (aData);
+    }
+
     public void insertProyectoResidencial(int idResidencial, int idDisp, int idProyecto, int idProyectoDisp, String ubicacion, double A, double B, double C, double D,
                                           double E, double F, double G, double H, double profMarco, double profJaladera,
                                           String control, String AGPTO, String medidaSujerida, String observaciones, String AIMG,
