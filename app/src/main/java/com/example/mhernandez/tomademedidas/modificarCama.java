@@ -111,6 +111,7 @@ public class modificarCama extends AppCompatActivity {
                 startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
             }
         });
+
     }
 
     @Override
@@ -186,6 +187,5 @@ public class modificarCama extends AppCompatActivity {
         String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
         return encodedImage;
     }
-
 
 }

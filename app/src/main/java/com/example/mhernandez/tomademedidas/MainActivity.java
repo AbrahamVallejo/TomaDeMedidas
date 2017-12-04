@@ -798,8 +798,6 @@ public class MainActivity extends AppCompatActivity
         String[][] aux1 = MainActivity.oDB.ObtenerProyectosCama("0","0", 2);
         Toast.makeText(this, aux1[0][12], Toast.LENGTH_SHORT).show();
 
-        Log.v("[add]","Tengo: "+aux1.length );
-
         for (int i =0; i < aux1.length; i++) {
             if (Integer.valueOf(aux1[i][27]) == 1) {
                 Log.v("[add]","Entre al if Insertar" );
@@ -866,10 +864,6 @@ public class MainActivity extends AppCompatActivity
             if (aux != false) {
                 setContentView(R.layout.activity_cargando); porcentaje = (TextView) this.findViewById(R.id.porcentaje);
 
-                MainActivity.oDB.deleteAllProyectos("0","0");           MainActivity.oDB.deleteAllProyectosCama("0","0");
-                MainActivity.oDB.deleteAllProyectosEspecial("0","0");   MainActivity.oDB.deleteAllHoteleria("0","0");
-                MainActivity.oDB.deleteAllProyectosGaleria("0","0");    MainActivity.oDB.deleteAllResidencial("0","0");
-
                 Thread timerThreadDos = new Thread(){
                     public void run(){
                         try {
@@ -881,7 +875,12 @@ public class MainActivity extends AppCompatActivity
                             e.printStackTrace();       }
                     }
                 };
-                timerThreadDos.start(); porcentaje.setText("50%");
+                timerThreadDos.start();
+                porcentaje.setText("50%");
+
+                MainActivity.oDB.deleteAllProyectos("0","0");           MainActivity.oDB.deleteAllProyectosCama("0","0");
+                MainActivity.oDB.deleteAllProyectosEspecial("0","0");   MainActivity.oDB.deleteAllHoteleria("0","0");
+                MainActivity.oDB.deleteAllProyectosGaleria("0","0");    MainActivity.oDB.deleteAllResidencial("0","0");
 
                 Thread timerThread = new Thread(){
                     public void run(){
