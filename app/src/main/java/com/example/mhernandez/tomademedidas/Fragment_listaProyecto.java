@@ -261,8 +261,6 @@ public class Fragment_listaProyecto extends Fragment {
             TextView txtIDFormato = (TextView) rowView.findViewById(R.id.IDFormato);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
-            Log.v("[AQUIANDO", _text[position][7]);
-            Log.v("[AQUIANDO","H"+ _text[position][7].indexOf("T"));
             if ( _text[position][7].indexOf("T") != 10){
                 txtFecha.setText("no disponible" );
             }else {
