@@ -271,6 +271,10 @@ public class listaHoteleria extends AppCompatActivity {
                 Toast.makeText(listaHoteleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
             }else {
                 Intent rIntent = new Intent(listaHoteleria.this, crearGaleriaImagenes.class);
+                rIntent.putExtra("idProyecto", idProyecto);
+                rIntent.putExtra("idProyectoDisp", idProyectoDisp);
+                rIntent.putExtra("Nombre", NombreProyecto);
+                rIntent.putExtra("Formato", 2);
                 startActivity(rIntent);
             }
         }

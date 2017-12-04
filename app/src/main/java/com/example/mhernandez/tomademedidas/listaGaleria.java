@@ -253,6 +253,10 @@ public class listaGaleria extends AppCompatActivity {
                 Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
             }else {
                 Intent rIntent = new Intent(listaGaleria.this, crearGaleriaImagenes.class);
+                rIntent.putExtra("idProyecto", idProyecto);
+                rIntent.putExtra("idProyectoDisp", idProyectoDisp);
+                rIntent.putExtra("Nombre", NombreProyecto);
+                rIntent.putExtra("Formato", 3);
                 startActivity(rIntent);
             }
         }

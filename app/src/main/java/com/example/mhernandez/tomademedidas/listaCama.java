@@ -258,6 +258,10 @@ public class listaCama extends AppCompatActivity {
                 Toast.makeText(listaCama.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
             }else {
                 Intent rIntent = new Intent(listaCama.this, crearGaleriaImagenes.class);
+                rIntent.putExtra("idProyecto", idProyecto);
+                rIntent.putExtra("idProyectoDisp", idProyectoDisp);
+                rIntent.putExtra("Nombre", NombreProyecto);
+                rIntent.putExtra("Formato", 4);
                 startActivity(rIntent);
             }
         }

@@ -222,6 +222,10 @@ public class listaEspecial extends AppCompatActivity {
                 Toast.makeText(listaEspecial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
             }else {
                 Intent rIntent = new Intent(listaEspecial.this, crearGaleriaImagenes.class);
+                rIntent.putExtra("idProyecto", idProyecto);
+                rIntent.putExtra("idProyectoDisp", idProyectoDisp);
+                rIntent.putExtra("Nombre", NombreProyecto);
+                rIntent.putExtra("Formato", 5);
                 startActivity(rIntent);
             }
         }
