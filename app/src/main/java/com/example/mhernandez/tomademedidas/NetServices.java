@@ -736,12 +736,15 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 String[][] aref = MainActivity.oDB.ObtenerProyectosHoteleria( urls[2], urls[3], 2);
                 Log.v("[add]","1: "+aref.toString() );
                 JSONObject json = new JSONObject();         JSONObject proyecto = new JSONObject();
-                try {
+                /*try {*/
+                Log.v("[add]",aref[0][0]);
                     proyecto.put("id_hoteleria", aref[0][0] );          proyecto.put("id_disp", aref[0][1] );
+                Log.v("[add]",".5" );
                     proyecto.put("id_proyecto", aref[0][2] );           proyecto.put("id_proyecto_disp", aref[0][3] );
-                Log.v("[add]","1: "+proyecto.toString() );
+                Log.v("[add]","1" );
                     proyecto.put("habitacion", aref[0][6]);             proyecto.put("area", aref[0][7] );
                     proyecto.put("alto", aref[0][9] );                  proyecto.put("ancho", aref[0][8] );
+                Log.v("[add]","2" );
                     proyecto.put("hojas", aref[0][10] );                 proyecto.put("observaciones", aref[0][11] );
                     proyecto.put("nombre_proyecto", aref[0][12] );
                 Log.v("[add]","2: "+proyecto.toString() );
@@ -753,10 +756,10 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     if ( aref[0][14].indexOf("D") >= 1){  proyecto.put("fecha", aref[0][14] ); }
                     if ( aref[0][13].length() > 60){      IMAGEN =RUTA_IMG+"IMG_Hoteleria"+aref[0][0]+aref[0][1] ;
                         proyecto.put("aImg", IMAGEN ); }
-                } catch (JSONException e) {
+                /*} catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-                }
+                }*/
                 json.put("proyectoHoteleria",proyecto);  Log.v("[add]","2: "+json.toString() );
                 if (aref[0][13].length() >60){
                     sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][12], "IMG_Hoteleria"+aref[0][0]+aref[0][1]);
