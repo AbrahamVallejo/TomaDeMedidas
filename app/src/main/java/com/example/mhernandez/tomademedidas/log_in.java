@@ -9,8 +9,6 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.util.Base64;
-
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -33,7 +31,7 @@ public class log_in extends AppCompatActivity {
             public void run(){
                 try {
                     sleep(1000);
-                    String[][] aRef = log_in.oDB.ObtenerUser("0",2); Log.v("[hola"," "+aRef.length);
+                    String[][] aRef = log_in.oDB.ObtenerUser("0",2); Log.v("[Bienvenido"," "+aRef.length);
                     if (aRef.length ==1){
                         Intent intent = new Intent(log_in.this, MainActivity.class);
                         startActivity(intent);
@@ -44,13 +42,14 @@ public class log_in extends AppCompatActivity {
         };
         //timerThreadDos.start();
         setContentView(R.layout.log_in);
-
     }
+
 
     public void onSaveClickIniciar(View view){
         EditText npass = (EditText) this.findViewById(R.id.txt_password);
         EditText nUser = (EditText) this.findViewById(R.id.txt_usuario); //
         CheckBox nRecordar = (CheckBox) this.findViewById(R.id.checkBox);
+        Toast.makeText(this, "Comprobando...", Toast.LENGTH_LONG).show();
 
         String part1 = npass.getText().toString().replace(" ","");
         String part2 = nUser.getText().toString().replace(" ","");
@@ -61,7 +60,7 @@ public class log_in extends AppCompatActivity {
         if(part2.length()==0){
             aux++; nUser.setText(""); nUser.setHint("Campo Vacío");
         }
-        if(aux==0){
+        else if(aux==0){
             String text = npass.getText().toString();
             Boolean val = false;
 
