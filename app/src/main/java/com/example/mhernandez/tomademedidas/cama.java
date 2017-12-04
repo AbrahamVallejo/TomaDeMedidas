@@ -25,9 +25,9 @@ import java.io.File;
 public class cama extends AppCompatActivity{
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
-    private static final String APP_PATH = "droidBH";
+    private static final String APP_PATH = "TomaMedidas";
     private Uri fileUri;
-    String sID;
+    String nombreImagen="1";
     String imagen = "";
 
     public static DBProvider oDB;
@@ -62,6 +62,13 @@ public class cama extends AppCompatActivity{
         final EditText F = (EditText) this.findViewById(R.id.txt_F);
         final EditText G = (EditText) this.findViewById(R.id.txt_G);
         final EditText Observaciones = (EditText) this.findViewById(R.id.txt_observaciones);
+        String[][] aRefD = MainActivity.oDB.lastDispositivo();
+        String[][] aRefP = MainActivity.oDB.lastProyecto();
+        //Sacar Imagen para Camara
+        final int idProyecto = Integer.parseInt(aRefP[(0)][0]) + 1;
+        final int idDisp = Integer.parseInt(aRefD[(0)][0]);
+        nombreImagen=""+idProyecto+idDisp;
+
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(
                 new View.OnClickListener(){
@@ -74,11 +81,7 @@ public class cama extends AppCompatActivity{
                         Double txtE = Double.parseDouble(E.getText().toString());
                         Double txtF = Double.parseDouble(F.getText().toString());
                         Double txtG = Double.parseDouble(G.getText().toString());
-                        String[][] aRefD = MainActivity.oDB.lastDispositivo();
-                        String[][] aRefP = MainActivity.oDB.lastProyecto();
                         String[][] aRefC = MainActivity.oDB.lastCama();
-                        int idProyecto = Integer.parseInt(aRefP[(0)][0]) + 1;
-                        int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         int idCama = Integer.parseInt(aRefC[(0)][0]) + 1;
                         String OBS = Observaciones.getText().toString();
                         oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
@@ -108,7 +111,7 @@ public class cama extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
+                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, nombreImagen);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
                 startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
             }
@@ -201,7 +204,7 @@ public class cama extends AppCompatActivity{
         }
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE){
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_CAMA" + pID + ".jpg");
         }else {
             return null;
         }
@@ -215,7 +218,7 @@ public class cama extends AppCompatActivity{
         {
             if (resultCode == RESULT_OK){
                 ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);//
-                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
+                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
                 imagen = convertToBase64(bit_map);
                 TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
                 foto.setText(imagen);

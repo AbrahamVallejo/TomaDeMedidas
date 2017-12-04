@@ -116,7 +116,8 @@ public class listaGaleria extends AppCompatActivity {
                 customDialog.show();
                 return false;
             }
-        });    }
+        });
+    }
 
 
     public class CustomAdapter extends ArrayAdapter<String[]> {
@@ -248,7 +249,16 @@ public class listaGaleria extends AppCompatActivity {
                 startActivity(rIntent);
             }
         }else if (id == R.id.crearGaleria){
-
+            if(EstatusProyecto != 1){
+                Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+            }else {
+                Intent rIntent = new Intent(listaGaleria.this, crearGaleriaImagenes.class);
+                rIntent.putExtra("idProyecto", idProyecto);
+                rIntent.putExtra("idProyectoDisp", idProyectoDisp);
+                rIntent.putExtra("Nombre", NombreProyecto);
+                rIntent.putExtra("Formato", 3);
+                startActivity(rIntent);
+            }
         }
         return super.onOptionsItemSelected(item);
     }

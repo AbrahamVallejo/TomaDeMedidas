@@ -118,7 +118,7 @@ public class Fragment_listaProyecto extends Fragment {
                             Intent rIntent = new Intent(vista.getContext(), listaHoteleria.class);
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
-                            rIntent.putExtra("Nombre", aDat[3]);
+                            rIntent.putExtra("Nombre", aDat[6]);
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
                             startActivity(rIntent);
                         }else if (Formato.equals("4")){
@@ -127,7 +127,7 @@ public class Fragment_listaProyecto extends Fragment {
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
                             rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
-                            rIntent.putExtra("Nombre", aDat[3]);
+                            rIntent.putExtra("Nombre", aDat[6]);
                             startActivity(rIntent);
                         }else if (Formato.equals("1")){
                             Log.v("[FRAGMENT]", Formato);
@@ -135,7 +135,7 @@ public class Fragment_listaProyecto extends Fragment {
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
                             rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
-                            rIntent.putExtra("Nombre", aDat[3]);
+                            rIntent.putExtra("Nombre", aDat[6]);
                             startActivity(rIntent);
                         }else if (Formato.equals("3")){
                             Log.v("[FRAGMENT]", Formato);
@@ -143,7 +143,7 @@ public class Fragment_listaProyecto extends Fragment {
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
                             rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
-                            rIntent.putExtra("Nombre", aDat[3]);
+                            rIntent.putExtra("Nombre", aDat[6]);
                             startActivity(rIntent);
                         }else if (Formato.equals("5")){
                             Log.v("[FRAGMENT]", Formato);
@@ -151,7 +151,7 @@ public class Fragment_listaProyecto extends Fragment {
                             rIntent.putExtra("idProyecto", Integer.valueOf(aDat[0]) );
                             rIntent.putExtra("Estatus", Integer.valueOf(aDat[10]));
                             rIntent.putExtra("idProyectoDisp", Integer.valueOf(aDat[1]));
-                            rIntent.putExtra("Nombre", aDat[3]);
+                            rIntent.putExtra("Nombre", aDat[6]);
                             startActivity(rIntent);
                         }
 
@@ -186,7 +186,7 @@ public class Fragment_listaProyecto extends Fragment {
                             Toast.makeText(getActivity(), "REGISTRO ELIMINADO", Toast.LENGTH_SHORT).show();
                         }
                         if (Integer.parseInt(aRef[0][15]) != 1) {
-                            MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2, 5,"/Date("+FechaCierre.getTime()+")/", 2);
+                            MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), Integer.parseInt(aDat[10]), 5,"/Date("+FechaCierre.getTime()+")/", 3);
                             Toast.makeText(getActivity(), "PROYECTO CERRADO", Toast.LENGTH_SHORT).show();
                         }
                         Toast.makeText(getActivity(), "PROYECTO CERRADO", Toast.LENGTH_SHORT).show();
@@ -261,8 +261,6 @@ public class Fragment_listaProyecto extends Fragment {
             TextView txtIDFormato = (TextView) rowView.findViewById(R.id.IDFormato);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
-            Log.v("[AQUIANDO", _text[position][7]);
-            Log.v("[AQUIANDO","H"+ _text[position][7].indexOf("T"));
             if ( _text[position][7].indexOf("T") != 10){
                 txtFecha.setText("no disponible" );
             }else {

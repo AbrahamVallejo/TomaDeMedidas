@@ -105,7 +105,7 @@ public class listaCama extends AppCompatActivity {
                         if (Integer.parseInt(aDat[20]) != 1) {
                             Toast.makeText(listaCama.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
-                            oDB.deleteProyectoCama(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
+                            oDB.cerrarProyectoCama(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), Integer.parseInt(aDat[20]), 3);
                             lista();
                         }
                         customDialog.dismiss();
@@ -185,7 +185,7 @@ public class listaCama extends AppCompatActivity {
     }
 
     public void lista(){
-        String[][] aRef = oDB.ProyectosCamaProyecto(String.valueOf(idProyecto), 2);
+        String[][] aRef = oDB.ProyectosCamaProyecto(String.valueOf(idProyecto), 3);
         String[][] aDataFolio = null;
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
@@ -250,10 +250,20 @@ public class listaCama extends AppCompatActivity {
                 rIntent.putExtra("idProyecto", idProyecto);
                 rIntent.putExtra("idProyectoDisp", idProyectoDisp);
                 rIntent.putExtra("Nombre", NombreProyecto);
+                Log.v("[add", NombreProyecto);
                 startActivity(rIntent);
             }
         }else if (id == R.id.crearGaleria){
-
+            if (EstatusProyecto != 1){
+                Toast.makeText(listaCama.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
+            }else {
+                Intent rIntent = new Intent(listaCama.this, crearGaleriaImagenes.class);
+                rIntent.putExtra("idProyecto", idProyecto);
+                rIntent.putExtra("idProyectoDisp", idProyectoDisp);
+                rIntent.putExtra("Nombre", NombreProyecto);
+                rIntent.putExtra("Formato", 4);
+                startActivity(rIntent);
+            }
         }
         return super.onOptionsItemSelected(item);
     }

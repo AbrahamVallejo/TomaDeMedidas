@@ -25,9 +25,9 @@ import java.io.File;
 public class modificarCama extends AppCompatActivity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
-    private static final String APP_PATH = "droidBH";
+    private static final String APP_PATH = "TomaMedidas";
     private Uri fileUri;
-    String sID;
+    String nombreImagen="1";
     String imagen = "";
 
     public static DBProvider oDB;
@@ -42,6 +42,7 @@ public class modificarCama extends AppCompatActivity {
         Bundle oExt = this.getIntent().getExtras();
         final int idCama =  Integer.parseInt(oExt.getString("idCama"));
         final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
+        nombreImagen=""+idCama+idDisp;
 
         String NHabitaciones = oExt.getString("NHabitaciones");
         String A = oExt.getString("A");
@@ -83,7 +84,12 @@ public class modificarCama extends AppCompatActivity {
                 Double F = Double.parseDouble(txtF.getText().toString());
                 Double G = Double.parseDouble(txtG.getText().toString());
                 String Observaciones = txtObservaciones.getText().toString();
-                oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, imagen, Observaciones, 2);
+                String[][] aRes = modificarCama.oDB.ObtenerProyectosHoteleria(String.valueOf(idCama), String.valueOf(idDisp), 4);
+                if (Integer.parseInt(aRes[0][27]) != 1){
+                    oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, imagen, Observaciones, 2);
+                }else{
+                    oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, imagen, Observaciones, 1);
+                }
                 finish();
             }
         });
@@ -106,7 +112,7 @@ public class modificarCama extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
+                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, nombreImagen);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
                 startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
             }
@@ -153,7 +159,7 @@ public class modificarCama extends AppCompatActivity {
         }
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE){
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_CAMA" + pID + ".jpg");
         }else {
             return null;
         }
@@ -167,7 +173,7 @@ public class modificarCama extends AppCompatActivity {
         {
             if (resultCode == RESULT_OK){
                 ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);//
-                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
+                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
                 imagen = convertToBase64(bit_map);
                 TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
                 foto.setText(imagen);

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingLeft="3dp" android:paddingRight="3dp">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -232,6 +233,64 @@
                 android:maxLength="500"
                 android:textSize="12sp"/>
 
+            <TextView
+                android:paddingTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Imagen"
+                style="@style/TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <TextView
+                android:paddingTop="5dp"
+                android:id="@+id/TV_Imagen"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:scrollHorizontally="true"
+                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgFoto"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="50"
+                        android:contentDescription="Foto"
+                        android:maxHeight="200dp"
+                        android:maxWidth="200dp"
+                        android:minHeight="200dp"
+                        android:minWidth="200dp"
+                        android:src="@android:drawable/ic_menu_camera"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center">
+
+                    <Button
+                        android:id="@+id/TomarFoto"
+                        style="@style/ButtonStyle2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="@string/tomar_foto" />
+
+                </LinearLayout>
+            </LinearLayout>
 
             <Button
                 android:id="@+id/Guardar"
@@ -239,6 +298,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textStyle="bold"
