@@ -54,7 +54,7 @@
         android:ems="10"
         android:maxLength="100"
         android:paddingBottom="10dp"
-        android:inputType="text" />
+        android:inputType="text"/>
 
     <Button
         android:id="@+id/Guardar"
