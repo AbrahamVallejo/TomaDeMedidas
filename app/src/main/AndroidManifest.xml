@@ -130,11 +130,6 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Crear Area">
         </activity>
-        <activity android:name=".crearGaleria"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Crear Galeria">
-        </activity>
 
         <activity android:name=".modificarCama"
             android:configChanges="orientation|keyboardHidden|screenSize"
