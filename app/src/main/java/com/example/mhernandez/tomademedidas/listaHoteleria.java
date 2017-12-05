@@ -82,7 +82,7 @@ public class listaHoteleria extends AppCompatActivity {
                             rIntent.putExtra("Hojas", aDat[10]);
                             rIntent.putExtra("Control", aDat[18]);
                             rIntent.putExtra("Fijacion", aDat[19]);
-                            rIntent.putExtra("Corredera", aDat[20]);
+                            rIntent.putExtra("Corredera", aDat[30]);
                             rIntent.putExtra("MedidaSugerida", aDat[24]);
                             rIntent.putExtra("Observaciones", aDat[11]);
                             startActivity(rIntent);
@@ -110,7 +110,7 @@ public class listaHoteleria extends AppCompatActivity {
                         if (Integer.parseInt(aDat[23]) !=1){
                             Toast.makeText(listaHoteleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
-                            oDB.cerrarProyectoHoteleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), Integer.parseInt(aDat[23]), 2);
+                            oDB.cerrarProyectoHoteleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), Integer.parseInt(aDat[23]), 3);
                             lista();
                         }
                         customDialog.dismiss();
@@ -194,7 +194,7 @@ public class listaHoteleria extends AppCompatActivity {
     }
 
     public void lista(){
-        String[][] aRef = oDB.ProyectoHoteleriaProyecto(String.valueOf(idProyecto), 2);
+        String[][] aRef = oDB.ProyectoHoteleriaProyecto(String.valueOf(idProyecto), 3);
         String[][] aDataFolio = null;
         if (aRef !=  null){
             aDataFolio = new String[aRef.length][];
@@ -216,7 +216,7 @@ public class listaHoteleria extends AppCompatActivity {
                 aDataFolio[iCnt][13] = aRef[iCnt][13];
                 aDataFolio[iCnt][14] = aRef[iCnt][14];
                 aDataFolio[iCnt][15] = aRef[iCnt][15];
-                aDataFolio[iCnt][16] = aRef[iCnt][16]; Log.v("[FRAGMENT]", "Piso: "+aRef[iCnt][16]);
+                aDataFolio[iCnt][16] = aRef[iCnt][16];
                 aDataFolio[iCnt][17] = aRef[iCnt][17];
                 aDataFolio[iCnt][18] = aRef[iCnt][18];
                 aDataFolio[iCnt][19] = aRef[iCnt][19];

@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -82,8 +83,9 @@ public class medidaHoteleria extends AppCompatActivity {
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date currentTime = Calendar.getInstance().getTime();
-                String FechaAlta = currentTime.toString();
+                Date FechaA = new Date();  Log.v("[fecha]","/Date("+FechaA.getTime()+")/");
+                String FechaAlta = "/Date("+FechaA.getTime()+")/";
+
                 String txtEdificio = Edificio.getText().toString();
                 Integer txtPiso = Integer.parseInt(Piso.getText().toString());
                 String txtHabitacion = Habitacion.getText().toString();
@@ -98,7 +100,7 @@ public class medidaHoteleria extends AppCompatActivity {
                 String OBS = Observaciones.getText().toString();
                 oDB.insertProyectoHoteleria(idHoteleria, idDisp, idProyecto, idProyectoDisp, txtHabitacion,
                         txtArea, txtAncho, txtAlto, txtHojas, OBS, Nombre, imagen, FechaAlta, 2,
-                        txtPiso, txtEdificio, txtControl, txtFijacion, FechaAlta, 1, txtMedidaSugerida, 1, 1, 1, txtCorredera, 1);
+                        txtPiso, txtEdificio, txtControl, txtFijacion, FechaAlta, 1, txtMedidaSugerida, 0, 0, 0, txtCorredera, 1);
                 finish();
             }
         });

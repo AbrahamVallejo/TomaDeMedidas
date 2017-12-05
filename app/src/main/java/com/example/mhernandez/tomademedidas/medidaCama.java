@@ -71,6 +71,7 @@ public class medidaCama extends AppCompatActivity {
             public void onClick(View v) {
                 Date currentTime = Calendar.getInstance().getTime();
                 String FechaAlta = currentTime.toString();
+
                 String numeroHabitacion = NHabitaciones.getText().toString();
                 Double txtA = Double.parseDouble(A.getText().toString());
                 Double txtB = Double.parseDouble(B.getText().toString());
