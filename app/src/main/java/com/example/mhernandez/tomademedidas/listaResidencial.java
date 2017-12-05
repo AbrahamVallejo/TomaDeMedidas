@@ -3,6 +3,7 @@ package com.example.mhernandez.tomademedidas;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -106,7 +107,7 @@ public class listaResidencial extends AppCompatActivity {
                         if (Integer.parseInt(aDat[27]) !=1){
                             Toast.makeText(listaResidencial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
-                            oDB.cerrarProyectoResidencial(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2);
+                            oDB.cerrarProyectoResidencial(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2, 2);
                             lista();
                         }
                         customDialog.dismiss();
@@ -119,7 +120,8 @@ public class listaResidencial extends AppCompatActivity {
                         if (Integer.parseInt(aDat[27]) !=1){
                             Toast.makeText(listaResidencial.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
-                            oDB.deleteProyectoResidencial(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
+                            oDB.cerrarProyectoResidencial(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), Integer.parseInt(aDat[27]), 3);
+                            //oDB.deleteProyectoResidencial(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
                             lista();
                         }
                         customDialog.dismiss();
@@ -169,6 +171,8 @@ public class listaResidencial extends AppCompatActivity {
             TextView txtG = (TextView) rowView.findViewById(R.id.G);
             TextView txtH = (TextView) rowView.findViewById(R.id.H);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
+            TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
+
             txtIDResidencial.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
@@ -185,7 +189,6 @@ public class listaResidencial extends AppCompatActivity {
             txtCorredera.setText(_text[position][36]);
             txtFijacion.setText(_text[position][28]);
             txtObservaciones.setText(_text[position][18]);
-
             txtA.setText(_text[position][5]);
             txtB.setText(_text[position][6]);
             txtC.setText(_text[position][7]);
@@ -199,6 +202,10 @@ public class listaResidencial extends AppCompatActivity {
             }else{
                 txtEstatus.setText("Cerrado");
             }
+            if( Integer.parseInt(_text[position][37]) == 0){
+                checkCliente.setTextColor(Color.rgb(92, 184, 92));
+                checkCliente.setText("Sincronizado");
+            }
             return rowView;
         }
     }
@@ -210,12 +217,12 @@ public class listaResidencial extends AppCompatActivity {
     }
 
     public void lista(){
-        String[][] aRef = oDB.ProyectoResidencialProyecto(String.valueOf(idProyecto), 2);
+        String[][] aRef = oDB.ProyectoResidencialProyecto(String.valueOf(idProyecto), 3);
         String[][] aDataFolio = null;
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
             for (int iCnt = 0; iCnt < aRef.length; iCnt++){
-                aDataFolio[iCnt] = new String[37];
+                aDataFolio[iCnt] = new String[38];
                 aDataFolio[iCnt][0] = aRef[iCnt][0];
                 aDataFolio[iCnt][1] = aRef[iCnt][1];
                 aDataFolio[iCnt][2] = aRef[iCnt][2];
@@ -253,6 +260,7 @@ public class listaResidencial extends AppCompatActivity {
                 aDataFolio[iCnt][34] = aRef[iCnt][34];
                 aDataFolio[iCnt][35] = aRef[iCnt][35];
                 aDataFolio[iCnt][36] = aRef[iCnt][36];
+                aDataFolio[iCnt][37] = aRef[iCnt][37];
             }
             ListView list;
             list = (ListView) this.findViewById(R.id.lista);

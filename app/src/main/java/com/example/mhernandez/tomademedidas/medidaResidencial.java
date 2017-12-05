@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -84,8 +85,9 @@ public class medidaResidencial extends AppCompatActivity {
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date currentTime = Calendar.getInstance().getTime();
-                String FechaAlta = currentTime.toString();
+                Date FechaA = new Date();
+                String FechaAlta = "/Date("+FechaA.getTime()+")/";
+
                 String txtUbicacion = Ubicacion.getSelectedItem().toString();
                 String txtPiso = Piso.getText().toString();
                 Double txtA = Double.parseDouble(A.getText().toString());
@@ -111,7 +113,7 @@ public class medidaResidencial extends AppCompatActivity {
                 oDB.insertProyectoResidencial(idResidencial, idDisp, idProyecto, idProyectoDisp, txtUbicacion, txtA, txtB, txtC, txtD,
                         txtE, txtF, txtG, txtH, txtProfMarco, txtProfJaladera, txtControl, txtAgpto, txtMedidasSugerida, txtObservaciones,
                         imagen, Nombre, FechaAlta, 1, FechaAlta, 1, txtFijacion, txtPiso, 1,
-                        1, 1, txtCorredera);
+                        1, 1, txtCorredera, 1);
                 finish();
             }
         });

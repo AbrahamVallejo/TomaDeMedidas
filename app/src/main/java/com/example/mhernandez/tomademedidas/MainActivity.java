@@ -622,11 +622,12 @@ public class MainActivity extends AppCompatActivity
 
     /* Funciones de Sincronización */
     public void Sincronizar(){
+        String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
+        String[][] aux2 = MainActivity.oDB.ObtenerUbicacion("0",2);
+
         boolean aux = isOnlineNet();
         if (aux != false) {
             if(UBICACION==2 || UBICACION ==1){
-                String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
-                String[][] aux2 = MainActivity.oDB.ObtenerUbicacion("0",2);
                 if (aux1.length >= 1){
                     Sincliente();}
                 if (aux2.length >= 1){
@@ -636,23 +637,28 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent(this, MainActivity.class); finish();
                 startActivity(intent);
             }
-            if(UBICACION==4 || UBICACION ==3){
-                String[][] aux3 = MainActivity.oDB.ObtenerProyectos("0",2);
-                if (aux3.length >=1){
-                    SinProyecto();}
+            else if(UBICACION==4 || UBICACION ==3){
+                if((aux1.length + aux2.length)>=1){
+                    Toast.makeText(this, "Sincronización Clientes Requerida", Toast.LENGTH_LONG).show();}
+                else{
+                        String[][] aux3 = MainActivity.oDB.ObtenerProyectos("0",2);
+                        if (aux3.length >=1){
+                            SinProyecto();}
 
-                class MiThread extends Thread {
-                    @Override
-                    public void run() {
-                        SinProyectoCama();
-                        SinProyectoHotel();
-                    }
+                        class MiThread extends Thread {
+                            @Override
+                            public void run() {
+                                SinProyectoCama();
+                                SinProyectoHotel();
+                                SinProyectoResidencial();
+                            }
+                        }
+                        MiThread hilo = new MiThread(); hilo.start();
+
+                        Toast.makeText(this, "Sincronización Completa", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(this, MainActivity.class); finish();
+                        startActivity(intent);
                 }
-                MiThread hilo = new MiThread(); hilo.start();
-
-                Toast.makeText(this, "Sincronización Completa", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, MainActivity.class); finish();
-                startActivity(intent);
             }
         }
         else {
@@ -888,6 +894,56 @@ public class MainActivity extends AppCompatActivity
                             oNS.execute("sincPro_Hotel", "3", aux1[i][0], aux1[i][1] );
                         }
                     }
+    }
+
+    public void SinProyectoResidencial(){
+        String [][] aux1 = MainActivity.oDB.ObtenerProyectosResidencial("0","0", 2);
+        Log.v("[add]","Residencial Sinc = "+aux1.length );
+
+        for (int i =0; i < aux1.length; i++) {
+            if (Integer.valueOf(aux1[i][37]) == 1) {
+                Log.v("[add]","Entre al if Insertar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                        /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADD-PROYECTO HOTEL!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Residencial", "1", aux1[i][0], aux1[i][1] );
+            }
+            else if (Integer.valueOf(aux1[i][37]) == 2) {
+                Log.v("[add]","Entre al if Modificar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES MODIFY-PROYECTO HOTEL!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Residencial", "2", aux1[i][0], aux1[i][1] );
+            }
+            else if (Integer.valueOf(aux1[i][37]) == 3) {
+                Log.v("[add]","Entre al if Eliminar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES DELETE-PROYECTO HOTEL!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Residencial", "3", aux1[i][0], aux1[i][1] );
+            }
+        }
     }
 
     /* Funcion Para Descargar Datos Del Web Services */
