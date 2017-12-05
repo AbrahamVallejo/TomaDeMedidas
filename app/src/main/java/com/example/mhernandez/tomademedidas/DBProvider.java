@@ -1599,7 +1599,7 @@ public class DBProvider {
         }
 
         aRS.close();
-        CloseDB();              Log.v("[obtener]","Llevo todos los proyectos!!!");
+        CloseDB();
         return (aData);
     }
 
@@ -1828,7 +1828,7 @@ public class DBProvider {
         }
 
         aRS.close();
-        CloseDB();
+        CloseDB(); Log.v("[add]", "Llevo todos los pro- Hoteleria");
         return (aData);
     }
 
