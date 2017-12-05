@@ -733,18 +733,15 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         else if(urls[0] == "sincPro_Hotel"){                        Log.v("[add]","Voy a Sincronizar en WS Hotel "+urls[1] );
             try{
                 String IMAGEN ="";
-                String[][] aref = MainActivity.oDB.ObtenerProyectosHoteleria( urls[2], urls[3], 2);
-                Log.v("[add]","1: "+aref.toString() );
+                String[][] aref = MainActivity.oDB.ObtenerProyectosHoteleria( urls[2], urls[3], 4);
+                Log.v("[add]","1: "+aref[0][1] );
                 JSONObject json = new JSONObject();         JSONObject proyecto = new JSONObject();
-                try {
                     proyecto.put("id_hoteleria", aref[0][0] );          proyecto.put("id_disp", aref[0][1] );
                     proyecto.put("id_proyecto", aref[0][2] );           proyecto.put("id_proyecto_disp", aref[0][3] );
-                Log.v("[add]","1: "+proyecto.toString() );
                     proyecto.put("habitacion", aref[0][6]);             proyecto.put("area", aref[0][7] );
                     proyecto.put("alto", aref[0][9] );                  proyecto.put("ancho", aref[0][8] );
-                    proyecto.put("hojas", aref[0][10] );                 proyecto.put("observaciones", aref[0][11] );
-                    proyecto.put("nombre_proyecto", aref[0][12] );
-                Log.v("[add]","2: "+proyecto.toString() );
+                    proyecto.put("hojas", aref[0][10] );                proyecto.put("observaciones", aref[0][11] );
+                    proyecto.put("nombre_proyecto", aref[0][12] );      proyecto.put("fijacion", aref[0][19] );
                     proyecto.put("formato", aref[0][15] );              proyecto.put("piso", aref[0][16] );
                     proyecto.put("edificio", aref[0][17] );             proyecto.put("control", aref[0][18] );
                     proyecto.put("id_usuario_alta", aref[0][21] );      proyecto.put("id_estatus", aref[0][23] );
@@ -753,47 +750,40 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     if ( aref[0][14].indexOf("D") >= 1){  proyecto.put("fecha", aref[0][14] ); }
                     if ( aref[0][13].length() > 60){      IMAGEN =RUTA_IMG+"IMG_Hoteleria"+aref[0][0]+aref[0][1] ;
                         proyecto.put("aImg", IMAGEN ); }
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                json.put("proyectoHoteleria",proyecto);  Log.v("[add]","2: "+json.toString() );
+
+                json.put("proyectoHoteleria",proyecto);  Log.v("[add]","::: "+json.toString() );
                 if (aref[0][13].length() >60){
                     sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][12], "IMG_Hoteleria"+aref[0][0]+aref[0][1]);
                 }
-                sResp= sResp.trim(); Log.v("[add]", sResp + ":"+sResp.length() +" o img="+aref[0][12].length());
-                if (aref[0][12].length() < 50 || sResp.equalsIgnoreCase("OK")) {
-                    Log.v("[add]", "Entre aqui");
+                sResp= sResp.trim();
+                if (aref[0][12].length() < 50 || sResp.equalsIgnoreCase("OK")) {    Log.v("[add]", "Entre aqui y voy al "+urls[1]);
+
                     if (Integer.parseInt(urls[1]) == 1) {
-                        sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_hoteleria.svc/addproyecto", json.toString());
-                        Log.v("[add]", "Tam: " + sResp.length() + " Ca: " + sResp);
+                        String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_hoteleria.svc/addproyecto", json.toString());
+                        Log.v("[add]", "Tam: " + Resp.length() + " Ca: " + Resp);
                         if (sResp.length() == 6) {
                             Log.v("[add]", "Retorno nulo");
-                        } else {/*
-                            MainActivity.oDB.updateProyectoCama(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][4], Double.parseDouble(aref[0][5]),
-                                    Double.parseDouble(aref[0][6]), Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), Double.parseDouble(aref[0][9]),
-                                    Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][15]), IMAGEN, aref[0][16], 0);
-                                    */
+                        } else {
+                            MainActivity.oDB.updateProyectoHoteleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][6], aref[0][7], Double.parseDouble(aref[0][8]),
+                                    Double.parseDouble(aref[0][9]), aref[0][10], aref[0][12], aref[0][11], aref[0][16], aref[0][17], aref[0][18], aref[0][19], aref[0][24], aref[0][30],0);
                         }
                     } else if (Integer.parseInt(urls[1]) == 2) {
-                        sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_hoteleria.svc/modifyproyecto", json.toString());
-                        Log.v("[add]", "Tam: " + sResp.length() + " Ca: " + sResp);
+                        String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_hoteleria.svc/modifyproyecto", json.toString());
+                        Log.v("[add]", "Tam: " + Resp.length() + " Ca: " + Resp);
                         if (sResp.length() == 6) {
                             Log.v("[add]", "Retorno nulo");
-                        } else {/*
-                            MainActivity.oDB.updateProyectoCama(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][4], Double.parseDouble(aref[0][5]),
-                                    Double.parseDouble(aref[0][6]), Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), Double.parseDouble(aref[0][9]),
-                                    Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][15]), IMAGEN, aref[0][16], 0);
-                                    */
+                        } else {
+                            MainActivity.oDB.updateProyectoHoteleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][6], aref[0][7], Double.parseDouble(aref[0][8]),
+                                    Double.parseDouble(aref[0][9]), aref[0][10], aref[0][12], aref[0][11], aref[0][16], aref[0][17], aref[0][18], aref[0][19], aref[0][24], aref[0][30],0);
                         }
                     } else if (Integer.parseInt(urls[1]) == 3) {
                         sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_hoteleria.svc/deleteproyecto", json.toString());
                         Log.v("[add]", "Tam: " + sResp.length() + " Ca: " + sResp);
                         if (sResp.length() == 0) {
                             Log.v("[add]", "Retorno nulo");
-                            //MainActivity.oDB.cerrarProyectoCama(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][20]), 0);
+                            MainActivity.oDB.cerrarProyectoHoteleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][23]), 3);
                         } else {
-                            //MainActivity.oDB.deleteProyectoCama(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]));
+                            MainActivity.oDB.cerrarProyectoHoteleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][23]), 0);
                         }
                     }
                 }

@@ -894,9 +894,11 @@ public class MainActivity extends AppCompatActivity
     public void descargarWS(){
         String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
         String[][] aux3 = MainActivity.oDB.ObtenerUbicacion("0",2);
+
         String[][] aux2 = MainActivity.oDB.ObtenerProyectos("0",2);
         String[][] aux4 = MainActivity.oDB.ObtenerProyectosCama("0","0", 2);
-        int var = aux2.length + aux4.length;
+        String [][] aux5 = MainActivity.oDB.ObtenerProyectosHoteleria("0","0", 2);
+        int var = aux2.length + aux4.length+ aux5.length;
 
         if((aux1.length + aux3.length) >= 1){
             Toast.makeText(this, "Sincronización Clientes Requerida", Toast.LENGTH_LONG).show();
