@@ -27,6 +27,7 @@ public class cama extends AppCompatActivity{
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final String APP_PATH = "TomaMedidas";
     private Uri fileUri;
+    int auxFoto=0;
     String nombreImagen="1";
     String imagen = "";
 
@@ -69,6 +70,7 @@ public class cama extends AppCompatActivity{
         final int idDisp = Integer.parseInt(aRefD[(0)][0]);
         nombreImagen=""+idProyecto+idDisp;
 
+        Button Imagenes = (Button) this.findViewById(R.id.TomarFoto);
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(
                 new View.OnClickListener(){
@@ -94,7 +96,6 @@ public class cama extends AppCompatActivity{
                 }
         );
 
-        Button botonCamara = ((Button) this.findViewById(R.id.TomarFoto));
         ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
         final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
 
@@ -107,15 +108,43 @@ public class cama extends AppCompatActivity{
             }
         }
 
-        ((Button) botonCamara.findViewById(R.id.TomarFoto)).setOnClickListener(new View.OnClickListener() {
+
+        Imagenes.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, nombreImagen);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+            public void onClick(View v) {
+                customDialog = new Dialog(cama.this, R.style.Theme_Dialog_Translucent);
+                customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                customDialog.setContentView(R.layout.menu_tabla_imagenes);
+
+                ((Button) customDialog.findViewById(R.id.btnCamara)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent rIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, nombreImagen);
+                        rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                        startActivityForResult(rIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                        customDialog.dismiss();
+                    }
+                });
+
+                ((Button) customDialog.findViewById(R.id.btnGaleria)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        auxFoto=2;
+                        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                        startActivityForResult(gallery, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                        customDialog.dismiss();
+                        /*
+                        Intent rIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, "");
+                        rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                        startActivityForResult(rIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);   */
+                    }
+                });
+                customDialog.show();
             }
         });
+
 
     }
 
@@ -211,25 +240,42 @@ public class cama extends AppCompatActivity{
         return mediaFile;
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
         {
-            if (resultCode == RESULT_OK){
-                ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);//
-                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
-                imagen = convertToBase64(bit_map);
-                TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-                foto.setText(imagen);
-                oImg.setImageBitmap(bit_map);//
-            }else if(resultCode == RESULT_CANCELED){
-                // User cancelled the image capture
-            }else {
-                //Image capture failed, advise user
+            if (auxFoto==2) {
+                if(resultCode == RESULT_OK && requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
+                    fileUri = data.getData();
+                    ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
+                    oImg.setImageURI(fileUri);
+                    //Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
+                    TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+                    oImg.buildDrawingCache();
+                    Bitmap bit_map = oImg.getDrawingCache();
+                    imagen = convertToBase64(bit_map);
+                    foto.setText(imagen);
+                }
+            }
+            else {
+                if (resultCode == RESULT_OK){
+                    ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);//
+                    Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
+                    imagen = convertToBase64(bit_map);
+                    TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+                    foto.setText(imagen);
+                    oImg.setImageBitmap(bit_map);//
+                }else if(resultCode == RESULT_CANCELED){
+                    // User cancelled the image capture
+                }else {
+                    //Image capture failed, advise user
+                }
             }
         }
     }
+
 
     private String convertToBase64(Bitmap imagenMap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

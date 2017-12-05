@@ -48,7 +48,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="Seleccionar imagenes"
+        android:text="Seleccionar imagen"
         style="@style/ButtonStyle2"
         android:textStyle="bold"/>
     
