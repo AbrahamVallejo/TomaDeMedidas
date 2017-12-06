@@ -168,7 +168,7 @@ public class listaCama extends AppCompatActivity {
                 txtEstatus.setText("Activo");
             }else{
                 txtEstatus.setText("Cerrado");
-            } Log.v("[ob","Sinc: "+_text[position][27]);
+            }
             if( Integer.parseInt(_text[position][27]) == 0){
                 checkCliente.setTextColor(Color.rgb(92, 184, 92));
                 checkCliente.setText("Sincronizado");
