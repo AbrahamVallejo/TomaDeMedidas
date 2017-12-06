@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,8 +81,11 @@ public class medidaGaleria extends AppCompatActivity {
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date currentTime = Calendar.getInstance().getTime();
-                String FechaAlta = currentTime.toString();
+                Date FechaA = new Date();  Log.v("[fecha]","/Date("+FechaA.getTime()+")/");
+                String FechaAlta = "/Date("+FechaA.getTime()+")/";
+                String[][] users = MainActivity.oDB.ObtenerUser("0",3);
+                final int usuario = Integer.parseInt(users[0][0]);
+
                 String numeroHabitaciones = NHabitaciones.getText().toString();
                 String txtArea  = Area.getSelectedItem().toString();
                 Double txtAncho = Double.parseDouble(Ancho.getText().toString());
@@ -94,7 +98,7 @@ public class medidaGaleria extends AppCompatActivity {
                 int idGaleria = Integer.parseInt(aRefG[(0)][0]) + 1;
                 oDB.insertProyectoGaleria(idGaleria, idDisp, idProyecto, idProyectoDisp, FechaAlta, numeroHabitaciones, txtArea,
                         txtAncho, txtAlto, txtCopete, txtProyecciones, txtFijacion, OBS, Nombre, imagen,
-                        3, FechaAlta, 1, 1, 1, 1);
+                        3, FechaAlta, 1, 0, usuario, 0, 1);
                 finish();
             }
         });
@@ -180,8 +184,7 @@ public class medidaGaleria extends AppCompatActivity {
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione una ubicación...";
         for(int i = 0; i < aRes.length; i++){
-            String inde = String.valueOf(aRes[i][0]);
-            aData[i+1] = (inde+" - "+aRes[i][2]);
+            aData[i+1] = (aRes[i][2]);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spArea.setAdapter(adapter);
@@ -193,8 +196,7 @@ public class medidaGaleria extends AppCompatActivity {
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un valor...";
         for(int i = 0; i < aRes.length; i++){
-            String inde = String.valueOf(aRes[i][0]);
-            aData[i+1] = (inde+" - "+aRes[i][1]);
+            aData[i+1] = (aRes[i][1]);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spCopete.setAdapter(adapter);
@@ -206,8 +208,7 @@ public class medidaGaleria extends AppCompatActivity {
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un lado...";
         for(int i = 0; i < aRes.length; i++){
-            String inde = String.valueOf(aRes[i][0]);
-            aData[i+1] = (inde+" - "+aRes[i][1]);
+            aData[i+1] = (aRes[i][1]);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spFijacion.setAdapter(adapter);
@@ -219,8 +220,7 @@ public class medidaGaleria extends AppCompatActivity {
         final String[] aData = new String[aRes.length+1];
         aData[0]="Seleccione un valor...";
         for(int i = 0; i < aRes.length; i++){
-            String inde = String.valueOf(aRes[i][0]);
-            aData[i+1] = (inde+" - "+aRes[i][1]);
+            aData[i+1] = (aRes[i][1]);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,aData);
         spProye.setAdapter(adapter);

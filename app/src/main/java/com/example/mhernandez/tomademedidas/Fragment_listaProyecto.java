@@ -189,7 +189,6 @@ public class Fragment_listaProyecto extends Fragment {
                             MainActivity.oDB.cerrarProyecto(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), Integer.parseInt(aDat[10]), 5,"/Date("+FechaCierre.getTime()+")/", 3);
                             Toast.makeText(getActivity(), "PROYECTO CERRADO", Toast.LENGTH_SHORT).show();
                         }
-                        Toast.makeText(getActivity(), "PROYECTO CERRADO", Toast.LENGTH_SHORT).show();
                         lista();
                     }
                 });
