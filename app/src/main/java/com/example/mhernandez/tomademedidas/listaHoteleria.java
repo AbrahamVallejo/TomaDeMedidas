@@ -85,6 +85,7 @@ public class listaHoteleria extends AppCompatActivity {
                             rIntent.putExtra("Corredera", aDat[30]);
                             rIntent.putExtra("MedidaSugerida", aDat[24]);
                             rIntent.putExtra("Observaciones", aDat[11]);
+                            rIntent.putExtra("Aimg", aDat[13]);
                             startActivity(rIntent);
                         }
                         customDialog.dismiss();
@@ -155,6 +156,7 @@ public class listaHoteleria extends AppCompatActivity {
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             TextView txtMedidaSugerida = (TextView) rowView.findViewById(R.id.MedidaSugerida);
             TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
+            TextView Aimg = (TextView) rowView.findViewById(R.id.Aimg);
             txtMedidaSugerida.setText(_text[position][24]);
             txtIDHoteleria.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
@@ -182,6 +184,8 @@ public class listaHoteleria extends AppCompatActivity {
                 checkCliente.setTextColor(Color.rgb(92, 184, 92));
                 checkCliente.setText("Sincronizado");
             }
+
+            Aimg.setText(_text[position][13]);
 
             return rowView;
         }

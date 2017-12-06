@@ -28,6 +28,7 @@ public class modificarResidencial extends AppCompatActivity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final String APP_PATH = "droidBH";
+    int auxFoto=0;
     private Uri fileUri;
     String sID;
     String imagen = "";
@@ -60,6 +61,7 @@ public class modificarResidencial extends AppCompatActivity {
         String F = oExt.getString("F");
         String G = oExt.getString("G");
         String H = oExt.getString("H");
+        String Aimg = oExt.getString("Aimg");
         final Spinner txtUbicacion = (Spinner) this.findViewById(R.id.spinner_ubicacion);
         final EditText txtPiso = (EditText) this.findViewById(R.id.txtPiso);
         final EditText txtA = (EditText) this.findViewById(R.id.txtA);
@@ -92,6 +94,8 @@ public class modificarResidencial extends AppCompatActivity {
         txtProfJaladera.setText(ProfJaladera.trim());
         txtMedidaSugerida.setText(MedidaSugerida.trim());
         txtObservaciones.setText(Observaciones.trim());
+        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+        foto.setText(Aimg);
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,8 +117,9 @@ public class modificarResidencial extends AppCompatActivity {
                 Double F = Double.parseDouble(txtF.getText().toString());
                 Double G = Double.parseDouble(txtG.getText().toString());
                 Double H = Double.parseDouble(txtH.getText().toString());
+                String AIMG = foto.getText().toString();
                 oDB.updateProyectoResidencial(idResidencial, idDisp, Ubicacion, A, B, C, D , E, F, G, H,
-                        ProfMarco, ProfJaladera, Control, Agpto, MedidaSugerida, imagen, Observaciones, Fijacion, Piso, Corredera, 2);
+                        ProfMarco, ProfJaladera, Control, Agpto, MedidaSugerida, AIMG, Observaciones, Fijacion, Piso, Corredera, 2);
                 finish();
             }
         });
@@ -128,25 +133,42 @@ public class modificarResidencial extends AppCompatActivity {
         });
 
 
-        Button botonCamara = ((Button) this.findViewById(R.id.TomarFoto));
+        Button Imagenes = ((Button) this.findViewById(R.id.TomarFoto));
         ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
-        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
 
-        if(savedInstanceState != null)
-        {   fileUri = savedInstanceState.getParcelable("uri");
-            if(fileUri != null)
-            {   Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(savedInstanceState.getString("foto"),200,200);
-                oImg.setImageBitmap(bit_map);
-                foto.setText(imagen);   }
-        }
-
-        ((Button) botonCamara.findViewById(R.id.TomarFoto)).setOnClickListener(new View.OnClickListener() {
+        Imagenes.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+            public void onClick(View v) {
+                customDialog = new Dialog(modificarResidencial.this, R.style.Theme_Dialog_Translucent);
+                customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                customDialog.setContentView(R.layout.menu_tabla_imagenes);
+
+                ((Button) customDialog.findViewById(R.id.btnCamara)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent rIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
+                        rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                        startActivityForResult(rIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                        customDialog.dismiss();
+                    }
+                });
+
+                ((Button) customDialog.findViewById(R.id.btnGaleria)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        auxFoto=2;
+                        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                        startActivityForResult(gallery, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                        customDialog.dismiss();
+                        /*
+                        Intent rIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, "");
+                        rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                        startActivityForResult(rIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);   */
+                    }
+                });
+                customDialog.show();
             }
         });
 
@@ -252,6 +274,53 @@ public class modificarResidencial extends AppCompatActivity {
     }
 
     //Funciones para Camara
+    // TODO: Rename method, update argument and hook method into UI event
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        if (fileUri != null) {
+            savedInstanceState.putParcelable("uri", fileUri);
+            savedInstanceState.getString("foto", fileUri.getPath());
+        }
+        super.onSaveInstanceState(savedInstanceState);
+    }
+    /*
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }*/
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
+
     private static Uri getOutputMediaFileUri(int type, String pID){
         return Uri.fromFile(getOutputMediaFile(type,pID));
     }
@@ -266,32 +335,49 @@ public class modificarResidencial extends AppCompatActivity {
         }
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE){
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + pID + ".jpg");
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_RESIDENCIAL" + pID + ".jpg");
         }else {
             return null;
         }
         return mediaFile;
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
         {
-            if (resultCode == RESULT_OK){
-                ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);//
-                Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(), 200, 200);
-                imagen = convertToBase64(bit_map);
-                TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-                foto.setText(imagen);
-                oImg.setImageBitmap(bit_map);//
-            }else if(resultCode == RESULT_CANCELED){
-                // User cancelled the image capture
-            }else {
-                //Image capture failed, advise user
+            if (auxFoto==2) {
+                if(resultCode == RESULT_OK && requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
+                    fileUri = data.getData();
+                    ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
+                    oImg.setImageURI(fileUri);
+                    //Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
+                    TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+                    oImg.buildDrawingCache();
+                    Bitmap bit_map = oImg.getDrawingCache();
+                    imagen = convertToBase64(bit_map);
+                    foto.setText(imagen);
+                }
+            }
+            else {
+                if (resultCode == RESULT_OK){
+                    ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);//
+                    Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
+                    imagen = convertToBase64(bit_map);
+                    TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+                    foto.setText(imagen);
+                    oImg.setImageBitmap(bit_map);//
+                }else if(resultCode == RESULT_CANCELED){
+                    // User cancelled the image capture
+                }else {
+                    //Image capture failed, advise user
+                }
             }
         }
     }
+
 
     private String convertToBase64(Bitmap imagenMap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -300,5 +386,4 @@ public class modificarResidencial extends AppCompatActivity {
         String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
         return encodedImage;
     }
-
 }
