@@ -108,7 +108,7 @@ public class galeria extends AppCompatActivity {
                                            0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, idUsuarioVenta, Agente, 1);
                         oDB.insertProyectoGaleria(idGaleria, idDisp, idProyecto, idDisp, FechaAlta, numeroHabitaciones, txtArea,
                                 txtAncho, txtAlto, txtCopete, txtProyecciones, txtFijacion, txtComentarios, nombreProyecto, imagen,
-                                idFormato, FechaAlta, 1, 0, 0, 0);
+                                idFormato, FechaAlta, 1, 0, 0, 0, 1);
                         Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(rIntent);
                     }

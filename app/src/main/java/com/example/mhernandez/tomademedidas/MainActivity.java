@@ -641,10 +641,6 @@ public class MainActivity extends AppCompatActivity
                 if((aux1.length + aux2.length)>=1){
                     Toast.makeText(this, "Sincronización Clientes Requerida", Toast.LENGTH_LONG).show();}
                 else{
-                        String[][] aux3 = MainActivity.oDB.ObtenerProyectos("0",2);
-                        if (aux3.length >=1){
-                            SinProyecto();}
-
                         class MiThread extends Thread {
                             @Override
                             public void run() {
@@ -652,13 +648,17 @@ public class MainActivity extends AppCompatActivity
                                 SinProyectoHotel();
                                 SinProyectoResidencial();
                                 SinProyectoEspecial();
+                                SinProyectoGaleria();
                             }
                         }
-                        MiThread hilo = new MiThread(); hilo.start();
+                    int pro = SinProyecto();
+                        if (pro ==1){
+                            MiThread hilo = new MiThread(); hilo.start();
 
-                        Toast.makeText(this, "Sincronización Completa", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(this, MainActivity.class); finish();
-                        startActivity(intent);
+                            Toast.makeText(this, "Sincronización Completa", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(this, MainActivity.class); finish();
+                            startActivity(intent);
+                        }
                 }
             }
         }
@@ -740,7 +740,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void SinProyecto(){
+    public int SinProyecto(){
         String[][] aux1 = MainActivity.oDB.ObtenerProyectos("0",2);
         Log.v("[add]","Tengo: "+aux1.length );
 
@@ -789,6 +789,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
         Toast.makeText(this, "Proyectos Sincronizados", Toast.LENGTH_SHORT).show();
+        return 1;
     }
 
     public void SinProyectoCama(){
@@ -997,6 +998,56 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void SinProyectoGaleria(){
+        String [][] aux1 = MainActivity.oDB.ObtenerProyectosGaleria("0","0", 2);
+        Log.v("[add]","Galeria Sinc = "+aux1.length );
+
+        for (int i =0; i < aux1.length; i++) {
+            if (Integer.valueOf(aux1[i][26]) == 1) {
+                Log.v("[add]","Entre al if Insertar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                        /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADD-GALERIA!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Galeria", "1", aux1[i][0], aux1[i][1] );
+            }
+            else if (Integer.valueOf(aux1[i][26]) == 2) {
+                Log.v("[add]","Entre al if Modificar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES MODIFY-GALERIA!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Galeria", "2", aux1[i][0], aux1[i][1] );
+            }
+            else if (Integer.valueOf(aux1[i][26]) == 3) {
+                Log.v("[add]","Entre al if Eliminar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES DELETE-GALERIA !", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Galeria", "3", aux1[i][0], aux1[i][1] );
+            }
+        }
+    }
+
     /* Funcion Para Descargar Datos Del Web Services */
     public void descargarWS(){
         String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
@@ -1005,6 +1056,8 @@ public class MainActivity extends AppCompatActivity
         String[][] aux2 = MainActivity.oDB.ObtenerProyectos("0",2);
         String[][] aux4 = MainActivity.oDB.ObtenerProyectosCama("0","0", 2);
         String [][] aux5 = MainActivity.oDB.ObtenerProyectosHoteleria("0","0", 2);
+        //String [][] aux6 = MainActivity.oDB.ObtenerProyectosEspecial("0","0", 2);
+        //String [][] aux7 = MainActivity.oDB.ObtenerProyectosGaleria("0","0", 2);
         int var = aux2.length + aux4.length+ aux5.length;
 
         if((aux1.length + aux3.length) >= 1){
