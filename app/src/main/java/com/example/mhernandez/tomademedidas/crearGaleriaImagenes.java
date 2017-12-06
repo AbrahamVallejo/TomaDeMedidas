@@ -16,9 +16,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.Objects;
 
 /**
  * Created by mhernandez on 28/11/2017.
@@ -109,12 +111,16 @@ public class crearGaleriaImagenes extends AppCompatActivity {
             public void onClick(View v) {
                 String tipoFoto = Tipo.getSelectedItem().toString();
                 String txtDescripcion = descripcion.getText().toString();
-                if (tipoFoto == "Antes"){
+                if (Objects.equals(tipoFoto, "Antes")){
                     int tipoImagen = 1;
                     oDB.insertProyectoImagen(idImagen, idDisp, idProyecto, idProyectoDisp, tipoImagen,txtDescripcion, Nombre, imagen, Formato);
-                }else if(tipoFoto == "Despues"){
+                    Toast.makeText(crearGaleriaImagenes.this, "Galeria Guardada", Toast.LENGTH_LONG).show();
+                    finish();
+                }else if(Objects.equals(tipoFoto, "Despues")){
                     int tipoImagen = 2;
                     oDB.insertProyectoImagen(idImagen, idDisp, idProyecto, idProyectoDisp, tipoImagen,txtDescripcion, Nombre, imagen, Formato);
+                    Toast.makeText(crearGaleriaImagenes.this, "Galeria Guardada", Toast.LENGTH_LONG).show();
+                    finish();
                 }
             }
         });
