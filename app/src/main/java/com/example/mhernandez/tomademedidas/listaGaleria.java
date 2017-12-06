@@ -83,6 +83,7 @@ public class listaGaleria extends AppCompatActivity {
                             rIntent.putExtra("Proyecciones", aDat[10]);
                             rIntent.putExtra("Fijacion", aDat[11]);
                             rIntent.putExtra("Comentarios", aDat[12]);
+                            rIntent.putExtra("Aimg", aDat[14]);
                             startActivity(rIntent);
                         }
                         customDialog.dismiss();
@@ -153,6 +154,7 @@ public class listaGaleria extends AppCompatActivity {
             TextView txtFijacion = (TextView) rowView.findViewById(R.id.Fijacion);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
+            TextView Aimg = (TextView) rowView.findViewById(R.id.Aimg);
 
             if ( _text[position][4].indexOf("T") != 10){
                 txtFecha.setText("no disponible" );
@@ -183,6 +185,8 @@ public class listaGaleria extends AppCompatActivity {
                 checkCliente.setTextColor(Color.rgb(92, 184, 92));
                 checkCliente.setText("Sincronizado");
             }
+
+            Aimg.setText(_text[position][14]);
 
             return rowView;
         }

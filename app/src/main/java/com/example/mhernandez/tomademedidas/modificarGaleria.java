@@ -56,6 +56,7 @@ public class modificarGaleria extends AppCompatActivity {
         String Ancho = oExt.getString("Ancho");
         String Alto = oExt.getString("Alto");
         String Comentarios = oExt.getString("Comentarios");
+        String Aimg = oExt.getString("Aimg");
         final EditText txtNHabitaciones = (EditText) findViewById(R.id.txt_numero_habitaciones);
         final Spinner txtArea = (Spinner) findViewById(R.id.spinner_area);
         final EditText txtAncho = (EditText) findViewById(R.id.txt_ancho);
@@ -69,6 +70,8 @@ public class modificarGaleria extends AppCompatActivity {
         txtAncho.setText(Ancho.trim());
         txtAlto.setText(Alto.trim());
         txtComentarios.setText(Comentarios.trim());
+        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+        foto.setText(Aimg);
         Button Imagenes = (Button) this.findViewById(R.id.TomarFoto);
 
         Guardar.setOnClickListener(new View.OnClickListener() {
@@ -82,14 +85,14 @@ public class modificarGaleria extends AppCompatActivity {
                 String Proyecciones = txtProyecciones.getSelectedItem().toString();
                 String Fijacion =  txtFijacion.getSelectedItem().toString();
                 String Comentarios = txtComentarios.getText().toString();
-                oDB.updateProyectoGaleria(idGaleria, idDisp, NHabitaciones, Area, Ancho, Alto, Copete, Proyecciones, Fijacion, imagen, Comentarios);
+                String AIMG = foto.getText().toString();
+                oDB.updateProyectoGaleria(idGaleria, idDisp, NHabitaciones, Area, Ancho, Alto, Copete, Proyecciones, Fijacion, AIMG, Comentarios, 2);
                 finish();
             }
         });
 
 
         ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
-        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
 
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");

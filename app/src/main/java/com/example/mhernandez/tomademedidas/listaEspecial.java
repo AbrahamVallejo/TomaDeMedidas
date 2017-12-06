@@ -75,6 +75,7 @@ public class listaEspecial extends AppCompatActivity {
                         rIntent.putExtra("Ancho", aDat[6]);
                         rIntent.putExtra("Grosor", aDat[7]);
                         rIntent.putExtra("Observaciones", aDat[8]);
+                        rIntent.putExtra("Aimg", aDat[9]);
                         startActivity(rIntent);
                         }
                         customDialog.dismiss();
@@ -139,6 +140,7 @@ public class listaEspecial extends AppCompatActivity {
             TextView txtObservaciones = (TextView) rowView.findViewById(R.id.Observaciones);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
+            TextView Aimg = (TextView) rowView.findViewById(R.id.Aimg);
             txtIDEspeciales.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
@@ -159,6 +161,9 @@ public class listaEspecial extends AppCompatActivity {
                 checkCliente.setTextColor(Color.rgb(92, 184, 92));
                 checkCliente.setText("Sincronizado");
             }
+
+            Aimg.setText(_text[position][9]);
+
             return rowView;
         }
     }

@@ -61,6 +61,7 @@ public class modificarResidencial extends AppCompatActivity {
         String F = oExt.getString("F");
         String G = oExt.getString("G");
         String H = oExt.getString("H");
+        String Aimg = oExt.getString("Aimg");
         final Spinner txtUbicacion = (Spinner) this.findViewById(R.id.spinner_ubicacion);
         final EditText txtPiso = (EditText) this.findViewById(R.id.txtPiso);
         final EditText txtA = (EditText) this.findViewById(R.id.txtA);
@@ -93,6 +94,8 @@ public class modificarResidencial extends AppCompatActivity {
         txtProfJaladera.setText(ProfJaladera.trim());
         txtMedidaSugerida.setText(MedidaSugerida.trim());
         txtObservaciones.setText(Observaciones.trim());
+        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+        foto.setText(Aimg);
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,8 +117,9 @@ public class modificarResidencial extends AppCompatActivity {
                 Double F = Double.parseDouble(txtF.getText().toString());
                 Double G = Double.parseDouble(txtG.getText().toString());
                 Double H = Double.parseDouble(txtH.getText().toString());
+                String AIMG = foto.getText().toString();
                 oDB.updateProyectoResidencial(idResidencial, idDisp, Ubicacion, A, B, C, D , E, F, G, H,
-                        ProfMarco, ProfJaladera, Control, Agpto, MedidaSugerida, imagen, Observaciones, Fijacion, Piso, Corredera, 2);
+                        ProfMarco, ProfJaladera, Control, Agpto, MedidaSugerida, AIMG, Observaciones, Fijacion, Piso, Corredera, 2);
                 finish();
             }
         });
@@ -131,7 +135,6 @@ public class modificarResidencial extends AppCompatActivity {
 
         Button Imagenes = ((Button) this.findViewById(R.id.TomarFoto));
         ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
-        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
 
         Imagenes.setOnClickListener(new View.OnClickListener() {
             @Override

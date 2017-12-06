@@ -63,6 +63,7 @@ public class modificarHoteleria extends AppCompatActivity {
         String Hojas = oExt.getString("Hojas");
         String MedidaSugerida = oExt.getString("MedidaSugerida");
         String Observaciones = oExt.getString("Observaciones");
+        String Aimg = oExt.getString("Aimg");
         final EditText txtEdificio = (EditText) findViewById(R.id.txtEdificio);
         final EditText txtPiso = (EditText) findViewById(R.id.txtPiso);
         final EditText txtHabitacion = (EditText) findViewById(R.id.txtHabitacion);
@@ -84,6 +85,8 @@ public class modificarHoteleria extends AppCompatActivity {
         txtHojas.setText(Hojas.trim());
         txtMedidaSugerida.setText(MedidaSugerida.trim());
         txtObservaciones.setText(Observaciones.trim());
+        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+        foto.setText(Aimg);
         final String[][] aRes = modificarHoteleria.oDB.ObtenerProyectosHoteleria(String.valueOf(idHoteleria), String.valueOf(idDisp), 4);
         if (aRes[0][13].length() >50){
             crearImagen(aRes[0][13]);
@@ -104,11 +107,12 @@ public class modificarHoteleria extends AppCompatActivity {
                 String Corredera = txtCorredera.getSelectedItem().toString();
                 String MedidaSugerida = txtMedidaSugerida.getText().toString();
                 String Observaciones = txtObservaciones.getText().toString();
+                String AIMG = foto.getText().toString();
                 if (Integer.parseInt(aRes[0][31]) != 1){
-                oDB.updateProyectoHoteleria(idHoteleria, idDisp, Habitacion, Area, Ancho, Alto, Hojas, imagen,
+                oDB.updateProyectoHoteleria(idHoteleria, idDisp, Habitacion, Area, Ancho, Alto, Hojas, AIMG,
                         Observaciones, Piso, Edificio, Control, Fijacion, MedidaSugerida, Corredera, 2);}
                 else{
-                    oDB.updateProyectoHoteleria(idHoteleria, idDisp, Habitacion, Area, Ancho, Alto, Hojas, imagen,
+                    oDB.updateProyectoHoteleria(idHoteleria, idDisp, Habitacion, Area, Ancho, Alto, Hojas, AIMG,
                             Observaciones, Piso, Edificio, Control, Fijacion, MedidaSugerida, Corredera, 1);}
                 finish();
             }
@@ -117,7 +121,6 @@ public class modificarHoteleria extends AppCompatActivity {
         nombreImagen=""+idHoteleria+idDisp;
         Button Imagenes = ((Button) this.findViewById(R.id.TomarFoto));
         ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
-        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
 
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");

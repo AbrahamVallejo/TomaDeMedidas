@@ -53,6 +53,7 @@ public class modificarCama extends AppCompatActivity {
         String F = oExt.getString("F");
         String G = oExt.getString("G");
         String Observaciones = oExt.getString("Observaciones");
+        String Aimg = oExt.getString("Aimg");
         final EditText txtNHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
         final EditText txtA = (EditText) this.findViewById(R.id.txt_A);
         final EditText txtB = (EditText) this.findViewById(R.id.txt_B);
@@ -70,6 +71,8 @@ public class modificarCama extends AppCompatActivity {
         txtE.setText(E.trim());
         txtF.setText(F.trim());
         txtG.setText(G.trim());
+        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+        foto.setText(Aimg);
         txtObservaciones.setText(Observaciones.trim());
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(new View.OnClickListener() {
@@ -83,12 +86,13 @@ public class modificarCama extends AppCompatActivity {
                 Double E = Double.parseDouble(txtE.getText().toString());
                 Double F = Double.parseDouble(txtF.getText().toString());
                 Double G = Double.parseDouble(txtG.getText().toString());
+                String AIMG = foto.getText().toString();
                 String Observaciones = txtObservaciones.getText().toString();
                 String[][] aRes = modificarCama.oDB.ObtenerProyectosHoteleria(String.valueOf(idCama), String.valueOf(idDisp), 4);
                 if (Integer.parseInt(aRes[0][27]) != 1){
-                    oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, imagen, Observaciones, 2);
+                    oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, AIMG, Observaciones, 2);
                 }else{
-                    oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, imagen, Observaciones, 1);
+                    oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, AIMG, Observaciones, 1);
                 }
                 finish();
             }
@@ -97,7 +101,7 @@ public class modificarCama extends AppCompatActivity {
 
         Button Imagenes = (Button) this.findViewById(R.id.TomarFoto);
         ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
-        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+
 
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");

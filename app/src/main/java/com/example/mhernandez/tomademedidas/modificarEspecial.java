@@ -52,6 +52,7 @@ public class modificarEspecial extends AppCompatActivity {
         String Ancho = oExt.getString("Ancho");
         String Grosor = oExt.getString("Grosor");
         String Observaciones = oExt.getString("Observaciones");
+        String Aimg = oExt.getString("Aimg");
         final EditText txtAlto = (EditText) findViewById(R.id.txtAlto);
         final EditText txtAncho = (EditText) findViewById(R.id.txtAncho);
         final EditText txtGrosor = (EditText) findViewById(R.id.txtGrosor);
@@ -60,6 +61,8 @@ public class modificarEspecial extends AppCompatActivity {
         txtAncho.setText(Ancho.trim());
         txtGrosor.setText(Grosor.trim());
         txtObservaciones.setText(Observaciones.trim());
+        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+        foto.setText(Aimg);
         Button Imagenes = (Button) this.findViewById(R.id.TomarFoto);
         Button Guardar = (Button) findViewById(R.id.Guardar);
         Guardar.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +72,8 @@ public class modificarEspecial extends AppCompatActivity {
                 Double Ancho = Double.parseDouble(txtAncho.getText().toString());
                 Double Grosor = Double.parseDouble(txtGrosor.getText().toString());
                 String Observaciones = txtObservaciones.getText().toString();
-                oDB.updateProyectoEspecial(idEspecial, idDisp, Ancho, Alto, Grosor, imagen, Observaciones, 2);
+                String AIMG = foto.getText().toString();
+                oDB.updateProyectoEspecial(idEspecial, idDisp, Ancho, Alto, Grosor, AIMG, Observaciones, 2);
                 finish();
             }
         });
@@ -77,7 +81,6 @@ public class modificarEspecial extends AppCompatActivity {
 
 
         ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
-        final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
 
         if(savedInstanceState != null){
             fileUri = savedInstanceState.getParcelable("uri");
