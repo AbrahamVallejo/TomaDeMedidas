@@ -580,8 +580,8 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto.svc/deleteproyecto",json.toString());
                     Log.v("[add]","Tam: "+sResp.length() +" Ca: "+sResp);
                     if (sResp.length() == 0){
-                        Log.v("[add]","Retorno nulo" );
                         MainActivity.oDB.cerrarProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][13]), 0, " ", 0);
+                        Log.v("[add]","Retorno nulo y lo cambio a Sinc" );
                     }else {
                         MainActivity.oDB.deleteProyecto( urls[2], urls[3] );
                     }
