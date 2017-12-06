@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,8 +70,8 @@ public class medidaCama extends AppCompatActivity {
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date currentTime = Calendar.getInstance().getTime();
-                String FechaAlta = currentTime.toString();
+                Date FechaA = new Date();  Log.v("[fecha]","/Date("+FechaA.getTime()+")/");
+                String FechaAlta = "/Date("+FechaA.getTime()+")/";
 
                 String numeroHabitacion = NHabitaciones.getText().toString();
                 Double txtA = Double.parseDouble(A.getText().toString());

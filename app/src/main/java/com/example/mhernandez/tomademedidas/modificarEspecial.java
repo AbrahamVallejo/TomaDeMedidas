@@ -49,7 +49,7 @@ public class modificarEspecial extends AppCompatActivity {
                 Double Ancho = Double.parseDouble(txtAncho.getText().toString());
                 Double Grosor = Double.parseDouble(txtGrosor.getText().toString());
                 String Observaciones = txtObservaciones.getText().toString();
-                oDB.updateProyectoEspecial(idEspecial, idDisp, Ancho, Alto, Grosor, "IMAGEN", Observaciones);
+                oDB.updateProyectoEspecial(idEspecial, idDisp, Ancho, Alto, Grosor, "IMAGEN", Observaciones, 2);
                 finish();
             }
         });

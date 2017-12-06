@@ -82,7 +82,7 @@ public class especial extends AppCompatActivity {
                         oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
                                            0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, idUsuarioVenta, Agente, 1);
                         oDB.insertProyectoEspecial(idEspecial, idDisp, idProyecto, idDisp, nombreProyecto, txtAlto, txtAncho, txtGrosor,
-                        OBS, imagen, FechaAlta, idFormato, FechaAlta, 1, 0, 0, 0);
+                        OBS, imagen, FechaAlta, idFormato, FechaAlta, 1, 0, 0, 0, 1);
                         Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(rIntent);
                     }

@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -65,8 +66,9 @@ public class medidaEspecial extends AppCompatActivity {
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date currentTime = Calendar.getInstance().getTime();
-                String FechaAlta = currentTime.toString();
+                Date FechaA = new Date();  Log.v("[fecha]","/Date("+FechaA.getTime()+")/");
+                String FechaAlta = "/Date("+FechaA.getTime()+")/";
+
                 Double txtAncho = Double.parseDouble(Ancho.getText().toString());
                 Double txtAlto = Double.parseDouble(Alto.getText().toString());
                 Double txtGrosor = Double.parseDouble(Grosor.getText().toString());
@@ -74,7 +76,7 @@ public class medidaEspecial extends AppCompatActivity {
                 String[][] aRefE = MainActivity.oDB.lastEspecial();
                 int idEspecial = Integer.parseInt(aRefE[(0)][0]) + 1;
                 oDB.insertProyectoEspecial(idEspecial, idDisp, idProyecto, idProyectoDisp, Nombre, txtAlto, txtAncho, txtGrosor,
-                        OBS, imagen, FechaAlta, 5, FechaAlta, 1, 1, 1, 1);
+                        OBS, imagen, FechaAlta, 5, FechaAlta,1, 0, 0, 0, 1);
                 finish();
             }
         });
