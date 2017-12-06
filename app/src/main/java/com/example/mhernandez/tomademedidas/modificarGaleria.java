@@ -61,7 +61,7 @@ public class modificarGaleria extends AppCompatActivity {
                 String Proyecciones = txtProyecciones.getSelectedItem().toString();
                 String Fijacion =  txtFijacion.getSelectedItem().toString();
                 String Comentarios = txtComentarios.getText().toString();
-                oDB.updateProyectoGaleria(idGaleria, idDisp, NHabitaciones, Area, Ancho, Alto, Copete, Proyecciones, Fijacion, "IMAGEN", Comentarios);
+                oDB.updateProyectoGaleria(idGaleria, idDisp, NHabitaciones, Area, Ancho, Alto, Copete, Proyecciones, Fijacion, "IMAGEN", Comentarios, 2);
                 finish();
             }
         });
