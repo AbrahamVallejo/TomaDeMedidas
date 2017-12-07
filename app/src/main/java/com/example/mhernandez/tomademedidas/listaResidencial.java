@@ -208,8 +208,6 @@ public class listaResidencial extends AppCompatActivity {
                 checkCliente.setText("Sincronizado");
             }
 
-            Aimg.setText(_text[position][19]);
-
             return rowView;
         }
     }
