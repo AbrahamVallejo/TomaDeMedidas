@@ -3,6 +3,8 @@ package com.example.mhernandez.tomademedidas;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -58,7 +60,6 @@ public class modificarCama extends AppCompatActivity {
         String F = oExt.getString("F");
         String G = oExt.getString("G");
         String Observaciones = oExt.getString("Observaciones");
-        String Aimg = oExt.getString("Aimg");
         final EditText txtNHabitaciones = (EditText) this.findViewById(R.id.txt_numero_habitaciones);
         final EditText txtA = (EditText) this.findViewById(R.id.txt_A);
         final EditText txtB = (EditText) this.findViewById(R.id.txt_B);
@@ -76,8 +77,17 @@ public class modificarCama extends AppCompatActivity {
         txtE.setText(E.trim());
         txtF.setText(F.trim());
         txtG.setText(G.trim());
+
         final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-        foto.setText(Aimg);
+        final String[][] aRes = modificarCama.oDB.ObtenerProyectosCama(String.valueOf(idCama), String.valueOf(idDisp), 4);
+        if (aRes[0][12].length() >50){
+            crearImagen(aRes[0][12]); foto.setText("IMG_HOTELERIA" +idCama+idDisp); foto.setTextColor(Color.rgb(92, 184, 92));
+        }else if(aRes[0][12].length() <5){
+            foto.setText("Imagen no disponible"); foto.setTextColor(Color.rgb(204,85,85));
+        }else if(aRes[0][12].length() > 5 && aRes[0][12].length() < 50){
+            foto.setText("No es posible cargar la imagen"); foto.setTextColor(Color.rgb(92, 184, 92));
+        }
+
         txtObservaciones.setText(Observaciones.trim());
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         Guardar.setOnClickListener(new View.OnClickListener() {
@@ -91,10 +101,12 @@ public class modificarCama extends AppCompatActivity {
                 Double E = Double.parseDouble(txtE.getText().toString());
                 Double F = Double.parseDouble(txtF.getText().toString());
                 Double G = Double.parseDouble(txtG.getText().toString());
-                String AIMG = foto.getText().toString();
                 String Observaciones = txtObservaciones.getText().toString();
-               // String[][] aRes = modificarCama.oDB.ObtenerProyectosHoteleria(String.valueOf(idCama), String.valueOf(idDisp), 4);
-                oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, AIMG, Observaciones, 2);
+
+                if (Integer.parseInt(aRes[0][27]) == 1){
+                    oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, imagen, Observaciones, 1);
+                }else{
+                    oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, imagen, Observaciones, 2);}
                 finish();
             }
         });
@@ -140,11 +152,6 @@ public class modificarCama extends AppCompatActivity {
                         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                         startActivityForResult(gallery, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
                         customDialog.dismiss();
-                        /*
-                        Intent rIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, "");
-                        rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                        startActivityForResult(rIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);   */
                     }
                 });
                 customDialog.show();
@@ -188,39 +195,7 @@ public class modificarCama extends AppCompatActivity {
         }
         super.onSaveInstanceState(savedInstanceState);
     }
-    /*
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }*/
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
@@ -230,11 +205,13 @@ public class modificarCama extends AppCompatActivity {
         return Uri.fromFile(getOutputMediaFile(type,pID));
     }*/
 
+    // Permisos para Api 23
     public Uri getOutputMediaFileUri(int type, String pID) {
         requestRuntimePermission();
         return Uri.fromFile(getOutputMediaFile(type,pID));
     }
 
+    // Permisos para Api 23
     public void requestRuntimePermission() {
         if (Build.VERSION.SDK_INT >= 23) {
             if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -278,7 +255,7 @@ public class modificarCama extends AppCompatActivity {
                     oImg.buildDrawingCache();
                     Bitmap bit_map = oImg.getDrawingCache();
                     imagen = convertToBase64(bit_map);
-                    foto.setText(imagen);
+                    foto.setText("IMG_CAMA" +nombreImagen);
                 }
             }
             else {
@@ -287,7 +264,7 @@ public class modificarCama extends AppCompatActivity {
                     Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
                     imagen = convertToBase64(bit_map);
                     TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-                    foto.setText(imagen);
+                    foto.setText("IMG_CAMA" +nombreImagen);
                     oImg.setImageBitmap(bit_map);//
                 }else if(resultCode == RESULT_CANCELED){
                     // User cancelled the image capture
@@ -298,7 +275,6 @@ public class modificarCama extends AppCompatActivity {
         }
     }
 
-
     private String convertToBase64(Bitmap imagenMap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         imagenMap.compress(Bitmap.CompressFormat.JPEG, 45, baos);
@@ -307,4 +283,45 @@ public class modificarCama extends AppCompatActivity {
         return encodedImage;
     }
 
+    private void crearImagen(String IMG){
+        byte[] decodedString = Base64.decode(IMG, Base64.DEFAULT); Log.v("[imagen]", ""+decodedString);
+        Bitmap bit_map = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); Log.v("[imagen]", ""+bit_map);
+        ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
+        oImg.setImageBitmap(bit_map);
+    }
+
+
 }
+    /*
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }*/
+
+/**
+ * This interface must be implemented by activities that contain this
+ * fragment to allow an interaction in this fragment to be communicated
+ * to the activity and potentially other fragments contained in that
+ * activity.
+ * <p>
+ * See the Android Training lesson <a href=
+ * "http://developer.android.com/training/basics/fragments/communicating.html"
+ * >Communicating with Other Fragments</a> for more information.
+ */

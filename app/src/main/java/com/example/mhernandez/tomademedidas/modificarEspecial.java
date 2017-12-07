@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,12 +54,10 @@ public class modificarEspecial extends AppCompatActivity {
         Bundle oExt = this.getIntent().getExtras();
         final int idEspecial = Integer.parseInt(oExt.getString("idEspecial"));
         final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
-        nombreImagen = "" + idEspecial + idDisp;
         String Alto = oExt.getString("Alto");
         String Ancho = oExt.getString("Ancho");
         String Grosor = oExt.getString("Grosor");
         String Observaciones = oExt.getString("Observaciones");
-        String Aimg = oExt.getString("Aimg");
         final EditText txtAlto = (EditText) findViewById(R.id.txtAlto);
         final EditText txtAncho = (EditText) findViewById(R.id.txtAncho);
         final EditText txtGrosor = (EditText) findViewById(R.id.txtGrosor);
@@ -65,8 +66,18 @@ public class modificarEspecial extends AppCompatActivity {
         txtAncho.setText(Ancho.trim());
         txtGrosor.setText(Grosor.trim());
         txtObservaciones.setText(Observaciones.trim());
+
+        nombreImagen = "" + idEspecial + idDisp;
         final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-        foto.setText(Aimg);
+        final String[][] aRes = modificarEspecial.oDB.ObtenerProyectosEspecial(String.valueOf(idEspecial), String.valueOf(idDisp), 4);
+        if (aRes[0][9].length() >50){
+            crearImagen(aRes[0][9]); foto.setText("IMG_Especial" +idEspecial+idDisp); foto.setTextColor(Color.rgb(92, 184, 92));
+        }else if(aRes[0][9].length() <5){
+            foto.setText("Imagen no disponible"); foto.setTextColor(Color.rgb(204,85,85));
+        }else if(aRes[0][9].length() > 5 && aRes[0][9].length() < 50){
+            foto.setText("No es posible cargar la imagen"); foto.setTextColor(Color.rgb(92, 184, 92));
+        }
+
         Button Imagenes = (Button) this.findViewById(R.id.TomarFoto);
         Button Guardar = (Button) findViewById(R.id.Guardar);
         Guardar.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +87,11 @@ public class modificarEspecial extends AppCompatActivity {
                 Double Ancho = Double.parseDouble(txtAncho.getText().toString());
                 Double Grosor = Double.parseDouble(txtGrosor.getText().toString());
                 String Observaciones = txtObservaciones.getText().toString();
-                String AIMG = foto.getText().toString();
-                oDB.updateProyectoEspecial(idEspecial, idDisp, Ancho, Alto, Grosor, AIMG, Observaciones, 2);
+                if (Integer.parseInt(aRes[0][22]) == 1){
+                    oDB.updateProyectoEspecial(idEspecial, idDisp, Ancho, Alto, Grosor, imagen, Observaciones, 1);
+                }else{
+                    oDB.updateProyectoEspecial(idEspecial, idDisp, Ancho, Alto, Grosor, imagen, Observaciones, 2);}
+
                 finish();
             }
         });
@@ -169,39 +183,7 @@ public class modificarEspecial extends AppCompatActivity {
         }
         super.onSaveInstanceState(savedInstanceState);
     }
-    /*
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }*/
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
@@ -259,7 +241,7 @@ public class modificarEspecial extends AppCompatActivity {
                     oImg.buildDrawingCache();
                     Bitmap bit_map = oImg.getDrawingCache();
                     imagen = convertToBase64(bit_map);
-                    foto.setText(imagen);
+                    foto.setText("IMG_Especial" +nombreImagen);
                 }
             }
             else {
@@ -268,7 +250,7 @@ public class modificarEspecial extends AppCompatActivity {
                     Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
                     imagen = convertToBase64(bit_map);
                     TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-                    foto.setText(imagen);
+                    foto.setText("IMG_Especial" +nombreImagen);
                     oImg.setImageBitmap(bit_map);//
                 }else if(resultCode == RESULT_CANCELED){
                     // User cancelled the image capture
@@ -288,4 +270,46 @@ public class modificarEspecial extends AppCompatActivity {
         return encodedImage;
     }
 
+    private void crearImagen(String IMG){
+        byte[] decodedString = Base64.decode(IMG, Base64.DEFAULT); Log.v("[imagen]", ""+decodedString);
+        Bitmap bit_map = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); Log.v("[imagen]", ""+bit_map);
+        ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
+        oImg.setImageBitmap(bit_map);
+    }
+
 }
+
+
+/*
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }*/
+
+/**
+ * This interface must be implemented by activities that contain this
+ * fragment to allow an interaction in this fragment to be communicated
+ * to the activity and potentially other fragments contained in that
+ * activity.
+ * <p>
+ * See the Android Training lesson <a href=
+ * "http://developer.android.com/training/basics/fragments/communicating.html"
+ * >Communicating with Other Fragments</a> for more information.
+ */

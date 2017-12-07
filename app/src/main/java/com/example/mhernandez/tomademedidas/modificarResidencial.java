@@ -3,11 +3,14 @@ package com.example.mhernandez.tomademedidas;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,8 +37,8 @@ public class modificarResidencial extends AppCompatActivity {
     private static final String APP_PATH = "TomaMedidas";
     int auxFoto=0;
     private Uri fileUri;
-    String sID;
     String imagen = "";
+    String nombreImagen="1";
 
     public Spinner spUbicacionR, spFijacionR, spControlR, spCorrederaR, spAgptoR;
     public static DBProvider oDB;
@@ -97,7 +100,17 @@ public class modificarResidencial extends AppCompatActivity {
         txtProfJaladera.setText(ProfJaladera.trim());
         txtMedidaSugerida.setText(MedidaSugerida.trim());
         txtObservaciones.setText(Observaciones.trim());
+
         final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+        final String[][] aRes = modificarResidencial.oDB.ObtenerProyectosResidencial(String.valueOf(idResidencial), String.valueOf(idDisp), 4);
+        if (aRes[0][19].length() >50){
+            crearImagen(aRes[0][19]); foto.setText("IMG_Residencial" +idResidencial+idDisp); foto.setTextColor(Color.rgb(92, 184, 92));
+        }else if(aRes[0][19].length() <5){
+            foto.setText("Imagen no disponible"); foto.setTextColor(Color.rgb(204,85,85));
+        }else if(aRes[0][19].length() > 5 && aRes[0][19].length() < 50){
+            foto.setText("No es posible cargar la imagen"); foto.setTextColor(Color.rgb(92, 184, 92));
+        }
+
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,9 +132,11 @@ public class modificarResidencial extends AppCompatActivity {
                 Double F = Double.parseDouble(txtF.getText().toString());
                 Double G = Double.parseDouble(txtG.getText().toString());
                 Double H = Double.parseDouble(txtH.getText().toString());
-                String AIMG = foto.getText().toString();
-                oDB.updateProyectoResidencial(idResidencial, idDisp, Ubicacion, A, B, C, D , E, F, G, H,
-                        ProfMarco, ProfJaladera, Control, Agpto, MedidaSugerida, AIMG, Observaciones, Fijacion, Piso, Corredera, 2);
+                if (Integer.parseInt(aRes[0][37]) == 1){
+                    oDB.updateProyectoResidencial(idResidencial, idDisp, Ubicacion, A, B, C, D , E, F, G, H, ProfMarco, ProfJaladera, Control, Agpto, MedidaSugerida, imagen, Observaciones, Fijacion, Piso, Corredera, 1);
+                }else {
+                    oDB.updateProyectoResidencial(idResidencial, idDisp, Ubicacion, A, B, C, D , E, F, G, H, ProfMarco, ProfJaladera, Control, Agpto, MedidaSugerida, imagen, Observaciones, Fijacion, Piso, Corredera, 2);}
+
                 finish();
             }
         });
@@ -134,7 +149,7 @@ public class modificarResidencial extends AppCompatActivity {
             }
         });
 
-
+        nombreImagen=""+idResidencial+idDisp;
         Button Imagenes = ((Button) this.findViewById(R.id.TomarFoto));
         ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
 
@@ -150,7 +165,7 @@ public class modificarResidencial extends AppCompatActivity {
                     public void onClick(View v) {
                         auxFoto=1;
                         Intent rIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
+                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, nombreImagen);
                         rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
                         startActivityForResult(rIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
                         customDialog.dismiss();
@@ -375,7 +390,7 @@ public class modificarResidencial extends AppCompatActivity {
                     oImg.buildDrawingCache();
                     Bitmap bit_map = oImg.getDrawingCache();
                     imagen = convertToBase64(bit_map);
-                    foto.setText(imagen);
+                    foto.setText("IMG_Residencial" +nombreImagen);
                 }
             }
             else {
@@ -384,7 +399,7 @@ public class modificarResidencial extends AppCompatActivity {
                     Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
                     imagen = convertToBase64(bit_map);
                     TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-                    foto.setText(imagen);
+                    foto.setText("IMG_Residencial" +nombreImagen);
                     oImg.setImageBitmap(bit_map);//
                 }else if(resultCode == RESULT_CANCELED){
                     // User cancelled the image capture
@@ -395,7 +410,6 @@ public class modificarResidencial extends AppCompatActivity {
         }
     }
 
-
     private String convertToBase64(Bitmap imagenMap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         imagenMap.compress(Bitmap.CompressFormat.JPEG, 45, baos);
@@ -403,4 +417,12 @@ public class modificarResidencial extends AppCompatActivity {
         String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
         return encodedImage;
     }
+
+    private void crearImagen(String IMG){
+        byte[] decodedString = Base64.decode(IMG, Base64.DEFAULT); Log.v("[imagen]", ""+decodedString);
+        Bitmap bit_map = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); Log.v("[imagen]", ""+bit_map);
+        ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
+        oImg.setImageBitmap(bit_map);
+    }
+
 }

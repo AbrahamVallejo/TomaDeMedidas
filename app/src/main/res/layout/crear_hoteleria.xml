@@ -242,11 +242,11 @@
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <TextView
-                android:paddingTop="5dp"
+                android:paddingTop="2dp"
+                android:textAlignment="center"
                 android:id="@+id/TV_Imagen"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:scrollHorizontally="true"
+                android:layout_height="30dp"
                 android:textSize="12sp"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 

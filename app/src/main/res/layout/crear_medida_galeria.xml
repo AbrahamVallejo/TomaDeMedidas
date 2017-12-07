@@ -155,14 +155,14 @@
                 android:text="Imagen"
                 style="@style/TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
+
             <TextView
-                android:paddingTop="5dp"
+                android:paddingTop="2dp"
+                android:textAlignment="center"
                 android:id="@+id/TV_Imagen"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:scrollHorizontally="true"
+                android:layout_height="30dp"
                 android:textSize="12sp"
-                android:visibility="invisible"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <LinearLayout
@@ -202,7 +202,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:text="Seleccionar Imagen" />
+                        android:text="@string/tomar_foto"  />
                     <!--android:onClick="onFotoClick"-->
 
                 </LinearLayout>
@@ -212,11 +212,13 @@
             <Button
                 android:id="@+id/Guardar"
                 style="@style/ButtonStyle2"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold"
                 android:text="@string/guardar"/>
 
         </LinearLayout>

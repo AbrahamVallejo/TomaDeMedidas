@@ -644,11 +644,20 @@ public class MainActivity extends AppCompatActivity
                         class MiThread extends Thread {
                             @Override
                             public void run() {
-                                SinProyectoCama();
-                                SinProyectoHotel();
-                                SinProyectoResidencial();
-                                SinProyectoEspecial();
-                                SinProyectoGaleria();
+                                int cama =SinProyectoCama();
+                                if (cama == 1){
+                                    int hotel = SinProyectoHotel();
+                                        if (hotel == 1){
+                                            int residen = SinProyectoResidencial();
+                                                if (residen==1){
+                                                    int Esp = SinProyectoEspecial();
+                                                        if (Esp == 1){
+                                                                SinProyectoGaleria();
+                                                        }
+                                                }
+                                        }
+                                }
+
                             }
                         }
                     int pro = SinProyecto();
@@ -792,7 +801,7 @@ public class MainActivity extends AppCompatActivity
         return 1;
     }
 
-    public void SinProyectoCama(){
+    public int SinProyectoCama(){
         final String[][] auxCama = MainActivity.oDB.ObtenerProyectosCama("0","0", 2);    //Toast.makeText(this, aux1[0][12], Toast.LENGTH_SHORT).show();
 
         Thread timerThreadDos = new Thread(){
@@ -848,9 +857,10 @@ public class MainActivity extends AppCompatActivity
             }
         };
         timerThreadDos.start();
+        return 1;
     }
 
-    public void SinProyectoHotel(){
+    public int SinProyectoHotel(){
         String [][] auxHotel = MainActivity.oDB.ObtenerProyectosHoteleria("0","0", 2);
                     for (int i =0; i < auxHotel.length; i++) {
                         if (Integer.valueOf(auxHotel[i][31]) == 1) {
@@ -897,9 +907,10 @@ public class MainActivity extends AppCompatActivity
                             oNS.execute("sincPro_Hotel", "3", auxHotel[i][0], auxHotel[i][1] );
                         }
                     }
+        return 1;
     }
 
-    public void SinProyectoResidencial(){
+    public int SinProyectoResidencial(){
         String [][] auxResi = MainActivity.oDB.ObtenerProyectosResidencial("0","0", 2);
         Log.v("[add]","Residencial Sinc = "+auxResi.length );
 
@@ -947,9 +958,10 @@ public class MainActivity extends AppCompatActivity
                 oNS.execute("sincPro_Residencial", "3", auxResi[i][0], auxResi[i][1] );
             }
         }
+        return 1;
     }
 
-    public void SinProyectoEspecial(){
+    public int SinProyectoEspecial(){
         String [][] auxEsp = MainActivity.oDB.ObtenerProyectosEspecial("0","0", 2);
         Log.v("[add]","Especial Sinc = "+auxEsp.length );
 
@@ -997,9 +1009,10 @@ public class MainActivity extends AppCompatActivity
                 oNS.execute("sincPro_Especial", "3", auxEsp[i][0], auxEsp[i][1] );
             }
         }
+        return 1;
     }
 
-    public void SinProyectoGaleria(){
+    public int SinProyectoGaleria(){
         String [][] auxGal = MainActivity.oDB.ObtenerProyectosGaleria("0","0", 2);
         Log.v("[add]","Galeria Sinc = "+auxGal.length );
 
@@ -1047,6 +1060,7 @@ public class MainActivity extends AppCompatActivity
                 oNS.execute("sincPro_Galeria", "3", auxGal[i][0], auxGal[i][1] );
             }
         }
+        return 1;
     }
 
     /* Funcion Para Descargar Datos Del Web Services */

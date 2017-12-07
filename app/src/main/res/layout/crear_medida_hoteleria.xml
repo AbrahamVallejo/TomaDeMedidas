@@ -73,26 +73,37 @@
                 -.,()1234567890"
                 android:textSize="12sp"/>
 
-            <Button
-                android:id="@+id/crearArea"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Crear Area" />
-
             <TextView
+                android:paddingTop="8dp"
+                style="@style/TextView"
+                android:text="@string/area"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Area: "
-                android:textColor="@android:color/black"
-                android:paddingTop="5dp"
-                style="@style/TextView"
-                android:textAppearance="@style/TextAppearance.AppCompat"/>
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <Spinner
+                        android:id="@+id/spinner_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </Spinner>
+                </LinearLayout>
 
-            <Spinner
-                android:id="@+id/spinner_area"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </Spinner>
+                <Button
+                    android:id="@+id/crearArea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    style="@style/ButtonStyle2"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Crear area"/>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -243,12 +254,11 @@
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <TextView
-                android:paddingTop="5dp"
-                android:visibility="invisible"
+                android:paddingTop="2dp"
+                android:textAlignment="center"
                 android:id="@+id/TV_Imagen"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:scrollHorizontally="true"
+                android:layout_height="30dp"
                 android:textSize="12sp"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
@@ -289,7 +299,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:text="Seleccionar imagen" />
+                        android:text="@string/tomar_foto"  />
 
                 </LinearLayout>
             </LinearLayout>
