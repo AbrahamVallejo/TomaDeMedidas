@@ -173,7 +173,6 @@ public class listaResidencial extends AppCompatActivity {
             TextView txtH = (TextView) rowView.findViewById(R.id.H);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
-            TextView Aimg = (TextView) rowView.findViewById(R.id.Aimg);
             txtIDResidencial.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
@@ -207,8 +206,6 @@ public class listaResidencial extends AppCompatActivity {
                 checkCliente.setTextColor(Color.rgb(92, 184, 92));
                 checkCliente.setText("Sincronizado");
             }
-
-            Aimg.setText(_text[position][19]);
 
             return rowView;
         }

@@ -130,6 +130,7 @@ public class medidaHoteleria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnCamara)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        auxFoto=1;
                         Intent rIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, nombreImagen);
                         rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);

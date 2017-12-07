@@ -140,7 +140,6 @@ public class listaEspecial extends AppCompatActivity {
             TextView txtObservaciones = (TextView) rowView.findViewById(R.id.Observaciones);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
-            TextView Aimg = (TextView) rowView.findViewById(R.id.Aimg);
             txtIDEspeciales.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
@@ -162,7 +161,6 @@ public class listaEspecial extends AppCompatActivity {
                 checkCliente.setText("Sincronizado");
             }
 
-            Aimg.setText(_text[position][9]);
 
             return rowView;
         }

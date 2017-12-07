@@ -872,6 +872,7 @@ public class MainActivity extends AppCompatActivity
                             NetServices oNS = new NetServices(new OnTaskCompleted() {
                                 @Override
                                 public void OnTaskCompleted(Object freed) {
+                                    Toast.makeText(getApplicationContext(), "TODO SUPER PERFECTO :) MODIFY-PROYECTO HOTEL!", Toast.LENGTH_LONG).show();
                                 /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
                                 }
                                 @Override

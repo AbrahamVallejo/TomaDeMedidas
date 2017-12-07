@@ -229,12 +229,6 @@
             android:textSize="11dp"
             android:textStyle="bold"
             android:typeface="sans"/>
-        <TextView
-            android:id="@+id/Aimg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:text="Aimg" />
     </LinearLayout>
 
 </LinearLayout>
