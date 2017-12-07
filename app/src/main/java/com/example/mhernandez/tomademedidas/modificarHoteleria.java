@@ -165,11 +165,6 @@ public class modificarHoteleria extends AppCompatActivity {
                         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                         startActivityForResult(gallery, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
                         customDialog.dismiss();
-                        /*
-                        Intent rIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, "");
-                        rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                        startActivityForResult(rIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);   */
                     }
                 });
                 customDialog.show();
