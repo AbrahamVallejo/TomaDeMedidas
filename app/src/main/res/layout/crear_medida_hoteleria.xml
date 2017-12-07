@@ -244,6 +244,7 @@
 
             <TextView
                 android:paddingTop="5dp"
+                android:visibility="invisible"
                 android:id="@+id/TV_Imagen"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -288,7 +289,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:text="@string/tomar_foto" />
+                        android:text="Seleccionar imagen" />
 
                 </LinearLayout>
             </LinearLayout>

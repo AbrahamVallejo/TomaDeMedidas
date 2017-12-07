@@ -9,15 +9,18 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.Objects;
 
 /**
  * Created by mhernandez on 28/11/2017.
@@ -31,7 +34,6 @@ public class crearGaleriaImagenes extends AppCompatActivity {
     private static final String APP_PATH = "TomaMedidas";
     private Uri fileUri;
     int auxFoto=0;
-    int tipoImagen=0;
     String nombreImagen="1";
     String imagen = "";    public static DBProvider oDB;
     Dialog customDialog = null;
@@ -109,18 +111,33 @@ public class crearGaleriaImagenes extends AppCompatActivity {
             public void onClick(View v) {
                 String tipoFoto = Tipo.getSelectedItem().toString();
                 String txtDescripcion = descripcion.getText().toString();
-                String txtFoto = foto.getText().toString();
-                if (tipoFoto == "Antes"){
+                if (Objects.equals(tipoFoto, "Antes")){
                     int tipoImagen = 1;
-                    oDB.insertProyectoImagen(idImagen, idDisp, idProyecto, idProyectoDisp, tipoImagen,txtDescripcion, Nombre, txtFoto, Formato);
-                }else if(tipoFoto == "Despues"){
+                    oDB.insertProyectoImagen(idImagen, idDisp, idProyecto, idProyectoDisp, tipoImagen,txtDescripcion, Nombre, imagen, Formato);
+                    Toast.makeText(crearGaleriaImagenes.this, "Galeria Guardada", Toast.LENGTH_LONG).show();
+                    finish();
+                }else if(Objects.equals(tipoFoto, "Despues")){
                     int tipoImagen = 2;
-                    oDB.insertProyectoImagen(idImagen, idDisp, idProyecto, idProyectoDisp, tipoImagen,txtDescripcion, Nombre, txtFoto, Formato);
+                    oDB.insertProyectoImagen(idImagen, idDisp, idProyecto, idProyectoDisp, tipoImagen,txtDescripcion, Nombre, imagen, Formato);
+                    Toast.makeText(crearGaleriaImagenes.this, "Galeria Guardada", Toast.LENGTH_LONG).show();
+                    finish();
                 }
             }
         });
 
 
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public interface OnFragmentInteractionListener {

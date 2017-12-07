@@ -537,33 +537,23 @@ public class NetServices extends AsyncTask<String, Void, Object> {
             }
         }
         else if(urls[0] == "sincproyecto"){
-            Log.v("[add]","Voy a Sincronizar en WS "+urls[1] );
+            Log.v("[add]","Voy a Sincronizar en WS ");
             try{
                 String[][] aref = MainActivity.oDB.buscarProyecto(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]) );
-                JSONObject json = new JSONObject();
-                JSONObject proyecto = new JSONObject();
-                try {
-                    proyecto.put("id_proyecto", aref[0][0] );
-                    proyecto.put("id_disp", aref[0][1] );
-                    proyecto.put("id_cliente", aref[0][2] );
-                    proyecto.put("id_cliente_disp", aref[0][3] );
-                    proyecto.put("id_formato", aref[0][4]);
-                    proyecto.put("id_user", aref[0][5] );
-                    proyecto.put("nombre_proyecto", aref[0][6] );
-                    proyecto.put("pedido_sap", aref[0][7] );
-                    proyecto.put("fecha", aref[0][8] );
-                    proyecto.put("autorizado", aref[0][9] );
-                    proyecto.put("accesorios_techo", aref[0][10] );
-                    proyecto.put("accesorios_muro", aref[0][11] );
-                    proyecto.put("accesorios_especiales", aref[0][12] );
-                    proyecto.put("id_estatus", aref[0][13] );
-                    proyecto.put("id_usuario_venta", aref[0][14]);
+                    JSONObject json = new JSONObject();
+                    JSONObject proyecto = new JSONObject();
+
+                    proyecto.put("id_proyecto", aref[0][0] );       proyecto.put("id_disp", aref[0][1] );
+                    proyecto.put("id_cliente", aref[0][2] );        proyecto.put("id_cliente_disp", aref[0][3] );
+                    proyecto.put("id_formato", aref[0][4]);         proyecto.put("id_user", aref[0][5] );
+                    proyecto.put("nombre_proyecto", aref[0][6] );   proyecto.put("pedido_sap", aref[0][7] );
+                    proyecto.put("autorizado", aref[0][9] );        proyecto.put("accesorios_techo", aref[0][10] );
+                    proyecto.put("accesorios_muro", aref[0][11] );  proyecto.put("accesorios_especiales", aref[0][12] );
+                    proyecto.put("id_estatus", aref[0][13] );       proyecto.put("id_usuario_venta", aref[0][14]);
                     proyecto.put("agente_venta", aref[0][16]);
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                json.put("proyecto",proyecto);  Log.v("[add]","2: "+json.toString() );
+                if ( aref[0][8].indexOf("D") >= 1){  proyecto.put("fecha", aref[0][13] ); }
+
+                json.put("proyecto",proyecto);  Log.v("[add]",urls[1]+": "+json.toString() );
 
                 if (Integer.parseInt(urls[1]) ==1){
                     sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto.svc/addproyecto",json.toString());
@@ -590,8 +580,8 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto.svc/deleteproyecto",json.toString());
                     Log.v("[add]","Tam: "+sResp.length() +" Ca: "+sResp);
                     if (sResp.length() == 0){
-                        Log.v("[add]","Retorno nulo" );
                         MainActivity.oDB.cerrarProyecto(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][13]), 0, " ", 0);
+                        Log.v("[add]","Retorno nulo y lo cambio a Sinc" );
                     }else {
                         MainActivity.oDB.deleteProyecto( urls[2], urls[3] );
                     }
@@ -636,9 +626,8 @@ public class NetServices extends AsyncTask<String, Void, Object> {
             try{
                 String IMAGEN ="";
                 String[][] aref = MainActivity.oDB.ObtenerProyectosCama( urls[2], urls[3], 5);
-                JSONObject json = new JSONObject();
-                JSONObject proyecto = new JSONObject();
-                try {
+                    JSONObject json = new JSONObject();
+                    JSONObject proyecto = new JSONObject();
                     proyecto.put("id_cama", aref[0][0] );           proyecto.put("id_disp", aref[0][1] );
                     proyecto.put("id_proyecto", aref[0][2] );       proyecto.put("id_proyecto_disp", aref[0][3] );
                     proyecto.put("n_habitacion", aref[0][4]);       proyecto.put("a", aref[0][5] );
@@ -653,10 +642,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     if ( aref[0][12].length() > 60){
                         IMAGEN =RUTA_IMG+"IMG_Cama"+aref[0][0]+aref[0][1] ;
                         proyecto.put("aImg", IMAGEN ); }
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+
                 json.put("proyectoCama",proyecto);  Log.v("[add]","2: "+json.toString() );
                 if (aref[0][12].length() >60){
                     sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][12], "IMG_Cama"+aref[0][0]+aref[0][1]);
@@ -733,21 +719,15 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         else if(urls[0] == "sincPro_Hotel"){                        Log.v("[add]","Voy a Sincronizar en WS Hotel "+urls[1] );
             try{
                 String IMAGEN ="";
-                String[][] aref = MainActivity.oDB.ObtenerProyectosHoteleria( urls[2], urls[3], 2);
-                Log.v("[add]","1: "+aref.toString() );
+                String[][] aref = MainActivity.oDB.ObtenerProyectosHoteleria( urls[2], urls[3], 4);
+                Log.v("[add]","1: "+aref[0][1] );
                 JSONObject json = new JSONObject();         JSONObject proyecto = new JSONObject();
-                /*try {*/
-                Log.v("[add]",aref[0][0]);
                     proyecto.put("id_hoteleria", aref[0][0] );          proyecto.put("id_disp", aref[0][1] );
-                Log.v("[add]",".5" );
                     proyecto.put("id_proyecto", aref[0][2] );           proyecto.put("id_proyecto_disp", aref[0][3] );
-                Log.v("[add]","1" );
                     proyecto.put("habitacion", aref[0][6]);             proyecto.put("area", aref[0][7] );
                     proyecto.put("alto", aref[0][9] );                  proyecto.put("ancho", aref[0][8] );
-                Log.v("[add]","2" );
-                    proyecto.put("hojas", aref[0][10] );                 proyecto.put("observaciones", aref[0][11] );
-                    proyecto.put("nombre_proyecto", aref[0][12] );
-                Log.v("[add]","2: "+proyecto.toString() );
+                    proyecto.put("hojas", aref[0][10] );                proyecto.put("observaciones", aref[0][11] );
+                    proyecto.put("nombre_proyecto", aref[0][12] );      proyecto.put("fijacion", aref[0][19] );
                     proyecto.put("formato", aref[0][15] );              proyecto.put("piso", aref[0][16] );
                     proyecto.put("edificio", aref[0][17] );             proyecto.put("control", aref[0][18] );
                     proyecto.put("id_usuario_alta", aref[0][21] );      proyecto.put("id_estatus", aref[0][23] );
@@ -756,47 +736,318 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     if ( aref[0][14].indexOf("D") >= 1){  proyecto.put("fecha", aref[0][14] ); }
                     if ( aref[0][13].length() > 60){      IMAGEN =RUTA_IMG+"IMG_Hoteleria"+aref[0][0]+aref[0][1] ;
                         proyecto.put("aImg", IMAGEN ); }
-                /*} catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }*/
-                json.put("proyectoHoteleria",proyecto);  Log.v("[add]","2: "+json.toString() );
+
+                json.put("proyectoHoteleria",proyecto);  Log.v("[add]","::: "+json.toString() );
                 if (aref[0][13].length() >60){
                     sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][12], "IMG_Hoteleria"+aref[0][0]+aref[0][1]);
                 }
-                sResp= sResp.trim(); Log.v("[add]", sResp + ":"+sResp.length() +" o img="+aref[0][12].length());
-                if (aref[0][12].length() < 50 || sResp.equalsIgnoreCase("OK")) {
-                    Log.v("[add]", "Entre aqui");
+                sResp= sResp.trim();
+                if (aref[0][12].length() < 50 || sResp.equalsIgnoreCase("OK")) {    Log.v("[add]", "Entre aqui y voy al "+urls[1]);
+
                     if (Integer.parseInt(urls[1]) == 1) {
-                        sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_hoteleria.svc/addproyecto", json.toString());
-                        Log.v("[add]", "Tam: " + sResp.length() + " Ca: " + sResp);
+                        String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_hoteleria.svc/addproyecto", json.toString());
+                        Log.v("[add]", "Tam: " + Resp.length() + " Ca: " + Resp);
                         if (sResp.length() == 6) {
                             Log.v("[add]", "Retorno nulo");
-                        } else {/*
-                            MainActivity.oDB.updateProyectoCama(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][4], Double.parseDouble(aref[0][5]),
-                                    Double.parseDouble(aref[0][6]), Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), Double.parseDouble(aref[0][9]),
-                                    Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][15]), IMAGEN, aref[0][16], 0);
-                                    */
+                        } else {
+                            MainActivity.oDB.updateProyectoHoteleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][6], aref[0][7], Double.parseDouble(aref[0][8]),
+                                    Double.parseDouble(aref[0][9]), aref[0][10], aref[0][12], aref[0][11], aref[0][16], aref[0][17], aref[0][18], aref[0][19], aref[0][24], aref[0][30],0);
                         }
                     } else if (Integer.parseInt(urls[1]) == 2) {
-                        sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_hoteleria.svc/modifyproyecto", json.toString());
-                        Log.v("[add]", "Tam: " + sResp.length() + " Ca: " + sResp);
+                        String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_hoteleria.svc/modifyproyecto", json.toString());
+                        Log.v("[add]", "Tam: " + Resp.length() + " Ca: " + Resp);
                         if (sResp.length() == 6) {
                             Log.v("[add]", "Retorno nulo");
-                        } else {/*
-                            MainActivity.oDB.updateProyectoCama(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][4], Double.parseDouble(aref[0][5]),
-                                    Double.parseDouble(aref[0][6]), Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), Double.parseDouble(aref[0][9]),
-                                    Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][15]), IMAGEN, aref[0][16], 0);
-                                    */
+                        } else {
+                            MainActivity.oDB.updateProyectoHoteleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][6], aref[0][7], Double.parseDouble(aref[0][8]),
+                                    Double.parseDouble(aref[0][9]), aref[0][10], aref[0][12], aref[0][11], aref[0][16], aref[0][17], aref[0][18], aref[0][19], aref[0][24], aref[0][30],0);
                         }
                     } else if (Integer.parseInt(urls[1]) == 3) {
                         sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_hoteleria.svc/deleteproyecto", json.toString());
                         Log.v("[add]", "Tam: " + sResp.length() + " Ca: " + sResp);
                         if (sResp.length() == 0) {
                             Log.v("[add]", "Retorno nulo");
-                            //MainActivity.oDB.cerrarProyectoCama(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][20]), 0);
+                            MainActivity.oDB.cerrarProyectoHoteleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][23]), 3);
                         } else {
-                            //MainActivity.oDB.deleteProyectoCama(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]));
+                            MainActivity.oDB.deleteProyectoHoteleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]));
+                        }
+                    }
+                }
+            }catch (Exception e){
+                exception = e;
+            }
+        }
+        else if(urls[0] == "getproyecto_residencialLista"){
+            try{
+                Log.v("PRUEBA", "Hola");
+                sResp = NetServices.connectPost2(URL_WS1 + "wsproyecto_residencial.svc/"+ urls[0]);     Log.v("PRUEBA", sResp);
+                String[] aFujs = null;
+                JSONArray jaData = new JSONArray((sResp));
+                aFujs = new String[jaData.length()];
+                for (int i = 0; i<jaData.length(); i++){
+                    JSONObject joFuj = jaData.getJSONObject(i);
+                    aFujs[i] = joFuj.getString("id_residencial");   aFujs[i] = joFuj.getString("id_proyecto");
+                    aFujs[i] = joFuj.getString("id_disp");          aFujs[i] = joFuj.getString("id_proyecto_disp");
+                    aFujs[i] = joFuj.getString("ubicacion");        aFujs[i] = joFuj.getString("a");
+                    aFujs[i] = joFuj.getString("b");                aFujs[i] = joFuj.getString("c");
+                    aFujs[i] = joFuj.getString("d");                aFujs[i] = joFuj.getString("e");
+                    aFujs[i] = joFuj.getString("f");                aFujs[i] = joFuj.getString("g");
+                    aFujs[i] = joFuj.getString("h");                aFujs[i] = joFuj.getString("prof_marco");
+                    aFujs[i] = joFuj.getString("prof_jaladera");    aFujs[i] = joFuj.getString("control");
+                    aFujs[i] = joFuj.getString("agpto");            aFujs[i] = joFuj.getString("medida_sujerida");
+                    aFujs[i] = joFuj.getString("observaciones");    aFujs[i] = joFuj.getString("nombre_proyecto");
+                    aFujs[i] = joFuj.getString("fecha");            aFujs[i] = joFuj.getString("formato");
+                    aFujs[i] = joFuj.getString("id_usuario_alta");  aFujs[i] = joFuj.getString("id_usuario_mod");
+                    aFujs[i] = joFuj.getString("id_estatus");       aFujs[i] = joFuj.getString("fijacion");
+                    aFujs[i] = joFuj.getString("piso");             aFujs[i] = joFuj.getString("autorizado");
+                    aFujs[i] = joFuj.getString("pagado");           aFujs[i] = joFuj.getString("fecha_pago");
+                    aFujs[i] = joFuj.getString("id_usuario_pago");
+
+                    MainActivity.oDB.insertProyectoResidencial(Integer.parseInt(joFuj.getString("id_residencial")), Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_proyecto")), Integer.parseInt(joFuj.getString("id_proyecto_disp")),
+                            joFuj.getString("ubicacion"), Double.parseDouble(joFuj.getString("a")), Double.parseDouble(joFuj.getString("b")), Double.parseDouble(joFuj.getString("c")), Double.parseDouble(joFuj.getString("d")),
+                            Double.parseDouble(joFuj.getString("e")), Double.parseDouble(joFuj.getString("f")), Double.parseDouble(joFuj.getString("g")), Double.parseDouble(joFuj.getString("h")), Double.parseDouble(joFuj.getString("prof_marco")),
+                            Double.parseDouble(joFuj.getString("prof_jaladera")), joFuj.getString("control"), joFuj.getString("agpto"), joFuj.getString("medida_sujerida"), joFuj.getString("observaciones"), " ", joFuj.getString("nombre_proyecto"),
+                            joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("formato")), joFuj.getString("id_usuario_alta"), Integer.parseInt(joFuj.getString("id_estatus")), joFuj.getString("fijacion"),
+                            joFuj.getString("piso"), Integer.parseInt(joFuj.getString("autorizado")), 0, Integer.parseInt(joFuj.getString("pagado")), " " , 0);
+                }
+            }catch (Exception e){   exception = e;  }
+        }
+        else if(urls[0] == "sincPro_Residencial"){                        Log.v("[add]","Voy a Sincronizar en WS Residencial " );
+            try{
+                String IMAGEN ="";
+                String[][] aref = MainActivity.oDB.ObtenerProyectosResidencial( urls[2], urls[3], 4);   Log.v("[add]","1: "+aref[0][1] );
+                JSONObject json = new JSONObject();         JSONObject proyecto = new JSONObject();
+                proyecto.put("id_residencial", aref[0][0] );    proyecto.put("id_disp", aref[0][1] );
+                proyecto.put("id_proyecto", aref[0][2] );       proyecto.put("id_proyecto_disp", aref[0][3] );
+                proyecto.put("ubicacion", aref[0][4]);          proyecto.put("a", aref[0][5] );
+                proyecto.put("b", aref[0][6] );                 proyecto.put("c", aref[0][7] );
+                proyecto.put("d", aref[0][8] );                 proyecto.put("e", aref[0][9] );
+                proyecto.put("f", aref[0][10] );                proyecto.put("g", aref[0][11] );
+                proyecto.put("h", aref[0][12] );                proyecto.put("prof_marco", aref[0][13] );
+                proyecto.put("prof_jaladera", aref[0][14] );    proyecto.put("control", aref[0][15] );
+                proyecto.put("agpto", aref[0][16] );            proyecto.put("medida_sujerida", aref[0][17] );
+                proyecto.put("observaciones", aref[0][18] );    proyecto.put("nombre_proyecto", aref[0][21] );
+                proyecto.put("formato", aref[0][23] );          proyecto.put("id_usuario_alta", aref[0][24] );
+                proyecto.put("id_estatus", aref[0][27] );       proyecto.put("fijacion", aref[0][28] );
+                proyecto.put("id_usuario_mod", aref[0][25] );   proyecto.put("piso", aref[0][29] );
+                proyecto.put("autorizado", aref[0][30] );       proyecto.put("pagado", aref[0][33] );
+                proyecto.put("fecha_pago", aref[0][34] );       proyecto.put("id_usuario_pago", aref[0][35] );
+                proyecto.put("corredera", aref[0][36] );
+
+                if ( aref[0][22].indexOf("D") >= 1){  proyecto.put("fecha", aref[0][22] ); }
+                if ( aref[0][19].length() > 60){      IMAGEN =RUTA_IMG+"IMG_Residencial"+aref[0][0]+aref[0][1] ;
+                    proyecto.put("aImg", IMAGEN ); }
+
+                json.put("proyectoResidencial",proyecto);  Log.v("[add]","::: "+json.toString() );
+                if (aref[0][19].length() >60){
+                    sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][19], "IMG_Residencial"+aref[0][0]+aref[0][1]);
+                }
+                sResp= sResp.trim();
+                if (aref[0][19].length() < 50 || sResp.equalsIgnoreCase("OK")) {    Log.v("[add]", "Entre aqui y voy al "+urls[1]);
+
+                    if (Integer.parseInt(urls[1]) == 1) {
+                        String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_residencial.svc/addproyecto", json.toString());
+                        Log.v("[add]", "Tam: " + Resp.length() + " Ca: " + Resp);
+                        if (sResp.length() == 6) {
+                            Log.v("[add]", "Retorno nulo");
+                        } else {
+                                MainActivity.oDB.updateProyectoResidencial(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][4], Double.parseDouble(aref[0][5]), Double.parseDouble(aref[0][6]),
+                                    Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), Double.parseDouble(aref[0][9]), Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][11]), Double.parseDouble(aref[0][12]),
+                                    Double.parseDouble(aref[0][13]), Double.parseDouble(aref[0][14]), aref[0][15], aref[0][16], aref[0][17], aref[0][19], aref[0][18], aref[0][28], aref[0][29], aref[0][36], 0);
+                        }
+                    } else if (Integer.parseInt(urls[1]) == 2) {
+                        String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_residencial.svc/modifyproyecto", json.toString());
+                        Log.v("[add]", "Tam: " + Resp.length() + " Ca: " + Resp);
+                        if (sResp.length() == 6) {
+                            Log.v("[add]", "Retorno nulo");
+                        } else {
+                            MainActivity.oDB.updateProyectoResidencial(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][4], Double.parseDouble(aref[0][5]), Double.parseDouble(aref[0][6]),
+                                    Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), Double.parseDouble(aref[0][9]), Double.parseDouble(aref[0][10]), Double.parseDouble(aref[0][11]), Double.parseDouble(aref[0][12]),
+                                    Double.parseDouble(aref[0][13]), Double.parseDouble(aref[0][14]), aref[0][15], aref[0][16], aref[0][17], aref[0][19], aref[0][18], aref[0][28], aref[0][29], aref[0][36], 0);
+                       }
+                    } else if (Integer.parseInt(urls[1]) == 3) {
+                        sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_residencial.svc/deleteproyecto", json.toString());
+                        Log.v("[add]", "Tam: " + sResp.length() + " Ca: " + sResp);
+                        if (sResp.length() == 0) {
+                            Log.v("[add]", "Retorno nulo");
+                            MainActivity.oDB.cerrarProyectoResidencial(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][27]), 0);
+                        } else {
+                            MainActivity.oDB.deleteProyectoResidencial(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]));
+                        }
+                    }
+                }
+            }catch (Exception e){
+                exception = e;
+            }
+        }
+        else if(urls[0] == "getproyecto_especialLista"){
+            try{
+                sResp = NetServices.connectPost2(URL_WS1 + "wsproyecto_especial.svc/"+ urls[0]);
+                String[] aFujs = null;
+                JSONArray jaData = new JSONArray((sResp));
+                aFujs = new String[jaData.length()];                    Log.v("[obtenerPE]", sResp);
+                for (int i = 0; i<jaData.length(); i++){
+                    JSONObject joFuj = jaData.getJSONObject(i);
+                    aFujs[i] = joFuj.getString("id_especiales");        aFujs[i] = joFuj.getString("id_disp");
+                    aFujs[i] = joFuj.getString("id_proyecto");          aFujs[i] = joFuj.getString("id_proyecto_disp");
+                    aFujs[i] = joFuj.getString("nombre_proyecto");      aFujs[i] = joFuj.getString("alto");
+                    aFujs[i] = joFuj.getString("ancho");                aFujs[i] = joFuj.getString("grosor");
+                    aFujs[i] = joFuj.getString("observaciones");        aFujs[i] = joFuj.getString("aImg");
+                    aFujs[i] = joFuj.getString("fecha");                aFujs[i] = joFuj.getString("formato");
+                    aFujs[i] = joFuj.getString("id_usuario_alta");      aFujs[i] = joFuj.getString("id_usuario_mod");
+                    aFujs[i] = joFuj.getString("id_estatus");           aFujs[i] = joFuj.getString("autorizado");
+                    //aFujs[i] = joFuj.getString("pagado"); //aFujs[i] = joFuj.getString("fecha_pago");
+                    Log.v("PRUEBA", "Especial: "+ joFuj.getString("nombre_proyecto"));
+                    MainActivity.oDB.insertProyectoEspecial(Integer.parseInt(joFuj.getString("id_especiales")), Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_proyecto")),
+                            Integer.parseInt(joFuj.getString("id_proyecto_disp")), joFuj.getString("nombre_proyecto"), Double.parseDouble(joFuj.getString("alto")), Double.parseDouble(joFuj.getString("ancho")),
+                            Double.parseDouble(joFuj.getString("grosor")), joFuj.getString("observaciones"), joFuj.getString("aImg"), joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("formato")),
+                            joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("id_estatus")), Integer.parseInt(joFuj.getString("autorizado")),0,0, 0);
+                }
+            }catch (Exception e){
+                exception = e;
+            }
+        }
+        else if(urls[0] == "sincPro_Especial"){                        Log.v("[add]","Voy a Sincronizar en WS Especial " );
+            try{
+                String IMAGEN ="";
+                String[][] aref = MainActivity.oDB.ObtenerProyectosEspecial( urls[2], urls[3], 4);   Log.v("[add]","1: "+aref[0][1] );
+                JSONObject json = new JSONObject();         JSONObject proyecto = new JSONObject();
+                proyecto.put("id_especiales", aref[0][0] );     proyecto.put("id_disp", aref[0][1] );
+                proyecto.put("id_proyecto", aref[0][2] );       proyecto.put("id_proyecto_disp", aref[0][3] );
+                proyecto.put("nombre_proyecto", aref[0][4]);    proyecto.put("alto", aref[0][5] );
+                proyecto.put("ancho", aref[0][6] );             proyecto.put("grosor", aref[0][7] );
+                proyecto.put("observaciones", aref[0][8] );     proyecto.put("formato", aref[0][11] );
+                proyecto.put("id_usuario_alta", aref[0][12] );  proyecto.put("id_usuario_mod", aref[0][13] );
+                proyecto.put("id_estatus", aref[0][15] );       proyecto.put("autorizado", aref[0][16] );
+
+                if ( aref[0][10].indexOf("D") >= 1){  proyecto.put("fecha", aref[0][10] ); proyecto.put("fecha_alta", aref[0][10] );}
+                if ( aref[0][9].length() > 60){      IMAGEN =RUTA_IMG+"IMG_Especial"+aref[0][0]+aref[0][1] ;
+                    proyecto.put("aImg", IMAGEN ); }
+
+                json.put("proyectoEspecial",proyecto);  Log.v("[add]","::: "+json.toString() );
+                if (aref[0][9].length() >60){
+                    sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][19], "IMG_Especial"+aref[0][0]+aref[0][1]);
+                }
+                sResp= sResp.trim();
+                if (aref[0][9].length() < 50 || sResp.equalsIgnoreCase("OK")) {    Log.v("[add]", "Entre aqui y voy al "+urls[1]);
+
+                    if (Integer.parseInt(urls[1]) == 1) {
+                        String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_especial.svc/addproyecto", json.toString());
+                        Log.v("[add]", "Tam: " + Resp.length() + " Ca: " + Resp);
+                        if (sResp.length() == 6) {
+                            Log.v("[add]", "Retorno nulo");
+                        } else {
+                            MainActivity.oDB.updateProyectoEspecial(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Double.parseDouble(aref[0][6]),
+                                    Double.parseDouble(aref[0][5]), Double.parseDouble(aref[0][7]),aref[0][9], aref[0][8], 0);
+                        }
+                    } else if (Integer.parseInt(urls[1]) == 2) {
+                        String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_especial.svc/modifyproyecto", json.toString());
+                        Log.v("[add]", "Tam: " + Resp.length() + " Ca: " + Resp);
+                        if (sResp.length() == 6) {
+                            Log.v("[add]", "Retorno nulo");
+                        } else {
+                            MainActivity.oDB.updateProyectoEspecial(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Double.parseDouble(aref[0][6]),
+                                    Double.parseDouble(aref[0][5]), Double.parseDouble(aref[0][7]),aref[0][9], aref[0][8], 0);
+                        }
+                    } else if (Integer.parseInt(urls[1]) == 3) {
+                        sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_especial.svc/deleteproyecto", json.toString());
+                        Log.v("[add]", "Tam: " + sResp.length() + " Ca: " + sResp);
+                        if (sResp.length() == 0) { Log.v("[add]", "Retorno nulo");
+                            MainActivity.oDB.cerrarProyectoEspecial(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][15]), 0);
+                        } else {
+                            MainActivity.oDB.deleteProyectoEspecial(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]));
+                        }
+                    }
+                }
+            }catch (Exception e){
+                exception = e;
+            }
+        }
+        else if(urls[0] == "getproyecto_galeriaLista"){
+            try{
+                sResp = NetServices.connectPost2(URL_WS1 + "wsproyecto_galeria.svc/"+ urls[0]);
+                String[] aFujs = null;
+                JSONArray jaData = new JSONArray((sResp));
+                aFujs = new String[jaData.length()];
+                Log.v("PRUEBA", sResp);
+                for (int i = 0; i<jaData.length(); i++){
+                    JSONObject joFuj = jaData.getJSONObject(i);
+                    aFujs[i] = joFuj.getString("id_galeria");           aFujs[i] = joFuj.getString("id_disp");
+                    aFujs[i] = joFuj.getString("id_proyecto");          aFujs[i] = joFuj.getString("id_proyecto_disp");
+                    aFujs[i] = joFuj.getString("fecha");                aFujs[i] = joFuj.getString("n_habitacion");
+                    aFujs[i] = joFuj.getString("area");                 aFujs[i] = joFuj.getString("alto");
+                    aFujs[i] = joFuj.getString("ancho");                aFujs[i] = joFuj.getString("copete");
+                    aFujs[i] = joFuj.getString("proyecciones");         aFujs[i] = joFuj.getString("fijacion");
+                    aFujs[i] = joFuj.getString("comentarios");          aFujs[i] = joFuj.getString("nombre_proyecto");
+                    aFujs[i] = joFuj.getString("formato");              aFujs[i] = joFuj.getString("id_usuario_alta");
+                    aFujs[i] = joFuj.getString("id_usuario_mod");       aFujs[i] = joFuj.getString("id_estatus");
+                    aFujs[i] = joFuj.getString("autorizado");           aFujs[i] = joFuj.getString("pagado");
+                    aFujs[i] = joFuj.getString("id_usuario_pago");
+                    //aFujs[i] = joFuj.getString("fecha_pago");
+                    //Log.v("PRUEBA","Galeria: "+ joFuj.getString("nombre_proyecto"));
+                    MainActivity.oDB.insertProyectoGaleria(Integer.parseInt(joFuj.getString("id_galeria")), Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_proyecto")), Integer.parseInt(joFuj.getString("id_proyecto_disp")), joFuj.getString("fecha"),
+                            joFuj.getString("n_habitacion"), joFuj.getString("area"), Double.parseDouble(joFuj.getString("ancho")), Double.parseDouble(joFuj.getString("alto")), joFuj.getString("copete"), joFuj.getString("proyecciones"), joFuj.getString("fijacion"), joFuj.getString("comentarios"),
+                            joFuj.getString("nombre_proyecto"), " ", Integer.parseInt(joFuj.getString("formato")), " ", Integer.parseInt(joFuj.getString("id_estatus")),
+                            Integer.parseInt(joFuj.getString("autorizado")), Integer.parseInt(joFuj.getString("id_usuario_alta")), Integer.parseInt(joFuj.getString("pagado")), 0);
+                }
+            }catch (Exception e){
+                exception = e;
+            }
+        }
+        else if(urls[0] == "sincPro_Galeria"){                        Log.v("[add]","Voy a Sincronizar en WS Galeria " );
+            try{
+                String IMAGEN ="";
+                String[][] aref = MainActivity.oDB.ObtenerProyectosGaleria( urls[2], urls[3], 4);
+                JSONObject json = new JSONObject();         JSONObject proyecto = new JSONObject();
+                proyecto.put("id_galeria", aref[0][0] );        proyecto.put("id_disp", aref[0][1] );
+                proyecto.put("id_proyecto", aref[0][2] );       proyecto.put("id_proyecto_disp", aref[0][3] );
+                proyecto.put("n_habitacion", aref[0][5]);       proyecto.put("alto", aref[0][8] );
+                proyecto.put("ancho", aref[0][7] );             proyecto.put("area", aref[0][6] );
+                proyecto.put("copete", aref[0][9] );            proyecto.put("proyecciones", aref[0][10] );
+                proyecto.put("fijacion", aref[0][11] );         proyecto.put("comentarios", aref[0][12] );
+                proyecto.put("nombre_proyecto", aref[0][13] );  proyecto.put("formato", aref[0][15] );
+                proyecto.put("id_usuario_alta", aref[0][16] );  proyecto.put("id_estatus", aref[0][19] );
+                proyecto.put("autorizado", aref[0][20] );       proyecto.put("pagado", aref[0][23] );
+                if ( Integer.parseInt(urls[1]) == 1){
+                    proyecto.put("id_usuario_mod", "0" );
+                    proyecto.put("id_usuario_pago", "0" );
+                    }
+                if ( aref[0][4].indexOf("D") >= 1){  proyecto.put("fecha", aref[0][4] ); }
+                if ( aref[0][14].length() > 60){      IMAGEN =RUTA_IMG+"IMG_Galeria"+aref[0][0]+aref[0][1] ;
+                    proyecto.put("aImg", IMAGEN ); }
+
+                json.put("proyectoGaleria",proyecto);  Log.v("[add]","::: "+json.toString() );
+                if (aref[0][14].length() >60){
+                    sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][19], "IMG_Galeria"+aref[0][0]+aref[0][1]);
+                }
+                sResp= sResp.trim();
+                if (aref[0][14].length() < 50 || sResp.equalsIgnoreCase("OK")) {    Log.v("[add]", "Entre aqui y voy al "+urls[1]);
+
+                    if (Integer.parseInt(urls[1]) == 1) {
+                        String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_galeria.svc/addproyecto", json.toString());
+                        Log.v("[add]", "Tam: " + Resp.length() + " Ca: " + Resp);
+                        if (sResp.length() == 6) {
+                            Log.v("[add]", "Retorno nulo");
+                        }else {
+                            MainActivity.oDB.updateProyectoGaleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][5],aref[0][6],
+                                    Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), aref[0][9], aref[0][10], aref[0][11], aref[0][14], aref[0][12], 0);
+                        }
+                    }else if (Integer.parseInt(urls[1]) == 2) {
+                        String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_galeria.svc/modifyproyecto", json.toString());
+                        Log.v("[add]", "Tam: " + Resp.length() + " Ca: " + Resp);
+                        if (sResp.length() == 6) {
+                            Log.v("[add]", "Retorno nulo");
+                        }else {
+                            MainActivity.oDB.updateProyectoGaleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), aref[0][5],aref[0][6],
+                                    Double.parseDouble(aref[0][7]), Double.parseDouble(aref[0][8]), aref[0][9], aref[0][10], aref[0][11], aref[0][14], aref[0][12], 0);
+                        }
+                    }else if (Integer.parseInt(urls[1]) == 3) {
+                        sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_galeria.svc/deleteproyecto", json.toString());
+                        Log.v("[add]", "Tam: " + sResp.length() + " Ca: " + sResp);
+                        if (sResp.length() == 0) { Log.v("[add]", "Retorno nulo");
+                            MainActivity.oDB.cerrarProyectoGaleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]), Integer.parseInt(aref[0][19]), 0);
+                        }else {
+                            MainActivity.oDB.deleteProyectoGaleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]));
                         }
                     }
                 }
@@ -1043,100 +1294,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 exception = e;
             }
         }
-        else if(urls[0] == "getproyecto_residencialLista"){
-            try{
-                Log.v("PRUEBA", "Hola");
-                sResp = NetServices.connectPost2(URL_WS1 + "wsproyecto_residencial.svc/"+ urls[0]);
-                Log.v("PRUEBA", sResp);
-                String[] aFujs = null;
-                JSONArray jaData = new JSONArray((sResp));
-                aFujs = new String[jaData.length()];
-                for (int i = 0; i<jaData.length(); i++){
-                    JSONObject joFuj = jaData.getJSONObject(i);
-                    aFujs[i] = joFuj.getString("id_residencial");
-                    aFujs[i] = joFuj.getString("id_proyecto");
-                    aFujs[i] = joFuj.getString("id_disp");
-                    aFujs[i] = joFuj.getString("id_proyecto_disp");
-                    aFujs[i] = joFuj.getString("ubicacion");
-                    aFujs[i] = joFuj.getString("a");
-                    aFujs[i] = joFuj.getString("b");
-                    aFujs[i] = joFuj.getString("c");
-                    aFujs[i] = joFuj.getString("d");
-                    aFujs[i] = joFuj.getString("e");
-                    aFujs[i] = joFuj.getString("f");
-                    aFujs[i] = joFuj.getString("g");
-                    aFujs[i] = joFuj.getString("h");
-                    aFujs[i] = joFuj.getString("prof_marco");
-                    aFujs[i] = joFuj.getString("prof_jaladera");
-                    aFujs[i] = joFuj.getString("control");
-                    aFujs[i] = joFuj.getString("agpto");
-                    aFujs[i] = joFuj.getString("medida_sujerida");
-                    aFujs[i] = joFuj.getString("observaciones");
-                    aFujs[i] = joFuj.getString("nombre_proyecto");
-                    aFujs[i] = joFuj.getString("fecha");
-                    aFujs[i] = joFuj.getString("formato");
-                    aFujs[i] = joFuj.getString("id_usuario_alta");
-                    aFujs[i] = joFuj.getString("id_usuario_mod");
-                    aFujs[i] = joFuj.getString("id_estatus");
-                    aFujs[i] = joFuj.getString("fijacion");
-                    aFujs[i] = joFuj.getString("piso");
-                    aFujs[i] = joFuj.getString("autorizado");
-                    aFujs[i] = joFuj.getString("pagado");
-                    aFujs[i] = joFuj.getString("fecha_pago");
-                    aFujs[i] = joFuj.getString("id_usuario_pago");
-                    Log.v("PRUEBA","Residencial: "+ joFuj.getString("ubicacion"));
-                    MainActivity.oDB.insertProyectoResidencial(Integer.parseInt(joFuj.getString("id_residencial")), Integer.parseInt(joFuj.getString("id_disp")),
-                            Integer.parseInt(joFuj.getString("id_proyecto")), Integer.parseInt(joFuj.getString("id_proyecto_disp")), joFuj.getString("ubicacion"),
-                            Double.parseDouble(joFuj.getString("a")), Double.parseDouble(joFuj.getString("b")), Double.parseDouble(joFuj.getString("c")),
-                            Double.parseDouble(joFuj.getString("d")), Double.parseDouble(joFuj.getString("e")), Double.parseDouble(joFuj.getString("f")),
-                            Double.parseDouble(joFuj.getString("g")), Double.parseDouble(joFuj.getString("h")), Double.parseDouble(joFuj.getString("prof_marco")),
-                            Double.parseDouble(joFuj.getString("prof_jaladera")), joFuj.getString("control"), joFuj.getString("agpto"), joFuj.getString("medida_sujerida"), joFuj.getString("observaciones"), " ",
-                            joFuj.getString("nombre_proyecto"), joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("formato")),
-                            joFuj.getString("id_usuario_alta"), Integer.parseInt(joFuj.getString("id_estatus")), joFuj.getString("fijacion"),
-                            joFuj.getString("piso"), Integer.parseInt(joFuj.getString("autorizado")), 0, Integer.parseInt(joFuj.getString("pagado")), " " );
-                }
-            }catch (Exception e){
-                exception = e;
-            }
-        }
-        else if(urls[0] == "getproyecto_especialLista"){
-            try{
-                sResp = NetServices.connectPost2(URL_WS1 + "wsproyecto_especial.svc/"+ urls[0]);
-                String[] aFujs = null;
-                JSONArray jaData = new JSONArray((sResp));
-                aFujs = new String[jaData.length()];
-                Log.v("[obtenerPE]", sResp);
-                for (int i = 0; i<jaData.length(); i++){
-                    JSONObject joFuj = jaData.getJSONObject(i);
-                    aFujs[i] = joFuj.getString("id_especiales");
-                    aFujs[i] = joFuj.getString("id_disp");
-                    aFujs[i] = joFuj.getString("id_proyecto");
-                    aFujs[i] = joFuj.getString("id_proyecto_disp");
-                    aFujs[i] = joFuj.getString("nombre_proyecto");
-                    aFujs[i] = joFuj.getString("alto");
-                    aFujs[i] = joFuj.getString("ancho");
-                    aFujs[i] = joFuj.getString("grosor");
-                    aFujs[i] = joFuj.getString("observaciones");
-                    aFujs[i] = joFuj.getString("aImg");
-                    aFujs[i] = joFuj.getString("fecha");
-                    aFujs[i] = joFuj.getString("formato");
-                    aFujs[i] = joFuj.getString("id_usuario_alta");
-                    aFujs[i] = joFuj.getString("id_usuario_mod");
-                    aFujs[i] = joFuj.getString("id_estatus");
-                    aFujs[i] = joFuj.getString("autorizado");
-                    //aFujs[i] = joFuj.getString("pagado"); //aFujs[i] = joFuj.getString("fecha_pago");
-                    Log.v("PRUEBA", "Especial: "+ joFuj.getString("nombre_proyecto"));
-                    MainActivity.oDB.insertProyectoEspecial(Integer.parseInt(joFuj.getString("id_especiales")),
-                            Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_proyecto")),
-                            Integer.parseInt(joFuj.getString("id_proyecto_disp")), joFuj.getString("nombre_proyecto"),
-                            Double.parseDouble(joFuj.getString("alto")), Double.parseDouble(joFuj.getString("ancho")), Double.parseDouble(joFuj.getString("grosor")),
-                            joFuj.getString("observaciones"), joFuj.getString("aImg"), joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("formato")),
-                            joFuj.getString("fecha"), Integer.parseInt(joFuj.getString("id_estatus")), Integer.parseInt(joFuj.getString("autorizado")),0,0);
-                }
-            }catch (Exception e){
-                exception = e;
-            }
-        }
         else if(urls[0] == "getproyecto_imagenLista"){
             try{
                 sResp = NetServices.connectPost2(URL_WS1 + "wsproyecto_imagen.svc/"+ urls[0]);
@@ -1162,50 +1319,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 exception = e;
             }
         }
-        else if(urls[0] == "getproyecto_galeriaLista"){
-            try{
-                sResp = NetServices.connectPost2(URL_WS1 + "wsproyecto_galeria.svc/"+ urls[0]);
-                String[] aFujs = null;
-                JSONArray jaData = new JSONArray((sResp));
-                aFujs = new String[jaData.length()];
-                Log.v("PRUEBA", sResp);
-                for (int i = 0; i<jaData.length(); i++){
-                    JSONObject joFuj = jaData.getJSONObject(i);
-                    aFujs[i] = joFuj.getString("id_galeria");
-                    aFujs[i] = joFuj.getString("id_disp");
-                    aFujs[i] = joFuj.getString("id_proyecto");
-                    aFujs[i] = joFuj.getString("id_proyecto_disp");
-                    aFujs[i] = joFuj.getString("fecha");
-                    aFujs[i] = joFuj.getString("n_habitacion");
-                    aFujs[i] = joFuj.getString("area");
-                    aFujs[i] = joFuj.getString("alto");
-                    aFujs[i] = joFuj.getString("ancho");
-                    aFujs[i] = joFuj.getString("copete");
-                    aFujs[i] = joFuj.getString("proyecciones");
-                    aFujs[i] = joFuj.getString("fijacion");
-                    aFujs[i] = joFuj.getString("comentarios");
-                    aFujs[i] = joFuj.getString("nombre_proyecto");
-                    aFujs[i] = joFuj.getString("formato");
-                    aFujs[i] = joFuj.getString("id_usuario_alta");
-                    aFujs[i] = joFuj.getString("id_usuario_mod");
-                    aFujs[i] = joFuj.getString("id_estatus");
-                    aFujs[i] = joFuj.getString("autorizado");
-                    aFujs[i] = joFuj.getString("pagado");
-                    aFujs[i] = joFuj.getString("fecha_pago");
-                    aFujs[i] = joFuj.getString("id_usuario_pago");
-                    Log.v("PRUEBA","Galeria: "+ joFuj.getString("nombre_proyecto"));
-                    MainActivity.oDB.insertProyectoGaleria(Integer.parseInt(joFuj.getString("id_galeria")),
-                            Integer.parseInt(joFuj.getString("id_disp")), Integer.parseInt(joFuj.getString("id_proyecto")), Integer.parseInt(joFuj.getString("id_proyecto_disp")),
-                            joFuj.getString("fecha"), joFuj.getString("n_habitacion"), joFuj.getString("area"), Double.parseDouble(joFuj.getString("ancho")),
-                            Double.parseDouble(joFuj.getString("alto")), joFuj.getString("copete"), joFuj.getString("proyecciones"), joFuj.getString("fijacion"),
-                            joFuj.getString("comentarios"), joFuj.getString("nombre_proyecto"), " ", Integer.parseInt(joFuj.getString("formato")),
-                            " ", Integer.parseInt(joFuj.getString("id_estatus")), Integer.parseInt(joFuj.getString("autorizado")), 0, Integer.parseInt(joFuj.getString("pagado")));
-                }
-            }catch (Exception e){
-                exception = e;
-            }
-        }
-
 
 
 

@@ -73,6 +73,7 @@ public class listaCama extends AppCompatActivity {
                             rIntent.putExtra("idProyecto", aDat[2]);
                             rIntent.putExtra("idProyectoDisp", aDat[3]);
                             rIntent.putExtra("NHabitaciones", aDat[4]);
+                            rIntent.putExtra("Aimg", aDat[12]);
                             rIntent.putExtra("A", aDat[5]);
                             rIntent.putExtra("B", aDat[6]);
                             rIntent.putExtra("C", aDat[7]);
@@ -148,6 +149,7 @@ public class listaCama extends AppCompatActivity {
             TextView txtG = (TextView) rowView.findViewById(R.id.G);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
+            TextView Aimg = (TextView) rowView.findViewById(R.id.Aimg);
             txtIDCama.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
@@ -168,11 +170,13 @@ public class listaCama extends AppCompatActivity {
                 txtEstatus.setText("Activo");
             }else{
                 txtEstatus.setText("Cerrado");
-            } Log.v("[ob","Sinc: "+_text[position][27]);
+            }
             if( Integer.parseInt(_text[position][27]) == 0){
                 checkCliente.setTextColor(Color.rgb(92, 184, 92));
                 checkCliente.setText("Sincronizado");
             }
+
+            Aimg.setText(_text[position][12]);
 
             return rowView;
         }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_marginRight="5dp" android:layout_marginLeft="5dp"
+    android:configChanges="orientation|keyboardHidden|screenSize"
     android:layout_height="match_parent"
     android:paddingLeft="3dp" android:paddingRight="3dp">
 
@@ -370,6 +370,7 @@
                 android:layout_height="55dp"
                 android:scrollHorizontally="true"
                 android:textSize="12sp"
+                android:visibility="invisible"
                 android:textAppearance="@style/TextAppearance.AppCompat"/>
 
             <LinearLayout
@@ -409,7 +410,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:text="@string/tomar_foto" />
+                        android:text="Seleccionar imagen" />
                     <!--android:onClick="onFotoClick"-->
 
                 </LinearLayout>

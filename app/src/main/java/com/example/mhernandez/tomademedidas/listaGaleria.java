@@ -3,6 +3,7 @@ package com.example.mhernandez.tomademedidas;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -82,6 +83,7 @@ public class listaGaleria extends AppCompatActivity {
                             rIntent.putExtra("Proyecciones", aDat[10]);
                             rIntent.putExtra("Fijacion", aDat[11]);
                             rIntent.putExtra("Comentarios", aDat[12]);
+                            rIntent.putExtra("Aimg", aDat[14]);
                             startActivity(rIntent);
                         }
                         customDialog.dismiss();
@@ -94,7 +96,7 @@ public class listaGaleria extends AppCompatActivity {
                         if (Integer.parseInt(aDat[19]) !=1){
                             Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
-                            oDB.cerrarProyectoGaleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2);
+                            oDB.cerrarProyectoGaleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), 2, 2);
                             lista();
                         }
                         customDialog.dismiss();
@@ -107,7 +109,8 @@ public class listaGaleria extends AppCompatActivity {
                         if (Integer.parseInt(aDat[19]) !=1){
                             Toast.makeText(listaGaleria.this, "Proyecto Cerrado", Toast.LENGTH_LONG).show();
                         }else {
-                            oDB.deleteProyectoGaleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
+                            oDB.cerrarProyectoGaleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]), Integer.parseInt(aDat[19]), 2);
+                            //oDB.deleteProyectoGaleria(Integer.parseInt(aDat[0]), Integer.parseInt(aDat[1]));
                             lista();
                         }
                         customDialog.dismiss();
@@ -150,8 +153,14 @@ public class listaGaleria extends AppCompatActivity {
             TextView txtProyecciones = (TextView) rowView.findViewById(R.id.Proyecciones);
             TextView txtFijacion = (TextView) rowView.findViewById(R.id.Fijacion);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
-            String[] parts = _text[position][4].split("T");
-            txtFecha.setText(parts[0]);
+            TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
+            TextView Aimg = (TextView) rowView.findViewById(R.id.Aimg);
+
+            if ( _text[position][4].indexOf("T") != 10){
+                txtFecha.setText("no disponible" );
+            }else {
+                String[] parts = _text[position][4].split("T");
+                txtFecha.setText(parts[0]);}
 
             txtIDGaleria.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
@@ -172,6 +181,13 @@ public class listaGaleria extends AppCompatActivity {
             }else{
                 txtEstatus.setText("Cerrado");
             }
+            if( Integer.parseInt(_text[position][26]) == 0){
+                checkCliente.setTextColor(Color.rgb(92, 184, 92));
+                checkCliente.setText("Sincronizado");
+            }
+
+            Aimg.setText(_text[position][14]);
+
             return rowView;
         }
     }
@@ -188,7 +204,7 @@ public class listaGaleria extends AppCompatActivity {
         if (aRef != null){
             aDataFolio = new String[aRef.length][];
             for (int iCnt = 0; iCnt < aRef.length; iCnt++){
-                aDataFolio[iCnt] = new String[26];
+                aDataFolio[iCnt] = new String[27];
                 aDataFolio[iCnt][0] = aRef[iCnt][0];
                 aDataFolio[iCnt][1] = aRef[iCnt][1];
                 aDataFolio[iCnt][2] = aRef[iCnt][2];
@@ -215,6 +231,7 @@ public class listaGaleria extends AppCompatActivity {
                 aDataFolio[iCnt][23] = aRef[iCnt][23];
                 aDataFolio[iCnt][24] = aRef[iCnt][24];
                 aDataFolio[iCnt][25] = aRef[iCnt][25];
+                aDataFolio[iCnt][26] = aRef[iCnt][26];
             }
             ListView list;
             list = (ListView) this.findViewById(R.id.lista);

@@ -622,11 +622,12 @@ public class MainActivity extends AppCompatActivity
 
     /* Funciones de Sincronización */
     public void Sincronizar(){
+        String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
+        String[][] aux2 = MainActivity.oDB.ObtenerUbicacion("0",2);
+
         boolean aux = isOnlineNet();
         if (aux != false) {
             if(UBICACION==2 || UBICACION ==1){
-                String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
-                String[][] aux2 = MainActivity.oDB.ObtenerUbicacion("0",2);
                 if (aux1.length >= 1){
                     Sincliente();}
                 if (aux2.length >= 1){
@@ -636,23 +637,29 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent(this, MainActivity.class); finish();
                 startActivity(intent);
             }
-            if(UBICACION==4 || UBICACION ==3){
-                String[][] aux3 = MainActivity.oDB.ObtenerProyectos("0",2);
-                if (aux3.length >=1){
-                    SinProyecto();}
+            else if(UBICACION==4 || UBICACION ==3){
+                if((aux1.length + aux2.length)>=1){
+                    Toast.makeText(this, "Sincronización Clientes Requerida", Toast.LENGTH_LONG).show();}
+                else{
+                        class MiThread extends Thread {
+                            @Override
+                            public void run() {
+                                SinProyectoCama();
+                                SinProyectoHotel();
+                                SinProyectoResidencial();
+                                SinProyectoEspecial();
+                                SinProyectoGaleria();
+                            }
+                        }
+                    int pro = SinProyecto();
+                        if (pro ==1){
+                            MiThread hilo = new MiThread(); hilo.start();
 
-                class MiThread extends Thread {
-                    @Override
-                    public void run() {
-                        SinProyectoCama();
-                        SinProyectoHotel();
-                    }
+                            Toast.makeText(this, "Sincronización Completa", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(this, MainActivity.class); finish();
+                            startActivity(intent);
+                        }
                 }
-                MiThread hilo = new MiThread(); hilo.start();
-
-                Toast.makeText(this, "Sincronización Completa", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, MainActivity.class); finish();
-                startActivity(intent);
             }
         }
         else {
@@ -733,7 +740,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void SinProyecto(){
+    public int SinProyecto(){
         String[][] aux1 = MainActivity.oDB.ObtenerProyectos("0",2);
         Log.v("[add]","Tengo: "+aux1.length );
 
@@ -782,17 +789,18 @@ public class MainActivity extends AppCompatActivity
             }
         }
         Toast.makeText(this, "Proyectos Sincronizados", Toast.LENGTH_SHORT).show();
+        return 1;
     }
 
     public void SinProyectoCama(){
-        final String[][] aux1 = MainActivity.oDB.ObtenerProyectosCama("0","0", 2);    //Toast.makeText(this, aux1[0][12], Toast.LENGTH_SHORT).show();
+        final String[][] auxCama = MainActivity.oDB.ObtenerProyectosCama("0","0", 2);    //Toast.makeText(this, aux1[0][12], Toast.LENGTH_SHORT).show();
 
         Thread timerThreadDos = new Thread(){
             public void run(){
                 try {
                     sleep(1500);
-                    for (int i =0; i < aux1.length; i++) {
-                        if (Integer.valueOf(aux1[i][27]) == 1) {
+                    for (int i =0; i < auxCama.length; i++) {
+                        if (Integer.valueOf(auxCama[i][27]) == 1) {
                             Log.v("[add]","Entre al if Insertar" );
                             NetServices oNS = new NetServices(new OnTaskCompleted() {
                                 @Override
@@ -804,9 +812,9 @@ public class MainActivity extends AppCompatActivity
                                     Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADD-PROYECTO CAMA!", Toast.LENGTH_LONG).show();
                                 }
                             });
-                            oNS.execute("sincPro_cama", "1", aux1[i][0], aux1[i][1] );
+                            oNS.execute("sincPro_cama", "1", auxCama[i][0], auxCama[i][1] );
                         }
-                        else if (Integer.valueOf(aux1[i][27]) == 2) {
+                        else if (Integer.valueOf(auxCama[i][27]) == 2) {
                             Log.v("[add]","Entre al if Modificar" );
                             NetServices oNS = new NetServices(new OnTaskCompleted() {
                                 @Override
@@ -818,9 +826,9 @@ public class MainActivity extends AppCompatActivity
                                     Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES MODIFY-PROYECTO CAMA!", Toast.LENGTH_LONG).show();
                                 }
                             });
-                            oNS.execute("sincPro_cama", "2", aux1[i][0], aux1[i][1] );
+                            oNS.execute("sincPro_cama", "2", auxCama[i][0], auxCama[i][1] );
                         }
-                        else if (Integer.valueOf(aux1[i][27]) == 3) {
+                        else if (Integer.valueOf(auxCama[i][27]) == 3) {
                             Log.v("[add]","Entre al if Eliminar" );
                             NetServices oNS = new NetServices(new OnTaskCompleted() {
                                 @Override
@@ -832,7 +840,7 @@ public class MainActivity extends AppCompatActivity
                                     Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES DELETE-PROYECTO CAMA!", Toast.LENGTH_LONG).show();
                                 }
                             });
-                            oNS.execute("sincPro_cama", "3", aux1[i][0], aux1[i][1] );
+                            oNS.execute("sincPro_cama", "3", auxCama[i][0], auxCama[i][1] );
                         }
                     }
                 }catch (InterruptedException e){
@@ -843,9 +851,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void SinProyectoHotel(){
-        String [][] aux1 = MainActivity.oDB.ObtenerProyectosHoteleria("0","0", 2);
-                    for (int i =0; i < aux1.length; i++) {
-                        if (Integer.valueOf(aux1[i][31]) == 1) {
+        String [][] auxHotel = MainActivity.oDB.ObtenerProyectosHoteleria("0","0", 2);
+                    for (int i =0; i < auxHotel.length; i++) {
+                        if (Integer.valueOf(auxHotel[i][31]) == 1) {
                             Log.v("[add]","Entre al if Insertar" );
                             NetServices oNS = new NetServices(new OnTaskCompleted() {
                                 @Override
@@ -857,9 +865,9 @@ public class MainActivity extends AppCompatActivity
                                     Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADD-PROYECTO HOTEL!", Toast.LENGTH_LONG).show();
                                 }
                             });
-                            oNS.execute("sincPro_Hotel", "1", aux1[i][0], aux1[i][1] );
+                            oNS.execute("sincPro_Hotel", "1", auxHotel[i][0], auxHotel[i][1] );
                         }
-                        else if (Integer.valueOf(aux1[i][31]) == 2) {
+                        else if (Integer.valueOf(auxHotel[i][31]) == 2) {
                             Log.v("[add]","Entre al if Modificar" );
                             NetServices oNS = new NetServices(new OnTaskCompleted() {
                                 @Override
@@ -872,9 +880,9 @@ public class MainActivity extends AppCompatActivity
                                     Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES MODIFY-PROYECTO HOTEL!", Toast.LENGTH_LONG).show();
                                 }
                             });
-                            oNS.execute("sincPro_Hotel", "2", aux1[i][0], aux1[i][1] );
+                            oNS.execute("sincPro_Hotel", "2", auxHotel[i][0], auxHotel[i][1] );
                         }
-                        else if (Integer.valueOf(aux1[i][31]) == 3) {
+                        else if (Integer.valueOf(auxHotel[i][31]) == 3) {
                             Log.v("[add]","Entre al if Eliminar" );
                             NetServices oNS = new NetServices(new OnTaskCompleted() {
                                 @Override
@@ -886,18 +894,172 @@ public class MainActivity extends AppCompatActivity
                                     Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES DELETE-PROYECTO HOTEL!", Toast.LENGTH_LONG).show();
                                 }
                             });
-                            oNS.execute("sincPro_Hotel", "3", aux1[i][0], aux1[i][1] );
+                            oNS.execute("sincPro_Hotel", "3", auxHotel[i][0], auxHotel[i][1] );
                         }
                     }
+    }
+
+    public void SinProyectoResidencial(){
+        String [][] auxResi = MainActivity.oDB.ObtenerProyectosResidencial("0","0", 2);
+        Log.v("[add]","Residencial Sinc = "+auxResi.length );
+
+        for (int i =0; i < auxResi.length; i++) {
+            if (Integer.valueOf(auxResi[i][37]) == 1) {
+                Log.v("[add]","Entre al if Insertar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                        /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADD-RESIDENCIAL!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Residencial", "1", auxResi[i][0], auxResi[i][1] );
+            }
+            else if (Integer.valueOf(auxResi[i][37]) == 2) {
+                Log.v("[add]","Entre al if Modificar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES MODIFY-RESIDENCIAL!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Residencial", "2", auxResi[i][0], auxResi[i][1] );
+            }
+            else if (Integer.valueOf(auxResi[i][37]) == 3) {
+                Log.v("[add]","Entre al if Eliminar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES DELETE-RESIDENCIAL!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Residencial", "3", auxResi[i][0], auxResi[i][1] );
+            }
+        }
+    }
+
+    public void SinProyectoEspecial(){
+        String [][] auxEsp = MainActivity.oDB.ObtenerProyectosEspecial("0","0", 2);
+        Log.v("[add]","Especial Sinc = "+auxEsp.length );
+
+        for (int i =0; i < auxEsp.length; i++) {
+            if (Integer.valueOf(auxEsp[i][22]) == 1) {
+                Log.v("[add]","Entre al if Insertar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                        /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADD-ESPECIAL!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Especial", "1", auxEsp[i][0], auxEsp[i][1] );
+            }
+            else if (Integer.valueOf(auxEsp[i][22]) == 2) {
+                Log.v("[add]","Entre al if Modificar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES MODIFY-ESPECIAL!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Especial", "2", auxEsp[i][0], auxEsp[i][1] );
+            }
+            else if (Integer.valueOf(auxEsp[i][22]) == 3) {
+                Log.v("[add]","Entre al if Eliminar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES DELETE-ESPECIAL !", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Especial", "3", auxEsp[i][0], auxEsp[i][1] );
+            }
+        }
+    }
+
+    public void SinProyectoGaleria(){
+        String [][] auxGal = MainActivity.oDB.ObtenerProyectosGaleria("0","0", 2);
+        Log.v("[add]","Galeria Sinc = "+auxGal.length );
+
+        for (int i =0; i < auxGal.length; i++) {
+            if (Integer.valueOf(auxGal[i][26]) == 1) {
+                Log.v("[add]","Entre al if Insertar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                        /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES ADD-GALERIA!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Galeria", "1", auxGal[i][0], auxGal[i][1] );
+            }
+            else if (Integer.valueOf(auxGal[i][26]) == 2) {
+                Log.v("[add]","Entre al if Modificar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES MODIFY-GALERIA!", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Galeria", "2", auxGal[i][0], auxGal[i][1] );
+            }
+            else if (Integer.valueOf(auxGal[i][26]) == 3) {
+                Log.v("[add]","Entre al if Eliminar" );
+                NetServices oNS = new NetServices(new OnTaskCompleted() {
+                    @Override
+                    public void OnTaskCompleted(Object freed) {
+                                /*Toast.makeText(getApplicationContext(), "TODO PERFECTO EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();*/
+                    }
+                    @Override
+                    public void OnTaskError(Object feed) {
+                        Toast.makeText(getApplicationContext(), "ERROR EN EL WEB SERVICES DELETE-GALERIA !", Toast.LENGTH_LONG).show();
+                    }
+                });
+                oNS.execute("sincPro_Galeria", "3", auxGal[i][0], auxGal[i][1] );
+            }
+        }
     }
 
     /* Funcion Para Descargar Datos Del Web Services */
     public void descargarWS(){
         String[][] aux1 = MainActivity.oDB.ObtenerClientes("0",2);
         String[][] aux3 = MainActivity.oDB.ObtenerUbicacion("0",2);
+
         String[][] aux2 = MainActivity.oDB.ObtenerProyectos("0",2);
         String[][] aux4 = MainActivity.oDB.ObtenerProyectosCama("0","0", 2);
-        int var = aux2.length + aux4.length;
+        String [][] aux5 = MainActivity.oDB.ObtenerProyectosHoteleria("0","0", 2);
+        //String [][] aux6 = MainActivity.oDB.ObtenerProyectosEspecial("0","0", 2);
+        //String [][] aux7 = MainActivity.oDB.ObtenerProyectosGaleria("0","0", 2);
+        int var = aux2.length + aux4.length+ aux5.length;
 
         if((aux1.length + aux3.length) >= 1){
             Toast.makeText(this, "Sincronización Clientes Requerida", Toast.LENGTH_LONG).show();
