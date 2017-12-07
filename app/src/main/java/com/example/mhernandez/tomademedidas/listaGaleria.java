@@ -154,7 +154,7 @@ public class listaGaleria extends AppCompatActivity {
             TextView txtFijacion = (TextView) rowView.findViewById(R.id.Fijacion);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
-            TextView Aimg = (TextView) rowView.findViewById(R.id.Aimg);
+
 
             if ( _text[position][4].indexOf("T") != 10){
                 txtFecha.setText("no disponible" );
@@ -186,7 +186,6 @@ public class listaGaleria extends AppCompatActivity {
                 checkCliente.setText("Sincronizado");
             }
 
-            Aimg.setText(_text[position][14]);
 
             return rowView;
         }

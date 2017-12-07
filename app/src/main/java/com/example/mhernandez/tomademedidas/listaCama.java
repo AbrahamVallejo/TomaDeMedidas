@@ -149,7 +149,6 @@ public class listaCama extends AppCompatActivity {
             TextView txtG = (TextView) rowView.findViewById(R.id.G);
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
-            TextView Aimg = (TextView) rowView.findViewById(R.id.Aimg);
             txtIDCama.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][2]);
@@ -176,7 +175,7 @@ public class listaCama extends AppCompatActivity {
                 checkCliente.setText("Sincronizado");
             }
 
-            Aimg.setText(_text[position][12]);
+
 
             return rowView;
         }

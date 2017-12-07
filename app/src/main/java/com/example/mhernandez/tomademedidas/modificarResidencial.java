@@ -27,7 +27,7 @@ import android.util.Base64;
 public class modificarResidencial extends AppCompatActivity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
-    private static final String APP_PATH = "droidBH";
+    private static final String APP_PATH = "TomaMedidas";
     int auxFoto=0;
     private Uri fileUri;
     String sID;
@@ -146,6 +146,7 @@ public class modificarResidencial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnCamara)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        auxFoto=1;
                         Intent rIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
                         rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);

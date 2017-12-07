@@ -156,7 +156,6 @@ public class listaHoteleria extends AppCompatActivity {
             TextView txtEstatus = (TextView) rowView.findViewById(R.id.EstatusProyecto);
             TextView txtMedidaSugerida = (TextView) rowView.findViewById(R.id.MedidaSugerida);
             TextView checkCliente = (TextView) rowView.findViewById(R.id.checkCliente);
-            TextView Aimg = (TextView) rowView.findViewById(R.id.Aimg);
             txtMedidaSugerida.setText(_text[position][24]);
             txtIDHoteleria.setText(_text[position][0]);
             txtIDDisp.setText(_text[position][1]);
@@ -185,7 +184,6 @@ public class listaHoteleria extends AppCompatActivity {
                 checkCliente.setText("Sincronizado");
             }
 
-            Aimg.setText(_text[position][13]);
 
             return rowView;
         }
