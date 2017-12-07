@@ -3,6 +3,7 @@ package com.example.mhernandez.tomademedidas;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -37,8 +38,8 @@ public class medidaResidencial extends AppCompatActivity {
     private static final String APP_PATH = "TomaMedidas";
     int auxFoto=0;
     private Uri fileUri;
-    String sID;
     String imagen = "";
+    String nombreImagen="1";
 
     public Spinner spUbicacionR, spFijacionR, spControlR, spCorrederaR, spAgptoR;
     public static DBProvider oDB;
@@ -82,6 +83,10 @@ public class medidaResidencial extends AppCompatActivity {
             }
         });
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
+        String[][] aRefD = MainActivity.oDB.lastDispositivo();
+        String[][] aRefR = MainActivity.oDB.lastResidencial();
+        final int idResidencial = Integer.parseInt(aRefR[(0)][0]) + 1;
+        final int idDisp = Integer.parseInt(aRefD[(0)][0]);
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,10 +111,6 @@ public class medidaResidencial extends AppCompatActivity {
                 String txtCorredera = Corredera.getSelectedItem().toString();
                 String txtMedidasSugerida = MedidaSugerida.getText().toString();
                 String txtObservaciones = Observaciones.getText().toString();
-                String[][] aRefD = MainActivity.oDB.lastDispositivo();
-                String[][] aRefR = MainActivity.oDB.lastResidencial();
-                int idResidencial = Integer.parseInt(aRefR[(0)][0]) + 1;
-                int idDisp = Integer.parseInt(aRefD[(0)][0]);
                 oDB.insertProyectoResidencial(idResidencial, idDisp, idProyecto, idProyectoDisp, txtUbicacion, txtA, txtB, txtC, txtD,
                         txtE, txtF, txtG, txtH, txtProfMarco, txtProfJaladera, txtControl, txtAgpto, txtMedidasSugerida, txtObservaciones,
                         imagen, Nombre, FechaAlta, 1, FechaAlta, 1, txtFijacion, txtPiso, 1,
@@ -118,7 +119,7 @@ public class medidaResidencial extends AppCompatActivity {
             }
         });
 
-
+        nombreImagen=""+idResidencial+idDisp;
         Button Imagenes = ((Button) this.findViewById(R.id.TomarFoto));
         ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
         final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
@@ -135,7 +136,7 @@ public class medidaResidencial extends AppCompatActivity {
                     public void onClick(View v) {
                         auxFoto=1;
                         Intent rIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
+                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, nombreImagen);
                         rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
                         startActivityForResult(rIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
                         customDialog.dismiss();
@@ -149,11 +150,6 @@ public class medidaResidencial extends AppCompatActivity {
                         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                         startActivityForResult(gallery, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
                         customDialog.dismiss();
-                        /*
-                        Intent rIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, "");
-                        rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                        startActivityForResult(rIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);   */
                     }
                 });
                 customDialog.show();
@@ -257,39 +253,7 @@ public class medidaResidencial extends AppCompatActivity {
         }
         super.onSaveInstanceState(savedInstanceState);
     }
-    /*
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }*/
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
@@ -332,7 +296,7 @@ public class medidaResidencial extends AppCompatActivity {
                     oImg.buildDrawingCache();
                     Bitmap bit_map = oImg.getDrawingCache();
                     imagen = convertToBase64(bit_map);
-                    foto.setText(imagen);
+                    foto.setText("IMG_Residencial" +nombreImagen); foto.setTextColor(Color.rgb(92, 184, 92));
                 }
             }
             else {
@@ -341,7 +305,7 @@ public class medidaResidencial extends AppCompatActivity {
                     Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
                     imagen = convertToBase64(bit_map);
                     TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-                    foto.setText(imagen);
+                    foto.setText("IMG_Residencial" +nombreImagen); foto.setTextColor(Color.rgb(92, 184, 92));
                     oImg.setImageBitmap(bit_map);//
                 }else if(resultCode == RESULT_CANCELED){
                     // User cancelled the image capture
@@ -361,3 +325,37 @@ public class medidaResidencial extends AppCompatActivity {
         return encodedImage;
     }
 }
+
+    /*
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }*/
+
+/**
+ * This interface must be implemented by activities that contain this
+ * fragment to allow an interaction in this fragment to be communicated
+ * to the activity and potentially other fragments contained in that
+ * activity.
+ * <p>
+ * See the Android Training lesson <a href=
+ * "http://developer.android.com/training/basics/fragments/communicating.html"
+ * >Communicating with Other Fragments</a> for more information.
+ */

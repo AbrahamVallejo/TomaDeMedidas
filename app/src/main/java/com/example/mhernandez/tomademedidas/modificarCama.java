@@ -201,10 +201,6 @@ public class modificarCama extends AppCompatActivity {
         void onFragmentInteraction(Uri uri);
     }
 
-    /*private static Uri getOutputMediaFileUri(int type, String pID){
-        return Uri.fromFile(getOutputMediaFile(type,pID));
-    }*/
-
     // Permisos para Api 23
     public Uri getOutputMediaFileUri(int type, String pID) {
         requestRuntimePermission();
@@ -325,3 +321,6 @@ public class modificarCama extends AppCompatActivity {
  * "http://developer.android.com/training/basics/fragments/communicating.html"
  * >Communicating with Other Fragments</a> for more information.
  */
+    /*private static Uri getOutputMediaFileUri(int type, String pID){
+        return Uri.fromFile(getOutputMediaFile(type,pID));
+    }*/

@@ -2,6 +2,7 @@ package com.example.mhernandez.tomademedidas;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -26,11 +27,11 @@ import android.util.Base64;
 public class residencial extends AppCompatActivity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
-    private static final String APP_PATH = "droidBH";
+    private static final String APP_PATH = "TomaMedidas";
     int auxFoto=0;
     private Uri fileUri;
-    String sID;
     String imagen = "";
+    String nombreImagen="1";
 
     private Spinner spUbicacionR, spFijacionR, spControlR, spCorrederaR, spAgptoR;
     public static DBProvider oDB;
@@ -87,6 +88,11 @@ public class residencial extends AppCompatActivity {
                 startActivity(rIntent);
             }
         });
+
+        String[][] aRefD = MainActivity.oDB.lastDispositivo();
+        String[][] aRefR = MainActivity.oDB.lastResidencial();
+        final int idResidencial = Integer.parseInt(aRefR[(0)][0]) + 1;
+        final int idDisp = Integer.parseInt(aRefD[(0)][0]);
         Guardar.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -109,12 +115,8 @@ public class residencial extends AppCompatActivity {
                         String txtPiso = Piso.getText().toString();
                         String txtCorredera = Corredera.getSelectedItem().toString();
                         String txtAgpto = Agpto.getSelectedItem().toString();
-                        String[][] aRefD = MainActivity.oDB.lastDispositivo();
                         String[][] aRefP = MainActivity.oDB.lastProyecto();
-                        String[][] aRefR = MainActivity.oDB.lastResidencial();
                         int idProyecto = Integer.parseInt(aRefP[(0)][0]) + 1;
-                        int idResidencial = Integer.parseInt(aRefR[(0)][0]) + 1;
-                        int idDisp = Integer.parseInt(aRefD[(0)][0]);
                         oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
                                            0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, idUsuarioVenta, Agente, 1);
                         oDB.insertProyectoResidencial(idResidencial, idDisp, idProyecto, idDisp, txtUbicacion, txtA, txtB, txtC, txtD,
@@ -126,6 +128,7 @@ public class residencial extends AppCompatActivity {
                 }
         );
 
+        nombreImagen=""+idResidencial+idDisp;
         Button Imagenes = ((Button) this.findViewById(R.id.TomarFoto));
         ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
         final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
@@ -140,8 +143,9 @@ public class residencial extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnCamara)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        auxFoto=1;
                         Intent rIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, sID);
+                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, nombreImagen);
                         rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
                         startActivityForResult(rIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
                         customDialog.dismiss();
@@ -155,11 +159,6 @@ public class residencial extends AppCompatActivity {
                         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                         startActivityForResult(gallery, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
                         customDialog.dismiss();
-                        /*
-                        Intent rIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, "");
-                        rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                        startActivityForResult(rIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);   */
                     }
                 });
                 customDialog.show();
@@ -339,7 +338,7 @@ public class residencial extends AppCompatActivity {
                     oImg.buildDrawingCache();
                     Bitmap bit_map = oImg.getDrawingCache();
                     imagen = convertToBase64(bit_map);
-                    foto.setText(imagen);
+                    foto.setText("IMG_Residencial" +nombreImagen); foto.setTextColor(Color.rgb(92, 184, 92));
                 }
             }
             else {
@@ -348,7 +347,7 @@ public class residencial extends AppCompatActivity {
                     Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
                     imagen = convertToBase64(bit_map);
                     TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-                    foto.setText(imagen);
+                    foto.setText("IMG_Residencial" +nombreImagen); foto.setTextColor(Color.rgb(92, 184, 92));
                     oImg.setImageBitmap(bit_map);//
                 }else if(resultCode == RESULT_CANCELED){
                     // User cancelled the image capture

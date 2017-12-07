@@ -2,11 +2,16 @@ package com.example.mhernandez.tomademedidas;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.Menu;
@@ -139,6 +144,7 @@ public class galeria extends AppCompatActivity {
                 ((Button) customDialog.findViewById(R.id.btnCamara)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        auxFoto=1;
                         Intent rIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, nombreImagen);
                         rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
@@ -154,11 +160,6 @@ public class galeria extends AppCompatActivity {
                         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                         startActivityForResult(gallery, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
                         customDialog.dismiss();
-                        /*
-                        Intent rIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE, "");
-                        rIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                        startActivityForResult(rIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);   */
                     }
                 });
                 customDialog.show();
@@ -301,9 +302,21 @@ public class galeria extends AppCompatActivity {
         void onFragmentInteraction(Uri uri);
     }
 
-    private static Uri getOutputMediaFileUri(int type, String pID){
+    public Uri getOutputMediaFileUri(int type, String pID) {
+        requestRuntimePermission();
         return Uri.fromFile(getOutputMediaFile(type,pID));
     }
+
+    public void requestRuntimePermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            }
+        }
+    }
+
 
     private static File getOutputMediaFile(int type, String pID){
         File mediaStorageDir = new
@@ -338,7 +351,7 @@ public class galeria extends AppCompatActivity {
                     oImg.buildDrawingCache();
                     Bitmap bit_map = oImg.getDrawingCache();
                     imagen = convertToBase64(bit_map);
-                    foto.setText(imagen);
+                    foto.setText("IMG_Galeria" +nombreImagen); foto.setTextColor(Color.rgb(92, 184, 92));
                 }
             }
             else {
@@ -347,7 +360,7 @@ public class galeria extends AppCompatActivity {
                     Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
                     imagen = convertToBase64(bit_map);
                     TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-                    foto.setText(imagen);
+                    foto.setText("IMG_Galeria" +nombreImagen); foto.setTextColor(Color.rgb(92, 184, 92));
                     oImg.setImageBitmap(bit_map);//
                 }else if(resultCode == RESULT_CANCELED){
                     // User cancelled the image capture
