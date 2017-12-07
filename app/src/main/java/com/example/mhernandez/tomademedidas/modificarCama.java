@@ -2,7 +2,11 @@ package com.example.mhernandez.tomademedidas;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -89,12 +93,8 @@ public class modificarCama extends AppCompatActivity {
                 Double G = Double.parseDouble(txtG.getText().toString());
                 String AIMG = foto.getText().toString();
                 String Observaciones = txtObservaciones.getText().toString();
-                String[][] aRes = modificarCama.oDB.ObtenerProyectosHoteleria(String.valueOf(idCama), String.valueOf(idDisp), 4);
-                if (Integer.parseInt(aRes[0][27]) != 1){
-                    oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, AIMG, Observaciones, 2);
-                }else{
-                    oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, AIMG, Observaciones, 1);
-                }
+               // String[][] aRes = modificarCama.oDB.ObtenerProyectosHoteleria(String.valueOf(idCama), String.valueOf(idDisp), 4);
+                oDB.updateProyectoCama(idCama, idDisp, NHabitaciones, A, B , C, D , E , F, G, AIMG, Observaciones, 2);
                 finish();
             }
         });
@@ -226,8 +226,23 @@ public class modificarCama extends AppCompatActivity {
         void onFragmentInteraction(Uri uri);
     }
 
-    private static Uri getOutputMediaFileUri(int type, String pID){
+    /*private static Uri getOutputMediaFileUri(int type, String pID){
         return Uri.fromFile(getOutputMediaFile(type,pID));
+    }*/
+
+    public Uri getOutputMediaFileUri(int type, String pID) {
+        requestRuntimePermission();
+        return Uri.fromFile(getOutputMediaFile(type,pID));
+    }
+
+    public void requestRuntimePermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            }
+        }
     }
 
     private static File getOutputMediaFile(int type, String pID){

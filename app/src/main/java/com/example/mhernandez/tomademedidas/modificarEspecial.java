@@ -2,11 +2,15 @@ package com.example.mhernandez.tomademedidas;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.Menu;
@@ -203,8 +207,23 @@ public class modificarEspecial extends AppCompatActivity {
         void onFragmentInteraction(Uri uri);
     }
 
-    private static Uri getOutputMediaFileUri(int type, String pID){
+    /*private static Uri getOutputMediaFileUri(int type, String pID){
         return Uri.fromFile(getOutputMediaFile(type,pID));
+    }*/
+
+    public Uri getOutputMediaFileUri(int type, String pID) {
+        requestRuntimePermission();
+        return Uri.fromFile(getOutputMediaFile(type,pID));
+    }
+
+    public void requestRuntimePermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            }
+        }
     }
 
     private static File getOutputMediaFile(int type, String pID){
