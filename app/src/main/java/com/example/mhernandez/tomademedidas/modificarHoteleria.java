@@ -2,12 +2,17 @@ package com.example.mhernandez.tomademedidas;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -63,7 +68,6 @@ public class modificarHoteleria extends AppCompatActivity {
         String Hojas = oExt.getString("Hojas");
         String MedidaSugerida = oExt.getString("MedidaSugerida");
         String Observaciones = oExt.getString("Observaciones");
-        String Aimg = oExt.getString("Aimg");
         final EditText txtEdificio = (EditText) findViewById(R.id.txtEdificio);
         final EditText txtPiso = (EditText) findViewById(R.id.txtPiso);
         final EditText txtHabitacion = (EditText) findViewById(R.id.txtHabitacion);
@@ -85,11 +89,15 @@ public class modificarHoteleria extends AppCompatActivity {
         txtHojas.setText(Hojas.trim());
         txtMedidaSugerida.setText(MedidaSugerida.trim());
         txtObservaciones.setText(Observaciones.trim());
+
         final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-        foto.setText(Aimg);
         final String[][] aRes = modificarHoteleria.oDB.ObtenerProyectosHoteleria(String.valueOf(idHoteleria), String.valueOf(idDisp), 4);
         if (aRes[0][13].length() >50){
-            crearImagen(aRes[0][13]);
+            crearImagen(aRes[0][13]); foto.setText("IMG_HOTELERIA" +idHoteleria+idDisp); foto.setTextColor(Color.rgb(92, 184, 92));
+        }else if(aRes[0][13].length() <5){
+            foto.setText("Imagen no disponible"); foto.setTextColor(Color.rgb(204,85,85));
+        }else if(aRes[0][13].length() > 5 && aRes[0][13].length() < 50){
+            foto.setText("No es posible cargar la imagen"); foto.setTextColor(Color.rgb(92, 184, 92));
         }
 
         Guardar.setOnClickListener(new View.OnClickListener() {
@@ -107,12 +115,11 @@ public class modificarHoteleria extends AppCompatActivity {
                 String Corredera = txtCorredera.getSelectedItem().toString();
                 String MedidaSugerida = txtMedidaSugerida.getText().toString();
                 String Observaciones = txtObservaciones.getText().toString();
-                String AIMG = foto.getText().toString();
                 if (Integer.parseInt(aRes[0][31]) != 1){
-                oDB.updateProyectoHoteleria(idHoteleria, idDisp, Habitacion, Area, Ancho, Alto, Hojas, AIMG,
+                oDB.updateProyectoHoteleria(idHoteleria, idDisp, Habitacion, Area, Ancho, Alto, Hojas, imagen,
                         Observaciones, Piso, Edificio, Control, Fijacion, MedidaSugerida, Corredera, 2);}
                 else{
-                    oDB.updateProyectoHoteleria(idHoteleria, idDisp, Habitacion, Area, Ancho, Alto, Hojas, AIMG,
+                    oDB.updateProyectoHoteleria(idHoteleria, idDisp, Habitacion, Area, Ancho, Alto, Hojas, imagen,
                             Observaciones, Piso, Edificio, Control, Fijacion, MedidaSugerida, Corredera, 1);}
                 finish();
             }
@@ -262,7 +269,101 @@ public class modificarHoteleria extends AppCompatActivity {
         }
         super.onSaveInstanceState(savedInstanceState);
     }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
     /*
+    private static Uri getOutputMediaFileUri(int type, String pID){
+        return Uri.fromFile(getOutputMediaFile(type,pID));
+    }*/
+    public Uri getOutputMediaFileUri(int type, String pID) {
+        requestRuntimePermission();
+        return Uri.fromFile(getOutputMediaFile(type,pID));
+    }
+
+    public void requestRuntimePermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            }
+        }
+    }
+
+
+    private static File getOutputMediaFile(int type, String pID){
+        File mediaStorageDir = new
+                File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),APP_PATH);
+        if (!mediaStorageDir.exists()){
+            if (!mediaStorageDir.mkdirs()){
+                return null;
+            }
+        }
+        File mediaFile;
+        if (type == MEDIA_TYPE_IMAGE){
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_HOTELERIA" + pID + ".jpg");
+        }else {
+            return null;
+        }
+        return mediaFile;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
+        {
+            if (auxFoto==2) {
+                if(resultCode == RESULT_OK && requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
+                    fileUri = data.getData();
+                    ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
+                    oImg.setImageURI(fileUri);
+                    //Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
+                    TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+                    oImg.buildDrawingCache();
+                    Bitmap bit_map = oImg.getDrawingCache();
+                    imagen = convertToBase64(bit_map);
+                    foto.setText("IMG_HOTELERIA" +nombreImagen);
+                }
+            }
+            else {
+                if (resultCode == RESULT_OK){
+                    ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);//
+                    Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
+                    imagen = convertToBase64(bit_map);
+                    TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
+                    foto.setText("IMG_HOTELERIA" +nombreImagen);
+                    oImg.setImageBitmap(bit_map);//
+                }else if(resultCode == RESULT_CANCELED){
+                    // User cancelled the image capture
+                }else {
+                    //Image capture failed, advise user
+                }
+            }
+        }
+    }
+
+    private String convertToBase64(Bitmap imagenMap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        imagenMap.compress(Bitmap.CompressFormat.JPEG, 45, baos);
+        byte[] byteArrayImage = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+    private void crearImagen(String IMG){
+        byte[] decodedString = Base64.decode(IMG, Base64.DEFAULT); Log.v("[imagen]", ""+decodedString);
+        Bitmap bit_map = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); Log.v("[imagen]", ""+bit_map);
+        ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
+        oImg.setImageBitmap(bit_map);
+    }
+
+}
+
+ /*
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -285,91 +386,13 @@ public class modificarHoteleria extends AppCompatActivity {
         mListener = null;
     }*/
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
-    private static Uri getOutputMediaFileUri(int type, String pID){
-        return Uri.fromFile(getOutputMediaFile(type,pID));
-    }
-
-    private static File getOutputMediaFile(int type, String pID){
-        File mediaStorageDir = new
-                File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),APP_PATH);
-        if (!mediaStorageDir.exists()){
-            if (!mediaStorageDir.mkdirs()){
-                return null;
-            }
-        }
-        File mediaFile;
-        if (type == MEDIA_TYPE_IMAGE){
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_HOTELERIA" + pID + ".jpg");
-        }else {
-            return null;
-        }
-        return mediaFile;
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
-        {
-            if (auxFoto==2) {
-                if(resultCode == RESULT_OK && requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
-                    fileUri = data.getData();
-                    ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
-                    oImg.setImageURI(fileUri);
-                    //Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
-                    TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-                    oImg.buildDrawingCache();
-                    Bitmap bit_map = oImg.getDrawingCache();
-                    imagen = convertToBase64(bit_map);
-                    foto.setText(imagen);
-                }
-            }
-            else {
-                if (resultCode == RESULT_OK){
-                    ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);//
-                    Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
-                    imagen = convertToBase64(bit_map);
-                    TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-                    foto.setText(imagen);
-                    oImg.setImageBitmap(bit_map);//
-                }else if(resultCode == RESULT_CANCELED){
-                    // User cancelled the image capture
-                }else {
-                    //Image capture failed, advise user
-                }
-            }
-        }
-    }
-
-
-    private String convertToBase64(Bitmap imagenMap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        imagenMap.compress(Bitmap.CompressFormat.JPEG, 45, baos);
-        byte[] byteArrayImage = baos.toByteArray();
-        String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
-        return encodedImage;
-    }
-
-    private void crearImagen(String IMG){
-        byte[] decodedString = Base64.decode(IMG, Base64.DEFAULT); Log.v("[imagen]", ""+decodedString);
-        Bitmap bit_map = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); Log.v("[imagen]", ""+bit_map);
-        ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
-        oImg.setImageBitmap(bit_map);
-    }
-}
+/**
+ * This interface must be implemented by activities that contain this
+ * fragment to allow an interaction in this fragment to be communicated
+ * to the activity and potentially other fragments contained in that
+ * activity.
+ * <p>
+ * See the Android Training lesson <a href=
+ * "http://developer.android.com/training/basics/fragments/communicating.html"
+ * >Communicating with Other Fragments</a> for more information.
+ */

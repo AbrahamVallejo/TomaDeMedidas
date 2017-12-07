@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -74,9 +77,16 @@ public class modificarGaleria extends AppCompatActivity {
         txtAncho.setText(Ancho.trim());
         txtAlto.setText(Alto.trim());
         txtComentarios.setText(Comentarios.trim());
+
         final TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-        foto.setText(Aimg);
-        Button Imagenes = (Button) this.findViewById(R.id.TomarFoto);
+        final String[][] aRes = modificarGaleria.oDB.ObtenerProyectosGaleria(String.valueOf(idGaleria), String.valueOf(idDisp), 4);
+        if (aRes[0][14].length() >50){
+            crearImagen(aRes[0][14]); foto.setText("IMG_Galeria" +idGaleria+idDisp); foto.setTextColor(Color.rgb(92, 184, 92));
+        }else if(aRes[0][14].length() <5){
+            foto.setText("Imagen no disponible"); foto.setTextColor(Color.rgb(204,85,85));
+        }else if(aRes[0][14].length() > 5 && aRes[0][14].length() < 50){
+            foto.setText("No es posible cargar la imagen"); foto.setTextColor(Color.rgb(92, 184, 92));
+        }
 
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,8 +99,12 @@ public class modificarGaleria extends AppCompatActivity {
                 String Proyecciones = txtProyecciones.getSelectedItem().toString();
                 String Fijacion =  txtFijacion.getSelectedItem().toString();
                 String Comentarios = txtComentarios.getText().toString();
-                String AIMG = foto.getText().toString();
-                oDB.updateProyectoGaleria(idGaleria, idDisp, NHabitaciones, Area, Ancho, Alto, Copete, Proyecciones, Fijacion, AIMG, Comentarios, 2);
+                if (Integer.parseInt(aRes[0][26]) == 1){
+                    oDB.updateProyectoGaleria(idGaleria, idDisp, NHabitaciones, Area, Ancho, Alto, Copete, Proyecciones, Fijacion, imagen, Comentarios, 1);
+                }else{
+                    oDB.updateProyectoGaleria(idGaleria, idDisp, NHabitaciones, Area, Ancho, Alto, Copete, Proyecciones, Fijacion, imagen, Comentarios, 2);
+                }
+
                 finish();
             }
         });
@@ -105,7 +119,7 @@ public class modificarGaleria extends AppCompatActivity {
                 foto.setText(imagen);
             }
         }
-
+        Button Imagenes = (Button) this.findViewById(R.id.TomarFoto);
         Imagenes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -328,7 +342,7 @@ public class modificarGaleria extends AppCompatActivity {
                     oImg.buildDrawingCache();
                     Bitmap bit_map = oImg.getDrawingCache();
                     imagen = convertToBase64(bit_map);
-                    foto.setText(imagen);
+                    foto.setText("IMG_Galeria" +nombreImagen);
                 }
             }
             else {
@@ -337,7 +351,7 @@ public class modificarGaleria extends AppCompatActivity {
                     Bitmap bit_map = PictureTools.decodeSampledBitmapFromUri(fileUri.getPath(),400,400);
                     imagen = convertToBase64(bit_map);
                     TextView foto = (TextView) this.findViewById(R.id.TV_Imagen);
-                    foto.setText(imagen);
+                    foto.setText("IMG_Galeria" +nombreImagen);
                     oImg.setImageBitmap(bit_map);//
                 }else if(resultCode == RESULT_CANCELED){
                     // User cancelled the image capture
@@ -355,6 +369,13 @@ public class modificarGaleria extends AppCompatActivity {
         byte[] byteArrayImage = baos.toByteArray();
         String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
         return encodedImage;
+    }
+
+    private void crearImagen(String IMG){
+        byte[] decodedString = Base64.decode(IMG, Base64.DEFAULT); Log.v("[imagen]", ""+decodedString);
+        Bitmap bit_map = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); Log.v("[imagen]", ""+bit_map);
+        ImageView oImg = (ImageView) this.findViewById(R.id.imgFoto);
+        oImg.setImageBitmap(bit_map);
     }
 
 
