@@ -624,8 +624,8 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         else if(urls[0] == "sincPro_cama"){
             Log.v("[add]","Voy a Sincronizar en WS "+urls[1] );
             try{
-                String IMAGEN ="";
                 String[][] aref = MainActivity.oDB.ObtenerProyectosCama( urls[2], urls[3], 5);
+                String IMAGEN =RUTA_IMG+"IMG_Cama"+aref[0][0]+aref[0][1] ;
                     JSONObject json = new JSONObject();
                     JSONObject proyecto = new JSONObject();
                     proyecto.put("id_cama", aref[0][0] );           proyecto.put("id_disp", aref[0][1] );
@@ -639,16 +639,11 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     proyecto.put("id_usuario_alta", aref[0][17] );  proyecto.put("id_estatus", aref[0][20] );
                     proyecto.put("autorizado", aref[0][21] );       proyecto.put("pagado", aref[0][24] );
                     if ( aref[0][13].indexOf("D") >= 1){  proyecto.put("fecha", aref[0][13] ); }
-                    if ( aref[0][12].length() > 60){
-                        IMAGEN =RUTA_IMG+"IMG_Cama"+aref[0][0]+aref[0][1] ;
-                        proyecto.put("aImg", IMAGEN ); }
 
-                json.put("proyectoCama",proyecto);  Log.v("[add]","2: "+json.toString() );
-                if (aref[0][12].length() >60){
-                    sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][12], "IMG_Cama"+aref[0][0]+aref[0][1]);
-                }
-                sResp= sResp.trim(); Log.v("[add]", sResp + ":"+sResp.length() +" o img="+aref[0][12].length());
-                if (aref[0][12].length() < 50 || sResp.equalsIgnoreCase("OK")) {
+                    if ( aref[0][12].length() > 60){proyecto.put("aImg", IMAGEN ); }
+                    else if (aref[0][12].length() >5 && aref[0][12].length() <50){
+                        proyecto.put("aImg", aref[0][12] ); }
+
                     Log.v("[add]", "Entre aqui");
                         if (Integer.parseInt(urls[1]) == 1) {
                             sResp = NetServices.connectPost3(URL_WS1 + "wsproyecto_cama.svc/addproyectoCama", json.toString());
@@ -680,7 +675,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                                 MainActivity.oDB.deleteProyectoCama(Integer.parseInt(urls[2]), Integer.parseInt(urls[3]));
                             }
                         }
-                }
             }catch (Exception e){
                 exception = e;
             }
@@ -718,8 +712,8 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         }
         else if(urls[0] == "sincPro_Hotel"){                        Log.v("[add]","Voy a Sincronizar en WS Hotel "+urls[1] );
             try{
-                String IMAGEN ="";
                 String[][] aref = MainActivity.oDB.ObtenerProyectosHoteleria( urls[2], urls[3], 4);
+                String IMAGEN =RUTA_IMG+"IMG_Hoteleria"+aref[0][0]+aref[0][1] ;
                 Log.v("[add]","1: "+aref[0][1] );
                 JSONObject json = new JSONObject();         JSONObject proyecto = new JSONObject();
                     proyecto.put("id_hoteleria", aref[0][0] );          proyecto.put("id_disp", aref[0][1] );
@@ -734,16 +728,12 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                     proyecto.put("medida_sujerida", aref[0][24] );      proyecto.put("autorizado", aref[0][25] );
                     proyecto.put("corredera", aref[0][30] );
                     if ( aref[0][14].indexOf("D") >= 1){  proyecto.put("fecha", aref[0][14] ); }
-                    if ( aref[0][13].length() > 60){      IMAGEN =RUTA_IMG+"IMG_Hoteleria"+aref[0][0]+aref[0][1] ;
-                        proyecto.put("aImg", IMAGEN ); }
 
-                json.put("proyectoHoteleria",proyecto);  Log.v("[add]","::: "+json.toString() );
-                if (aref[0][13].length() >60){
-                    sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][12], "IMG_Hoteleria"+aref[0][0]+aref[0][1]);
-                }
-                sResp= sResp.trim();
-                if (aref[0][12].length() < 50 || sResp.equalsIgnoreCase("OK")) {    Log.v("[add]", "Entre aqui y voy al "+urls[1]);
+                    if ( aref[0][13].length() > 60){proyecto.put("aImg", IMAGEN ); }
+                    else if (aref[0][13].length() >5 && aref[0][13].length() <50){
+                        proyecto.put("aImg", aref[0][13] ); }
 
+                    Log.v("[add]", "Entre aqui y voy al "+urls[1]);
                     if (Integer.parseInt(urls[1]) == 1) {
                         String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_hoteleria.svc/addproyecto", json.toString());
                         Log.v("[add]", "Tam: " + Resp.length() + " Ca: " + Resp);
@@ -772,7 +762,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                             MainActivity.oDB.deleteProyectoHoteleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]));
                         }
                     }
-                }
             }catch (Exception e){
                 exception = e;
             }
@@ -814,8 +803,8 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         }
         else if(urls[0] == "sincPro_Residencial"){                        Log.v("[add]","Voy a Sincronizar en WS Residencial " );
             try{
-                String IMAGEN ="";
-                String[][] aref = MainActivity.oDB.ObtenerProyectosResidencial( urls[2], urls[3], 4);   Log.v("[add]","1: "+aref[0][1] );
+                String[][] aref = MainActivity.oDB.ObtenerProyectosResidencial( urls[2], urls[3], 4);
+                String IMAGEN =RUTA_IMG+"IMG_Residencial"+aref[0][0]+aref[0][1] ;
                 JSONObject json = new JSONObject();         JSONObject proyecto = new JSONObject();
                 proyecto.put("id_residencial", aref[0][0] );    proyecto.put("id_disp", aref[0][1] );
                 proyecto.put("id_proyecto", aref[0][2] );       proyecto.put("id_proyecto_disp", aref[0][3] );
@@ -835,16 +824,11 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 proyecto.put("corredera", aref[0][36] );
 
                 if ( aref[0][22].indexOf("D") >= 1){  proyecto.put("fecha", aref[0][22] ); }
-                if ( aref[0][19].length() > 60){      IMAGEN =RUTA_IMG+"IMG_Residencial"+aref[0][0]+aref[0][1] ;
-                    proyecto.put("aImg", IMAGEN ); }
+                if ( aref[0][19].length() > 60){proyecto.put("aImg", IMAGEN ); }
+                else if (aref[0][19].length() >5 && aref[0][19].length() <50){
+                    proyecto.put("aImg", aref[0][19] ); }
 
-                json.put("proyectoResidencial",proyecto);  Log.v("[add]","::: "+json.toString() );
-                if (aref[0][19].length() >60){
-                    sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][19], "IMG_Residencial"+aref[0][0]+aref[0][1]);
-                }
-                sResp= sResp.trim();
-                if (aref[0][19].length() < 50 || sResp.equalsIgnoreCase("OK")) {    Log.v("[add]", "Entre aqui y voy al "+urls[1]);
-
+                    Log.v("[add]", "Entre aqui y voy al "+urls[1]);
                     if (Integer.parseInt(urls[1]) == 1) {
                         String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_residencial.svc/addproyecto", json.toString());
                         Log.v("[add]", "Tam: " + Resp.length() + " Ca: " + Resp);
@@ -875,7 +859,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                             MainActivity.oDB.deleteProyectoResidencial(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]));
                         }
                     }
-                }
             }catch (Exception e){
                 exception = e;
             }
@@ -909,8 +892,8 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         }
         else if(urls[0] == "sincPro_Especial"){                        Log.v("[add]","Voy a Sincronizar en WS Especial " );
             try{
-                String IMAGEN ="";
                 String[][] aref = MainActivity.oDB.ObtenerProyectosEspecial( urls[2], urls[3], 4);   Log.v("[add]","1: "+aref[0][1] );
+                String IMAGEN =RUTA_IMG+"IMG_Especial"+aref[0][0]+aref[0][1] ;
                 JSONObject json = new JSONObject();         JSONObject proyecto = new JSONObject();
                 proyecto.put("id_especiales", aref[0][0] );     proyecto.put("id_disp", aref[0][1] );
                 proyecto.put("id_proyecto", aref[0][2] );       proyecto.put("id_proyecto_disp", aref[0][3] );
@@ -921,15 +904,12 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 proyecto.put("id_estatus", aref[0][15] );       proyecto.put("autorizado", aref[0][16] );
 
                 if ( aref[0][10].indexOf("D") >= 1){  proyecto.put("fecha", aref[0][10] ); proyecto.put("fecha_alta", aref[0][10] );}
-                if ( aref[0][9].length() > 60){      IMAGEN =RUTA_IMG+"IMG_Especial"+aref[0][0]+aref[0][1] ;
+                if ( aref[0][9].length() > 60){
                     proyecto.put("aImg", IMAGEN ); }
+                else if (aref[0][9].length() >5 && aref[0][9].length() <50){
+                    proyecto.put("aImg", aref[0][9] ); }
 
-                json.put("proyectoEspecial",proyecto);  Log.v("[add]","::: "+json.toString() );
-                if (aref[0][9].length() >60){
-                    sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][19], "IMG_Especial"+aref[0][0]+aref[0][1]);
-                }
-                sResp= sResp.trim();
-                if (aref[0][9].length() < 50 || sResp.equalsIgnoreCase("OK")) {    Log.v("[add]", "Entre aqui y voy al "+urls[1]);
+                Log.v("[add]", "Entre aqui y voy al "+urls[1]);
 
                     if (Integer.parseInt(urls[1]) == 1) {
                         String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_especial.svc/addproyecto", json.toString());
@@ -958,7 +938,6 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                             MainActivity.oDB.deleteProyectoEspecial(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]));
                         }
                     }
-                }
             }catch (Exception e){
                 exception = e;
             }
@@ -996,8 +975,8 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         }
         else if(urls[0] == "sincPro_Galeria"){                        Log.v("[add]","Voy a Sincronizar en WS Galeria " );
             try{
-                String IMAGEN ="";
                 String[][] aref = MainActivity.oDB.ObtenerProyectosGaleria( urls[2], urls[3], 4);
+                String IMAGEN =RUTA_IMG+"IMG_Galeria"+aref[0][0]+aref[0][1] ;
                 JSONObject json = new JSONObject();         JSONObject proyecto = new JSONObject();
                 proyecto.put("id_galeria", aref[0][0] );        proyecto.put("id_disp", aref[0][1] );
                 proyecto.put("id_proyecto", aref[0][2] );       proyecto.put("id_proyecto_disp", aref[0][3] );
@@ -1010,18 +989,13 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 proyecto.put("autorizado", aref[0][20] );       proyecto.put("pagado", aref[0][23] );
                 if ( Integer.parseInt(urls[1]) == 1){
                     proyecto.put("id_usuario_mod", "0" );
-                    proyecto.put("id_usuario_pago", "0" );
-                    }
+                    proyecto.put("id_usuario_pago", "0" );}
                 if ( aref[0][4].indexOf("D") >= 1){  proyecto.put("fecha", aref[0][4] ); }
-                if ( aref[0][14].length() > 60){      IMAGEN =RUTA_IMG+"IMG_Galeria"+aref[0][0]+aref[0][1] ;
-                    proyecto.put("aImg", IMAGEN ); }
+                if ( aref[0][14].length() > 60){
+                    proyecto.put("aImg", IMAGEN );}
+                else if (aref[0][14].length() >5 && aref[0][14].length() <50){
+                    proyecto.put("aImg", aref[0][14] ); }
 
-                json.put("proyectoGaleria",proyecto);  Log.v("[add]","::: "+json.toString() );
-                if (aref[0][14].length() >60){
-                    sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][19], "IMG_Galeria"+aref[0][0]+aref[0][1]);
-                }
-                sResp= sResp.trim();
-                if (aref[0][14].length() < 50 || sResp.equalsIgnoreCase("OK")) {    Log.v("[add]", "Entre aqui y voy al "+urls[1]);
 
                     if (Integer.parseInt(urls[1]) == 1) {
                         String Resp = NetServices.connectPost3(URL_WS1 + "wsproyecto_galeria.svc/addproyecto", json.toString());
@@ -1049,8 +1023,8 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                         }else {
                             MainActivity.oDB.deleteProyectoGaleria(Integer.parseInt(aref[0][0]), Integer.parseInt(aref[0][1]));
                         }
+
                     }
-                }
             }catch (Exception e){
                 exception = e;
             }
@@ -1349,3 +1323,14 @@ public class NetServices extends AsyncTask<String, Void, Object> {
 
 
 }
+
+
+/*
+                json.put("proyectoGaleria",proyecto);  Log.v("[add]","::: "+json.toString() );
+                if (aref[0][14].length() >60){
+                    sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", aref[0][19], "IMG_Galeria"+aref[0][0]+aref[0][1]);
+                }
+                sResp= sResp.trim();
+                if (aref[0][14].length() < 50 || sResp.equalsIgnoreCase("OK")) {    Log.v("[add]", "Entre aqui y voy al "+urls[1]);
+
+ */
