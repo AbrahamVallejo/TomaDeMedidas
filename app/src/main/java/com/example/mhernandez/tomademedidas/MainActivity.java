@@ -657,7 +657,6 @@ public class MainActivity extends AppCompatActivity
                                                 }
                                         }
                                 }
-
                             }
                         }
                     class MiImg extends Thread {
@@ -670,7 +669,7 @@ public class MainActivity extends AppCompatActivity
                     int pro = SinProyecto();
                         if ( pro ==1){
                             MiImg IMG = new MiImg(); IMG.start();
-                            //MiThread hilo = new MiThread(); hilo.start();
+                            MiThread hilo = new MiThread(); hilo.start();
 
                             Toast.makeText(this, "Sincronización Completa", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(this, MainActivity.class); finish();
@@ -1081,36 +1080,39 @@ public class MainActivity extends AppCompatActivity
         int variable= ImgCama.length+ ImgEsp.length+ ImgGal.length + ImgHotel.length+ ImgResi.length;   int var=0;
 
             for (int i =0; i < ImgGal.length; i++) {
-                if (Integer.valueOf(ImgGal[i][14]) > 60) {
+                if (ImgGal[i][14].length() > 60) {
                     Foto= Foto+ImgGal[i][14]+",";
-                    Nombre="IMG_Galeria"+ImgGal[i][0]+ImgGal[i][1]+",";
-                } var++;
+                    Nombre=Nombre+"IMG_Galeria"+ImgGal[i][0]+ImgGal[i][1]+",";
+                }
+                var++; Log.v("[add]",""+var );
             }
             for (int i =0; i < ImgEsp.length; i++) {
-                if (Integer.valueOf(ImgEsp[i][9]) > 60) {
+                if (ImgEsp[i][9].length() > 60) {
                     Foto= Foto+ImgEsp[i][9]+",";
-                    Nombre="IMG_Especial"+ImgEsp[i][0]+ImgEsp[i][1]+",";
-                }var++;
+                    Nombre=Nombre+"IMG_Especial"+ImgEsp[i][0]+ImgEsp[i][1]+",";
+                }var++; Log.v("[add]",""+var );
             }
             for (int i =0; i < ImgResi.length; i++) {
-                if (Integer.valueOf(ImgResi[i][19]) > 60) {
+                if (ImgResi[i][19].length() > 60) {
                     Foto= Foto+ImgResi[i][19]+",";
-                    Nombre="IMG_Residencial"+ImgResi[i][0]+ImgResi[i][1]+",";
+                    Nombre=Nombre+"IMG_Residencial"+ImgResi[i][0]+ImgResi[i][1]+",";
                 }var++;
             }
             for (int i =0; i < ImgHotel.length; i++) {
-                if (Integer.valueOf(ImgHotel[i][13]) > 60) {
+                if (ImgHotel[i][13].length() > 60) {
                     Foto= Foto+ImgHotel[i][13]+",";
-                    Nombre="IMG_Hoteleria"+ImgHotel[i][0]+ImgHotel[i][1]+",";
-                }var++;
+                    Nombre=Nombre+"IMG_Hoteleria"+ImgHotel[i][0]+ImgHotel[i][1]+",";
+                }var++; Log.v("[add]",""+var );
             }
             for (int i =0; i < ImgCama.length; i++) {
-                if (Integer.valueOf(ImgCama[i][12]) > 60) {
+                if (ImgCama[i][12].length() > 60) {
                     Foto= Foto+ImgCama[i][12]+",";
-                    Nombre="IMG_Cama"+ImgCama[i][0]+ImgCama[i][1]+",";
-                }var++;
+                    Nombre=Nombre+"IMG_Cama"+ImgCama[i][0]+ImgCama[i][1]+",";
+                }var++; Log.v("[add]",""+var );
             }
+        Log.v("[add]","Var "+var +" Variable:"+variable );
         if (var == variable){
+            Log.v("[add]",Nombre );
             NetServices oNS = new NetServices(new OnTaskCompleted() {
                 @Override
                 public void OnTaskCompleted(Object freed) {
