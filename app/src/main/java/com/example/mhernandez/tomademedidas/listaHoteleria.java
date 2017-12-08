@@ -47,6 +47,8 @@ public class listaHoteleria extends AppCompatActivity {
         EstatusProyecto = oExt.getInt("Estatus");
         Log.v("[FRAGMENT]", "ID "+idProyecto);
 
+        setTitle(NombreProyecto);
+
         lista();
 
         ListView tlList = ((ListView) this.findViewById(R.id.lista));
@@ -69,6 +71,7 @@ public class listaHoteleria extends AppCompatActivity {
                             Toast.makeText(listaHoteleria.this, "Medida Cerrada", Toast.LENGTH_LONG).show();
                         }else{
                             Intent rIntent = new Intent(listaHoteleria.this, modificarHoteleria.class);
+                            rIntent.putExtra("nombre", NombreProyecto);
                             rIntent.putExtra("idHoteleria", aDat[0]);
                             rIntent.putExtra("idDisp", aDat[1]);
                             rIntent.putExtra("idProyecto", aDat[2]);

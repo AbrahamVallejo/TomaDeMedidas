@@ -58,6 +58,7 @@ public class modificarEspecial extends AppCompatActivity {
         String Ancho = oExt.getString("Ancho");
         String Grosor = oExt.getString("Grosor");
         String Observaciones = oExt.getString("Observaciones");
+        setTitle(oExt.getString("nombre"));
         final EditText txtAlto = (EditText) findViewById(R.id.txtAlto);
         final EditText txtAncho = (EditText) findViewById(R.id.txtAncho);
         final EditText txtGrosor = (EditText) findViewById(R.id.txtGrosor);
@@ -199,13 +200,13 @@ public class modificarEspecial extends AppCompatActivity {
     }
 
     public void requestRuntimePermission() {
-        if (Build.VERSION.SDK_INT >= 23) {
+        //if (Build.VERSION.SDK_INT >= 23) {
             if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
                         new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
-        }
+        //}
     }
 
     private static File getOutputMediaFile(int type, String pID){

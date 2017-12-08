@@ -51,6 +51,8 @@ public class listaResidencial extends AppCompatActivity {
         NombreProyecto = oExt.getString("Nombre");
         Log.v("[FRAGMENT]", "ID "+idProyecto);
 
+        setTitle(NombreProyecto);
+
         lista();
 
         ListView tlList = ((ListView) this.findViewById(R.id.lista));
@@ -73,6 +75,7 @@ public class listaResidencial extends AppCompatActivity {
                             Toast.makeText(listaResidencial.this, "Medida Cerrada", Toast.LENGTH_LONG).show();
                         }else {
                             Intent rIntent = new Intent(listaResidencial.this, modificarResidencial.class);
+                            rIntent.putExtra("nombre", NombreProyecto);
                             rIntent.putExtra("idResidencial", aDat[0]);
                             rIntent.putExtra("idDisp", aDat[1]);
                             rIntent.putExtra("idProyecto", aDat[2]);

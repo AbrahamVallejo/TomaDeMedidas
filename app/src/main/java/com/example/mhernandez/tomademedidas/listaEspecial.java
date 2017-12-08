@@ -47,6 +47,8 @@ public class listaEspecial extends AppCompatActivity {
         NombreProyecto = oExt.getString("Nombre");
         Log.v("[FRAGMENT]", "ID "+idProyecto);
 
+        setTitle(NombreProyecto);
+
         ListView tlList = ((ListView) this.findViewById(R.id.lista));
 
 
@@ -76,6 +78,7 @@ public class listaEspecial extends AppCompatActivity {
                         rIntent.putExtra("Grosor", aDat[7]);
                         rIntent.putExtra("Observaciones", aDat[8]);
                         rIntent.putExtra("Aimg", aDat[9]);
+                        rIntent.putExtra("nombre", NombreProyecto);
                         startActivity(rIntent);
                         }
                         customDialog.dismiss();

@@ -50,7 +50,7 @@ public class modificarCama extends AppCompatActivity {
         final int idCama =  Integer.parseInt(oExt.getString("idCama"));
         final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
         nombreImagen=""+idCama+idDisp;
-
+        setTitle(oExt.getString("nombre"));
         String NHabitaciones = oExt.getString("NHabitaciones");
         String A = oExt.getString("A");
         String B = oExt.getString("B");
@@ -209,13 +209,13 @@ public class modificarCama extends AppCompatActivity {
 
     // Permisos para Api 23
     public void requestRuntimePermission() {
-        if (Build.VERSION.SDK_INT >= 23) {
+        //if (Build.VERSION.SDK_INT >= 23) {
             if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
                         new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
-        }
+        //}
     }
 
     private static File getOutputMediaFile(int type, String pID){
