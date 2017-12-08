@@ -109,14 +109,13 @@ public class crearGaleriaImagenes extends AppCompatActivity {
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String tipoFoto = Tipo.getSelectedItem().toString();
                 String txtDescripcion = descripcion.getText().toString();
-                if (Objects.equals(tipoFoto, "Antes")){
+                if (Tipo.getSelectedItemPosition() == 0){
                     int tipoImagen = 1;
                     oDB.insertProyectoImagen(idImagen, idDisp, idProyecto, idProyectoDisp, tipoImagen,txtDescripcion, Nombre, imagen, Formato);
                     Toast.makeText(crearGaleriaImagenes.this, "Galeria Guardada", Toast.LENGTH_LONG).show();
                     finish();
-                }else if(Objects.equals(tipoFoto, "Despues")){
+                }else if(Tipo.getSelectedItemPosition() == 1){
                     int tipoImagen = 2;
                     oDB.insertProyectoImagen(idImagen, idDisp, idProyecto, idProyectoDisp, tipoImagen,txtDescripcion, Nombre, imagen, Formato);
                     Toast.makeText(crearGaleriaImagenes.this, "Galeria Guardada", Toast.LENGTH_LONG).show();
