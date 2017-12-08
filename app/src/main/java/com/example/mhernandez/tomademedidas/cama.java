@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,8 @@ import android.provider.MediaStore;
 import android.widget.ImageView;
 import android.graphics.Bitmap;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
@@ -80,23 +83,36 @@ public class cama extends AppCompatActivity{
         Guardar.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View view){
-                        String numeroHabitaciones = NHabitaciones.getText().toString();
-                        Double txtA = Double.parseDouble(A.getText().toString());
-                        Double txtB = Double.parseDouble(B.getText().toString());
-                        Double txtC = Double.parseDouble(C.getText().toString());
-                        Double txtD = Double.parseDouble(D.getText().toString());
-                        Double txtE = Double.parseDouble(E.getText().toString());
-                        Double txtF = Double.parseDouble(F.getText().toString());
-                        Double txtG = Double.parseDouble(G.getText().toString());
-                        String[][] aRefC = MainActivity.oDB.lastCama();
-                        int idCama = Integer.parseInt(aRefC[(0)][0]) + 1;
-                        String OBS = Observaciones.getText().toString();
-                        oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
-                                0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, idUsuarioVenta, Agente, 1);
-                        oDB.insertProyectoCama(idCama, idDisp, idProyecto, idDisp, numeroHabitaciones, txtA, txtB, txtC,
-                                txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, idFormato, OBS, usuario, 0, 1, 0, imagen, 1);
-                        Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(rIntent);
+                        int Validar=0; String numeroHabitaciones=" ", OBS=" "; Double txtA=0.0, txtB=0.0, txtC=0.0, txtD=0.0, txtE=0.0, txtF=0.0, txtG=0.0;
+                        if (NHabitaciones.getText().toString().trim().length() !=0){numeroHabitaciones = NHabitaciones.getText().toString();}
+                            else { Validar++;  Log.v("[insert]", ""+Validar);}
+                        if (A.getText().toString().trim().length() !=0){txtA = Double.parseDouble(A.getText().toString());}
+                            else { Validar++;  Log.v("[insert]", ""+Validar);}
+                        if (B.getText().toString().trim().length() !=0){txtB = Double.parseDouble(B.getText().toString());}
+                            else { Validar++;  Log.v("[insert]", ""+Validar);}
+                        if (C.getText().toString().trim().length() !=0){txtC = Double.parseDouble(C.getText().toString());}
+                            else { Validar++;  Log.v("[insert]", ""+Validar);}
+                        if (D.getText().toString().trim().length() !=0){txtD = Double.parseDouble(D.getText().toString());}
+                            else { Validar++;  Log.v("[insert]", ""+Validar);}
+                        if (E.getText().toString().trim().length() !=0){txtE = Double.parseDouble(E.getText().toString());}
+                            else { Validar++;  Log.v("[insert]", ""+Validar);}
+                        if (F.getText().toString().trim().length() !=0){txtF = Double.parseDouble(F.getText().toString());}
+                            else { Validar++;  Log.v("[insert]", ""+Validar);}
+                        if (G.getText().toString().trim().length() !=0){txtG = Double.parseDouble(G.getText().toString());}
+                            else { Validar++;  Log.v("[insert]", ""+Validar);}
+
+                        if (Validar == 0){
+                            String[][] aRefC = MainActivity.oDB.lastCama();
+                            int idCama = Integer.parseInt(aRefC[(0)][0]) + 1;
+                            OBS = Observaciones.getText().toString();
+                            oDB.insertProyecto(idProyecto, idDisp, idCliente, idclienteDisp, idFormato, usuario, nombreProyecto, PedidoSap, FechaAlta,
+                                    0, accesoriosTecho, accesoriosMuro, accesoriosEspecial, 1, idUsuarioVenta, Agente, 1);
+                            oDB.insertProyectoCama(idCama, idDisp, idProyecto, idDisp, numeroHabitaciones, txtA, txtB, txtC,
+                                    txtD, txtE, txtF, txtG, FechaAlta, nombreProyecto, idFormato, OBS, usuario, 0, 1, 0, imagen, 1);
+                            Intent rIntent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(rIntent);
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Llene Todos Los Campos", Toast.LENGTH_SHORT).show(); }
                     }
                 }
         );
@@ -188,16 +204,6 @@ public class cama extends AppCompatActivity{
         super.onSaveInstanceState(savedInstanceState);
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
@@ -236,7 +242,6 @@ public class cama extends AppCompatActivity{
         }
         return mediaFile;
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -306,3 +311,13 @@ public class cama extends AppCompatActivity{
         super.onDetach();
         mListener = null;
     }*/
+/**
+ * This interface must be implemented by activities that contain this
+ * fragment to allow an interaction in this fragment to be communicated
+ * to the activity and potentially other fragments contained in that
+ * activity.
+ * <p>
+ * See the Android Training lesson <a href=
+ * "http://developer.android.com/training/basics/fragments/communicating.html"
+ * >Communicating with Other Fragments</a> for more information.
+ */
