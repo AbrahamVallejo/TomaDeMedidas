@@ -17,7 +17,7 @@
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         style="@style/ButtonStyle2"
-        android:text="CERRAR"
+        android:text="CERRAR PROYECTO"
         android:layout_weight="0"/>
 
     <TextView

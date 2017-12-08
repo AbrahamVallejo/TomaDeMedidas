@@ -64,6 +64,7 @@ public class modificarGaleria extends AppCompatActivity {
         String Alto = oExt.getString("Alto");
         String Comentarios = oExt.getString("Comentarios");
         String Aimg = oExt.getString("Aimg");
+        setTitle(oExt.getString("nombre"));
         final EditText txtNHabitaciones = (EditText) findViewById(R.id.txt_numero_habitaciones);
         final Spinner txtArea = (Spinner) findViewById(R.id.spinner_area);
         final EditText txtAncho = (EditText) findViewById(R.id.txt_ancho);
@@ -300,13 +301,13 @@ public class modificarGaleria extends AppCompatActivity {
     }
 
     public void requestRuntimePermission() {
-        if (Build.VERSION.SDK_INT >= 23) {
+        //if (Build.VERSION.SDK_INT >= 23) {
             if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
                         new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
-        }
+        //}
     }
 
     private static File getOutputMediaFile(int type, String pID){

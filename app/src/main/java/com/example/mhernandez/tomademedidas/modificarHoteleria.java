@@ -68,6 +68,7 @@ public class modificarHoteleria extends AppCompatActivity {
         String Hojas = oExt.getString("Hojas");
         String MedidaSugerida = oExt.getString("MedidaSugerida");
         String Observaciones = oExt.getString("Observaciones");
+        setTitle(oExt.getString("nombre"));
         final EditText txtEdificio = (EditText) findViewById(R.id.txtEdificio);
         final EditText txtPiso = (EditText) findViewById(R.id.txtPiso);
         final EditText txtHabitacion = (EditText) findViewById(R.id.txtHabitacion);
@@ -279,13 +280,13 @@ public class modificarHoteleria extends AppCompatActivity {
     }
 
     public void requestRuntimePermission() {
-        if (Build.VERSION.SDK_INT >= 23) {
+        //if (Build.VERSION.SDK_INT >= 23) {
             if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
                         new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
-        }
+        //}
     }
 
 
