@@ -55,7 +55,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         return sb.toString();
     }
 
-    public static String connectPost(String pUrl, String imagen, String nombre) throws IOException{
+    public static String connectPost(String pUrl, String imagen, String nombre, String accion) throws IOException{
         URL url = new URL(pUrl);
 
         URLConnection urlConnection = url.openConnection();
@@ -69,6 +69,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
             OutputStreamWriter writer = new OutputStreamWriter(httpURLConnection.getOutputStream());
             Uri.Builder foto = new Uri.Builder()
                     .appendQueryParameter("imagen",imagen)
+                    .appendQueryParameter("accion",accion)
                     .appendQueryParameter("nombre",nombre);
             String UrlParameters = foto.build().getEncodedQuery();
 
@@ -1031,7 +1032,7 @@ public class NetServices extends AsyncTask<String, Void, Object> {
         }
         else if(urls[0] == "Subir_IMG"){                        Log.v("[add]","Voy a Subir Imagenes" );
             try{
-                sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", urls[1],urls[2] );
+                sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", urls[1],urls[2],"1" );
                 sResp= sResp.trim();
                 if ( sResp.equalsIgnoreCase("OK")) {
                     Log.v("[add]", "Se subieron las imagenes");
