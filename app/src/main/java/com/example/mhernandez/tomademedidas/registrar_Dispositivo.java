@@ -64,8 +64,8 @@ public class registrar_Dispositivo extends AppCompatActivity {
                 setContentView(R.layout.activity_cargando);
                 TextView cargando = (TextView) this.findViewById(R.id.cargando);
                 cargando.setText("Registrando Dispositivo");
-                TextView porcentaje = (TextView) this.findViewById(R.id.porcentaje);
-                porcentaje.setText("");
+                //TextView porcentaje = (TextView) this.findViewById(R.id.porcentaje);
+                //porcentaje.setText("");
                 Thread timerThreadDos = new Thread(){
                     public void run(){
                         try {

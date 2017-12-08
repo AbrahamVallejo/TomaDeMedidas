@@ -1160,8 +1160,8 @@ public class MainActivity extends AppCompatActivity
                             e.printStackTrace();       }
                     }
                 };
-                porcentaje = (TextView) this.findViewById(R.id.porcentaje);
-                porcentaje.setText("50%");
+                //porcentaje = (TextView) this.findViewById(R.id.porcentaje);
+                //porcentaje.setText("50%");
                 timerThreadDos.start();
 
                 MainActivity.oDB.deleteAllProyectos("0","0");           MainActivity.oDB.deleteAllProyectosCama("0","0");
@@ -1179,7 +1179,7 @@ public class MainActivity extends AppCompatActivity
                             e.printStackTrace();       }
                     }
                 };
-                porcentaje.setText("70%");
+                //porcentaje.setText("70%");
                 timerThread.start();
 
             }else {
