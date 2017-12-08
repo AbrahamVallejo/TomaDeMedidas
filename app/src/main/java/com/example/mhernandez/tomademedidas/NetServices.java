@@ -1055,6 +1055,17 @@ public class NetServices extends AsyncTask<String, Void, Object> {
                 exception = e;
             }
         }
+        else if(urls[0] == "Subir_IMG"){                        Log.v("[add]","Voy a Subir Imagenes" );
+            try{
+                sResp = NetServices.connectPost(URL_WS2 + "decodeImage.php", urls[1],urls[2] );
+                sResp= sResp.trim();
+                if ( sResp.equalsIgnoreCase("OK")) {
+                    Log.v("[add]", "Se subieron las imagenes");
+                }
+            }catch (Exception e){
+                exception = e;
+            }
+        }
         else if(urls[0] == "getubicacionLista"){
             try{
                 sResp = NetServices.connectPost2(URL_WS1 + "wsubicacion.svc/"+ urls[0]);

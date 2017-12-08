@@ -249,11 +249,9 @@ public class Fragment_listaProyecto extends Fragment {
             TextView txtIDDisp = (TextView) rowView.findViewById(R.id.IDDisp);
             TextView txtNombre = (TextView) rowView.findViewById(R.id.nombre);
             TextView txtAutorizado = (TextView) rowView.findViewById(R.id.autorizado);
-            TextView txtATecho = (TextView) rowView.findViewById(R.id.ATecho);
             TextView txtPedidoSap = (TextView) rowView.findViewById(R.id.pedidoSap);
             TextView txtFecha = (TextView) rowView.findViewById(R.id.fecha);
-            TextView txtAMuro = (TextView) rowView.findViewById(R.id.AMuro);
-            TextView txtAEspeciales = (TextView) rowView.findViewById(R.id.AEspeciales);
+            TextView txtFormato = (TextView) rowView.findViewById(R.id.AEspeciales);
             TextView txtIDCliente = (TextView) rowView.findViewById(R.id.IDCliente);
             TextView txtIDUser = (TextView) rowView.findViewById(R.id.IDUser);
             TextView txtIDClienteDisp = (TextView) rowView.findViewById(R.id.IDClienteDisp);
@@ -266,19 +264,24 @@ public class Fragment_listaProyecto extends Fragment {
             String[] parts = _text[position][7].split("T");
             txtFecha.setText(parts[0]);}
 
-
             txtNombre.setText(_text[position][6]);
-            txtPedidoSap.setText(_text[position][8]);
+                if (_text[position][8].length() >3){
+                    txtPedidoSap.setText(_text[position][8]);
+                }else{
+                    txtPedidoSap.setText("S/N");}
             txtAutorizado.setText(_text[position][12]);
-            txtATecho.setText(_text[position][19].toLowerCase());
-            txtAMuro.setText(_text[position][20].toLowerCase());
-            if (_text[position][21].length() >2){
-                txtAEspeciales.setText(_text[position][21].toLowerCase());
-            }else{
-                txtAEspeciales.setText("(no definido)"); //txtAEspeciales.setTextSize(10);
-                txtAEspeciales.setTextColor(Color.rgb(204,85,85));
-            }
-
+                if (Integer.parseInt(_text[position][4]) ==1){
+                    txtFormato.setText("Ventana Residencial");
+                }else if (Integer.parseInt(_text[position][4]) ==2){
+                    txtFormato.setText("Ventana Hoteleria");
+                }else if (Integer.parseInt(_text[position][4]) ==3){
+                    txtFormato.setText("Medidas Galeria");
+                }else if (Integer.parseInt(_text[position][4]) ==4){
+                    txtFormato.setText("Medidas Cama");
+                }else if (Integer.parseInt(_text[position][4]) ==5){
+                    txtFormato.setText("Especiales");
+                }
+            //txtAEspeciales.setTextSize(10);txtAEspeciales.setTextColor(Color.rgb(204,85,85));
             txtIDDisp.setText(_text[position][1]);
             txtIDProyecto.setText(_text[position][0]);
             txtIDCliente.setText(_text[position][2]);
@@ -287,13 +290,11 @@ public class Fragment_listaProyecto extends Fragment {
             txtIDFormato.setText(_text[position][4]);
 
             if (Integer.parseInt(_text[position][10]) == 1){
-                txtEstatus.setText("Activo");
-            }else{
-                txtEstatus.setText("Cerrado");
+                    txtEstatus.setText("Activo");  txtEstatus.setTextColor(Color.rgb(4,85,174));
+            }else{  txtEstatus.setText("Cerrado"); txtEstatus.setTextColor(Color.rgb(204,85,85));
             }
             if( Integer.parseInt(_text[position][23]) == 0){
-                checkCliente.setTextColor(Color.rgb(92, 184, 92));
-                checkCliente.setText("Sincronizado");
+                checkCliente.setTextColor(Color.rgb(92, 184, 92));  checkCliente.setText("Sincronizado");
             }
 
             return rowView;

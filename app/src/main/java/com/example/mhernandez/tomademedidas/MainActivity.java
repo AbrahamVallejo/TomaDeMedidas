@@ -660,9 +660,17 @@ public class MainActivity extends AppCompatActivity
 
                             }
                         }
+                    class MiImg extends Thread {
+                        @Override
+                        public void run() {
+                            SinImagenesDeProyectos();
+                        }
+                    }
+
                     int pro = SinProyecto();
-                        if (pro ==1){
-                            MiThread hilo = new MiThread(); hilo.start();
+                        if ( pro ==1){
+                            MiImg IMG = new MiImg(); IMG.start();
+                            //MiThread hilo = new MiThread(); hilo.start();
 
                             Toast.makeText(this, "Sincronización Completa", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(this, MainActivity.class); finish();
@@ -1059,6 +1067,61 @@ public class MainActivity extends AppCompatActivity
                 });
                 oNS.execute("sincPro_Galeria", "3", auxGal[i][0], auxGal[i][1] );
             }
+        }
+        return 1;
+    }
+
+    public int SinImagenesDeProyectos(){
+        String [][] ImgGal = MainActivity.oDB.ObtenerProyectosGaleria("0","0", 2);
+        String [][] ImgEsp = MainActivity.oDB.ObtenerProyectosEspecial("0","0", 2);
+        String [][] ImgResi = MainActivity.oDB.ObtenerProyectosResidencial("0","0", 2);
+        String [][] ImgHotel = MainActivity.oDB.ObtenerProyectosHoteleria("0","0", 2);
+        String [][] ImgCama = MainActivity.oDB.ObtenerProyectosCama("0","0", 2);
+        String Foto="", Nombre="";
+        int variable= ImgCama.length+ ImgEsp.length+ ImgGal.length + ImgHotel.length+ ImgResi.length;   int var=0;
+
+            for (int i =0; i < ImgGal.length; i++) {
+                if (Integer.valueOf(ImgGal[i][14]) > 60) {
+                    Foto= Foto+ImgGal[i][14]+",";
+                    Nombre="IMG_Galeria"+ImgGal[i][0]+ImgGal[i][1]+",";
+                } var++;
+            }
+            for (int i =0; i < ImgEsp.length; i++) {
+                if (Integer.valueOf(ImgEsp[i][9]) > 60) {
+                    Foto= Foto+ImgEsp[i][9]+",";
+                    Nombre="IMG_Especial"+ImgEsp[i][0]+ImgEsp[i][1]+",";
+                }var++;
+            }
+            for (int i =0; i < ImgResi.length; i++) {
+                if (Integer.valueOf(ImgResi[i][19]) > 60) {
+                    Foto= Foto+ImgResi[i][19]+",";
+                    Nombre="IMG_Residencial"+ImgResi[i][0]+ImgResi[i][1]+",";
+                }var++;
+            }
+            for (int i =0; i < ImgHotel.length; i++) {
+                if (Integer.valueOf(ImgHotel[i][13]) > 60) {
+                    Foto= Foto+ImgHotel[i][13]+",";
+                    Nombre="IMG_Hoteleria"+ImgHotel[i][0]+ImgHotel[i][1]+",";
+                }var++;
+            }
+            for (int i =0; i < ImgCama.length; i++) {
+                if (Integer.valueOf(ImgCama[i][12]) > 60) {
+                    Foto= Foto+ImgCama[i][12]+",";
+                    Nombre="IMG_Cama"+ImgCama[i][0]+ImgCama[i][1]+",";
+                }var++;
+            }
+        if (var == variable){
+            NetServices oNS = new NetServices(new OnTaskCompleted() {
+                @Override
+                public void OnTaskCompleted(Object freed) {
+                        Toast.makeText(getApplicationContext(), "TODO PERFECTO AL SUBIR IMAGENES!", Toast.LENGTH_LONG).show();
+                }
+                @Override
+                public void OnTaskError(Object feed) {
+                    Toast.makeText(getApplicationContext(), "ERROR AL SUBIR IMAGENES!", Toast.LENGTH_LONG).show();
+                }
+            });
+            oNS.execute("Subir_IMG", Foto, Nombre );
         }
         return 1;
     }

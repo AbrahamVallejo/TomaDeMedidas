@@ -10,11 +10,11 @@
     <item
         android:id="@+id/sincronizar"
         android:orderInCategory="100"
-        android:title="Sincronizar" />
+        android:title="Subir Información" />
 
     <item
         android:id="@+id/descargar"
         android:orderInCategory="100"
-        android:title="Descargar" />
+        android:title="Descargar Información" />
 
 </menu>
