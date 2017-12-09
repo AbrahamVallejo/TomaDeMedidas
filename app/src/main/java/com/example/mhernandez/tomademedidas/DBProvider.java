@@ -802,6 +802,12 @@ public class DBProvider {
         Log.v("[DELETE]", "All Proyecto Residencial Eliminado");
     }
 
+    public void updateImgResidencial(int idR, int idDisp, String AIMG){
+        Object[] aData = {AIMG, idR, idDisp};
+        executeSQL("UPDATE " + DBhelper.TABLE_NAME_PROYECTO_RESIDENCIAL + " SET "
+                + DBhelper.COLUMN_NAME_AIMG + " = ? "
+                + " WHERE " + DBhelper.ID_RESIDENCIAL + " = ?" + " AND " + DBhelper.ID_DISP + " = ?", aData);
+    }
 
     //Tabla Dispositivos
     public void insertDispositivo(int idDisp,String nombre, int activo, String usuario, int fuera) {
