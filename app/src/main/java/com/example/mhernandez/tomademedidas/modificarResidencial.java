@@ -29,6 +29,7 @@ import android.widget.TextView;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import android.util.Base64;
+import android.widget.Toast;
 
 
 public class modificarResidencial extends AppCompatActivity {
@@ -38,7 +39,8 @@ public class modificarResidencial extends AppCompatActivity {
     int auxFoto=0;
     private Uri fileUri;
     String imagen = "";
-    String nombreImagen="1";
+    String nombreImagen="1", idR="", idD="";
+    int DescargarImagen=0;
 
     public Spinner spUbicacionR, spFijacionR, spControlR, spCorrederaR, spAgptoR;
     public static DBProvider oDB;
@@ -53,8 +55,8 @@ public class modificarResidencial extends AppCompatActivity {
         spinnerUbicacion(); spinnerControl(); spinnerFijacion(); spinnerCorredera(); spinnerAgpto();
         Bundle oExt = getIntent().getExtras();
         setTitle(oExt.getString("nombre"));
-        final int idResidencial = Integer.parseInt(oExt.getString("idResidencial"));
-        final int idDisp = Integer.parseInt(oExt.getString("idDisp"));
+        final int idResidencial = Integer.parseInt(oExt.getString("idResidencial")); idR=""+idResidencial;
+        final int idDisp = Integer.parseInt(oExt.getString("idDisp")); idD=""+idDisp;
         Button Guardar = (Button) this.findViewById(R.id.Guardar);
         String Piso = oExt.getString("Piso");
         String MedidaSugerida = oExt.getString("MedidaSugerida");
@@ -109,7 +111,7 @@ public class modificarResidencial extends AppCompatActivity {
         }else if(aRes[0][19].length() <5){
             foto.setText("Imagen no disponible"); foto.setTextColor(Color.rgb(204,85,85));
         }else if(aRes[0][19].length() > 5 && aRes[0][19].length() < 50){
-            foto.setText("No es posible cargar la imagen"); foto.setTextColor(Color.rgb(92, 184, 92));
+            foto.setText("No es posible cargar la imagen"); foto.setTextColor(Color.rgb(92, 184, 92)); DescargarImagen=1;
         }
 
         Guardar.setOnClickListener(new View.OnClickListener() {
@@ -214,7 +216,49 @@ public class modificarResidencial extends AppCompatActivity {
             customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             customDialog.setContentView(R.layout.referencia_medida_ventana);
         }
+        if(id == R.id.DescargarImg){
+            Log.v("[add]",""+DescargarImagen);
+            if(DescargarImagen==1){
+                BajarImagen();
+            }
+
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void BajarImagen(){
+        String nombre = "IMG_Residencial"+nombreImagen;
+        NetServices oNS = new NetServices(new OnTaskCompleted() {
+            @Override
+            public void OnTaskCompleted(Object freed) {
+                Toast.makeText(getApplicationContext(),
+                        "SE HA DESCARGADO LA IMAGEN!", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnTaskError(Object feed) {
+                Toast.makeText(getApplicationContext(),
+                        "OCURRIO UN ERROR EN EL WEB SERVICES!", Toast.LENGTH_LONG).show();
+            }
+        });
+        boolean aux = isOnlineNet();
+        if (aux != false){
+            Log.v("[add]","Bajar Imagen");
+            oNS.execute("Bajar_Imagen", nombre, idR, idD, "1");
+        }
+
+    }
+    public Boolean isOnlineNet() {
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.com ");
+            int val = p.waitFor();
+            boolean reachable = (val == 0);
+            return reachable;
+        } catch (Exception e) {
+            /* TODO Auto-generated catch block* */
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void spinnerUbicacion(){

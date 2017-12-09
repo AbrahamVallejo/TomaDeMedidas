@@ -6,4 +6,9 @@
         android:orderInCategory="100"
         android:title="Imagen Referencia">
     </item>
+    <item
+        android:id="@+id/DescargarImg"
+        android:orderInCategory="100"
+        android:title="Descargar Imagen">
+    </item>
 </menu>
